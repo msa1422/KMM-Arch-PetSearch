@@ -1,6 +1,37 @@
 # KMM-Arch-PetSearch
 
 
+## Project Setup
+
+### PetFinder Api
+- Generate [PetFinder](https://www.petfinder.com) ApiKey and Secret from [here](https://www.petfinder.com/developers/).
+- Create `apikey.properties` in `root` dir
+- Add the following in properties file
+    ```
+    API_KEY=<YOUR_API_KEY>
+    API_SECRET=<YOUR_API_SECRET>
+    ```
+- Run `./gradlew generateBuildKonfig`
+
+- Also create `keystore.properties` in `root` dir
+- Add the following lines in the file. Values can be anything as long as you're not generating a signed APK
+    ```
+    STORE_FILE=<YOUR_STORE_FILE>
+    STORE_PASSWORD=<YOUR_STORE_PASSWORD>
+    KEY_ALIAS=<YOUR_KEY_ALIAS>
+    KEY_PASSWORD=<YOUR_KEY_PASSWORD>
+    ```
+
+
+### Android
+- Java 11
+- You require [Android Studio Chipmunk](https://developer.android.com/studio/releases)
+- Install Kmm Plugin. Checkout [this setup guide](https://kotlinlang.org/docs/kmm-setup.html).
+
+
+### Opening iOS Project
+- Navigate to ios directory & open `.xcworkspace` & not `.xcodeproj`
+
 ## Libraries Used
 ### Android
 * [Jetpack Compose](https://developer.android.com/jetpack/compose)
@@ -20,7 +51,6 @@
 * [Koin](https://insert-koin.io)
 * [Kermit](https://github.com/touchlab/Kermit)
 * [Moko-Resource](https://github.com/icerockdev/moko-resources)
-* [Klock](https://github.com/korlibs/korge/tree/main/klock)
 * [Multiplatform-paging](https://github.com/kuuuurt/multiplatform-paging)
 * [Uuid](https://github.com/benasher44/uuid)
 
