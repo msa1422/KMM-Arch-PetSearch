@@ -4,16 +4,15 @@
 
 
 ### References/ Inspiration
-[Code Snippets](https://github.com/android/compose-samples)
-[KaMPKit](https://github.com/touchlab/KaMPKit)
-[moko-template](https://github.com/icerockdev/moko-template)
-[Food2Fork-KMM](https://github.com/mitchtabian/Food2Fork-KMM)
-[tv-maniac](https://github.com/c0de-wizard/tv-maniac)
-[kmm-demo by fededri](https://github.com/fededri/kmm-demo)
-[ViewModelNavigationCompose](https://github.com/Frank1234/ViewModelNavigationCompose)
-[MortyComposeKMM](https://github.com/joreilly/MortyComposeKMM)
-[kmm-samples](https://kotlinlang.org/docs/multiplatform-mobile-samples.html)
-
+- [KaMPKit](https://github.com/touchlab/KaMPKit)
+- [moko-template](https://github.com/icerockdev/moko-template)
+- [Food2Fork-KMM](https://github.com/mitchtabian/Food2Fork-KMM)
+- [tv-maniac](https://github.com/c0de-wizard/tv-maniac)
+- [kmm-demo by fededri](https://github.com/fededri/kmm-demo)
+- [ViewModelNavigationCompose](https://github.com/Frank1234/ViewModelNavigationCompose)
+- [MortyComposeKMM](https://github.com/joreilly/MortyComposeKMM)
+- [Code Snippets](https://github.com/android/compose-samples)
+- [kmm-samples](https://kotlinlang.org/docs/multiplatform-mobile-samples.html)
 
 
 ## License
