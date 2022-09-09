@@ -1,9 +1,38 @@
 # KMM-Arch-PetSearch
 
 
+## Libraries Used
+### Android
+* [Jetpack Compose](https://developer.android.com/jetpack/compose)
+    * [Material 3](https://m3.material.io/get-started)
+    * [Coil](https://coil-kt.github.io/coil/compose/)
+    * [Navigation](https://developer.android.com/jetpack/compose/navigation)
+* [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+* [Accompanist](https://github.com/google/accompanist)
+* [Leakcanary](https://github.com/square/leakcanary)
+
+### Kmm - Shared
+* [Ktor](https://ktor.io/)
+* [Realm-kotlin](https://github.com/realm/realm-kotlin)
+* [Multiplatform Settings](https://github.com/russhwolf/multiplatform-settings)
+* [Kotlinx Serialization](https://ktor.io/docs/kotlin-serialization.html)
+* [Coroutines](https://github.com/Kotlin/kotlinx.coroutines#multiplatform)
+* [Koin](https://insert-koin.io)
+* [Kermit](https://github.com/touchlab/Kermit)
+* [Moko-Resource](https://github.com/icerockdev/moko-resources)
+* [Klock](https://github.com/korlibs/korge/tree/main/klock)
+* [Multiplatform-paging](https://github.com/kuuuurt/multiplatform-paging)
+* [Uuid](https://github.com/benasher44/uuid)
+
+### iOS
+* [UIPilot](https://github.com/canopas/UIPilot)
+* [SDWebImageSwiftUI](https://github.com/SDWebImage/SDWebImageSwiftUI)
+* [ToastSwiftUI](https://github.com/huynguyencong/ToastSwiftUI)
 
 
-### References/ Inspiration
+## Inspiration
+Following projects have played a huge role in development of KMM-Arch-PetSearch.
+I am grateful to authors of projects below for sharing such highly valuable material.
 - [KaMPKit](https://github.com/touchlab/KaMPKit)
 - [moko-template](https://github.com/icerockdev/moko-template)
 - [Food2Fork-KMM](https://github.com/mitchtabian/Food2Fork-KMM)
@@ -13,6 +42,8 @@
 - [MortyComposeKMM](https://github.com/joreilly/MortyComposeKMM)
 - [Code Snippets](https://github.com/android/compose-samples)
 - [kmm-samples](https://kotlinlang.org/docs/multiplatform-mobile-samples.html)
+
+
 
 
 ## License

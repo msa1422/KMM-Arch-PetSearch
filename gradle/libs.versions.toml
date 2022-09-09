@@ -76,7 +76,6 @@ androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version =
 androidx-compose-paging = { module = "androidx.paging:paging-compose", version = "1.0.0-alpha16" }
 androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
-#androidx-compose-material3-window = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "compose-material3" }
 
 androidx-compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 androidx-navigation-common = { module = "androidx.navigation:navigation-common-ktx", version.ref = "androidx-navigation" }
@@ -95,28 +94,8 @@ accompanist-pager = { module = "com.google.accompanist:accompanist-pager", versi
 chrisbanes-snapper = { module = "dev.chrisbanes.snapper:snapper", version = "0.2.2" }
 
 
-google-play-core = { module = "com.google.android.play:core", version = "1.10.3" }
-google-play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "20.2.0" }
-
-
-firabase-bom = { module = "com.google.firebase:firebase-bom", version = "30.0.2" }
-firabase-analytics = { module = "com.google.firebase:analytics" }
-firabase-crashlytics = { module = "com.google.firebase:crashlytics" }
-
-
-facebook-shimmer = { module = "com.facebook.shimmer:shimmer", version = "0.5.0" }
-facebook-login = { module = "com.facebook.android:facebook-login", version = "14.1.0" }
-#facebook-ads = { module = "com.facebook.android:audience-network-sdk", version = "6.11.0" }
-
-
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
-lottieAnimation = { module = "com.airbnb.android:lottie", version = "5.0.3" }
-bouncyScrollView = { module = "com.github.valkriaine:Bouncy", version = "2.3" }
-konfettiView = { module = "nl.dionsegijn:konfetti-compose", version = "2.0.2" }
-androidAnimations = { module = "com.daimajia.androidanimations:library", version = "2.4@aar" }
-shared-elements = { module = "com.mxalbert.sharedelements:shared-elements", version = "0.1.0-SNAPSHOT" }
-easingInterpolator = { module = "com.daasuu:EasingInterpolator", version = "1.3.0" }
 uuid-multiplatform = { module = "com.benasher44:uuid", version = "0.4.1" }
 moko-resources = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
 moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }
@@ -181,19 +160,15 @@ app-ui = [
     "androidx-compose-ui-tooling",
     "androidx-compose-ui-util",
     "androidx-compose-foundation",
-    #"androidx-compose-material",
     "androidx-compose-material3",
-    #"androidx-compose-material3-window",
     "androidx-compose-activity",
     "androidx-compose-navigation",
-    #"androidx-compose-constraintlayout",
     "androidx-navigation-common",
     "androidx-compose-animation",
     "accompanist-systemuicontroller",
     "accompanist-navigation-animation",
     "coil-compose",
     "coil-svg",
-    #"shared-elements"
 ]
 ktor-common = [
     "ktor-client-core",
