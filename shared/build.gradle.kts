@@ -1,62 +1,68 @@
+@file:Suppress("UnstableApiUsage")
+
+import com.petsapp.petfinder.constants.SharedModule
+import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode
+import com.petsapp.petfinder.util.libs
+
 plugins {
-    kotlin("multiplatform")
+    `kmm-shared-module-plugin`
     kotlin("native.cocoapods")
-    id("com.android.library")
-}
-
-version = "1.0"
-
-kotlin {
-    android()
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-
-    cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        ios.deploymentTarget = "14.1"
-        podfile = project.file("../ios/Podfile")
-        framework {
-            baseName = "shared"
-        }
-    }
-    
-    sourceSets {
-        val commonMain by getting
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
-        val androidMain by getting
-        val androidTest by getting
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
-        }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by creating {
-            dependsOn(commonTest)
-            iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
-            iosSimulatorArm64Test.dependsOn(this)
-        }
-    }
 }
 
 android {
-    compileSdk = 32
+    namespace = SharedModule.PACKAGE
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = 21
-        targetSdk = 32
+}
+
+kotlin {
+    cocoapods {
+        summary = "Some description for the Shared Module"
+        homepage = "Link to the Shared Module homepage"
+        ios.deploymentTarget = "14.0"
+        podfile = project.file("../ios/Podfile")
+        framework {
+            isStatic = true
+            baseName = "shared"
+
+            export(project(SharedModule.DomainCore.Entity.MODULE))
+            export(project(SharedModule.DomainCore.Util.MODULE))
+            export(project(SharedModule.DomainCore.Resources.MODULE))
+            export(project(SharedModule.Domain.PetDetail.UiContract.MODULE))
+            export(project(SharedModule.Domain.Home.UiContract.MODULE))
+
+            export(libs.kermit.log)
+            export(libs.moko.resources)
+
+            transitiveExport = true
+            embedBitcode(BitcodeEmbeddingMode.BITCODE)
+        }
     }
+}
+
+dependencies {
+
+    commonMainImplementation(libs.kotlinx.coroutines.core)
+    commonMainImplementation(libs.koin.core)
+
+    commonMainImplementation(project(SharedModule.Domain.Home.UiContract.MODULE))
+    commonMainImplementation(project(SharedModule.Domain.PetDetail.UiContract.MODULE))
+
+    commonMainImplementation(project(SharedModule.Data.Repository.Home.MODULE))
+    commonMainImplementation(project(SharedModule.Data.Repository.PetDetail.MODULE))
+
+    commonMainImplementation(project(SharedModule.Data.Infrastructure.Network.MODULE))
+    commonMainImplementation(project(SharedModule.Data.Infrastructure.Cache.MODULE))
+    commonMainImplementation(project(SharedModule.Data.Infrastructure.Preferences.MODULE))
+
+    commonMainImplementation(project(SharedModule.DomainCore.Util.MODULE))
+
+    iosMainApi(project(SharedModule.DomainCore.Entity.MODULE))
+    iosMainApi(project(SharedModule.DomainCore.Util.MODULE))
+    iosMainApi(project(SharedModule.DomainCore.Resources.MODULE))
+    iosMainApi(project(SharedModule.Domain.Home.UiContract.MODULE))
+    iosMainApi(project(SharedModule.Domain.PetDetail.UiContract.MODULE))
+    iosMainApi(libs.kermit.log)
+    iosMainApi(libs.moko.resources)
+
+
 }
