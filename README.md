@@ -3,33 +3,55 @@
 
 ### Android Screenshots
 
-<table>
-  <td>
-    <p align="center">
-      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/AndroidHomeLight.png?raw=true" alt="Home Screen Light" width="500"/>
-    </p>
-  </td>
-    <td>
-    <p align="center">
-      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/AndroidDetailLight.png?raw=true" alt="Home Screen Light" width="500"/>
-    </p>
-  </td>
-</table>
+[comment]: <> (<table>)
+
+[comment]: <> (  <td>)
+
+[comment]: <> (    <p align="center">)
+
+[comment]: <> (      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/AndroidHomeLight.png?raw=true" alt="Home Screen Light" width="500"/>)
+
+[comment]: <> (    </p>)
+
+[comment]: <> (  </td>)
+
+[comment]: <> (    <td>)
+
+[comment]: <> (    <p align="center">)
+
+[comment]: <> (      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/AndroidDetailLight.png?raw=true" alt="Home Screen Light" width="500"/>)
+
+[comment]: <> (    </p>)
+
+[comment]: <> (  </td>)
+
+[comment]: <> (</table>)
 
 ### iOS Screenshots
 
-<table>
-  <td>
-    <p align="center">
-      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/iOSHomeLight.png?raw=true" alt="Home Screen Light" width="500"/>
-    </p>
-  </td>
-    <td>
-    <p align="center">
-      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/iOSDetailLight.png?raw=true" alt="Home Screen Light" width="500"/>
-    </p>
-  </td>
-</table>
+[comment]: <> (<table>)
+
+[comment]: <> (  <td>)
+
+[comment]: <> (    <p align="center">)
+
+[comment]: <> (      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/iOSHomeLight.png?raw=true" alt="Home Screen Light" width="500"/>)
+
+[comment]: <> (    </p>)
+
+[comment]: <> (  </td>)
+
+[comment]: <> (    <td>)
+
+[comment]: <> (    <p align="center">)
+
+[comment]: <> (      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/iOSDetailLight.png?raw=true" alt="Home Screen Light" width="500"/>)
+
+[comment]: <> (    </p>)
+
+[comment]: <> (  </td>)
+
+[comment]: <> (</table>)
 
 ## Project Setup
 
