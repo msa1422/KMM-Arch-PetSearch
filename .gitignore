@@ -1,0 +1,17 @@
+*.iml
+.gradle
+.idea
+.DS_Store
+/build
+*/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Local configuration file (sdk path, etc)
+/local.properties
+/keystore.properties
+/apikey.properties
+local.properties
+keystore.properties
+apikey.properties

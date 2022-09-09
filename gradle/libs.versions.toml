@@ -1,0 +1,217 @@
+[versions]
+
+# Project Version
+project-version = "1.0"
+
+## SDK Versions
+minSdk = "21"
+targetSdk = "33"
+compileSdk = "33"
+versionCode = "1"
+versionName = "0.1"
+
+# Dependencies
+coroutines = "1.6.3"
+multiplatformSettings = "0.9"
+koin = "3.2.0"
+kotlin = "1.7.10"
+ktor = "2.0.3"
+realm = "1.0.1"
+coil = "2.1.0"
+moko-resources = "0.20.1"
+kermit = "1.1.3"
+
+androidx-activity = "1.5.1"
+androidx-lifecycle = "2.5.1"
+androidx-navigation = "2.5.1"
+androidx-constraintlayout = "1.0.1"
+androidx-compose = "1.2.1"
+compose-compiler = "1.3.0"
+compose-material3 = "1.0.0-beta01"
+accompanist = "0.25.1"
+
+
+[libraries]
+
+gradlePlugin-buildTools = { module = "com.android.tools.build:gradle", version = "7.2.2" }
+gradlePlugin-googleServices = { module = "com.google.gms:google-services", version = "4.3.10" }
+gradlePlugin-navigation-safeArgs = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "androidx-navigation" }
+gradlePlugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+gradlePlugin-firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-gradle", version = "2.8.1" }
+gradlePlugin-kotlinSerialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+gradlePlugin-ktlint = { module = "org.jlleitschuh.gradle:ktlint-gradle", version = "10.2.1" }
+gradlePlugin-dependency-check = { module = "com.github.ben-manes:gradle-versions-plugin", version = "0.42.0" }
+gradlePlugin-buildkonfig = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version = "0.7.0" }
+gradlePlugin-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version = "1.19.0" }
+gradlePlugin-realm = { module = "io.realm.kotlin:gradle-plugin", version.ref = "realm" }
+gradlePlugin-mokoResources = { module = "dev.icerock.moko:resources-generator", version.ref = "moko-resources" }
+
+
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+
+
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.3.3" }
+kotlinx-dateTime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.4.0" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+
+
+android-desugaring = { module = "com.android.tools:desugar_jdk_libs", version = "1.1.5" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version = "1.8.0" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version = "1.4.2" }
+androidx-test-junit = { module = "androidx.test.ext:junit-ktx", version = "1.1.3" }
+
+androidx-compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "compose-compiler" }
+androidx-compose-ui-runtime = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
+androidx-compose-ui-util = { module = "androidx.compose.ui:ui-util", version.ref = "androidx-compose" }
+androidx-compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "androidx-compose" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "androidx-compose" }
+androidx-compose-constraintlayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "androidx-constraintlayout" }
+androidx-compose-activity = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+androidx-compose-animation = { module = "androidx.compose.animation:animation", version.ref = "androidx-compose" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version = "3.1.1" }
+androidx-compose-paging = { module = "androidx.paging:paging-compose", version = "1.0.0-alpha16" }
+androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
+#androidx-compose-material3-window = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "compose-material3" }
+
+androidx-compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+androidx-navigation-common = { module = "androidx.navigation:navigation-common-ktx", version.ref = "androidx-navigation" }
+androidx-navigation-runtime = { module = "androidx.navigation:navigation-runtime-ktx", version.ref = "androidx-navigation" }
+
+
+androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
+
+
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+accompanist-navigation-animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref ="accompanist" }
+accompanist-navigation-material = { module = "com.google.accompanist:accompanist-navigation-material", version.ref ="accompanist" }
+accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref ="accompanist" }
+
+chrisbanes-snapper = { module = "dev.chrisbanes.snapper:snapper", version = "0.2.2" }
+
+
+google-play-core = { module = "com.google.android.play:core", version = "1.10.3" }
+google-play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "20.2.0" }
+
+
+firabase-bom = { module = "com.google.firebase:firebase-bom", version = "30.0.2" }
+firabase-analytics = { module = "com.google.firebase:analytics" }
+firabase-crashlytics = { module = "com.google.firebase:crashlytics" }
+
+
+facebook-shimmer = { module = "com.facebook.shimmer:shimmer", version = "0.5.0" }
+facebook-login = { module = "com.facebook.android:facebook-login", version = "14.1.0" }
+#facebook-ads = { module = "com.facebook.android:audience-network-sdk", version = "6.11.0" }
+
+
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
+lottieAnimation = { module = "com.airbnb.android:lottie", version = "5.0.3" }
+bouncyScrollView = { module = "com.github.valkriaine:Bouncy", version = "2.3" }
+konfettiView = { module = "nl.dionsegijn:konfetti-compose", version = "2.0.2" }
+androidAnimations = { module = "com.daimajia.androidanimations:library", version = "2.4@aar" }
+shared-elements = { module = "com.mxalbert.sharedelements:shared-elements", version = "0.1.0-SNAPSHOT" }
+easingInterpolator = { module = "com.daasuu:EasingInterpolator", version = "1.3.0" }
+uuid-multiplatform = { module = "com.benasher44:uuid", version = "0.4.1" }
+moko-resources = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
+moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }
+korlibs-klock = { module = "com.soywiz.korlibs.klock:klock", version = "2.2.0" }
+kuuuurt-multiplatform-paging = { module = "io.github.kuuuurt:multiplatform-paging", version = "0.4.7" }
+
+
+squareup-okio = { module = "com.squareup.okio:okio", version = "3.2.0" }
+
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-androidx-navigation = { module = "io.insert-koin:koin-androidx-navigation", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
+
+
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+ktor-client-okHttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+
+
+realm-kotlin = { module = "io.realm.kotlin:library-base", version.ref = "realm" }
+
+
+multiplatformSettings-common = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
+multiplatformSettings-noArg = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatformSettings" }
+multiplatformSettings-coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "multiplatformSettings" }
+multiplatformSettings-test = { module = "com.russhwolf:multiplatform-settings-test", version.ref = "multiplatformSettings" }
+
+
+kermit-log = { module = "co.touchlab:kermit", version.ref = "kermit" }
+kermit-crashlytics = { module = "co.touchlab:kermit-crashlytics", version.ref = "kermit" }
+
+
+squareup-leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version = "2.8.1" }
+junit = { module = "junit:junit", version = "4.13.2" }
+
+
+[bundles]
+gradlePlugins = [
+    "gradlePlugin-buildTools",
+    "gradlePlugin-googleServices",
+    "gradlePlugin-navigation-safeArgs",
+    "gradlePlugin-kotlin",
+    "gradlePlugin-firebase-crashlytics",
+    "gradlePlugin-kotlinSerialization",
+    "gradlePlugin-ktlint",
+    "gradlePlugin-realm",
+    "gradlePlugin-mokoResources"
+]
+app-ui = [
+    "androidx-compose-compiler",
+    "androidx-core-ktx",
+    "androidx-lifecycle-runtime",
+    "androidx-lifecycle-viewmodel-compose",
+    "androidx-compose-ui-runtime",
+    "androidx-compose-ui-tooling",
+    "androidx-compose-ui-util",
+    "androidx-compose-foundation",
+    #"androidx-compose-material",
+    "androidx-compose-material3",
+    #"androidx-compose-material3-window",
+    "androidx-compose-activity",
+    "androidx-compose-navigation",
+    #"androidx-compose-constraintlayout",
+    "androidx-navigation-common",
+    "androidx-compose-animation",
+    "accompanist-systemuicontroller",
+    "accompanist-navigation-animation",
+    "coil-compose",
+    "coil-svg",
+    #"shared-elements"
+]
+ktor-common = [
+    "ktor-client-core",
+    "ktor-client-logging",
+    "ktor-client-auth",
+    "ktor-client-serialization",
+    "ktor-serialization-kotlinx-json",
+    "ktor-client-contentNegotiation"
+]
+shared-commonTest = [
+    "kotlin-test",
+    "multiplatformSettings-test",
+    "koin-test",
+    "kotlinx-coroutines-test",
+    "ktor-client-mock"
+]
+shared-androidTest = [
+    "androidx-test-junit",
+    "kotlinx-coroutines-test",
+]
+
