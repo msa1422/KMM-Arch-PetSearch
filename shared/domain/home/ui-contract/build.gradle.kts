@@ -23,7 +23,7 @@ dependencies {
 
     commonMainImplementation(project(SharedModule.DomainCore.Entity.MODULE))
     commonMainImplementation(project(SharedModule.DomainCore.Util.MODULE))
-    //commonMainImplementation(project(SharedModule.DomainCore.Resources.MODULE))
+    commonMainImplementation(project(SharedModule.DomainCore.Resources.MODULE))
 
     commonMainImplementation(project(SharedModule.Domain.Home.DataSource.MODULE))
 
