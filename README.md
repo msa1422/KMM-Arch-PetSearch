@@ -10,12 +10,12 @@ With that said, just like other humans, I make mistakes (sometimes, really stupi
 <table>
   <td>
     <p align="center">
-      <img src="https://user-images.githubusercontent.com/22452092/189428033-0a5d2ba2-b822-4c3a-b6f4-938138c432f8.png" alt="Android Home Screen" width="200"/>
+      <img src="https://user-images.githubusercontent.com/22452092/189428033-0a5d2ba2-b822-4c3a-b6f4-938138c432f8.png" alt="Android Home Screen" width="270"/>
     </p>
   </td>
     <td>
     <p align="center">
-      <img src="https://user-images.githubusercontent.com/22452092/189428140-d57d0425-8303-45bb-9daa-1081ec0a1e28.png" alt="Android Pet Details Screen" width="200"/>
+      <img src="https://user-images.githubusercontent.com/22452092/189428140-d57d0425-8303-45bb-9daa-1081ec0a1e28.png" alt="Android Pet Details Screen" width="270"/>
     </p>
   </td>
 </table>
@@ -25,12 +25,12 @@ With that said, just like other humans, I make mistakes (sometimes, really stupi
 <table>
   <td>
     <p align="center">
-      <img src="https://user-images.githubusercontent.com/22452092/189428332-e48e4492-c5d0-4100-ae99-76fdc35bf668.png" alt="iOS Home Screen" width="200"/>
+      <img src="https://user-images.githubusercontent.com/22452092/189428332-e48e4492-c5d0-4100-ae99-76fdc35bf668.png" alt="iOS Home Screen" width="270"/>
     </p>
   </td>
     <td>
     <p align="center">
-      <img src="https://user-images.githubusercontent.com/22452092/189428358-d6a11d7f-df1e-42b0-8cf3-7c4d5b5a5a3a.png" alt="iOS Pet Details Screen" width="200"/>
+      <img src="https://user-images.githubusercontent.com/22452092/189428358-d6a11d7f-df1e-42b0-8cf3-7c4d5b5a5a3a.png" alt="iOS Pet Details Screen" width="270"/>
     </p>
   </td>
 </table>
