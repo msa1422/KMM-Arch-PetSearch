@@ -1,6 +1,36 @@
 # KMM-Arch-PetSearch
 
 
+### Android Screenshots
+
+<table>
+  <td>
+    <p align="center">
+      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/AndroidHomeLight.png?raw=true" alt="Home Screen Light" width="500"/>
+    </p>
+  </td>
+    <td>
+    <p align="center">
+      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/AndroidDetailLight.png?raw=true" alt="Home Screen Light" width="500"/>
+    </p>
+  </td>
+</table>
+
+### iOS Screenshots
+
+<table>
+  <td>
+    <p align="center">
+      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/iOSHomeLight.png?raw=true" alt="Home Screen Light" width="500"/>
+    </p>
+  </td>
+    <td>
+    <p align="center">
+      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/iOSDetailLight.png?raw=true" alt="Home Screen Light" width="500"/>
+    </p>
+  </td>
+</table>
+
 ## Project Setup
 
 ### PetFinder Api
@@ -13,8 +43,12 @@
     ```
 - Run `./gradlew generateBuildKonfig`
 
-- Also create `keystore.properties` in `root` dir
-- Add the following lines in the file. Values can be anything as long as you're not generating a signed APK
+
+### Android
+- Java 11
+- You require [Android Studio Chipmunk](https://developer.android.com/studio/releases)
+- Install Kmm Plugin. Checkout [this setup guide](https://kotlinlang.org/docs/kmm-setup.html).
+- Create `keystore.properties` in `root` dir and add the following lines in the file. Values can be anything as long as you're not generating a signed APK
     ```
     STORE_FILE=<YOUR_STORE_FILE>
     STORE_PASSWORD=<YOUR_STORE_PASSWORD>
@@ -23,14 +57,11 @@
     ```
 
 
-### Android
-- Java 11
-- You require [Android Studio Chipmunk](https://developer.android.com/studio/releases)
-- Install Kmm Plugin. Checkout [this setup guide](https://kotlinlang.org/docs/kmm-setup.html).
-
-
 ### Opening iOS Project
 - Navigate to ios directory & open `.xcworkspace` & not `.xcodeproj`
+
+
+
 
 ## Libraries Used
 ### Android
