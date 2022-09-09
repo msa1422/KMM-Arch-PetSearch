@@ -7,19 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		5C2C285A978C3EB395AA4C89 /* Pods_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0FCC5C8A958188012AB296 /* Pods_ios.framework */; };
 		5EC3B09628CB7E4200A040F2 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B09528CB7E4200A040F2 /* iOSApp.swift */; };
 		5EC3B09B28CB7EA700A040F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B09A28CB7EA700A040F2 /* ContentView.swift */; };
+		5EC3B0A028CB7FC600A040F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3B09D28CB7FC600A040F2 /* Assets.xcassets */; };
+		5EC3B0BD28CB813B00A040F2 /* NavRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0BC28CB813B00A040F2 /* NavRoute.swift */; };
+		5EC3B0BF28CB815500A040F2 /* UINavigationControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0BE28CB815500A040F2 /* UINavigationControllerExt.swift */; };
+		5EC3B0C128CB817500A040F2 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0C028CB817500A040F2 /* StringExt.swift */; };
+		5EC3B0C328CB819500A040F2 /* BindingExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0C228CB819500A040F2 /* BindingExt.swift */; };
+		5EC3B0C528CB81A900A040F2 /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0C428CB81A900A040F2 /* CornerRadiusStyle.swift */; };
+		5EC3B0CA28CB820800A040F2 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0C928CB820800A040F2 /* HomeScreen.swift */; };
+		5EC3B0CD28CB821900A040F2 /* HomeRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0CC28CB821900A040F2 /* HomeRoute.swift */; };
+		5EC3B0D028CB824900A040F2 /* TabRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0CF28CB824900A040F2 /* TabRow.swift */; };
+		5EC3B0D228CB825800A040F2 /* PetInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0D128CB825800A040F2 /* PetInfoView.swift */; };
+		5EC3B0D528CB82A000A040F2 /* PetDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0D428CB82A000A040F2 /* PetDetailScreen.swift */; };
+		5EC3B0D728CB82AE00A040F2 /* PetDetailRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0D628CB82AE00A040F2 /* PetDetailRoute.swift */; };
+		5EC3B0D928CB82D300A040F2 /* ImagePager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0D828CB82D300A040F2 /* ImagePager.swift */; };
+		5EC3B0DB28CB82E000A040F2 /* SectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0DA28CB82E000A040F2 /* SectionTitle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		11AE5F41A2FB110E05E2E253 /* Pods-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.debug.xcconfig"; path = "Target Support Files/Pods-ios/Pods-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		5EC3B09528CB7E4200A040F2 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		5EC3B09A28CB7EA700A040F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5EC3B09D28CB7FC600A040F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../PetFinder-Showcase/PetFinderApp/ios/ios/Common/Assets.xcassets"; sourceTree = "<group>"; };
+		5EC3B0BC28CB813B00A040F2 /* NavRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavRoute.swift; sourceTree = "<group>"; };
+		5EC3B0BE28CB815500A040F2 /* UINavigationControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExt.swift; sourceTree = "<group>"; };
+		5EC3B0C028CB817500A040F2 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		5EC3B0C228CB819500A040F2 /* BindingExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExt.swift; sourceTree = "<group>"; };
+		5EC3B0C428CB81A900A040F2 /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
+		5EC3B0C928CB820800A040F2 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		5EC3B0CC28CB821900A040F2 /* HomeRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoute.swift; sourceTree = "<group>"; };
+		5EC3B0CF28CB824900A040F2 /* TabRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRow.swift; sourceTree = "<group>"; };
+		5EC3B0D128CB825800A040F2 /* PetInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoView.swift; sourceTree = "<group>"; };
+		5EC3B0D428CB82A000A040F2 /* PetDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailScreen.swift; sourceTree = "<group>"; };
+		5EC3B0D628CB82AE00A040F2 /* PetDetailRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailRoute.swift; sourceTree = "<group>"; };
+		5EC3B0D828CB82D300A040F2 /* ImagePager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePager.swift; sourceTree = "<group>"; };
+		5EC3B0DA28CB82E000A040F2 /* SectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitle.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8FE83C0D2CCF57CCB483A1E /* Pods-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.release.xcconfig"; path = "Target Support Files/Pods-ios/Pods-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -55,6 +81,74 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		5EC3B09C28CB7F8C00A040F2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5EC3B0B528CB801E00A040F2 /* Util */,
+				5EC3B09D28CB7FC600A040F2 /* Assets.xcassets */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5EC3B0B528CB801E00A040F2 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				5EC3B0BC28CB813B00A040F2 /* NavRoute.swift */,
+				5EC3B0BE28CB815500A040F2 /* UINavigationControllerExt.swift */,
+				5EC3B0C028CB817500A040F2 /* StringExt.swift */,
+				5EC3B0C228CB819500A040F2 /* BindingExt.swift */,
+				5EC3B0C428CB81A900A040F2 /* CornerRadiusStyle.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		5EC3B0C628CB81C200A040F2 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				5EC3B0C828CB81FC00A040F2 /* Home */,
+				5EC3B0C728CB81F000A040F2 /* PetDetail */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		5EC3B0C728CB81F000A040F2 /* PetDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5EC3B0D328CB828C00A040F2 /* Views */,
+				5EC3B0D428CB82A000A040F2 /* PetDetailScreen.swift */,
+				5EC3B0D628CB82AE00A040F2 /* PetDetailRoute.swift */,
+			);
+			path = PetDetail;
+			sourceTree = "<group>";
+		};
+		5EC3B0C828CB81FC00A040F2 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5EC3B0CE28CB823900A040F2 /* Views */,
+				5EC3B0C928CB820800A040F2 /* HomeScreen.swift */,
+				5EC3B0CC28CB821900A040F2 /* HomeRoute.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5EC3B0CE28CB823900A040F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5EC3B0CF28CB824900A040F2 /* TabRow.swift */,
+				5EC3B0D128CB825800A040F2 /* PetInfoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5EC3B0D328CB828C00A040F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5EC3B0D828CB82D300A040F2 /* ImagePager.swift */,
+				5EC3B0DA28CB82E000A040F2 /* SectionTitle.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
@@ -77,7 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				5EC3B09428CB7D4E00A040F2 /* App */,
-				058557BA273AAA24004C7B11 /* Assets.xcassets */,
+				5EC3B09C28CB7F8C00A040F2 /* Common */,
+				5EC3B0C628CB81C200A040F2 /* Features */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 			);
@@ -163,7 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
-				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
+				5EC3B0A028CB7FC600A040F2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +312,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EC3B09B28CB7EA700A040F2 /* ContentView.swift in Sources */,
+				5EC3B0BF28CB815500A040F2 /* UINavigationControllerExt.swift in Sources */,
+				5EC3B0BD28CB813B00A040F2 /* NavRoute.swift in Sources */,
+				5EC3B0D928CB82D300A040F2 /* ImagePager.swift in Sources */,
 				5EC3B09628CB7E4200A040F2 /* iOSApp.swift in Sources */,
+				5EC3B0DB28CB82E000A040F2 /* SectionTitle.swift in Sources */,
+				5EC3B0D528CB82A000A040F2 /* PetDetailScreen.swift in Sources */,
+				5EC3B0D028CB824900A040F2 /* TabRow.swift in Sources */,
+				5EC3B0D728CB82AE00A040F2 /* PetDetailRoute.swift in Sources */,
+				5EC3B0CA28CB820800A040F2 /* HomeScreen.swift in Sources */,
+				5EC3B0C528CB81A900A040F2 /* CornerRadiusStyle.swift in Sources */,
+				5EC3B0D228CB825800A040F2 /* PetInfoView.swift in Sources */,
+				5EC3B0C128CB817500A040F2 /* StringExt.swift in Sources */,
+				5EC3B0CD28CB821900A040F2 /* HomeRoute.swift in Sources */,
+				5EC3B0C328CB819500A040F2 /* BindingExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
