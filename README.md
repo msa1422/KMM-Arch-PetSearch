@@ -1,57 +1,39 @@
 # KMM-Arch-PetSearch
 
 
+**PetSearch** is a dive into the Kotlin-Multiplatform Mobile world (Android & iOS). This project is an effort to explore and showcase the KMM possibilities. 
+In this project, I have tried to implement the best practices of mobile application development that I have learned so far.
+With that said, just like other humans, I make mistakes (sometimes, really stupid). By no means, this project should be seen as a standard template for KMM development.
+
 ### Android Screenshots
 
-[comment]: <> (<table>)
-
-[comment]: <> (  <td>)
-
-[comment]: <> (    <p align="center">)
-
-[comment]: <> (      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/AndroidHomeLight.png?raw=true" alt="Home Screen Light" width="500"/>)
-
-[comment]: <> (    </p>)
-
-[comment]: <> (  </td>)
-
-[comment]: <> (    <td>)
-
-[comment]: <> (    <p align="center">)
-
-[comment]: <> (      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/AndroidDetailLight.png?raw=true" alt="Home Screen Light" width="500"/>)
-
-[comment]: <> (    </p>)
-
-[comment]: <> (  </td>)
-
-[comment]: <> (</table>)
+<table>
+  <td>
+    <p align="center">
+      <img src="https://user-images.githubusercontent.com/22452092/189428033-0a5d2ba2-b822-4c3a-b6f4-938138c432f8.png" alt="Android Home Screen" width="200"/>
+    </p>
+  </td>
+    <td>
+    <p align="center">
+      <img src="https://user-images.githubusercontent.com/22452092/189428140-d57d0425-8303-45bb-9daa-1081ec0a1e28.png" alt="Android Pet Details Screen" width="200"/>
+    </p>
+  </td>
+</table>
 
 ### iOS Screenshots
 
-[comment]: <> (<table>)
-
-[comment]: <> (  <td>)
-
-[comment]: <> (    <p align="center">)
-
-[comment]: <> (      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/iOSHomeLight.png?raw=true" alt="Home Screen Light" width="500"/>)
-
-[comment]: <> (    </p>)
-
-[comment]: <> (  </td>)
-
-[comment]: <> (    <td>)
-
-[comment]: <> (    <p align="center">)
-
-[comment]: <> (      <img src="https://github.com/c0de-wizard/tv-maniac/blob/main/art/iOSDetailLight.png?raw=true" alt="Home Screen Light" width="500"/>)
-
-[comment]: <> (    </p>)
-
-[comment]: <> (  </td>)
-
-[comment]: <> (</table>)
+<table>
+  <td>
+    <p align="center">
+      <img src="https://user-images.githubusercontent.com/22452092/189428332-e48e4492-c5d0-4100-ae99-76fdc35bf668.png" alt="iOS Home Screen" width="200"/>
+    </p>
+  </td>
+    <td>
+    <p align="center">
+      <img src="https://user-images.githubusercontent.com/22452092/189428358-d6a11d7f-df1e-42b0-8cf3-7c4d5b5a5a3a.png" alt="iOS Pet Details Screen" width="200"/>
+    </p>
+  </td>
+</table>
 
 ## Project Setup
 
@@ -111,6 +93,11 @@
 * [UIPilot](https://github.com/canopas/UIPilot)
 * [SDWebImageSwiftUI](https://github.com/SDWebImage/SDWebImageSwiftUI)
 * [ToastSwiftUI](https://github.com/huynguyencong/ToastSwiftUI)
+
+
+## Known issues
+* Paging doesn't work on iOS app. 
+* Using Moko-resources on iOS throws an exception.
 
 
 ## Inspiration
