@@ -18,6 +18,13 @@ import com.petsapp.petfinder.shared.core_util.shared_viewmodel.navigation.RouteN
 import com.google.accompanist.navigation.animation.composable
 import kotlinx.coroutines.flow.collectLatest
 
+/**
+ *
+ * Heavily modified implementation of ViewModelNavigationCompose by Frank
+ * @see <a href="https://github.com/Frank1234/ViewModelNavigationCompose">
+ *
+ *
+ */
 
 typealias AnimatedBackStack = AnimatedContentScope<NavBackStackEntry>
 
