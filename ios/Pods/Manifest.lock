@@ -1,16 +1,37 @@
 PODS:
+  - SDWebImage (5.13.2):
+    - SDWebImage/Core (= 5.13.2)
+  - SDWebImage/Core (5.13.2)
+  - SDWebImageSwiftUI (2.0.2):
+    - SDWebImage (~> 5.10)
   - shared (1.0)
+  - ToastSwiftUI (0.3.4)
+  - UIPilot (1.3.1)
 
 DEPENDENCIES:
+  - SDWebImageSwiftUI
   - shared (from `../shared`)
+  - ToastSwiftUI
+  - UIPilot (~> 1.3.1)
+
+SPEC REPOS:
+  trunk:
+    - SDWebImage
+    - SDWebImageSwiftUI
+    - ToastSwiftUI
+    - UIPilot
 
 EXTERNAL SOURCES:
   shared:
     :path: "../shared"
 
 SPEC CHECKSUMS:
+  SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
+  SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
   shared: 4e51769595639b729b1106e94055d800859a6fa4
+  ToastSwiftUI: 3b9111e37719e4b1c4a4fdbc52a664ec8e676c0e
+  UIPilot: f3aaea861e49c3e1b626c57b328a92c5107b2ca6
 
-PODFILE CHECKSUM: 1ba1c1f03a33aead72248833db9c6a3e45ab815d
+PODFILE CHECKSUM: 2528ad49fede13d8e96363eb8eca8dd9f68d0830
 
 COCOAPODS: 1.11.3
