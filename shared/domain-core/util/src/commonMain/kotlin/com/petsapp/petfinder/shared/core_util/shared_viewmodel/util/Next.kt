@@ -10,35 +10,21 @@ sealed class Next<out S : NanoRedux.State, out SE : NanoRedux.SideEffect, out E 
     open val navigation: Set<N> = emptySet()
     open val errors: Set<ER> = emptySet()
 
-
-    data class State<out S : NanoRedux.State>(override val state: S)
-        : Next<S, Nothing, Nothing, Nothing, Nothing>()
-
-    data class StateWithSideEffects<out S : NanoRedux.State, out SE : NanoRedux.SideEffect>(
+    data class State<out S : NanoRedux.State, out E : NanoRedux.Event>(
         override val state: S,
-        override val sideEffects: Set<SE>
-    ) : Next<S, SE, Nothing, Nothing, Nothing>()
-
-    data class StateWithSideEffectsAndEvents<out S : NanoRedux.State, out SE : NanoRedux.SideEffect, out E : NanoRedux.Event>(
-        override val state: S,
-        override val sideEffects: Set<SE>,
-        override val events: Set<E>
-    ) : Next<S, SE, E, Nothing, Nothing>()
-
-    data class StateWithEvents<out S : NanoRedux.State, out E : NanoRedux.Event>(
-        override val state: S,
-        override val events: Set<E>
+        override val events: Set<E> = setOf()
     ) : Next<S, Nothing, E, Nothing, Nothing>()
 
-    data class StateWithNavigation<out S : NanoRedux.State, out N : NanoRedux.Navigation>(
+    data class StateWithSideEffects<out S : NanoRedux.State, out SE : NanoRedux.SideEffect, out E : NanoRedux.Event>(
         override val state: S,
-        override val navigation: Set<N>
-    ) : Next<S, Nothing, Nothing, N, Nothing>()
+        override val sideEffects: Set<SE>,
+        override val events: Set<E> = setOf()
+    ) : Next<S, SE, E, Nothing, Nothing>()
 
-    data class StateWithNavigationAndEvents<out S : NanoRedux.State, out E : NanoRedux.Event, out N : NanoRedux.Navigation>(
+    data class StateWithNavigation<out S : NanoRedux.State, out E : NanoRedux.Event, out N : NanoRedux.Navigation>(
         override val state: S,
         override val navigation: Set<N>,
-        override val events: Set<E>
+        override val events: Set<E> = setOf()
     ) : Next<S, Nothing, E, N, Nothing>()
 
     data class StateWithError<out S : NanoRedux.State, out ER : NanoRedux.Error>(

@@ -25,7 +25,7 @@ PetSearch has blended the following coding practices and techniques to create a 
 - Feature-wise and Layer-wise Modularized code (Android and Shared)
 - Shared ViewModel
 - ViewModel Navigation with args (Android and iOS)
-- 
+
 
 ## Project Setup
 
@@ -67,10 +67,10 @@ PetSearch has blended the following coding practices and techniques to create a 
 ### Android
 * [Jetpack Compose](https://developer.android.com/jetpack/compose)
     * [Material 3](https://m3.material.io/get-started)
-    * [Coil](https://coil-kt.github.io/coil/compose/)
     * [Navigation](https://developer.android.com/jetpack/compose/navigation)
 * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 * [Accompanist](https://github.com/google/accompanist)
+* [Coil](https://coil-kt.github.io/coil/compose/)
 * [Leakcanary](https://github.com/square/leakcanary)
 
 ### Kmm - Shared
