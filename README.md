@@ -7,12 +7,12 @@ With that said, just like other humans, I make mistakes (sometimes, really stupi
 
 ### Android Screenshots
 <div id="android" align="start">
-  <img src="https://user-images.githubusercontent.com/22452092/189471037-f8132942-e39b-416d-9498-536da1764cf4.png" width="720"/>
+  <img src="https://user-images.githubusercontent.com/22452092/189471037-f8132942-e39b-416d-9498-536da1764cf4.png" width="640"/>
 </div>
 
 ### iOS Screenshots
 <div id="android" align="start">
-  <img src="https://user-images.githubusercontent.com/22452092/189471027-18cc52bf-2256-4f20-b9cb-dc33f64698c6.jpg" width="720"/>
+  <img src="https://user-images.githubusercontent.com/22452092/189471027-18cc52bf-2256-4f20-b9cb-dc33f64698c6.jpg" width="640"/>
 </div>
 
 ## Project Setup
