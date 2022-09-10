@@ -2,7 +2,7 @@
 
 
 **PetSearch** is an effort to explore and showcase the Kotlin-Multiplatform possibilities.
-In this project, I have tried to implement the best practices of mobile application development that I have learned so far.
+In this project, I have tried to implement the best practices of mobile application development that I have learned so far.<br>
 With that said, I would like to quote Aristotle,
 <br>
 **"The more you know, the more you realize you don't know."**
@@ -29,6 +29,7 @@ PetSearch has blended the following coding practices and techniques to create a 
 - Shared ViewModel
 - ViewModel Navigation with args (Android and iOS)
 
+<br>
 
 ## Project Setup
 
@@ -59,12 +60,13 @@ PetSearch has blended the following coding practices and techniques to create a 
 ### Opening iOS Project
 - Navigate to ios directory & open `.xcworkspace` & not `.xcodeproj`
 
-
+<br>
 
 ## Known issues
 * Paging doesn't work on iOS app. An implementation similar to collectAsLazyPagingItems() in [Compose Paging](https://developer.android.com/reference/kotlin/androidx/paging/compose/package-summary) is required.
 * Accessing Moko-resources on iOS throws an exception. Most likely, it is due to improper configuration/set-up either in podSpec or gradle.
 
+<br>
 
 ## Libraries Used
 ### Android
@@ -94,7 +96,7 @@ PetSearch has blended the following coding practices and techniques to create a 
 * [ToastSwiftUI](https://github.com/huynguyencong/ToastSwiftUI)
 
 
-
+<br>
 
 ## Inspiration
 Following projects have played a huge role in development of KMM-Arch-PetSearch.
@@ -110,7 +112,7 @@ I am grateful to authors of projects below for sharing such highly valuable mate
 - [kmm-samples](https://kotlinlang.org/docs/multiplatform-mobile-samples.html)
 
 
-
+<br>
 
 ## License
 
