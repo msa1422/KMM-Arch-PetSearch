@@ -3,9 +3,9 @@
 
 **PetSearch** is an effort to explore and showcase the Kotlin-Multiplatform possibilities.
 In this project, I have tried to implement the best practices of mobile application development that I have learned so far.<br>
-With that said, I would like to quote Aristotle,
+With that said, I would like to quote,
 <br>
-**"The more you know, the more you realize you don't know."**
+**"The more you know, the more you realize you don't know."** - *Aristotle*
 
 <br>
 
