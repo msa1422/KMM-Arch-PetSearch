@@ -3,7 +3,17 @@
 
 **PetSearch** is an effort to explore and showcase the Kotlin-Multiplatform possibilities.
 In this project, I have tried to implement the best practices of mobile application development that I have learned so far.
-With that said, just like other humans, I make mistakes (sometimes, really stupid). By no means, this project should be seen as a standard template for KMM development.
+With that said, just like other humans, I make mistakes (sometimes, really stupid). I am sure that there are bugs and code-smell lurking in the code. For me, it's all about learning. 
+
+
+## Project Architecture
+PetSearch has blended the following coding practices and techniques to create a flavor of its own.
+- Clean Architecture
+- Redux MVI
+- Feature-wise and Layer-wise Modularized code (Android and Shared)
+- Shared ViewModel
+- ViewModel Navigation with args (Android and iOS)
+
 
 ### Android Screenshots
 <div id="android" align="start">
