@@ -1,7 +1,7 @@
 # KMM-Arch-PetSearch
 
 
-**PetSearch** is a dive into the Kotlin-Multiplatform Mobile world (Android & iOS). This project is an effort to explore and showcase the KMM possibilities. 
+**PetSearch** is an effort to explore and showcase the Kotlin-Multiplatform possibilities.
 In this project, I have tried to implement the best practices of mobile application development that I have learned so far.
 With that said, just like other humans, I make mistakes (sometimes, really stupid). By no means, this project should be seen as a standard template for KMM development.
 
