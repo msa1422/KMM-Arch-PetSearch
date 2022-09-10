@@ -6,34 +6,14 @@ In this project, I have tried to implement the best practices of mobile applicat
 With that said, just like other humans, I make mistakes (sometimes, really stupid). By no means, this project should be seen as a standard template for KMM development.
 
 ### Android Screenshots
-
-<table>
-  <td>
-    <p align="center">
-      <img src="https://user-images.githubusercontent.com/22452092/189428033-0a5d2ba2-b822-4c3a-b6f4-938138c432f8.png" alt="Android Home Screen" width="270"/>
-    </p>
-  </td>
-    <td>
-    <p align="center">
-      <img src="https://user-images.githubusercontent.com/22452092/189428140-d57d0425-8303-45bb-9daa-1081ec0a1e28.png" alt="Android Pet Details Screen" width="270"/>
-    </p>
-  </td>
-</table>
+<div id="android" align="start">
+  <img src="https://user-images.githubusercontent.com/22452092/189470388-1b2de36e-9927-4607-bf40-539f0e35b350.png" width="720"/>
+</div>
 
 ### iOS Screenshots
-
-<table>
-  <td>
-    <p align="center">
-      <img src="https://user-images.githubusercontent.com/22452092/189428332-e48e4492-c5d0-4100-ae99-76fdc35bf668.png" alt="iOS Home Screen" width="270"/>
-    </p>
-  </td>
-    <td>
-    <p align="center">
-      <img src="https://user-images.githubusercontent.com/22452092/189428358-d6a11d7f-df1e-42b0-8cf3-7c4d5b5a5a3a.png" alt="iOS Pet Details Screen" width="270"/>
-    </p>
-  </td>
-</table>
+<div id="android" align="start">
+  <img src="https://user-images.githubusercontent.com/22452092/189470396-3345c1a5-b65c-4b98-9836-4113bff565cb.png" width="720"/>
+</div>
 
 ## Project Setup
 
