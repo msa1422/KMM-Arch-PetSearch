@@ -3,16 +3,7 @@
 
 **PetSearch** is an effort to explore and showcase the Kotlin-Multiplatform possibilities.
 In this project, I have tried to implement the best practices of mobile application development that I have learned so far.
-With that said, just like other humans, I make mistakes (sometimes, really stupid). I am sure that there are bugs and code-smell lurking in the code. For me, it's all about learning. 
-
-
-## Project Architecture
-PetSearch has blended the following coding practices and techniques to create a flavor of its own.
-- Clean Architecture
-- Redux MVI
-- Feature-wise and Layer-wise Modularized code (Android and Shared)
-- Shared ViewModel
-- ViewModel Navigation with args (Android and iOS)
+With that said, just like other humans, I make mistakes (sometimes, really stupid). I am sure that there are bugs and possibly even code-smell lurking in the code. For me, it's all about learning. 
 
 
 ### Android Screenshots
@@ -24,6 +15,17 @@ PetSearch has blended the following coding practices and techniques to create a 
 <div id="android" align="start">
   <img src="https://user-images.githubusercontent.com/22452092/189471027-18cc52bf-2256-4f20-b9cb-dc33f64698c6.jpg" width="640"/>
 </div>
+
+
+
+## Project Architecture
+PetSearch has blended the following coding practices and techniques to create a flavor of its own.
+- Clean Architecture
+- Redux MVI
+- Feature-wise and Layer-wise Modularized code (Android and Shared)
+- Shared ViewModel
+- ViewModel Navigation with args (Android and iOS)
+- 
 
 ## Project Setup
 
@@ -56,6 +58,10 @@ PetSearch has blended the following coding practices and techniques to create a 
 
 
 
+## Known issues
+* Paging doesn't work on iOS app. An implementation similar to collectAsLazyPagingItems() in [Compose Paging](https://developer.android.com/reference/kotlin/androidx/paging/compose/package-summary) is required.
+* Accessing Moko-resources on iOS throws an exception. Most likely, it is due to improper configuration/set-up either in podSpec or gradle.
+
 
 ## Libraries Used
 ### Android
@@ -75,7 +81,7 @@ PetSearch has blended the following coding practices and techniques to create a 
 * [Coroutines](https://github.com/Kotlin/kotlinx.coroutines#multiplatform)
 * [Koin](https://insert-koin.io)
 * [Kermit](https://github.com/touchlab/Kermit)
-* [Moko-Resource](https://github.com/icerockdev/moko-resources)
+* [Moko-Resources](https://github.com/icerockdev/moko-resources)
 * [Multiplatform-paging](https://github.com/kuuuurt/multiplatform-paging)
 * [Uuid](https://github.com/benasher44/uuid)
 
@@ -85,9 +91,6 @@ PetSearch has blended the following coding practices and techniques to create a 
 * [ToastSwiftUI](https://github.com/huynguyencong/ToastSwiftUI)
 
 
-## Known issues
-* Paging doesn't work on iOS app. 
-* Using Moko-resources on iOS throws an exception.
 
 
 ## Inspiration
