@@ -19,9 +19,3 @@ const val PET_DETAIL_DESTINATION: String = "$NAV_PREFIX.pet_detail/PetDetailScre
 
 const val ARG_PET_INFO: String = "arg_pet_info"
 
-
-enum class NavScreen(val route: String) {
-    //SPLASH_NAV_SCREEN("com.petsapp.petfinder.auth/SplashScreen"),
-    HOME_NAV_SCREEN("com.petsapp.petfinder.home/HomeScreen"),
-    PET_DETAIL_NAV_SCREEN("com.petsapp.petfinder.pet_detail/PetDetailScreen/?$ARG_PET_INFO={$ARG_PET_INFO}")
-}
