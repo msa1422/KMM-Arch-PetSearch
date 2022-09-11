@@ -26,5 +26,4 @@ object PetDetailRoute : NavRoute<PetDetailViewModel> {
 
     override fun getArguments(): List<NamedNavArgument> =
         listOf(navArgument(ARG_PET_INFO) { type = NavType.StringType })
-
 }

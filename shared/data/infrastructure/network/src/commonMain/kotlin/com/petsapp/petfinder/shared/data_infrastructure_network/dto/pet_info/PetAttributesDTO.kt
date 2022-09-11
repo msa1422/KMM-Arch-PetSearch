@@ -9,5 +9,5 @@ internal data class PetAttributesDTO(
     @SerialName("house_trained") val houseTrained: Boolean?,
     @SerialName("declawed") val declawed: Boolean?,
     @SerialName("special_needs") val specialNeeds: Boolean?,
-    @SerialName("shots_current") val shotsCurrent: Boolean?,
+    @SerialName("shots_current") val shotsCurrent: Boolean?
 )

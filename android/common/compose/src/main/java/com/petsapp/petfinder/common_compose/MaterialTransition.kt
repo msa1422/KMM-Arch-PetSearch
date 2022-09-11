@@ -1,9 +1,9 @@
 package com.petsapp.petfinder.common_compose
 
-//import com.mxalbert.sharedelements.LinearMotionFactory
-//import com.mxalbert.sharedelements.MaterialArcMotionFactory
-//import com.mxalbert.sharedelements.MaterialContainerTransformSpec
-//import com.mxalbert.sharedelements.ProgressThresholds
+// import com.mxalbert.sharedelements.LinearMotionFactory
+// import com.mxalbert.sharedelements.MaterialArcMotionFactory
+// import com.mxalbert.sharedelements.MaterialContainerTransformSpec
+// import com.mxalbert.sharedelements.ProgressThresholds
 
 private const val TRANSITION_DURATION_MILLIS = 750
 private const val TRANSITION_WAIT_FOR_FRAMES = 5

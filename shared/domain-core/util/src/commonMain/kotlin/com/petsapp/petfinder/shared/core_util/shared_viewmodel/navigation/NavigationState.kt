@@ -34,5 +34,4 @@ sealed class NavigationState {
         val delay: Long = 0,
         val args: HashMap<String, String>? = null
     ) : NavigationState()
-
 }

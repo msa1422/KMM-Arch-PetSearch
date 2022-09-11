@@ -5,7 +5,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("org.jetbrains.kotlin.jvm")
-    //id("io.gitlab.arturbosch.detekt")
 }
 
 buildscript {
@@ -18,7 +17,8 @@ buildscript {
 
 allprojects {
     repositories.applyDefault()
-    plugins.apply("io.gitlab.arturbosch.detekt")
+    plugins.apply("com.petsapp.petfinder.checks.detekt")
+    plugins.apply("com.petsapp.petfinder.checks.ktlint")
 }
 
 subprojects {

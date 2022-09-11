@@ -25,16 +25,13 @@ internal fun PetDetailScreen(
     viewModel: PetDetailViewModel,
     modifier: Modifier = Modifier
 ) {
-
     val backPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
-
-    //val coroutineScope = rememberCoroutineScope()
 
     val state by rememberFlowWithLifecycle(flow = viewModel.observeState())
         .collectAsState(initial = null)
 
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
-        TopAppBarState(0F , 0F, 0F)
+        TopAppBarState(0F, 0F, 0F)
     )
 
     Scaffold(
@@ -49,9 +46,10 @@ internal fun PetDetailScreen(
                     },
                     onBackPressed = { backPressedDispatcher?.onBackPressed() },
                     scrollBehavior = scrollBehavior,
-                    modifier = Modifier.background(color = MaterialTheme.colorScheme.surface),
+                    modifier = Modifier.background(color = MaterialTheme.colorScheme.surface)
                 )
-                // Divider
+
+                // Divider..........................................................................
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -61,12 +59,9 @@ internal fun PetDetailScreen(
                         )
                 )
             }
-
         },
         modifier = modifier.fillMaxSize()
     ) { innerPadding ->
-
-
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             verticalArrangement = Arrangement.spacedBy(2.dp),
@@ -77,9 +72,6 @@ internal fun PetDetailScreen(
                 .nestedScroll(scrollBehavior.nestedScrollConnection)
                 .background(color = MaterialTheme.colorScheme.surface)
         ) {
-
-
-
             // FULL_DESCRIPTION ....................................................................
             state?.petInfo?.description
                 ?.takeIf { it.isNotBlank() }
@@ -98,12 +90,10 @@ internal fun PetDetailScreen(
                     }
                 }
 
-
             // TAGS ................................................................................
             state?.petInfo?.tags
                 ?.takeIf { it.isNotEmpty() }
                 ?.let { tags ->
-
                     sectionTitle(CoreR.strings.characteristics.resourceId)
 
                     items(items = tags) { tag ->
@@ -119,11 +109,9 @@ internal fun PetDetailScreen(
                     }
                 }
 
-
             // OTHER_INFO ..........................................................................
             state?.petInfo?.attributes
                 ?.let { attr ->
-
                     sectionTitle(CoreR.strings.attributes.resourceId)
 
                     val attrMap = hashMapOf<Int, Boolean>().apply {
@@ -147,25 +135,24 @@ internal fun PetDetailScreen(
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.62F),
                                 modifier = Modifier
                             )
+
                             Text(
                                 text = stringResource(
-                                    id = if (attrMap[key] == true) CoreR.strings.yes.resourceId
-                                    else CoreR.strings.no.resourceId
+                                    id = if (attrMap[key] == true) {
+                                        CoreR.strings.yes.resourceId
+                                    } else {
+                                        CoreR.strings.no.resourceId
+                                    }
                                 ),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurface,
                                 modifier = Modifier
                             )
                         }
-
                     }
-
                 }
-
         }
-
     }
-
 }
 
 private fun LazyGridScope.sectionTitle(resId: Int) {

@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.onEach
 // however the below wrapper gives us more control and hides the complexity in the shared Kotlin code.
 class CommonFlow<T>(private val origin: Flow<T>) : Flow<T> by origin {
     fun watch(block: (T) -> Unit): Closeable {
-
         val job = Job()
 
         onEach { block(it) }
@@ -24,7 +23,6 @@ class CommonFlow<T>(private val origin: Flow<T>) : Flow<T> by origin {
                 job.cancel()
             }
         }
-
     }
 }
 
@@ -37,5 +35,3 @@ fun <T> Flow<T>.asCommonFlow(): CommonFlow<T> = CommonFlow(this)
 interface Closeable {
     fun close()
 }
-
-

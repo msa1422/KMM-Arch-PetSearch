@@ -15,7 +15,9 @@ fun <T : Any> LazyGridScope.items(
 ) {
     items(
         count = items.itemCount,
-        key = if (key == null) null else { index ->
+        key = if (key == null) {
+            null
+        } else { index ->
             val item = items.peek(index)
             if (item == null) {
                 GridPagingPlaceholderKey(index)
@@ -28,10 +30,9 @@ fun <T : Any> LazyGridScope.items(
     }
 }
 
-private operator fun <T: Any> LazyPagingItems<T>.get(index: Int): T? {
+private operator fun <T : Any> LazyPagingItems<T>.get(index: Int): T? {
     return this.peek(index)
 }
-
 
 @SuppressLint("BanParcelableUsage")
 private data class GridPagingPlaceholderKey(private val index: Int) : Parcelable {

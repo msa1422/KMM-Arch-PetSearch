@@ -14,10 +14,9 @@ import io.ktor.http.*
 internal suspend fun provideBearerToken(
     client: HttpClient,
     block: HttpRequestBuilder.() -> Unit = {}
-) : BearerTokens {
-
+): BearerTokens {
     val tokenInfo: TokenInfoDTO = client.submitForm(
-        url = "https://$API_HOST/$ACCESS_TOKEN",// TODO: Replace with a URLBuilder method
+        url = "https://$API_HOST/$ACCESS_TOKEN", // TODO: Replace with a URLBuilder method
         formParameters = Parameters.build {
             append("grant_type", "client_credentials")
             append("client_id", BuildKonfig.PETFINDER_API_KEY)
@@ -27,7 +26,6 @@ internal suspend fun provideBearerToken(
     ).body()
 
     return BearerTokens(tokenInfo.accessToken, "")
-
 }
 
 internal val DUMMY_TOKEN

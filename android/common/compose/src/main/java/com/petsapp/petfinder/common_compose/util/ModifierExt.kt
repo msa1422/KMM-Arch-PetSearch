@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.coroutineScope
 import kotlin.math.sqrt
 
-
 fun Modifier.borderBevel(
     width: Dp = 1.dp,
     brush: Brush = Brush
@@ -32,7 +31,7 @@ fun Modifier.borderBevel(
 
 fun Modifier.enableVerticalParallax(listState: LazyListState) = this.then(
     Modifier.graphicsLayer {
-        translationY = listState.firstVisibleItemScrollOffset.toFloat()/10
+        translationY = listState.firstVisibleItemScrollOffset.toFloat() / 10
     }
 )
 
@@ -55,7 +54,7 @@ fun Modifier.tcbcRadialGradientBg(vararg colorStops: Pair<Float, Color>) = this.
             brush = Brush.radialGradient(
                 colorStops = colorStops,
                 center = Offset(size.width + 64.dp.value, -64.dp.value),
-                radius = sqrt( ((size.height) * (size.height)) + ((size.width) * (size.width))) * 1.619F
+                radius = sqrt(((size.height) * (size.height)) + ((size.width) * (size.width))) * 1.619F
             ),
             size = size
         )
@@ -70,11 +69,12 @@ fun Modifier.disableSplitMotionEvents() = this.then(
                 while (true) {
                     awaitPointerEvent(PointerEventPass.Initial).changes.forEach { pointerInfo ->
                         when {
-                            pointerInfo.pressed && currentId == -1L -> currentId =
-                                pointerInfo.id.value
-                            pointerInfo.pressed.not() && currentId == pointerInfo.id.value -> currentId =
-                                -1
-                            pointerInfo.id.value != currentId && currentId != -1L -> pointerInfo.consume()
+                            pointerInfo.pressed && currentId == -1L ->
+                                currentId = pointerInfo.id.value
+                            pointerInfo.pressed.not() && currentId == pointerInfo.id.value ->
+                                currentId = -1
+                            pointerInfo.id.value != currentId && currentId != -1L ->
+                                pointerInfo.consume()
                             else -> Unit
                         }
                     }
@@ -93,8 +93,6 @@ fun Modifier.clickableIf(
 ) = this.takeIf { predicate }
     ?.then(Modifier.clickable(enabled, onClickLabel, role, onClick))
     ?: this
-
-
 
 fun Modifier.ignoreHorizontalParentPadding(horizontal: Dp) = this
     .layout { measurable, constraints ->

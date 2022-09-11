@@ -16,8 +16,7 @@ internal suspend inline fun <reified ResultType, ReturnType> HttpClient.safeApiC
 ): Resource<ReturnType> {
     return try {
         request(builder).body<ResultType>().asResource { mapper.invoke(it) }
-    }
-    catch (exception: Exception) {
+    } catch (exception: Exception) {
         when (exception) {
             is ApiErrorException,
             is NoTransformationFoundException, is DoubleReceiveException,

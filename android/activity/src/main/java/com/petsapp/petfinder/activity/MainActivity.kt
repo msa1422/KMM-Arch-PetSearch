@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material3.*
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.petsapp.petfinder.activity.composable.MainSnackbarHost
 import com.petsapp.petfinder.activity.composable.rememberSnackBarHostState
 import com.petsapp.petfinder.activity.di.provideAppScreens
@@ -18,8 +20,6 @@ import com.petsapp.petfinder.common_compose.theme.ApplicationTheme
 import com.petsapp.petfinder.shared.core_util.resource.MessageType
 import com.petsapp.petfinder.shared.core_util.resource.ResourceMessage
 import com.petsapp.petfinder.shared.core_util.shared_viewmodel.navigation.NavigationScreen.HomeNavScreen
-import com.google.accompanist.navigation.animation.AnimatedNavHost
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -28,7 +28,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreenContent {
-
             val coroutineScope = rememberCoroutineScope()
             val navController = rememberAnimatedNavController()
             val snackbarHostState = rememberSnackBarHostState()
@@ -48,7 +47,6 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
-
         }
     }
 
@@ -58,7 +56,6 @@ class MainActivity : ComponentActivity() {
         coroutineScope: CoroutineScope
     ) {
         when (val component = message.messageType) {
-
             is MessageType.SnackBar -> {
                 message.text?.let {
                     coroutineScope.launch {
@@ -91,8 +88,6 @@ class MainActivity : ComponentActivity() {
                 // MessageType could be .None
                 // or message could be null
             }
-
         }
     }
-
 }

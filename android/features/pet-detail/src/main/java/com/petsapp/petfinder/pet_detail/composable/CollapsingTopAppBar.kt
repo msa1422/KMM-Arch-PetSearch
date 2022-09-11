@@ -36,15 +36,13 @@ internal fun CollapsingTopAppBar(
     title: String,
     subtitle: String,
     pagerImages: List<String>,
-    onPagerImageClick : (index: Int) -> Unit,
+    onPagerImageClick: (index: Int) -> Unit,
     onBackPressed: () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior,
     modifier: Modifier = Modifier
 ) {
-
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
-
-    val statusBarPadding  = WindowInsets.systemBars.asPaddingValues().calculateTopPadding()
+    val statusBarPadding = WindowInsets.systemBars.asPaddingValues().calculateTopPadding()
     val expandedHeight = screenWidth + PinnedHeight + statusBarPadding
     val pinnedHeight = PinnedHeight + statusBarPadding
 
@@ -52,7 +50,6 @@ internal fun CollapsingTopAppBar(
     val pinnedHeightPx: Float
     val expandedHeightPx: Float
     val buttonSizePx: Int
-
 
     LocalDensity.current.run {
         statusBarPaddingPx = statusBarPadding.toPx()
@@ -81,22 +78,18 @@ internal fun CollapsingTopAppBar(
 
     Surface(
         modifier = modifier
-            .height(
-                expandedHeight +
-                        scrollBehavior.state.heightOffset.div(LocalDensity.current.density).dp
+            .height(expandedHeight +
+                    scrollBehavior.state.heightOffset.div(LocalDensity.current.density).dp
             )
             .then(appBarDragModifier)
     ) {
-
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .clipToBounds()
         ) {
-
             Layout(
                 content = {
-
                     // BACK_BUTTON..................................................................
                     CompositionLocalProvider(
                         LocalContentColor provides MaterialTheme.colorScheme.onBackground,
@@ -111,14 +104,16 @@ internal fun CollapsingTopAppBar(
                                     .background(
                                         color = MaterialTheme.colorScheme.surface
                                             .copy(alpha = 0.62F),
-                                        shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp)
+                                        shape = RoundedCornerShape(
+                                            topEnd = 24.dp,
+                                            bottomEnd = 24.dp
+                                        )
                                     )
                                     .clickable { onBackPressed.invoke() }
                                     .padding(all = 18.dp)
                             )
                         }
                     )
-
 
                     // IMAGE_PAGER .................................................................
                     ImagePager(
@@ -133,7 +128,6 @@ internal fun CollapsingTopAppBar(
                                 alpha = 1F - scrollBehavior.state.collapsedFraction
                             }
                     )
-
 
                     // TITLE........................................................................
                     CompositionLocalProvider(
@@ -172,10 +166,8 @@ internal fun CollapsingTopAppBar(
                                     )
                                 }
                             }
-
                         }
                     )
-
 
                     // Title Background
                     Box(
@@ -185,12 +177,10 @@ internal fun CollapsingTopAppBar(
                             .height(PinnedHeight)
                             .background(color = MaterialTheme.colorScheme.surface)
                     )
-
                 }
             ) { measurables, constraints ->
-
                 val pagerPlaceable =
-                    measurables.first{ it.layoutId == PAGER_ID }
+                    measurables.first { it.layoutId == PAGER_ID }
                         .measure(constraints)
 
                 val backButtonPlaceable =
@@ -203,6 +193,7 @@ internal fun CollapsingTopAppBar(
                 else {
                     (constraints.maxWidth - backButtonPlaceable.width).coerceAtLeast(0)
                 }
+
                 val titlePlaceable =
                     measurables.first { it.layoutId == TITLE_ID }
                         .measure(constraints.copy(maxWidth = maxTitleWidth))
@@ -211,18 +202,18 @@ internal fun CollapsingTopAppBar(
                     measurables.first { it.layoutId == TITLE_BG_ID }
                         .measure(constraints)
 
-
                 layout(constraints.maxWidth, expandedHeightPx.roundToInt()) {
+                    val titleWidthOffset =
+                        (buttonSizePx * scrollBehavior.state.collapsedFraction +
+                                (24.dp.roundToPx() * (1F - scrollBehavior.state.collapsedFraction))
+                                ).roundToInt()
 
+                    val titleHeightOffset =
+                        (expandedHeightPx - pinnedHeightPx + statusBarPaddingPx +
+                                scrollBehavior.state.heightOffset / 2
+                                ).roundToInt()
 
-                    val titleWidthOffset = (buttonSizePx * scrollBehavior.state.collapsedFraction +
-                            (24.dp.roundToPx() * (1F - scrollBehavior.state.collapsedFraction)))
-                        .roundToInt()
-                    val titleHeightOffset = (expandedHeightPx - pinnedHeightPx + statusBarPaddingPx +
-                            scrollBehavior.state.heightOffset/2).roundToInt()
-
-                    val backButtonHeightOffset = statusBarPaddingPx - scrollBehavior.state.heightOffset/2
-
+                    val backButtonHeightOffset = statusBarPaddingPx - scrollBehavior.state.heightOffset / 2
 
                     // Pager
                     pagerPlaceable.placeRelative(
@@ -238,16 +229,10 @@ internal fun CollapsingTopAppBar(
 
                     // Title
                     titlePlaceable.placeRelative(x = titleWidthOffset, y = titleHeightOffset)
-
-
                 }
-
             }
-
         }
-
     }
-
 }
 
 private object ChildrenId {

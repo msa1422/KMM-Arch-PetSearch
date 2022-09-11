@@ -53,7 +53,6 @@ internal fun MainSnackbarHost(snackbarHostState: SnackbarHostState) {
                                 .padding(16.dp)
                         )
                     }
-
                 }
             }
         }

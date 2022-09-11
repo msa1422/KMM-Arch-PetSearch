@@ -13,7 +13,6 @@ internal class MessageDeque(private val deque: ArrayDeque<ResourceMessage>) :
     override val count get() = deque.size
 
     override fun enqueue(element: ResourceMessage): Boolean {
-
         // prevent duplicate errors added to stack
         deque.firstOrNull { it.id == element.id }?.let {
             return false
@@ -27,7 +26,6 @@ internal class MessageDeque(private val deque: ArrayDeque<ResourceMessage>) :
     }
 
     override fun dequeue(): ResourceMessage? {
-
         // First remove the message from the ArrayDeque
         val transaction = deque.removeFirstOrNull()
 
@@ -39,7 +37,6 @@ internal class MessageDeque(private val deque: ArrayDeque<ResourceMessage>) :
 
         // Finally return the transaction data
         return transaction
-
     }
 
     override fun peekAndUpdate() {
@@ -47,7 +44,6 @@ internal class MessageDeque(private val deque: ArrayDeque<ResourceMessage>) :
             deque.firstOrNull()?.let { message.value = it }
         }
     }
-
 }
 
 internal val MessageDequeParameter = ArrayDeque<ResourceMessage>()

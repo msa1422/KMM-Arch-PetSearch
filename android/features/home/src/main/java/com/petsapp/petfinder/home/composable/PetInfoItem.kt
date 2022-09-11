@@ -28,9 +28,7 @@ internal fun PetInfoItem(
     colorFilter: ColorFilter,
     modifier: Modifier = Modifier
 ) {
-
     Column(modifier = modifier) {
-
         val context = LocalContext.current
 
         // Remember so that a little amount of time can be saved during a recomposition
@@ -78,7 +76,5 @@ internal fun PetInfoItem(
                 .wrapContentHeight()
                 .padding(start = 16.dp, top = 2.dp, end = 16.dp, bottom = 20.dp)
         )
-
     }
-
 }

@@ -19,5 +19,4 @@ object HomeNavRoute : NavRoute<HomeViewModel> {
     @Composable
     override fun viewModel(entry: NavBackStackEntry): HomeViewModel =
         koinViewModel(owner = { entry.viewModelStore })
-
 }

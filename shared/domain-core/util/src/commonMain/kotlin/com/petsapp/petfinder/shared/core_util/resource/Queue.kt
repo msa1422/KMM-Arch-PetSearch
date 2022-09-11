@@ -1,6 +1,5 @@
 package com.petsapp.petfinder.shared.core_util.resource
 
-
 interface Queue<T : Any> {
 
     val count: Int
@@ -12,5 +11,4 @@ interface Queue<T : Any> {
     fun dequeue(): T?
 
     fun peekAndUpdate()
-
 }

@@ -1,8 +1,8 @@
 package com.petsapp.petfinder.shared.core_util.di
 
 import com.petsapp.petfinder.shared.core_util.BaseLogger
-import com.petsapp.petfinder.shared.core_util.resource.MessageDequeParameter
 import com.petsapp.petfinder.shared.core_util.resource.MessageDeque
+import com.petsapp.petfinder.shared.core_util.resource.MessageDequeParameter
 import com.petsapp.petfinder.shared.core_util.shared_viewmodel.navigation.RouteNavigator
 import com.petsapp.petfinder.shared.core_util.shared_viewmodel.navigation.RouteNavigatorImpl
 import org.koin.core.module.dsl.singleOf
@@ -18,5 +18,4 @@ val DomainCoreCommonUtilModule = module {
 
     // See https://github.com/touchlab/Kermit
     factory { (tag: String?) -> if (tag != null) BaseLogger.withTag(tag) else BaseLogger }
-
 }

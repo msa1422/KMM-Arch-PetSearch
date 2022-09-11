@@ -9,16 +9,13 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavBackStackEntry
 
 @Composable
-fun NavBackStackEntry.onDestroy(block : () -> Unit) {
-
+fun NavBackStackEntry.onDestroy(block: () -> Unit) {
     val hasActiveObservers = remember { mutableStateOf(false) }
 
     // Add an observer to Lifecycle of the CurrentDestination
     // ViewModel will be cleared when the backStackEntry is Destroyed (not when disposed)
     if (!hasActiveObservers.value && lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
-
         hasActiveObservers.value = true
-
         this.lifecycle.addObserver(
             object : LifecycleEventObserver {
                 override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {

@@ -14,24 +14,21 @@ import androidx.compose.ui.platform.LocalContext
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.petsapp.petfinder.common_res.R
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
+import com.petsapp.petfinder.common_res.R
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 internal fun ImagePager(
     images: List<String>,
-    onImageClick : (index: Int) -> Unit,
+    onImageClick: (index: Int) -> Unit,
     userScrollEnabled: Boolean,
     modifier: Modifier = Modifier
 ) {
-
     val pagerState = rememberPagerState()
-
     val placeholder = rememberAsyncImagePainter(R.drawable.ic_bg_paw_print_loading)
-
     val errorImage = rememberAsyncImagePainter(R.drawable.ic_bg_paw_print_loaded)
 
     val colorFilter = remember {
@@ -39,7 +36,6 @@ internal fun ImagePager(
             ColorMatrix().apply { setToSaturation(0.38F) }
         )
     }
-
 
     HorizontalPager(
         count = images.size,
@@ -59,7 +55,6 @@ internal fun ImagePager(
             )
         }
     }
-
 }
 
 @Composable
@@ -70,9 +65,7 @@ private fun Image(
     placeholder: Painter? = null,
     error: Painter? = null
 ) {
-
     val context = LocalContext.current
-
     val imageRequest = remember {
         ImageRequest.Builder(context)
             .data(url)
@@ -90,5 +83,4 @@ private fun Image(
         colorFilter = colorFilter,
         modifier = modifier
     )
-
 }

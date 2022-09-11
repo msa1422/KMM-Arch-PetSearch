@@ -31,5 +31,4 @@ sealed class Next<out S : NanoRedux.State, out SE : NanoRedux.SideEffect, out E 
         override val state: S,
         override val errors: Set<ER>
     ) : Next<S, Nothing, Nothing, Nothing, ER>()
-
 }

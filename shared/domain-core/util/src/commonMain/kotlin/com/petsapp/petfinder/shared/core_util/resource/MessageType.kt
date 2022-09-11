@@ -1,6 +1,5 @@
 package com.petsapp.petfinder.shared.core_util.resource
 
-
 sealed class MessageType {
 
     class SnackBar(
@@ -12,5 +11,4 @@ sealed class MessageType {
     object Toast : MessageType()
 
     object None : MessageType()
-
 }

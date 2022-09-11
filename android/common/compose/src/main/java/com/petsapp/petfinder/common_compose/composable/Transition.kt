@@ -39,7 +39,6 @@ fun SlideInAnimatedVisibility(
     offset: (IntSize) -> IntOffset = { IntOffset(x = 0, y = 32) },
     content: @Composable AnimatedVisibilityScope.() -> Unit
 ) {
-
     AnimatedVisibility(
         visible = visible,
         enter = fadeIn(

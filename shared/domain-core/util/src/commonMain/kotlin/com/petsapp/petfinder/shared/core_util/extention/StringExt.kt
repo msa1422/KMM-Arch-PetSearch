@@ -6,5 +6,3 @@ fun String.capitalizeWords(): String =
             if (char.isLowerCase()) char.titlecase() else char.toString()
         }
     }
-
-

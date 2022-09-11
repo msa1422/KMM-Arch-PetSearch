@@ -16,7 +16,6 @@ import kotlinx.serialization.json.Json
 @OptIn(ExperimentalSerializationApi::class)
 internal val KtorClient: HttpClient
     get() {
-
         // Create a list which will hold the Authorization tokens
         // Add a placeholder (Dummy) token for first request(AccessToken request)
         // Since token validity is only 3600 seconds, it is ok to fetch a new token here.
@@ -49,9 +48,7 @@ internal val KtorClient: HttpClient
                         bearerTokenStorage.add(refreshToken)
 
                         return@refreshTokens bearerTokenStorage.last()
-
                     }
-
                 }
             }
 
@@ -74,9 +71,7 @@ internal val KtorClient: HttpClient
             install(DefaultRequest) {
                 header(HttpHeaders.ContentType, ContentType.Application.Json)
             }
-
         }
 
         return ktorClient
-
     }

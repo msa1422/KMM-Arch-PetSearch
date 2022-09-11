@@ -92,14 +92,14 @@ internal val AppTypography = Typography(
         fontWeight = SemiBold,
         fontSize = 16.sp,
         lineHeight = TextUnit(1.42F, TextUnitType.Em),
-        letterSpacing = TextUnit(0.007f, TextUnitType.Em),
+        letterSpacing = TextUnit(0.007f, TextUnitType.Em)
     ),
     labelMedium = TextStyle(
         fontFamily = InterFontFamily,
         fontWeight = SemiBold,
         fontSize = 14.sp,
         lineHeight = TextUnit(1.33F, TextUnitType.Em),
-        letterSpacing = TextUnit(0.03f, TextUnitType.Em),
+        letterSpacing = TextUnit(0.03f, TextUnitType.Em)
     ),
     labelSmall = TextStyle(
         fontFamily = InterFontFamily,

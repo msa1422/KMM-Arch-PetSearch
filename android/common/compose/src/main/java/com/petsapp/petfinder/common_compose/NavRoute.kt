@@ -9,13 +9,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.*
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import com.google.accompanist.navigation.animation.composable
 import com.petsapp.petfinder.common_compose.util.HandyDelay
 import com.petsapp.petfinder.common_compose.util.onDestroy
 import com.petsapp.petfinder.shared.core_util.resource.ResourceMessage
 import com.petsapp.petfinder.shared.core_util.shared_viewmodel.BaseViewModel
 import com.petsapp.petfinder.shared.core_util.shared_viewmodel.navigation.NavigationState
 import com.petsapp.petfinder.shared.core_util.shared_viewmodel.navigation.RouteNavigator
-import com.google.accompanist.navigation.animation.composable
 import kotlinx.coroutines.flow.collectLatest
 
 /**
@@ -35,18 +35,15 @@ interface NavRoute<T : RouteNavigator> {
     val enableLifecycleObserver: Boolean
         get() = true
 
-
     @Composable
     fun content(viewModel: T)
 
     @Composable
     fun viewModel(entry: NavBackStackEntry): T
 
-
     fun getArguments(): List<NamedNavArgument> = emptyList()
 
     fun getDeepLinks(): List<NavDeepLink> = emptyList()
-
 
     fun getEnterTransition(): (AnimatedBackStack.() -> EnterTransition?)? = null
 
@@ -56,13 +53,11 @@ interface NavRoute<T : RouteNavigator> {
 
     fun getPopExitTransition(): (AnimatedBackStack.() -> ExitTransition?)? = getExitTransition()
 
-
     fun asComposable(
         builder: NavGraphBuilder,
         navController: NavHostController,
         messenger: (ResourceMessage) -> Unit
     ) {
-
         builder.composable(
             route = route,
             arguments = getArguments(),
@@ -72,11 +67,9 @@ interface NavRoute<T : RouteNavigator> {
             popEnterTransition = getPopEnterTransition(),
             popExitTransition = getPopExitTransition()
         ) { backStackEntry ->
-
             val viewModel = viewModel(backStackEntry)
 
             (viewModel as? BaseViewModel<*, *, *, *, *, *, *>)?.let {
-
                 if (enableLifecycleObserver) {
                     backStackEntry.onDestroy {
                         it.onDestroy()
@@ -87,13 +80,10 @@ interface NavRoute<T : RouteNavigator> {
                     .collectAsState(initial = NavigationState.Idle)
 
                 LaunchedEffect(navigationState) {
-
                     updateNavigationState(navController, navigationState, it::onNavComplete)
 
-
-                    //..........................................................................
+                    // .............................................................................
                     // Update Args in ViewModel
-
                     val argsMap = hashMapOf<String, String>()
 
                     getArguments().forEach { namedArg ->
@@ -105,7 +95,6 @@ interface NavRoute<T : RouteNavigator> {
                     }
 
                     it.updateArgsInState(argsMap)
-
                 }
 
                 LaunchedEffect(it) {
@@ -117,26 +106,20 @@ interface NavRoute<T : RouteNavigator> {
                 }
 
                 content(viewModel)
-
             }
-
         }
-
     }
-
 
     private fun updateNavigationState(
         navController: NavHostController,
         navigationState: NavigationState,
-        onComplete: (NavigationState) -> Unit,
+        onComplete: (NavigationState) -> Unit
     ) {
         try {
             when (navigationState) {
-
                 is NavigationState.NavigateToRoute -> {
                     if (navController.currentDestination?.route != navigationState.route) {
                         HandyDelay.with(duration = navigationState.delay) {
-
                             var currentRoute = navigationState.route
 
                             navigationState.args?.forEach { entry ->
@@ -162,7 +145,6 @@ interface NavRoute<T : RouteNavigator> {
                 is NavigationState.NavigateAndPopUpToRoute -> {
                     if (navController.currentDestination?.route != navigationState.route) {
                         HandyDelay.with(duration = navigationState.delay) {
-
                             var currentRoute = navigationState.route
 
                             navigationState.args?.forEach { args ->
@@ -189,7 +171,6 @@ interface NavRoute<T : RouteNavigator> {
                 is NavigationState.PopToRoute -> {
                     if (navController.currentDestination?.route != navigationState.staticRoute) {
                         HandyDelay.with(duration = navigationState.delay) {
-
                             navController
                                 .getBackStackEntry(navigationState.staticRoute)
                                 .arguments?.let { bundle ->
@@ -214,15 +195,12 @@ interface NavRoute<T : RouteNavigator> {
                 }
 
                 is NavigationState.Idle -> {}
-
             }
-        }
-        catch (e: IllegalArgumentException) {
+        } catch (e: IllegalArgumentException) {
             e.printStackTrace()
             onComplete(navigationState)
         }
     }
-
 }
 
 fun Iterable<NavRoute<*>>.add(
@@ -234,4 +212,3 @@ fun Iterable<NavRoute<*>>.add(
         it.asComposable(builder, navController, messenger)
     }
 }
-

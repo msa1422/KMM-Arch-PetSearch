@@ -23,7 +23,6 @@ internal fun HomeTabRow(
     state: HomeTabRowState = rememberHomeTabRowState(),
     onTabItemClick: (index: Int, name: String) -> Unit = { _, _ -> }
 ) {
-
     val density = LocalDensity.current
     val tabWidths = remember {
         val tabWidthStateList = mutableStateListOf<Dp>()
@@ -71,12 +70,9 @@ internal fun HomeTabRow(
                     )
                 }
             )
-
         }
     }
-
 }
-
 
 // A modified version of the article
 // @see https://medium.com/@sukhdip_sandhu/jetpack-compose-scrollabletabrow-indicator-matches-width-of-text-e79c0e5826fe

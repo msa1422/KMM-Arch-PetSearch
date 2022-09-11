@@ -34,18 +34,12 @@ internal fun HomeScreen(
     viewModel: HomeViewModel,
     modifier: Modifier = Modifier
 ) {
-
     val coroutineScope = rememberCoroutineScope()
-
     val homeTabRowState = rememberHomeTabRowState()
-
     val gridState = rememberLazyGridState()
 
-
     val renderState by viewModel.observeRenderState().collectAsState(initial = null)
-
     val petList = renderState?.petPagingData?.collectAsLazyPagingItems()
-
 
     LaunchedEffect(Unit) {
         if (renderState?.petTypes.isNullOrEmpty()) {
@@ -54,7 +48,6 @@ internal fun HomeScreen(
     }
 
     Column(modifier = modifier.fillMaxSize()) {
-
         // TOOLBAR .................................................................................
         Box(
             modifier = Modifier
@@ -70,18 +63,15 @@ internal fun HomeScreen(
                     .padding(start = 20.dp, top = 8.dp, end = 24.dp, bottom = 16.dp)
                     .wrapContentSize()
             ) {
-
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.wrapContentSize()
                 ) {
-
                     Icon(
                         painter = painterResource(id = commonR.drawable.ic_near_me),
                         contentDescription = "Location icon",
                         tint = MaterialTheme.colorScheme.onBackground
                     )
-
                     Text(
                         text = "New York City",
                         style = MaterialTheme.typography.titleMedium,
@@ -92,15 +82,12 @@ internal fun HomeScreen(
                             .wrapContentSize()
                             .padding(start = 6.dp, end = 2.dp)
                     )
-
                     Icon(
                         imageVector = Icons.Rounded.ArrowDropDown,
                         contentDescription = "Drop down icon",
                         tint = MaterialTheme.colorScheme.onBackground
                     )
-
                 }
-
                 Text(
                     text = "20 W 34th St., New York, United States",
                     style = MaterialTheme.typography.bodySmall,
@@ -111,7 +98,6 @@ internal fun HomeScreen(
                         .wrapContentSize()
                         .padding(start = 4.dp, top = 2.dp)
                 )
-
             }
         }
 
@@ -122,10 +108,9 @@ internal fun HomeScreen(
                 .height(56.dp)
                 .background(color = MaterialTheme.colorScheme.surface)
         ) {
-
             FadeAnimatedVisibility(
                 visible = !renderState?.petTypes.isNullOrEmpty(),
-                durationMillis = 500,
+                durationMillis = 500
             ) {
                 renderState?.petTypes?.let { petTypes ->
                     HomeTabRow(
@@ -144,7 +129,6 @@ internal fun HomeScreen(
                     }
                 }
             }
-
         }
 
         // LOADING_INDICATOR .......................................................................
@@ -162,7 +146,6 @@ internal fun HomeScreen(
                 )
             }
         }
-
 
         // LAZY_GRID ...............................................................................
         if (petList != null && petList.itemCount != 0) {
@@ -191,9 +174,5 @@ internal fun HomeScreen(
                     .wrapContentHeight()
             )
         }
-
-
     }
-
 }
-

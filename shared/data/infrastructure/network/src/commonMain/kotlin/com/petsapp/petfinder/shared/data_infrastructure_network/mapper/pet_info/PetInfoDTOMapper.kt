@@ -32,9 +32,7 @@ internal fun PetInfoDTO.toDomainEntity() =
         distance = distance ?: 0.0
     )
 
-
-private fun formatShortDescription(age: String?, gender: String?, breed: String?) : String {
-
+private fun formatShortDescription(age: String?, gender: String?, breed: String?): String {
     var shortDescription = ""
 
     age?.let {
@@ -43,17 +41,15 @@ private fun formatShortDescription(age: String?, gender: String?, breed: String?
 
     gender?.let {
         shortDescription = shortDescription
-            .plus( if(shortDescription.isNotBlank()) " " else "")
+            .plus(if (shortDescription.isNotBlank()) " " else "")
             .plus(it)
     }
 
     shortDescription = shortDescription
-        .plus( if(shortDescription.isNotBlank()) "\n" else "")
+        .plus(if (shortDescription.isNotBlank()) "\n" else "")
         .plus(breed ?: "Unspecified breed")
 
     return shortDescription
 }
-
-
 
 internal fun List<PetInfoDTO>.toDomainEntityList() = map { it.toDomainEntity() }

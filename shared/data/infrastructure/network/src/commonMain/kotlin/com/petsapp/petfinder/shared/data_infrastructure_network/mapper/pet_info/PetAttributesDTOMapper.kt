@@ -11,4 +11,3 @@ internal fun PetAttributesDTO.toDomainEntity() =
         specialNeeds = specialNeeds ?: false,
         shotsCurrent = shotsCurrent ?: false
     )
-

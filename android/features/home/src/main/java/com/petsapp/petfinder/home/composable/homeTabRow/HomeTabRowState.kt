@@ -5,7 +5,6 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 
-
 @Composable
 internal fun rememberHomeTabRowState(selectedTabIndex: Int = 0): HomeTabRowState {
     return rememberSaveable(saver = HomeTabRowState.Saver) {
@@ -24,7 +23,6 @@ class HomeTabRowState(selectedTabIndex: Int = 0) {
             require(value >= 0) { "Index value must be greater than or equal to 0" }
             _selectedTabIndex = value
         }
-
 
     companion object {
         /**

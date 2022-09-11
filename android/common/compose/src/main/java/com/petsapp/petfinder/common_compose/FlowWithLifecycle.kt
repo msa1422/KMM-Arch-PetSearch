@@ -9,7 +9,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import kotlinx.coroutines.flow.Flow
 
-
 // Source
 // @see https://github.com/c0de-wizard/tv-maniac
 

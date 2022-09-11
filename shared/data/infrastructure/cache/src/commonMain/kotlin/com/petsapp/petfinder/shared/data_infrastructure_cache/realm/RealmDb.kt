@@ -16,4 +16,3 @@ internal val RealmDb: Realm
                 .build()
         )
     }
-

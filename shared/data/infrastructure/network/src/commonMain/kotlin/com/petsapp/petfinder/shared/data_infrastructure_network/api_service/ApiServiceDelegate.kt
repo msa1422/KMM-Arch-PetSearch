@@ -48,7 +48,6 @@ class ApiServiceDelegate(private val httpClient: HttpClient) {
                     parameter("declawed", params.declawed)
                     parameter("specialNeeds", params.specialNeeds)
                 }
-
             },
             mapper = { it.toDomainEntity() }
         )
@@ -65,5 +64,4 @@ class ApiServiceDelegate(private val httpClient: HttpClient) {
             },
             mapper = { it.toDomainEntity() }
         )
-
 }

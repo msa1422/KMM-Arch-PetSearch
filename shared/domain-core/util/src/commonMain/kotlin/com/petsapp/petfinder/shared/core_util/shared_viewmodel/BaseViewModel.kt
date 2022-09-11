@@ -21,7 +21,6 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import kotlin.coroutines.EmptyCoroutineContext
 
-
 /**
  *
  * Heavily modified version of the Arch Library written by fededri
@@ -50,7 +49,6 @@ constructor(
 
     private val messageDeque: MessageDeque by inject()
 
-
     fun updateArgsInState(args: HashMap<String, String>) {
         argsMapper?.let { mapper ->
             state.value = mapper.mapArgsToState(currentState = state.value, args = args)
@@ -59,7 +57,6 @@ constructor(
             renderState.value = mapper.mapToRenderState(state = state.value)
         }
     }
-
 
     fun observeMessageDeque(): CommonFlow<ResourceMessage?> {
         return messageDeque.readOnlyStateFlow().asCommonFlow()
@@ -80,7 +77,6 @@ constructor(
     fun observeEvents(): CommonFlow<E> {
         return events.asSharedFlow().asCommonFlow()
     }
-
 
     override suspend fun action(action: A) {
         updater?.onNewAction(action, state.value)?.let { next ->
@@ -121,7 +117,6 @@ constructor(
             stateMapper?.mapToRenderState(next.state)?.let { rs ->
                 renderState.value = rs
             }
-
         }
     }
 
@@ -140,10 +135,8 @@ constructor(
         }
     }
 
-
     override fun onDestroy() {
         state.value = initialState
         super.onDestroy()
     }
-
 }

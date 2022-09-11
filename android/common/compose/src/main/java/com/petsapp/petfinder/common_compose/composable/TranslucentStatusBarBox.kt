@@ -17,7 +17,6 @@ fun TranslucentStatusBarBox(
         contentAlignment = contentAlignment,
         modifier = modifier
     ) {
-
         content()
 
         Box(
@@ -28,8 +27,5 @@ fun TranslucentStatusBarBox(
         ) {
             Spacer(modifier = Modifier.statusBarsPadding())
         }
-
     }
-
-
 }

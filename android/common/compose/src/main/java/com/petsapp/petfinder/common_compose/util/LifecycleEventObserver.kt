@@ -11,14 +11,11 @@ fun <T> T.lifecycleCallbackFor(
     vararg event: Lifecycle.Event,
     onEvent: (Lifecycle.Event) -> Unit
 ) where T : LifecycleOwner {
-
     val hasActiveObservers = remember { mutableStateOf(false) }
-
     val eventHandler = rememberUpdatedState(onEvent)
     val lifecycleOwner = rememberUpdatedState(this)
 
     DisposableEffect(lifecycleOwner.value) {
-
         val lifecycle = lifecycleOwner.value.lifecycle
 
         val observer = LifecycleEventObserver { _, e ->
@@ -36,7 +33,6 @@ fun <T> T.lifecycleCallbackFor(
             hasActiveObservers.value = false
             lifecycle.removeObserver(observer)
         }
-
     }
 }
 
@@ -45,14 +41,11 @@ fun <T> T.observe(
     owner: LifecycleOwner = LocalLifecycleOwner.current,
     block: () -> Unit
 ) where T : Lifecycle.Event {
-
     val hasActiveObservers = remember { mutableStateOf(false) }
-
     val eventHandler = rememberUpdatedState(block)
     val lifecycleOwner = rememberUpdatedState(owner)
 
     DisposableEffect(lifecycleOwner.value) {
-
         val lifecycle = lifecycleOwner.value.lifecycle
 
         val observer = LifecycleEventObserver { _, e ->
@@ -70,7 +63,5 @@ fun <T> T.observe(
             hasActiveObservers.value = false
             lifecycle.removeObserver(observer)
         }
-
     }
-
 }

@@ -26,7 +26,6 @@ abstract class FlowInteractor<Arg, ReturnType> {
         dispatcher: CoroutineDispatcher,
         config: FlowUseCaseConfig.Builder<ReturnType>.() -> Unit
     ) {
-
         val flowUseCaseConfig = FlowUseCaseConfig
             .Builder<ReturnType>()
             .run {
@@ -57,7 +56,6 @@ abstract class FlowInteractor<Arg, ReturnType> {
             }
             .catch { /* handled in onCompletion */ }
             .launchIn(coroutineScope)
-
     }
 
     /**
@@ -140,8 +138,6 @@ abstract class FlowInteractor<Arg, ReturnType> {
             }
         }
     }
-
 }
 
 operator fun <Type> FlowInteractor<Unit, Type>.invoke(): Flow<Type> = this(Unit)
-

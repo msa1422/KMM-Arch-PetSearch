@@ -26,7 +26,6 @@ internal fun LazyPetGrid(
     modifier: Modifier = Modifier,
     onItemClick: (PetInfo) -> Unit = {}
 ) {
-
     // remember val(s) are here to improve list performance
     // I feel that LazyGrid performance can be improved during a first scroll or fling
     // Even after cleaning up the layout(a lot) and remembering values during a recompose,
@@ -45,7 +44,6 @@ internal fun LazyPetGrid(
     // Giving fixed height instead of aspectRatio (0.9F, in this case)
     val imageHeight = (LocalConfiguration.current.screenWidthDp / (ASPECT_RATIO * 2)).dp
 
-
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         state = state,
@@ -53,7 +51,6 @@ internal fun LazyPetGrid(
         horizontalArrangement = Arrangement.spacedBy(2.dp),
         modifier = modifier
     ) {
-
         if (petList.loadState.prepend is LoadState.Loading) {
             item(span = { GridItemSpan(2) }) {
                 LoadingText(
@@ -64,7 +61,6 @@ internal fun LazyPetGrid(
                 )
             }
         }
-
 
         items(items = petList) { info ->
             info?.let {
@@ -83,9 +79,9 @@ internal fun LazyPetGrid(
             }
         }
 
-
-        if (petList.loadState.refresh is LoadState.Loading
-            || petList.loadState.append is LoadState.Loading) {
+        if (petList.loadState.refresh is LoadState.Loading ||
+            petList.loadState.append is LoadState.Loading
+        ) {
             item(span = { GridItemSpan(2) }) {
                 LoadingText(
                     modifier = Modifier
@@ -95,11 +91,8 @@ internal fun LazyPetGrid(
                 )
             }
         }
-
     }
-
 }
-
 
 private const val IMAGE_SATURATION = 0.38F
 private const val ASPECT_RATIO = 0.9F
