@@ -72,7 +72,7 @@ PetSearch has blended the following coding practices and techniques to create a 
 | Tools | Check command | Fix command |
 |-------|---------------|-------------|
 | [detekt](https://github.com/arturbosch/detekt) | `./gradlew detekt` | - |
-| [ktlint](https://github.com/pinterest/ktlint) | `./gradlew ktlint` | `./gradlew ktlintFormat` |
+| [ktlint](https://github.com/pinterest/ktlint) | `./gradlew ktlintCheck` | `./gradlew ktlintFormat` |
 | [spotless](https://github.com/diffplug/spotless) | `./gradlew spotlessCheck` | `./gradlew spotlessApply`
 
 <br>
