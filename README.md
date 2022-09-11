@@ -74,7 +74,6 @@ PetSearch has blended the following coding practices and techniques to create a 
 | [detekt](https://github.com/arturbosch/detekt) | `./gradlew detekt` | - |
 | [ktlint](https://github.com/pinterest/ktlint) | `./gradlew ktlint` | `./gradlew ktlintFormat` |
 | [spotless](https://github.com/diffplug/spotless) | `./gradlew spotlessCheck` | `./gradlew spotlessApply`
-| [lint](https://developer.android.com/studio/write/lint) | `./gradlew lint` | - |
 
 <br>
 
