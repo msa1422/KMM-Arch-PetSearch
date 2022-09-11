@@ -2,8 +2,8 @@
 
 
 **PetSearch** is an effort to explore and showcase the Kotlin-Multiplatform possibilities.
-In this project, I have tried to implement the best practices of mobile application development that I have learned so far.<br>
-With that said, I would like to quote,
+100% Jetpack Compose, 100% SwiftUI. This project is all about learning.<br>
+With that said, author has realised that,
 <br>
 **"The more you know, the more you realize you don't know."** - *Aristotle*
 
