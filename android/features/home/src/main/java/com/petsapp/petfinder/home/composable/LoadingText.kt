@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
-import com.petsapp.petfinder.shared.core_res.CoreR
+import com.petsapp.petfinder.shared.coreres.CoreR
 
 @Composable
 internal fun LoadingText(modifier: Modifier = Modifier) {

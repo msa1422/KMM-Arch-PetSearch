@@ -13,7 +13,6 @@ import shared
 struct iOSApp: App {
     
     init() {
-        // Koin Initialization in iOS
         KoinKt.doInitKoin(modules: nil)
     }
     

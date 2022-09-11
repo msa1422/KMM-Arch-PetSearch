@@ -15,11 +15,11 @@ import com.petsapp.petfinder.activity.composable.MainSnackbarHost
 import com.petsapp.petfinder.activity.composable.rememberSnackBarHostState
 import com.petsapp.petfinder.activity.di.provideAppScreens
 import com.petsapp.petfinder.activity.util.setFullScreenContent
-import com.petsapp.petfinder.common_compose.add
-import com.petsapp.petfinder.common_compose.theme.ApplicationTheme
-import com.petsapp.petfinder.shared.core_util.resource.MessageType
-import com.petsapp.petfinder.shared.core_util.resource.ResourceMessage
-import com.petsapp.petfinder.shared.core_util.shared_viewmodel.navigation.NavigationScreen.HomeNavScreen
+import com.petsapp.petfinder.commoncompose.add
+import com.petsapp.petfinder.commoncompose.theme.ApplicationTheme
+import com.petsapp.petfinder.shared.coreutil.resource.MessageType
+import com.petsapp.petfinder.shared.coreutil.resource.ResourceMessage
+import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.navigation.NavigationScreen.HomeNavScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

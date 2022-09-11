@@ -18,16 +18,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.petsapp.petfinder.common_compose.composable.FadeAnimatedVisibility
-import com.petsapp.petfinder.common_compose.util.disableSplitMotionEvents
+import com.petsapp.petfinder.commoncompose.composable.FadeAnimatedVisibility
+import com.petsapp.petfinder.commoncompose.util.disableSplitMotionEvents
 import com.petsapp.petfinder.home.composable.LazyPetGrid
 import com.petsapp.petfinder.home.composable.LoadingText
-import com.petsapp.petfinder.home.composable.homeTabRow.HomeTabRow
-import com.petsapp.petfinder.home.composable.homeTabRow.rememberHomeTabRowState
-import com.petsapp.petfinder.shared.domain.home_ui_contract.HomeViewModel
-import com.petsapp.petfinder.shared.domain.home_ui_contract.contract.store.HomeAction
+import com.petsapp.petfinder.home.composable.tabrow.HomeTabRow
+import com.petsapp.petfinder.home.composable.tabrow.rememberHomeTabRowState
+import com.petsapp.petfinder.shared.domain.homeuicontract.HomeViewModel
+import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeAction
 import kotlinx.coroutines.launch
-import com.petsapp.petfinder.common_res.R as commonR
+import com.petsapp.petfinder.commonres.R as commonR
 
 @Composable
 internal fun HomeScreen(

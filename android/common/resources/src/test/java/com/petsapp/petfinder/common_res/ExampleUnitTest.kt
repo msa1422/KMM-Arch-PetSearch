@@ -1,4 +1,4 @@
-package com.petsapp.petfinder.common_res
+package com.petsapp.petfinder.commonres
 
 import org.junit.Test
 
