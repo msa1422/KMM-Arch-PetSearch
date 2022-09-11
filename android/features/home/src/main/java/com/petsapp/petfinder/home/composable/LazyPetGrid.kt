@@ -38,10 +38,12 @@ internal fun LazyPetGrid(
     val errorImage = rememberAsyncImagePainter(R.drawable.ic_bg_paw_print_loaded)
 
     // Setting the ColorFilter to make the images pop a bit less. Skip in production
-    val colorFilter = remember { ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0.38F) }) }
+    val colorFilter = remember {
+        ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(IMAGE_SATURATION) })
+    }
 
     // Giving fixed height instead of aspectRatio (0.9F, in this case)
-    val imageHeight = (LocalConfiguration.current.screenWidthDp / 1.8F).dp
+    val imageHeight = (LocalConfiguration.current.screenWidthDp / (ASPECT_RATIO * 2)).dp
 
 
     LazyVerticalGrid(
@@ -97,3 +99,7 @@ internal fun LazyPetGrid(
     }
 
 }
+
+
+private const val IMAGE_SATURATION = 0.38F
+private const val ASPECT_RATIO = 0.9F

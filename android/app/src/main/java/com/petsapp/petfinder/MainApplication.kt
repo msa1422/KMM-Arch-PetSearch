@@ -7,15 +7,13 @@ import coil.decode.SvgDecoder
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
 import coil.request.CachePolicy
-import com.petsapp.petfinder.activity.di.ActivityModule
 
 class MainApplication: Application(), ImageLoaderFactory {
 
     override fun onCreate() {
         super.onCreate()
 
-        // Init Koin
-        initKoin(listOf(ActivityModule))
+        initKoin()
 
     }
 
@@ -29,16 +27,19 @@ class MainApplication: Application(), ImageLoaderFactory {
             .memoryCachePolicy(CachePolicy.ENABLED)
             .memoryCache {
                 MemoryCache.Builder(this)
-                    .maxSizePercent(0.25)
+                    .maxSizePercent(MEMORY_CACHE_MAX_SIZE)
                     .build()
             }
             .diskCachePolicy(CachePolicy.ENABLED)
             .diskCache {
                 DiskCache.Builder()
                     .directory(this.cacheDir.resolve("image_cache"))
-                    .maxSizePercent(0.02)
+                    .maxSizePercent(DISK_CACHE_MAX_SIZE)
                     .build()
             }
             .build()
     }
 }
+
+private const val MEMORY_CACHE_MAX_SIZE = 0.25
+private const val DISK_CACHE_MAX_SIZE = 0.25

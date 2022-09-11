@@ -1,7 +1,7 @@
 # KMM-Arch-PetSearch
 
 
-**PetSearch** is an effort to explore and showcase the Kotlin-Multiplatform possibilities.
+**PetSearch** is an effort to explore and showcase the Kotlin-Multiplatform possibilities.<br>
 100% Jetpack Compose, 100% SwiftUI. This project is all about learning.<br>
 With that said, author has realised that,
 <br>

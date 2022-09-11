@@ -10,7 +10,7 @@ import com.petsapp.petfinder.shared.repository.home.di.HomeRepositoryModule
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 
-fun initKoin(modules: List<Module>?) = startKoin {
+fun initKoin(modules: List<Module>? = null) = startKoin {
     modules(
         DomainCoreCommonUtilModule,
         NetworkInfrastructureModule,

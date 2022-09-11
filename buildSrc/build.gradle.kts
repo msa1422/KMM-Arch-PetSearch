@@ -1,14 +1,25 @@
 @file:Suppress("UnstableApiUsage")
 
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
+    `java-gradle-plugin`
     `kotlin-dsl`
     `kotlin-dsl-precompiled-script-plugins`
 }
 
 repositories {
     google()
-    mavenCentral()
     gradlePluginPortal()
+    mavenCentral()
+    maven("https://dl.bintray.com/kotlin/kotlin-eap")
+    maven("https://plugins.gradle.org/m2/")
+    maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
+}
+
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+    languageVersion = libs.versions.kotlin.get().toString()
 }
 
 dependencies {

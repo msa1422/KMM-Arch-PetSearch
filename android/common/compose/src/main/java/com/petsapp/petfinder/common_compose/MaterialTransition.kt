@@ -5,8 +5,8 @@ package com.petsapp.petfinder.common_compose
 //import com.mxalbert.sharedelements.MaterialContainerTransformSpec
 //import com.mxalbert.sharedelements.ProgressThresholds
 
-private const val transitionDurationMillis = 750
-private const val transitionWaitForFrames = 5
+private const val TRANSITION_DURATION_MILLIS = 750
+private const val TRANSITION_WAIT_FOR_FRAMES = 5
 
 /*
 val MaterialArcTransitionSpec = MaterialContainerTransformSpec(

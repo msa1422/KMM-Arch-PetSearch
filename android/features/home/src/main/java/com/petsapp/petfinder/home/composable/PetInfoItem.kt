@@ -38,7 +38,7 @@ internal fun PetInfoItem(
         val imageRequest = remember {
             ImageRequest.Builder(context)
                 .data(petInfo.photos.firstOrNull()?.medium)
-                .crossfade(100)
+                .crossfade(true)
                 .build()
         }
 

@@ -17,29 +17,27 @@ internal fun ComponentActivity.setFullScreenContent(content: @Composable () -> U
 }
 
 @Suppress("deprecation")
-private fun ComponentActivity.deployFullScreenSettings() =
-    with(this) {
-        window?.let { window ->
+private fun ComponentActivity.deployFullScreenSettings() {
 
-            window.addFlags(FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+    window?.addFlags(FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
 
-                window.setDecorFitsSystemWindows(false)
+        window?.setDecorFitsSystemWindows(false)
 
-                window.insetsController?.let {
-                    it.hide(WindowInsets.Type.navigationBars())
-                    it.systemBarsBehavior = BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-                }
-
-                window.decorView.systemUiVisibility = SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-
-            } else {
-                window.decorView.systemUiVisibility =
-                    SYSTEM_UI_FLAG_LAYOUT_STABLE or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                            SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            }
-
-            window.statusBarColor = ResourcesCompat.getColor(resources, transparent, theme)
+        window?.insetsController?.let {
+            it.hide(WindowInsets.Type.navigationBars())
+            it.systemBarsBehavior = BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
+
+        window?.decorView?.systemUiVisibility = SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+
+    } else {
+        window?.decorView?.systemUiVisibility =
+            SYSTEM_UI_FLAG_LAYOUT_STABLE or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                    SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
+
+    window?.statusBarColor = ResourcesCompat.getColor(resources, transparent, theme)
+
+}

@@ -13,11 +13,14 @@ configure<DetektExtension> {
     buildUponDefaultConfig = true
     allRules = false
     source = project.files("src/main/kotlin")
-    config = files("${rootProject.projectDir}/tooling/config/detekt.yml")
+    config = files("${rootProject.projectDir}/config/detekt.yml")
 
 }
 
 tasks.withType<Detekt>().configureEach {
+
+    jvmTarget = JavaVersion.VERSION_11.toString()
+
     reports {
 
         html.required.set(true)
@@ -32,10 +35,6 @@ tasks.withType<Detekt>().configureEach {
     }
 }
 
-
-tasks.withType<Detekt>().configureEach {
-    jvmTarget = JavaVersion.VERSION_11.toString()
-}
 tasks.withType<DetektCreateBaselineTask>().configureEach {
     jvmTarget = JavaVersion.VERSION_11.toString()
 }

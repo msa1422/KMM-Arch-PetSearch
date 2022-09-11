@@ -1,14 +1,11 @@
-package com.petsapp.petfinder.extensions
-
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.kotlin.dsl.maven
 
 fun RepositoryHandler.applyDefault() {
     google()
+    gradlePluginPortal()
     mavenCentral()
     maven("https://dl.bintray.com/kotlin/kotlin-eap")
-    maven("https://oss.sonatype.org/content/repositories/snapshots/")
-    maven("https://kotlin.bintray.com/kotlinx")
-    maven("https://www.jetbrains.com/intellij-repository/releases")
-    maven("https://jetbrains.bintray.com/intellij-third-party-dependencies")
+    maven("https://plugins.gradle.org/m2/")
+    maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
 }

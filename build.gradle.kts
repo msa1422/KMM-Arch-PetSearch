@@ -4,30 +4,21 @@ import com.petsapp.petfinder.util.libs
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("com.github.ben-manes.versions")
     id("org.jetbrains.kotlin.jvm")
+    //id("io.gitlab.arturbosch.detekt")
 }
 
 buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-        maven("https://plugins.gradle.org/m2/")
-        maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
-    }
+    repositories.applyDefault()
+
     dependencies {
         classpath(libs.bundles.gradlePlugins)
     }
 }
 
 allprojects {
-    repositories {
-        google()
-        gradlePluginPortal()
-        mavenCentral()
-        maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
-    }
+    repositories.applyDefault()
+    plugins.apply("io.gitlab.arturbosch.detekt")
 }
 
 subprojects {
@@ -49,7 +40,6 @@ subprojects {
     }
 }
 
-// Removed on June 26, 2022
 // DuplicateTaskException: Cannot add task 'clean' as a task with that name already exists.
 /* tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
