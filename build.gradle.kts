@@ -19,6 +19,7 @@ allprojects {
     repositories.applyDefault()
     plugins.apply("com.petsapp.petfinder.checks.detekt")
     plugins.apply("com.petsapp.petfinder.checks.ktlint")
+    plugins.apply("com.petsapp.petfinder.checks.spotless")
 }
 
 subprojects {

@@ -29,4 +29,5 @@ dependencies {
     implementation(libs.gradlePlugin.dependency.check)
     implementation(libs.gradlePlugin.buildkonfig)
     implementation(libs.gradlePlugin.detekt)
+    implementation(libs.gradlePlugin.spotless)
 }
