@@ -25,6 +25,7 @@ With that said, author has realised that,
 PetSearch has blended the following coding practices and techniques to create a flavor of its own.
 - Clean Architecture
 - Redux MVI
+- **SO**L**ID**
 - Feature-wise and Layer-wise Modularized code (Android and Shared)
 - Shared ViewModel
 - ViewModel Navigation with args (Android and iOS)
