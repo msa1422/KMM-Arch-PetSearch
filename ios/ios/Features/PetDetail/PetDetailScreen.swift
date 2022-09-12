@@ -66,7 +66,7 @@ struct PetDetailScreen: View {
                         // Chracteristics grid
                         if state?.petInfo?.tags?.isEmpty == false {
                             
-                            SectionTitle(title: CoreR.strings().characteristics.desc().localized())
+                            SectionTitle(title: "CHARACTERISTICS")
                             
                             LazyVGrid(
                                 columns: [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)],
@@ -157,10 +157,6 @@ struct PetDetailScreen: View {
                         self.state = ns
                     }
                 }
-
-                // Workaround for bug where ScrollView jumps to top when using any Lazy protocol in it.
-                // Link https://stackoverflow.com/a/69638381
-                // UIScrollView.appearance().bounces = false
 
             }
             .onDisappear {

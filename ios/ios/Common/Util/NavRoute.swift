@@ -174,8 +174,8 @@ extension NavRoute {
     // But then Navigate from Home to PetDetail again fails
 //    func view(pilot: UIPilot<String>, route: String, messenger : @escaping (ResourceMessage) -> Void) -> some View {
 //
-//        @State var navStateObserver: Closeable? = nil
-//        @State var messageDequeObserver: Closeable? = nil
+//        var navStateObserver: Closeable? = nil
+//        var messageDequeObserver: Closeable? = nil
 //
 //        return content
 //            .onAppear {
