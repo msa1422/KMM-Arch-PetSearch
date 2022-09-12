@@ -1,6 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.petsapp.petfinder.constants.SharedModule
 import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode
 import com.petsapp.petfinder.util.libs
 
@@ -10,7 +9,6 @@ plugins {
 }
 
 android {
-    namespace = SharedModule.PACKAGE
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 
@@ -24,11 +22,11 @@ kotlin {
             isStatic = true
             baseName = "shared"
 
-            export(project(SharedModule.DomainCore.Entity.MODULE))
-            export(project(SharedModule.DomainCore.Util.MODULE))
-            export(project(SharedModule.DomainCore.Resources.MODULE))
-            export(project(SharedModule.Domain.PetDetail.UiContract.MODULE))
-            export(project(SharedModule.Domain.Home.UiContract.MODULE))
+            export(projects.shared.domainCore.entity)
+            export(projects.shared.domainCore.util)
+            export(projects.shared.domainCore.resources)
+            export(projects.shared.domain.home.uiContract)
+            export(projects.shared.domain.petDetail.uiContract)
 
             export(libs.kermit.log)
             export(libs.moko.resources)
@@ -44,25 +42,24 @@ dependencies {
     commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.koin.core)
 
-    commonMainImplementation(project(SharedModule.Domain.Home.UiContract.MODULE))
-    commonMainImplementation(project(SharedModule.Domain.PetDetail.UiContract.MODULE))
+    commonMainImplementation(projects.shared.domain.home.uiContract)
+    commonMainImplementation(projects.shared.domain.petDetail.uiContract)
 
-    commonMainImplementation(project(SharedModule.Data.Repository.Home.MODULE))
-    commonMainImplementation(project(SharedModule.Data.Repository.PetDetail.MODULE))
+    commonMainImplementation(projects.shared.data.repository.home)
+    commonMainImplementation(projects.shared.data.repository.petDetail)
 
-    commonMainImplementation(project(SharedModule.Data.Infrastructure.Network.MODULE))
-    commonMainImplementation(project(SharedModule.Data.Infrastructure.Cache.MODULE))
-    commonMainImplementation(project(SharedModule.Data.Infrastructure.Preferences.MODULE))
+    commonMainImplementation(projects.shared.data.infrastructure.network)
+    commonMainImplementation(projects.shared.data.infrastructure.cache)
+    commonMainImplementation(projects.shared.data.infrastructure.preferences)
 
-    commonMainImplementation(project(SharedModule.DomainCore.Util.MODULE))
+    commonMainImplementation(projects.shared.domainCore.util)
 
-    iosMainApi(project(SharedModule.DomainCore.Entity.MODULE))
-    iosMainApi(project(SharedModule.DomainCore.Util.MODULE))
-    iosMainApi(project(SharedModule.DomainCore.Resources.MODULE))
-    iosMainApi(project(SharedModule.Domain.Home.UiContract.MODULE))
-    iosMainApi(project(SharedModule.Domain.PetDetail.UiContract.MODULE))
+
+    iosMainApi(projects.shared.domainCore.entity)
+    iosMainApi(projects.shared.domainCore.util)
+    iosMainApi(projects.shared.domainCore.resources)
+    iosMainApi(projects.shared.domain.home.uiContract)
+    iosMainApi(projects.shared.domain.petDetail.uiContract)
     iosMainApi(libs.kermit.log)
     iosMainApi(libs.moko.resources)
-
-
 }

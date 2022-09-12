@@ -3,7 +3,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    `java-gradle-plugin`
     `kotlin-dsl`
     `kotlin-dsl-precompiled-script-plugins`
 }

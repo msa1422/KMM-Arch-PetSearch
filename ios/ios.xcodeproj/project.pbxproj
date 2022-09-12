@@ -210,6 +210,7 @@
 				7555FF79242A565900829871 /* Resources */,
 				387BCB8A0E36839D468361AC /* Frameworks */,
 				4668E2B0442D4A4D3C32B19E /* [CP] Embed Pods Frameworks */,
+				5E1FDBF928CF04DC0034107D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -305,6 +306,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ios/Pods-ios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		5E1FDBF928CF04DC0034107D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$SRCROOT/../gradlew\" -p \"$SRCROOT/../\" :shared:copyFrameworkResourcesToApp \\\n    -Pmoko.resources.PLATFORM_NAME=$PLATFORM_NAME \\\n    -Pmoko.resources.CONFIGURATION=$CONFIGURATION \\\n    -Pmoko.resources.BUILT_PRODUCTS_DIR=$BUILT_PRODUCTS_DIR \\\n    -Pmoko.resources.CONTENTS_FOLDER_PATH=$CONTENTS_FOLDER_PATH\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -1,3 +1,6 @@
+enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     repositories {
         google()
@@ -7,33 +10,36 @@ pluginManagement {
 }
 
 rootProject.name = "PetFinder-Showcase"
-include(":android")
-include(":shared")
-include(":shared:domain-core")
-include(":shared:domain-core:entity")
-include(":shared:domain-core:util")
-include(":shared:data")
-include(":shared:data:infrastructure")
-include(":shared:data:infrastructure:network")
-include(":shared:data:infrastructure:cache")
-include(":shared:data:infrastructure:preferences")
-include(":shared:data:repository")
-include(":shared:data:repository:pet-detail")
-include(":shared:data:repository:home")
-include(":shared:domain")
-include(":shared:domain:home")
-include(":shared:domain:home:data-source")
-include(":shared:domain:home:ui-contract")
-include(":shared:domain:pet-detail")
-include(":shared:domain:pet-detail:data-source")
-include(":shared:domain:pet-detail:ui-contract")
-include(":shared:domain-core:resources")
-include(":android:app")
-include(":android:activity")
-include(":android:activity")
-include(":android:common")
-include(":android:common:compose")
-include(":android:common:resources")
-include(":android:features")
-include(":android:features:home")
-include(":android:features:pet-detail")
+
+include(
+    ":android",
+    ":shared",
+    ":shared:domain-core",
+    ":shared:domain-core:entity",
+    ":shared:domain-core:util",
+    ":shared:data",
+    ":shared:data:infrastructure",
+    ":shared:data:infrastructure:network",
+    ":shared:data:infrastructure:cache",
+    ":shared:data:infrastructure:preferences",
+    ":shared:data:repository",
+    ":shared:data:repository:pet-detail",
+    ":shared:data:repository:home",
+    ":shared:domain",
+    ":shared:domain:home",
+    ":shared:domain:home:data-source",
+    ":shared:domain:home:ui-contract",
+    ":shared:domain:pet-detail",
+    ":shared:domain:pet-detail:data-source",
+    ":shared:domain:pet-detail:ui-contract",
+    ":shared:domain-core:resources",
+    ":android:app",
+    ":android:activity",
+    ":android:activity",
+    ":android:common",
+    ":android:common:compose",
+    ":android:common:resources",
+    ":android:features",
+    ":android:features:home",
+    ":android:features:pet-detail"
+)

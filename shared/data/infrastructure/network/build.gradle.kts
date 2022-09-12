@@ -1,9 +1,9 @@
 @file:Suppress("UnstableApiUsage")
 
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
-import com.petsapp.petfinder.constants.SharedModule
 import com.petsapp.petfinder.extensions.getApiProperty
 import com.petsapp.petfinder.util.libs
+import com.petsapp.petfinder.util.PackageNameAccessor.DATA_INFRASTRUCTURE_PACKAGE
 
 plugins {
     `kmm-shared-module-plugin`
@@ -12,7 +12,6 @@ plugins {
 }
 
 android {
-    namespace = SharedModule.Data.Infrastructure.Network.PACKAGE
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 
@@ -23,18 +22,16 @@ dependencies {
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.kermit.log)
 
-
-    commonMainImplementation(project(SharedModule.DomainCore.Entity.MODULE))
-    commonMainImplementation(project(SharedModule.DomainCore.Util.MODULE))
+    commonMainImplementation(projects.shared.domainCore.entity)
+    commonMainImplementation(projects.shared.domainCore.util)
 
     androidMainImplementation(libs.ktor.client.okHttp)
 
     iosMainImplementation(libs.ktor.client.darwin)
-
 }
 
 buildkonfig {
-    packageName = SharedModule.Data.Infrastructure.Network.PACKAGE
+    packageName = DATA_INFRASTRUCTURE_PACKAGE
     defaultConfigs {
         buildConfigField(STRING, "PETFINDER_API_KEY", getApiProperty("API_KEY"))
         buildConfigField(STRING, "PETFINDER_SECRET", getApiProperty("API_SECRET"))

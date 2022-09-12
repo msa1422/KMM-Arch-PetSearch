@@ -1,7 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.petsapp.petfinder.constants.AndroidModule
-import com.petsapp.petfinder.constants.SharedModule
 import com.petsapp.petfinder.util.libs
 
 plugins {
@@ -10,7 +8,6 @@ plugins {
 }
 
 android {
-    namespace = AndroidModule.Common.Compose.PACKAGE
     buildFeatures {
         compose = true
     }
@@ -31,9 +28,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.accompanist.navigation.animation)
 
-    implementation(project(SharedModule.DomainCore.Util.MODULE))
-    implementation(project(SharedModule.DomainCore.Resources.MODULE))
+    implementation(projects.shared.domainCore.util)
+    implementation(projects.shared.domainCore.resources)
 
-    implementation(project(AndroidModule.Common.Resources.MODULE))
-
+    implementation(projects.android.common.resources)
 }

@@ -1,4 +1,3 @@
-import com.petsapp.petfinder.constants.SharedModule
 import com.petsapp.petfinder.util.libs
 
 plugins {
@@ -7,7 +6,6 @@ plugins {
 }
 
 android {
-    namespace = SharedModule.DomainCore.Entity.PACKAGE
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 

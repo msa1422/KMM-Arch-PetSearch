@@ -1,6 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.petsapp.petfinder.constants.SharedModule
 import com.petsapp.petfinder.util.libs
 
 plugins {
@@ -9,7 +8,6 @@ plugins {
 }
 
 android {
-    namespace = SharedModule.DomainCore.Util.PACKAGE
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 

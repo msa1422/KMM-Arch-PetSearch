@@ -66,7 +66,7 @@ struct PetDetailScreen: View {
                         // Chracteristics grid
                         if state?.petInfo?.tags?.isEmpty == false {
                             
-                            SectionTitle(title: "CHARACTERISTICS")
+                            SectionTitle(title: CoreR.strings().characteristics.desc().localized())
                             
                             LazyVGrid(
                                 columns: [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)],

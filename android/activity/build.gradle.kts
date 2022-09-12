@@ -1,31 +1,23 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.petsapp.petfinder.constants.AndroidModule
-import com.petsapp.petfinder.constants.SharedModule
 import com.petsapp.petfinder.util.libs
 
 plugins {
     `android-ui-plugin`
 }
 
-android {
-    namespace = AndroidModule.Activity.PACKAGE
-}
-
-
 dependencies {
 
     implementation(libs.koin.core)
     implementation(libs.koin.androidx.compose)
 
-    api(project(AndroidModule.Common.Compose.MODULE))
+    api(projects.android.common.compose)
 
-    api(project(AndroidModule.Features.Home.MODULE))
-    api(project(AndroidModule.Features.PetDetail.MODULE))
+    api(projects.android.features.home)
+    api(projects.android.features.petDetail)
 
-
-    implementation(project(SharedModule.DomainCore.Util.MODULE))
-    implementation(project(SharedModule.DomainCore.Resources.MODULE))
+    implementation(projects.shared.domainCore.resources)
+    implementation(projects.shared.domainCore.util)
 
 
     testImplementation("junit:junit:4.13.2")

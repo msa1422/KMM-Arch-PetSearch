@@ -4,7 +4,7 @@ import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.petsapp.petfinder.util.libs
 import com.petsapp.petfinder.extensions.BuildType
 import com.petsapp.petfinder.extensions.*
-import com.petsapp.petfinder.constants.AndroidModule
+import com.petsapp.petfinder.util.PackageNameAccessor
 
 plugins {
     id("com.android.application")
@@ -16,7 +16,7 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = AndroidModule.App.PACKAGE
+        applicationId = PackageNameAccessor.APP_PACKAGE
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()

@@ -1,6 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.petsapp.petfinder.constants.SharedModule
 import com.petsapp.petfinder.util.libs
 
 plugins {
@@ -8,19 +7,18 @@ plugins {
 }
 
 android {
-    namespace = SharedModule.Data.Repository.Home.PACKAGE
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 
 dependencies {
 
-    commonMainImplementation(project(SharedModule.DomainCore.Entity.MODULE))
-    commonMainImplementation(project(SharedModule.DomainCore.Util.MODULE))
+    commonMainImplementation(projects.shared.domainCore.entity)
+    commonMainImplementation(projects.shared.domainCore.util)
 
-    commonMainImplementation(project(SharedModule.Domain.Home.DataSource.MODULE))
+    commonMainImplementation(projects.shared.domain.home.dataSource)
 
-    commonMainImplementation(project(SharedModule.Data.Infrastructure.Cache.MODULE))
-    commonMainImplementation(project(SharedModule.Data.Infrastructure.Network.MODULE))
+    commonMainImplementation(projects.shared.data.infrastructure.network)
+    commonMainImplementation(projects.shared.data.infrastructure.cache)
 
     commonMainImplementation(libs.koin.core)
 

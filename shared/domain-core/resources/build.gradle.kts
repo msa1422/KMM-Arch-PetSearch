@@ -1,5 +1,5 @@
-import com.petsapp.petfinder.constants.SharedModule
 import com.petsapp.petfinder.util.libs
+import com.petsapp.petfinder.util.PackageNameAccessor.CORE_RESOURCES_PACKAGE
 
 plugins {
     `kmm-shared-module-plugin`
@@ -7,7 +7,6 @@ plugins {
 }
 
 android {
-    namespace = SharedModule.DomainCore.Resources.PACKAGE
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 
@@ -17,6 +16,6 @@ dependencies {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = SharedModule.DomainCore.Resources.PACKAGE
+    multiplatformResourcesPackage = CORE_RESOURCES_PACKAGE
     multiplatformResourcesClassName = "CoreR" // optional, default MR
 }

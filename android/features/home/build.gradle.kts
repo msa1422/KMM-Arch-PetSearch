@@ -1,17 +1,10 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.petsapp.petfinder.constants.AndroidModule
-import com.petsapp.petfinder.constants.SharedModule
 import com.petsapp.petfinder.util.libs
 
 plugins {
     `android-ui-plugin`
 }
-
-android {
-    namespace = AndroidModule.Features.Home.PACKAGE
-}
-
 
 dependencies {
 
@@ -21,13 +14,12 @@ dependencies {
     implementation(libs.androidx.paging.runtime)
     implementation(libs.kuuuurt.multiplatform.paging)
 
-    implementation(project(AndroidModule.Common.Compose.MODULE))
-    implementation(project(AndroidModule.Common.Resources.MODULE))
+    implementation(projects.android.common.compose)
+    implementation(projects.android.common.resources)
 
-    implementation(project(SharedModule.DomainCore.Entity.MODULE))
-    implementation(project(SharedModule.DomainCore.Util.MODULE))
-    implementation(project(SharedModule.DomainCore.Resources.MODULE))
+    implementation(projects.shared.domainCore.entity)
+    implementation(projects.shared.domainCore.util)
+    implementation(projects.shared.domainCore.resources)
 
-    implementation(project(SharedModule.Domain.Home.UiContract.MODULE))
-
+    implementation(projects.shared.domain.home.uiContract)
 }
