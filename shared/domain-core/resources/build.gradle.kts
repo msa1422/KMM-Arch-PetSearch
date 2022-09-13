@@ -6,10 +6,6 @@ plugins {
     id("dev.icerock.mobile.multiplatform-resources")
 }
 
-android {
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-}
-
 dependencies {
     commonMainApi(libs.moko.resources)
     androidMainApi(libs.moko.resources.compose)
@@ -17,5 +13,5 @@ dependencies {
 
 multiplatformResources {
     multiplatformResourcesPackage = CORE_RESOURCES_PACKAGE
-    multiplatformResourcesClassName = "CoreR" // optional, default MR
+    multiplatformResourcesClassName = "CoreR"
 }

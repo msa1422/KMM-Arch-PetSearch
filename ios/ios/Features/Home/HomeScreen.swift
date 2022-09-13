@@ -52,12 +52,13 @@ struct HomeScreen: View {
                 selectedTab: $selectedTab.onChange { index in
                     Task {
                         do {
-
                             // First check if the index is same as already selectedTab or not
                             if petInfoList.first?.type == renderState?.petTypes?[selectedTab].name {
                                 return
                             }
-                            
+                                                        
+                            paginationState = .loading
+
                             // remove all items from the LazyGrid
                             petInfoList.removeAll()
                             

@@ -50,11 +50,11 @@ kotlin {
             iosSimulatorArm64Test.dependsOn(this)
         }
     }
-
 }
 
 android {
     compileSdk = libs.versions.compileSdk.get().toInt()
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
@@ -65,5 +65,4 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
 }

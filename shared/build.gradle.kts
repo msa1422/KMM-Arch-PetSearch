@@ -1,15 +1,13 @@
 @file:Suppress("UnstableApiUsage")
 
+import com.petsapp.petfinder.util.PackageNameAccessor.SHARED_PACKAGE
 import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode
 import com.petsapp.petfinder.util.libs
 
 plugins {
     `kmm-shared-module-plugin`
     kotlin("native.cocoapods")
-}
-
-android {
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -42,6 +40,7 @@ dependencies {
 
     commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.koin.core)
+    commonMainImplementation(libs.moko.resources)
 
     commonMainImplementation(projects.shared.domain.home.uiContract)
     commonMainImplementation(projects.shared.domain.petDetail.uiContract)
@@ -64,4 +63,9 @@ dependencies {
     iosMainApi(libs.kermit.log)
     iosMainApi(libs.moko.resources)
     iosMainApi(libs.kuuuurt.multiplatform.paging)
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = SHARED_PACKAGE
+    multiplatformResourcesClassName = "MR"
 }

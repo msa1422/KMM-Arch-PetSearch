@@ -66,7 +66,7 @@ struct PetDetailScreen: View {
                         // Chracteristics grid
                         if state?.petInfo?.tags?.isEmpty == false {
                             
-                            SectionTitle(title: "CHARACTERISTICS")
+                            SectionTitle(title: CoreR.strings().characteristics.desc().localized().uppercased())
                             
                             LazyVGrid(
                                 columns: [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)],
@@ -86,16 +86,18 @@ struct PetDetailScreen: View {
                         // Attributes grid
                         if let attrs = state?.petInfo?.attributes {
                             
-                            SectionTitle(title: "ATTRIBUTES")
+                            SectionTitle(title: CoreR.strings().attributes.desc().localized().uppercased())
 
-                            
+                            let yes = CoreR.strings().yes.desc().localized()
+                            let no = CoreR.strings().no.desc().localized()
+
                             // Create a map so that it can be used in LazyGrid
                             let attrMap = [
-                                "DECLAWED":  attrs.declawed ? "Yes" : "No",
-                                "SPAY/NEUTER":  attrs.spayedNeutered ? "Yes" : "No",
-                                "SPECIAL NEEDS":  attrs.specialNeeds ? "Yes" : "No",
-                                "HOUSE TRAINED":  attrs.houseTrained ? "Yes" : "No",
-                                "VACCINATED":  attrs.shotsCurrent ? "Yes" : "No"
+                                CoreR.strings().declawed.desc().localized().uppercased():  attrs.declawed ? yes : no,
+                                CoreR.strings().spay_neuter.desc().localized().uppercased():  attrs.spayedNeutered ? yes : no,
+                                CoreR.strings().spacial_needs.desc().localized().uppercased():  attrs.specialNeeds ? yes : no,
+                                CoreR.strings().house_trained.desc().localized().uppercased():  attrs.houseTrained ? yes : no,
+                                CoreR.strings().vaccinated.desc().localized().uppercased():  attrs.shotsCurrent ? yes : no
                             ]
                             
                             LazyVGrid(
@@ -111,7 +113,7 @@ struct PetDetailScreen: View {
                                             .font(Font.caption)
                                             .foregroundColor(Color.black.opacity(0.62))
                                         
-                                        Text(attrMap[attribute] ?? "No")
+                                        Text(attrMap[attribute] ?? no)
                                             .font(Font.body)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                         

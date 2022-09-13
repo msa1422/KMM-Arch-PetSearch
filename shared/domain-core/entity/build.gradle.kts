@@ -5,10 +5,6 @@ plugins {
     kotlin("plugin.serialization")
 }
 
-android {
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-}
-
 dependencies {
     commonMainImplementation(libs.kotlinx.serialization)
 }
