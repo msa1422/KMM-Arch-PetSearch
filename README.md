@@ -64,7 +64,6 @@ PetSearch has blended the following coding practices and techniques to create a 
 <br>
 
 ## Known issues
-* Paging doesn't work on iOS app. An implementation similar to collectAsLazyPagingItems() in [Compose Paging](https://developer.android.com/reference/kotlin/androidx/paging/compose/package-summary) is required.
 * Accessing Moko-resources on iOS throws an exception. Most likely, it is due to improper configuration/set-up either in podSpec or gradle.
 
 <br>

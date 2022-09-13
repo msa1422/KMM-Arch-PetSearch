@@ -32,7 +32,3 @@ android {
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
-
-dependencies {
-
-}

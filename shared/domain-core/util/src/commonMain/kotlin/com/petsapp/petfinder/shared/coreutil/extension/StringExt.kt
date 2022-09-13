@@ -1,4 +1,4 @@
-package com.petsapp.petfinder.shared.coreutil.extention
+package com.petsapp.petfinder.shared.coreutil.extension
 
 fun String.capitalizeWords(): String =
     split(" ").joinToString(" ") { split ->

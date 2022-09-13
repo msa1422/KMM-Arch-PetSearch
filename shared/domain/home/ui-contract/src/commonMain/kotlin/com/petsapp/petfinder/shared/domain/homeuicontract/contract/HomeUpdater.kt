@@ -1,6 +1,5 @@
 package com.petsapp.petfinder.shared.domain.homeuicontract.contract
 
-import com.petsapp.petfinder.shared.coreutil.asCommonFlow
 import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.store.Updater
 import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.util.GlobalEvent
 import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.util.Next
@@ -9,7 +8,6 @@ import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeAct
 import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeNavigation
 import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeSideEffect
 import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeState
-import kotlinx.coroutines.flow.flow
 
 typealias NextResult = Next<HomeState, HomeSideEffect, GlobalEvent, HomeNavigation, ReduxGeneric.Error>
 
@@ -26,6 +24,9 @@ class HomeUpdater :
             is HomeAction.OnPetTypeTabSelected -> onSelectedPetTypeChanged(action, currentState)
 
             is HomeAction.NavigateToPetDetail -> navigateToPetDetail(action, currentState)
+
+            is HomeAction.LoadPetListNextPage -> loadPetListNextPage(currentState)
+            is HomeAction.OnLoadPetListNextPageActionComplete -> onLoadPetListNextPageActionComplete(currentState)
 
             is HomeAction.Error ->
                 onError(ReduxGeneric.Error(message = action.message), currentState)
@@ -44,7 +45,6 @@ class HomeUpdater :
         action: HomeAction.UpdatePetTypesInState,
         state: HomeState
     ): NextResult {
-
         val sideEffects = action.petTypesResponse?.types?.firstOrNull()?.name
             ?.let {
                 setOf(
@@ -64,17 +64,11 @@ class HomeUpdater :
             )
     }
 
-
-
     private fun updateSearchPetResponse(
         action: HomeAction.UpdatePetResponseInState,
         state: HomeState
     ): NextResult {
-        return Next.State(
-            state = state.copy(
-                petPagingData = flow { emit(action.petPagingData) }.asCommonFlow(),
-            )
-        )
+        return Next.State(state = state.copy(petPagingData = action.petPagingData,))
     }
 
     private fun onSelectedPetTypeChanged(
@@ -94,6 +88,19 @@ class HomeUpdater :
             )
     }
 
+    private fun loadPetListNextPage(state: HomeState): NextResult {
+        return Next
+            .StateWithSideEffects(
+                state = state,
+                sideEffects = setOf(HomeSideEffect.LoadPetListNextPageFromNetwork)
+            )
+    }
+
+    private fun onLoadPetListNextPageActionComplete(state: HomeState): NextResult {
+        // A method that does nothing
+        return Next.State(state = state)
+    }
+
     private fun navigateToPetDetail(
         action: HomeAction.NavigateToPetDetail,
         state: HomeState
@@ -104,5 +111,4 @@ class HomeUpdater :
                 navigation = setOf(HomeNavigation.NavHomeToPetDetail(action.petInfo))
             )
     }
-
 }

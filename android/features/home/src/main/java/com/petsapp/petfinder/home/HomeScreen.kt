@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.petsapp.petfinder.commoncompose.composable.FadeAnimatedVisibility
 import com.petsapp.petfinder.commoncompose.util.disableSplitMotionEvents
@@ -138,7 +139,12 @@ internal fun HomeScreen(
                 .height(1.dp)
                 .background(MaterialTheme.colorScheme.onBackground.copy(0.1F))
         ) {
-            FadeAnimatedVisibility(visible = petList == null || petList.itemCount == 0) {
+            FadeAnimatedVisibility(
+                visible = petList == null ||
+                        petList.loadState.refresh is LoadState.Loading ||
+                        petList.loadState.append is LoadState.Loading ||
+                        petList.loadState.prepend is LoadState.Loading
+            ) {
                 LinearProgressIndicator(
                     color = MaterialTheme.colorScheme.onBackground,
                     trackColor = Color.Unspecified,
@@ -164,6 +170,7 @@ internal fun HomeScreen(
         }
         // This else statement is a workaround for the issue where
         // paging data item count becomes 0 (momentarily) when navigating to or from the screen
+        // and causes to GridScrollState to reset to 0
         // For detailed explanation, see
         // https://stackoverflow.com/a/70520441
         else {

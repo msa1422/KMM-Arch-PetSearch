@@ -19,6 +19,7 @@ ktor = "2.0.3"
 realm = "1.0.1"
 coil = "2.1.0"
 moko-resources = "0.20.1"
+moko-paging = "0.7.2"
 kermit = "1.1.3"
 
 androidx-activity = "1.5.1"
@@ -97,11 +98,12 @@ chrisbanes-snapper = { module = "dev.chrisbanes.snapper:snapper", version = "0.2
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
 uuid-multiplatform = { module = "com.benasher44:uuid", version = "0.4.1" }
-moko-resources = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
-moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }
 korlibs-klock = { module = "com.soywiz.korlibs.klock:klock", version = "2.2.0" }
 kuuuurt-multiplatform-paging = { module = "io.github.kuuuurt:multiplatform-paging", version = "0.4.7" }
 
+moko-resources = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
+moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }
+moko-paging = { module = "dev.icerock.moko:paging", version.ref = "moko-paging" }
 
 squareup-okio = { module = "com.squareup.okio:okio", version = "3.2.0" }
 

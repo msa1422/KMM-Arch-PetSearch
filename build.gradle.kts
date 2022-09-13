@@ -33,6 +33,7 @@ subprojects {
                 "-opt-in=kotlin.RequiresOptIn",
                 "-opt-in=kotlin.time.ExperimentalTime",
                 "-opt-in=androidx.compose.animation.ExperimentalAnimationApi",
+                "-opt-in=kotlinx.coroutines.FlowPreview",
                 "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
                 "-opt-in=androidx.compose.ui.unit.ExperimentalUnitApi",
                 "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",

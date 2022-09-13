@@ -1,6 +1,12 @@
 package com.petsapp.petfinder.shared.domain.homeuicontract.contract
 
+import com.kuuurt.paging.multiplatform.Pager
+import com.kuuurt.paging.multiplatform.PagingConfig
+import com.kuuurt.paging.multiplatform.PagingResult
+import com.kuuurt.paging.multiplatform.helpers.cachedIn
 import com.petsapp.petfinder.shared.coreentity.petinfo.PetInfo
+import com.petsapp.petfinder.shared.coreutil.asCommonFlow
+import com.petsapp.petfinder.shared.coreutil.extension.loadNextPage
 import com.petsapp.petfinder.shared.coreutil.resource.MessageType
 import com.petsapp.petfinder.shared.coreutil.resource.ResourceMessage
 import com.petsapp.petfinder.shared.coreutil.resource.Status
@@ -9,13 +15,10 @@ import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeAct
 import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeSideEffect
 import com.petsapp.petfinder.shared.domain.homeuicontract.interactor.LoadPetsUseCase
 import com.petsapp.petfinder.shared.domain.homeuicontract.interactor.UseCaseWrapper
-import com.kuuurt.paging.multiplatform.Pager
-import com.kuuurt.paging.multiplatform.PagingConfig
-import com.kuuurt.paging.multiplatform.PagingResult
-import com.kuuurt.paging.multiplatform.helpers.cachedIn
-import kotlinx.coroutines.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
@@ -33,11 +36,11 @@ class HomeProcessor(
         initialLoadSize = 30
     )
 
-
     override suspend fun dispatchSideEffect(effect: HomeSideEffect): HomeAction {
         return when (effect) {
             is HomeSideEffect.LoadPetTypesFromNetwork -> loadPetTypes(effect)
-            is HomeSideEffect.LoadPetsFromNetwork -> loadPagedPetListFromNetwork(effect)
+            is HomeSideEffect.LoadPetsFromNetwork -> getPetListPagedFlow(effect)
+            is HomeSideEffect.LoadPetListNextPageFromNetwork -> loadNextPage()
         }
     }
 
@@ -58,82 +61,88 @@ class HomeProcessor(
                     }
                 }
             }
-
         }
     }
 
-    private suspend fun loadPagedPetListFromNetwork(
+    private suspend fun getPetListPagedFlow(
         effect: HomeSideEffect.LoadPetsFromNetwork
     ) : HomeAction {
-
-        if (!this::petListPager.isInitialized
-            || !this::currentPetType.isInitialized
-            || currentPetType != effect.type
+        if (!this::petListPager.isInitialized ||
+            !this::currentPetType.isInitialized ||
+            currentPetType != effect.type
         ) {
             petListPager = Pager(
                 clientScope = effect.coroutineScope,
                 config = pagingConfig,
-                initialKey = 1,
-                getItems = { currentKey, _ ->
-
-                    suspendCancellableCoroutine { continuation ->
-                        useCases.getPets.execute(
-                            args = LoadPetsUseCase.Params(effect.type, currentKey, effect.params),
-                            coroutineScope = effect.coroutineScope,
-                            dispatcher = effect.dispatcher
-                        ) {
-                            onNext { resource ->
-                                when {
-                                    resource.status == Status.SUCCESS
-                                            && !resource.data?.animals.isNullOrEmpty() -> {
-
-                                        val result = PagingResult(
-                                            items = resource.data?.animals!!,
-                                            currentKey = currentKey,
-                                            prevKey = { null },
-                                            nextKey = {
-                                                val totalPageCount = resource.data?.pagination?.totalCount ?: 1
-                                                currentKey.takeIf { it < totalPageCount }?.plus(1)
-                                            }
-                                        )
-
-                                        continuation.resume(result)
-
-                                    }
-                                    resource.status == Status.ERROR -> {
-
-                                        val result = PagingResult(
-                                            items = emptyList<PetInfo>(),
-                                            currentKey = currentKey,
-                                            prevKey = { null },
-                                            nextKey = {
-                                                val totalPageCount = resource.data?.pagination?.totalCount ?: 1
-                                                currentKey.takeIf { it < totalPageCount }?.plus(1)
-                                            }
-                                        )
-
-                                        continuation.resume(result)
-                                    }
-                                    else -> {} // Ignore
-                                }
-                            }
-                        }
-                    }
-
-                }
-            )
+                initialKey = 1
+            ) { currentKey, _ ->
+                triggerLoadPetListUseCase(effect, currentKey)
+            }
         }
 
-        return HomeAction.UpdatePetResponseInState(
-            petListPager
-                .pagingData
-                .distinctUntilChanged()
-                .cachedIn(effect.coroutineScope)
-                .first()
-        )
+        val flow = petListPager
+            .pagingData
+            .distinctUntilChanged()
+            .cachedIn(effect.coroutineScope)
+            .asCommonFlow()
 
+        return HomeAction.UpdatePetResponseInState(flow)
     }
 
+    private fun loadNextPage(): HomeAction {
+        petListPager.loadNextPage()
+        return HomeAction.OnLoadPetListNextPageActionComplete
+    }
+
+    private suspend fun triggerLoadPetListUseCase(
+        effect: HomeSideEffect.LoadPetsFromNetwork,
+        currentKey: Int
+    ) : PagingResult<Int, PetInfo> {
+        return suspendCancellableCoroutine { continuation ->
+            useCases.getPets.execute(
+                args = LoadPetsUseCase.Params(effect.type, currentKey, effect.params),
+                coroutineScope = effect.coroutineScope,
+                dispatcher = effect.dispatcher
+            ) {
+                onNext { resource ->
+                    when {
+                        resource.status == Status.SUCCESS
+                                && !resource.data?.animals.isNullOrEmpty() -> {
+
+                            val result = PagingResult(
+                                items = resource.data?.animals!!,
+                                currentKey = currentKey,
+                                prevKey = { null },
+                                nextKey = {
+                                    val totalPageCount =
+                                        resource.data?.pagination?.totalCount ?: 1
+                                    currentKey.takeIf { it < totalPageCount }?.plus(1)
+                                }
+                            )
+
+                            continuation.resume(result)
+                        }
+                        resource.status == Status.ERROR -> {
+
+                            val result = PagingResult(
+                                items = emptyList<PetInfo>(),
+                                currentKey = currentKey,
+                                prevKey = { null },
+                                nextKey = {
+                                    val totalPageCount =
+                                        resource.data?.pagination?.totalCount ?: 1
+                                    currentKey.takeIf { it < totalPageCount }?.plus(1)
+                                }
+                            )
+
+                            continuation.resume(result)
+                        }
+                        else -> {} // Ignore
+                    }
+                }
+            }
+        }
+    }
 
     private fun onError(throwable: Throwable?): HomeAction {
         return HomeAction.Error(
@@ -143,5 +152,4 @@ class HomeProcessor(
             )
         )
     }
-
 }

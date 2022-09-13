@@ -1,4 +1,4 @@
-package com.petsapp.petfinder.shared.coreutil.extention
+package com.petsapp.petfinder.shared.coreutil.extension
 
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString

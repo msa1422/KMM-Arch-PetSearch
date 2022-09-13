@@ -13,4 +13,6 @@ sealed class HomeSideEffect : NanoRedux.SideEffect {
         val params: PetSearchParams
     ) : HomeSideEffect()
 
+    object LoadPetListNextPageFromNetwork: HomeSideEffect()
+
 }

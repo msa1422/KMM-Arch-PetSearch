@@ -30,6 +30,7 @@ kotlin {
 
             export(libs.kermit.log)
             export(libs.moko.resources)
+            export(libs.kuuuurt.multiplatform.paging)
 
             transitiveExport = true
             embedBitcode(BitcodeEmbeddingMode.BITCODE)
@@ -62,4 +63,5 @@ dependencies {
     iosMainApi(projects.shared.domain.petDetail.uiContract)
     iosMainApi(libs.kermit.log)
     iosMainApi(libs.moko.resources)
+    iosMainApi(libs.kuuuurt.multiplatform.paging)
 }

@@ -10,7 +10,6 @@ import SwiftUI
 import shared
 
 struct HomeScreen: View {
-    
     let viewModel : HomeViewModel
         
     @State private var renderState: HomeRenderState? = nil
@@ -19,13 +18,12 @@ struct HomeScreen: View {
     @State private var petInfoList: [PetInfo] = []
     @State private var petInfoListObserver: Closeable? = nil
     
+    @State private var paginationState: PaginationState = .loading
+    
     @State private var selectedTab: Int = 0
     
-    
     var body: some View {
-        
         VStack(alignment: .leading, spacing: .zero) {
-            
             // Location Selector button
             Button(
                 action: {
@@ -47,7 +45,6 @@ struct HomeScreen: View {
                 }
                 .padding(.init(top: 4, leading: 20, bottom: 18, trailing: 24))
             }
-            
             
             // Material style TabLayout
             TabRow(
@@ -75,18 +72,14 @@ struct HomeScreen: View {
                 }
             )
             
-            
             Divider()
 
-            
             // GridView
             ScrollView(.vertical, showsIndicators: false) {
-                
                 LazyVGrid(
                     columns: [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)],
                     spacing: 2
                 ) {
-                    
                     ForEach(petInfoList, id: \.id) { petInfo in
                         PetInfoView(petInfo: petInfo) {
                             Task {
@@ -98,29 +91,44 @@ struct HomeScreen: View {
                                 catch { print(error) }
                             }
                         }
+                        .onAppear {
+                            // Very basic and definitely not production ready implementation of pagination
+                            // Proper implementation and refinment is required.
+                            // Will implement it soon as I keep learning SwiftUI
+                            let thresholdIndex = petInfoList.index(petInfoList.endIndex, offsetBy: -5)
+                            
+                            if petInfoList.firstIndex(where: { $0.id == petInfo.id }) == thresholdIndex &&
+                                paginationState != .loading {
+                                Task {
+                                    do {
+                                        paginationState = .loading
+                                        
+                                        try await viewModel.action(
+                                            action: HomeAction.LoadPetListNextPage()
+                                        )
+                                    }
+                                    catch { print(error) }
+                                }
+                            }
+                        }
                     }
                 }
                 
                 ProgressView()
                     .padding(.init(top: 32, leading: .zero, bottom: 64, trailing: .zero))
-
+                    .opacity(paginationState == .loading ? 1 : 0)
             }
             .background(Color.black.opacity(0.1))
             
-            
             // To push the TabRow to top when there are no items in GridView
             Spacer()
-            
         }
         .navigationTitle("")
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.bottom)
         .onAppear {
-                        
             if renderStateObserver == nil {
-                
                 renderStateObserver = viewModel.observeRenderState().watch { state in
-                            
                     guard let renderState = state else { return }
                     self.renderState = renderState
                     
@@ -135,25 +143,24 @@ struct HomeScreen: View {
                             if (infoList?.firstObject as? PetInfo)?.type
                                 == self.renderState?.petTypes?[selectedTab].name {
                                 
-                                guard let list = infoList?.compactMap ({ $0 as? PetInfo }) else { return }
-                                petInfoList = list
+                                guard let list = infoList?.compactMap({ $0 as? PetInfo }) else { return }
+                                petInfoList = list.uniqued()
+                                // .uniqued() because API is returning data with dulicate items,
+                                // causing an exception in LazyVGrid
                                 
+                                paginationState = .idle
                             }
-                            
                         }
                     }
                 }
-                
             }
             
-        
             if renderState == nil || renderState?.petTypes == nil {
                 Task {
                     do { try await viewModel.action(action: HomeAction.GetPetTypes()) }
                     catch { print(error) }
                 }
             }
-                        
         }
         .onDisappear {
             
@@ -163,15 +170,9 @@ struct HomeScreen: View {
             
             petInfoListObserver?.close()
             petInfoListObserver = nil
-            
         }
-        
     }
-
-    
 }
-
-
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {

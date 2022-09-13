@@ -1,6 +1,6 @@
 package com.petsapp.petfinder.shared.domain.petdetailuicontract.contract.mapper
 
-import com.petsapp.petfinder.shared.coreutil.extention.decodeFromString
+import com.petsapp.petfinder.shared.coreutil.extension.decodeFromString
 import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.navigation.ARG_PET_INFO
 import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.store.ArgsMapper
 import com.petsapp.petfinder.shared.domain.petdetailuicontract.contract.store.PetDetailState
