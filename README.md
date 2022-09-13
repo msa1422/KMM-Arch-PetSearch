@@ -63,10 +63,6 @@ PetSearch has blended the following coding practices and techniques to create a 
 
 <br>
 
-## Known issues
-* Accessing Moko-resources on iOS throws an exception. Most likely, it is due to improper configuration/set-up either in podSpec or gradle.
-
-<br>
 
 ## Code Quality
 | Tools | Check command | Fix command |
