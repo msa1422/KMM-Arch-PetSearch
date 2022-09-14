@@ -23,6 +23,7 @@ import com.petsapp.petfinder.shared.coreentity.petinfo.PetInfo
 internal fun LazyPetGrid(
     petList: LazyPagingItems<PetInfo>,
     state: LazyGridState,
+    progressIndicatorVisibility: Boolean,
     modifier: Modifier = Modifier,
     onItemClick: (PetInfo) -> Unit = {}
 ) {
@@ -53,9 +54,10 @@ internal fun LazyPetGrid(
     ) {
         if (petList.loadState.prepend is LoadState.Loading) {
             item(span = { GridItemSpan(2) }) {
-                LoadingText(
+                HomeProgressIndicator(
+                    animate = progressIndicatorVisibility,
                     modifier = Modifier
-                        .padding(top = 48.dp, bottom = 24.dp)
+                        .padding(bottom = 48.dp)
                         .fillMaxWidth()
                         .wrapContentHeight()
                 )
@@ -83,9 +85,10 @@ internal fun LazyPetGrid(
             petList.loadState.append is LoadState.Loading
         ) {
             item(span = { GridItemSpan(2) }) {
-                LoadingText(
+                HomeProgressIndicator(
+                    animate = progressIndicatorVisibility,
                     modifier = Modifier
-                        .padding(top = 24.dp, bottom = 48.dp)
+                        .padding(bottom = 48.dp)
                         .fillMaxWidth()
                         .wrapContentHeight()
                 )

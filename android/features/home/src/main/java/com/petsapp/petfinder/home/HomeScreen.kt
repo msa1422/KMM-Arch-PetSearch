@@ -7,24 +7,24 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowDropDown
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
+import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.petsapp.petfinder.commoncompose.composable.FadeAnimatedVisibility
 import com.petsapp.petfinder.commoncompose.util.disableSplitMotionEvents
+import com.petsapp.petfinder.home.composable.HomeProgressIndicator
 import com.petsapp.petfinder.home.composable.LazyPetGrid
-import com.petsapp.petfinder.home.composable.LoadingText
 import com.petsapp.petfinder.home.composable.tabrow.HomeTabRow
 import com.petsapp.petfinder.home.composable.tabrow.rememberHomeTabRowState
+import com.petsapp.petfinder.shared.coreentity.petinfo.PetInfo
 import com.petsapp.petfinder.shared.domain.homeuicontract.HomeViewModel
 import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeAction
 import kotlinx.coroutines.launch
@@ -132,32 +132,20 @@ internal fun HomeScreen(
             }
         }
 
-        // LOADING_INDICATOR .......................................................................
+        // DIVIDER .................................................................................
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(1.dp)
                 .background(MaterialTheme.colorScheme.onBackground.copy(0.1F))
-        ) {
-            FadeAnimatedVisibility(
-                visible = petList == null ||
-                        petList.loadState.refresh is LoadState.Loading ||
-                        petList.loadState.append is LoadState.Loading ||
-                        petList.loadState.prepend is LoadState.Loading
-            ) {
-                LinearProgressIndicator(
-                    color = MaterialTheme.colorScheme.onBackground,
-                    trackColor = Color.Unspecified,
-                    modifier = Modifier.fillMaxSize()
-                )
-            }
-        }
+        )
 
         // LAZY_GRID ...............................................................................
         if (petList != null && petList.itemCount != 0) {
             LazyPetGrid(
                 petList = petList,
                 state = gridState,
+                progressIndicatorVisibility = isLoading(items = petList),
                 modifier = Modifier
                     .fillMaxSize()
                     .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05F))
@@ -174,12 +162,20 @@ internal fun HomeScreen(
         // For detailed explanation, see
         // https://stackoverflow.com/a/70520441
         else {
-            LoadingText(
+            HomeProgressIndicator(
+                animate = isLoading(items = petList),
                 modifier = Modifier
-                    .padding(top = 24.dp, bottom = 48.dp)
+                    .padding(bottom = 48.dp)
                     .fillMaxWidth()
                     .wrapContentHeight()
             )
         }
     }
+}
+
+private fun isLoading(items:  LazyPagingItems<PetInfo>?): Boolean {
+    return items == null ||
+            items.loadState.refresh is LoadState.Loading ||
+            items.loadState.append is LoadState.Loading ||
+            items.loadState.prepend is LoadState.Loading
 }

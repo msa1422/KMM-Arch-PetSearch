@@ -4,7 +4,7 @@ import com.petsapp.petfinder.util.libs
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.jetbrains.kotlin.jvm")
+    kotlin("jvm")
 }
 
 buildscript {
