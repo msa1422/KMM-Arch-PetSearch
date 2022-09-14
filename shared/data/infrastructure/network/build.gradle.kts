@@ -3,7 +3,7 @@
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 import com.petsapp.petfinder.extensions.getApiProperty
 import com.petsapp.petfinder.util.libs
-import com.petsapp.petfinder.util.PackageNameAccessor.DATA_INFRASTRUCTURE_PACKAGE
+import com.petsapp.petfinder.PackageNameAccessor.DATA_INFRASTRUCTURE_NETWORK_PACKAGE
 
 plugins {
     `kmm-shared-module-plugin`
@@ -27,7 +27,7 @@ dependencies {
 }
 
 buildkonfig {
-    packageName = DATA_INFRASTRUCTURE_PACKAGE
+    packageName = DATA_INFRASTRUCTURE_NETWORK_PACKAGE
     defaultConfigs {
         buildConfigField(STRING, "PETFINDER_API_KEY", getApiProperty("API_KEY"))
         buildConfigField(STRING, "PETFINDER_SECRET", getApiProperty("API_SECRET"))

@@ -1,5 +1,5 @@
 import com.petsapp.petfinder.util.libs
-import com.petsapp.petfinder.util.PackageNameAccessor.CORE_RESOURCES_PACKAGE
+import com.petsapp.petfinder.PackageNameAccessor.CORE_RESOURCES_PACKAGE
 
 plugins {
     `kmm-shared-module-plugin`

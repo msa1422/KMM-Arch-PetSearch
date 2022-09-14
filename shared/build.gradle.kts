@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.petsapp.petfinder.util.PackageNameAccessor.SHARED_PACKAGE
+import com.petsapp.petfinder.PackageNameAccessor.SHARED_PACKAGE
 import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode
 import com.petsapp.petfinder.util.libs
 

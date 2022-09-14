@@ -9,7 +9,8 @@ import com.petsapp.petfinder.shared.coreutil.asCommonFlow
 import com.petsapp.petfinder.shared.coreutil.extension.loadNextPage
 import com.petsapp.petfinder.shared.coreutil.resource.MessageType
 import com.petsapp.petfinder.shared.coreutil.resource.ResourceMessage
-import com.petsapp.petfinder.shared.coreutil.resource.Status
+import com.petsapp.petfinder.shared.coreutil.resource.Status.ERROR
+import com.petsapp.petfinder.shared.coreutil.resource.Status.SUCCESS
 import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.store.Processor
 import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeAction
 import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeSideEffect
@@ -54,9 +55,9 @@ class HomeProcessor(
             ) {
                 onNext { resource ->
                     when (resource.status) {
-                        Status.SUCCESS ->
+                        SUCCESS ->
                             continuation.resume(HomeAction.UpdatePetTypesInState(resource.data))
-                        Status.ERROR -> continuation.resume(onError(resource.throwable))
+                        ERROR -> continuation.resume(onError(resource.throwable))
                         else -> {} // Ignore
                     }
                 }
@@ -89,9 +90,11 @@ class HomeProcessor(
         return HomeAction.UpdatePetResponseInState(flow)
     }
 
-    private fun loadNextPage(): HomeAction {
-        petListPager.loadNextPage()
-        return HomeAction.OnLoadPetListNextPageActionComplete
+    private suspend fun loadNextPage(): HomeAction {
+        return suspendCancellableCoroutine {
+            petListPager.loadNextPage()
+            it.resume(HomeAction.OnLoadPetListNextPageActionComplete)
+        }
     }
 
     private suspend fun triggerLoadPetListUseCase(
@@ -106,9 +109,7 @@ class HomeProcessor(
             ) {
                 onNext { resource ->
                     when {
-                        resource.status == Status.SUCCESS
-                                && !resource.data?.animals.isNullOrEmpty() -> {
-
+                        resource.status == SUCCESS && !resource.data?.animals.isNullOrEmpty() -> {
                             val result = PagingResult(
                                 items = resource.data?.animals!!,
                                 currentKey = currentKey,
@@ -122,8 +123,8 @@ class HomeProcessor(
 
                             continuation.resume(result)
                         }
-                        resource.status == Status.ERROR -> {
 
+                        resource.status == ERROR -> {
                             val result = PagingResult(
                                 items = emptyList<PetInfo>(),
                                 currentKey = currentKey,
@@ -137,6 +138,7 @@ class HomeProcessor(
 
                             continuation.resume(result)
                         }
+
                         else -> {} // Ignore
                     }
                 }
