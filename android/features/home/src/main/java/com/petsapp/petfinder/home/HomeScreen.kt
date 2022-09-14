@@ -15,8 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.paging.LoadState
-import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.petsapp.petfinder.commoncompose.composable.FadeAnimatedVisibility
 import com.petsapp.petfinder.commoncompose.util.disableSplitMotionEvents
@@ -24,7 +22,7 @@ import com.petsapp.petfinder.home.composable.HomeProgressIndicator
 import com.petsapp.petfinder.home.composable.LazyPetGrid
 import com.petsapp.petfinder.home.composable.tabrow.HomeTabRow
 import com.petsapp.petfinder.home.composable.tabrow.rememberHomeTabRowState
-import com.petsapp.petfinder.shared.coreentity.petinfo.PetInfo
+import com.petsapp.petfinder.home.util.isLoading
 import com.petsapp.petfinder.shared.domain.homeuicontract.HomeViewModel
 import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeAction
 import kotlinx.coroutines.launch
@@ -145,7 +143,7 @@ internal fun HomeScreen(
             LazyPetGrid(
                 petList = petList,
                 state = gridState,
-                progressIndicatorVisibility = isLoading(items = petList),
+                progressIndicatorVisibility = petList.isLoading(),
                 modifier = Modifier
                     .fillMaxSize()
                     .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05F))
@@ -163,7 +161,7 @@ internal fun HomeScreen(
         // https://stackoverflow.com/a/70520441
         else {
             HomeProgressIndicator(
-                animate = isLoading(items = petList),
+                animate = petList.isLoading(),
                 modifier = Modifier
                     .padding(bottom = 48.dp)
                     .fillMaxWidth()
@@ -171,11 +169,4 @@ internal fun HomeScreen(
             )
         }
     }
-}
-
-private fun isLoading(items:  LazyPagingItems<PetInfo>?): Boolean {
-    return items == null ||
-            items.loadState.refresh is LoadState.Loading ||
-            items.loadState.append is LoadState.Loading ||
-            items.loadState.prepend is LoadState.Loading
 }
