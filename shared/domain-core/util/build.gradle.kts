@@ -8,7 +8,6 @@ plugins {
 }
 
 dependencies {
-
     commonMainImplementation(libs.squareup.okio)
     commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.uuid.multiplatform)
