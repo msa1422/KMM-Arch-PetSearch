@@ -1,7 +1,7 @@
 package com.msa.petsearch.shared.coreutil.sharedviewmodel.util
 
 import androidx.lifecycle.ViewModel
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.coroutines.createViewModelScope
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.coroutines.createViewModelScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 

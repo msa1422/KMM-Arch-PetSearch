@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.domain.homeuicontract.di
 
-import com.petsapp.petfinder.shared.domain.homeuicontract.HomeViewModel
+import com.msa.petsearch.shared.domain.homeuicontract.HomeViewModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 

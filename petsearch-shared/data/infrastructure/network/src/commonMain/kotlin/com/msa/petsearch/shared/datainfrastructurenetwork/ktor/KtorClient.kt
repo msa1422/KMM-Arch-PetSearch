@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.datainfrastructurenetwork.ktor
 
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.apiservice.EndPoints.API_HOST
+import com.msa.petsearch.shared.datainfrastructurenetwork.apiservice.EndPoints.API_HOST
 import io.ktor.client.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*

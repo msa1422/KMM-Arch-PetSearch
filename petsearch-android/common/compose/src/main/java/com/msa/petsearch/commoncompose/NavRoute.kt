@@ -10,12 +10,12 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.*
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.google.accompanist.navigation.animation.composable
-import com.petsapp.petfinder.commoncompose.util.HandyDelay
-import com.petsapp.petfinder.commoncompose.util.onDestroy
-import com.petsapp.petfinder.shared.coreutil.resource.ResourceMessage
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.BaseViewModel
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.navigation.NavigationState
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.navigation.RouteNavigator
+import com.msa.petsearch.commoncompose.util.HandyDelay
+import com.msa.petsearch.commoncompose.util.onDestroy
+import com.msa.petsearch.shared.coreutil.resource.ResourceMessage
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.BaseViewModel
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationState
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.RouteNavigator
 import kotlinx.coroutines.flow.collectLatest
 
 /**

@@ -12,9 +12,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.paging.LoadState
-import com.petsapp.petfinder.commoncompose.composable.FadeAnimatedVisibility
-import com.petsapp.petfinder.shared.coreres.CoreR
+import com.msa.petsearch.commoncompose.composable.FadeAnimatedVisibility
+import com.msa.petsearch.shared.coreres.CoreR
 
 @Composable
 internal fun HomeProgressIndicator(

@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.coreentity
 
-import com.petsapp.petfinder.shared.coreentity.petinfo.enum.*
+import com.msa.petsearch.shared.coreentity.petinfo.enum.*
 
 data class PetSearchParams(
     val breed: List<String>? = null,

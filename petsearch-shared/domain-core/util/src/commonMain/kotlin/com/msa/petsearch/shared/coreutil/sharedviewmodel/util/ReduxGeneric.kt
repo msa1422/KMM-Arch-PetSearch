@@ -1,8 +1,8 @@
 package com.msa.petsearch.shared.coreutil.sharedviewmodel.util
 
 import com.benasher44.uuid.uuid4
-import com.petsapp.petfinder.shared.coreutil.resource.ResourceMessage
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.store.NanoRedux
+import com.msa.petsearch.shared.coreutil.resource.ResourceMessage
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux
 
 sealed class ReduxGeneric : NanoRedux.Error {
     data class Error(override val message: ResourceMessage?) : ReduxGeneric()

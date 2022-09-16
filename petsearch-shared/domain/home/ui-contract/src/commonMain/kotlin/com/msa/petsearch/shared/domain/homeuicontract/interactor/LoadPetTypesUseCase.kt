@@ -1,9 +1,9 @@
 package com.msa.petsearch.shared.domain.homeuicontract.interactor
 
-import com.petsapp.petfinder.shared.coreentity.response.PetTypesResponse
-import com.petsapp.petfinder.shared.coreutil.FlowInteractor
-import com.petsapp.petfinder.shared.coreutil.resource.Resource
-import com.petsapp.petfinder.shared.domain.homedatasource.HomeDataSource
+import com.msa.petsearch.shared.coreentity.response.PetTypesResponse
+import com.msa.petsearch.shared.coreutil.FlowInteractor
+import com.msa.petsearch.shared.coreutil.resource.Resource
+import com.msa.petsearch.shared.domain.homedatasource.HomeDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

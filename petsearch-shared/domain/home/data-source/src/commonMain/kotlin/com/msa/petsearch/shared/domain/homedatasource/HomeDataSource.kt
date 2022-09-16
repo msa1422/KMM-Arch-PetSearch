@@ -1,9 +1,9 @@
 package com.msa.petsearch.shared.domain.homedatasource
 
-import com.petsapp.petfinder.shared.coreentity.PetSearchParams
-import com.petsapp.petfinder.shared.coreentity.response.PetTypesResponse
-import com.petsapp.petfinder.shared.coreentity.response.SearchPetResponse
-import com.petsapp.petfinder.shared.coreutil.resource.Resource
+import com.msa.petsearch.shared.coreentity.PetSearchParams
+import com.msa.petsearch.shared.coreentity.response.PetTypesResponse
+import com.msa.petsearch.shared.coreentity.response.SearchPetResponse
+import com.msa.petsearch.shared.coreutil.resource.Resource
 
 interface HomeDataSource {
 

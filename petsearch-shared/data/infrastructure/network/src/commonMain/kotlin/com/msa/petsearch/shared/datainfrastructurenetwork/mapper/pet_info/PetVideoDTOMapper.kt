@@ -1,7 +1,7 @@
 package com.msa.petsearch.shared.datainfrastructurenetwork.mapper.pet_info
 
-import com.petsapp.petfinder.shared.coreentity.petinfo.PetVideo
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.dto.pet_info.PetVideoDTO
+import com.msa.petsearch.shared.coreentity.petinfo.PetVideo
+import com.msa.petsearch.shared.datainfrastructurenetwork.dto.pet_info.PetVideoDTO
 
 internal fun PetVideoDTO.toDomainEntity() = PetVideo(embed = embed ?: "")
 

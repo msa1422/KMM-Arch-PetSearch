@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.datainfrastructurenetwork.response
 
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.dto.BreedTypeDTO
+import com.msa.petsearch.shared.datainfrastructurenetwork.dto.BreedTypeDTO
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

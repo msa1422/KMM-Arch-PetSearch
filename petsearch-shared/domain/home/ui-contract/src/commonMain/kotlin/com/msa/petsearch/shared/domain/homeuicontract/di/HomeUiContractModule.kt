@@ -1,11 +1,11 @@
 package com.msa.petsearch.shared.domain.homeuicontract.di
 
-import com.petsapp.petfinder.shared.domain.homeuicontract.HomeViewModel
-import com.petsapp.petfinder.shared.domain.homeuicontract.contract.HomeProcessor
-import com.petsapp.petfinder.shared.domain.homeuicontract.contract.HomeUpdater
-import com.petsapp.petfinder.shared.domain.homeuicontract.interactor.LoadPetTypesUseCase
-import com.petsapp.petfinder.shared.domain.homeuicontract.interactor.LoadPetsUseCase
-import com.petsapp.petfinder.shared.domain.homeuicontract.interactor.UseCaseWrapper
+import com.msa.petsearch.shared.domain.homeuicontract.HomeViewModel
+import com.msa.petsearch.shared.domain.homeuicontract.contract.HomeProcessor
+import com.msa.petsearch.shared.domain.homeuicontract.contract.HomeUpdater
+import com.msa.petsearch.shared.domain.homeuicontract.interactor.LoadPetTypesUseCase
+import com.msa.petsearch.shared.domain.homeuicontract.interactor.LoadPetsUseCase
+import com.msa.petsearch.shared.domain.homeuicontract.interactor.UseCaseWrapper
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 

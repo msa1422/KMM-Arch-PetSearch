@@ -16,17 +16,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.petsapp.petfinder.commoncompose.composable.FadeAnimatedVisibility
-import com.petsapp.petfinder.commoncompose.util.disableSplitMotionEvents
-import com.petsapp.petfinder.home.composable.HomeProgressIndicator
-import com.petsapp.petfinder.home.composable.LazyPetGrid
-import com.petsapp.petfinder.home.composable.tabrow.HomeTabRow
-import com.petsapp.petfinder.home.composable.tabrow.rememberHomeTabRowState
-import com.petsapp.petfinder.home.util.isLoading
-import com.petsapp.petfinder.shared.domain.homeuicontract.HomeViewModel
-import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeAction
+import com.msa.petsearch.commoncompose.composable.FadeAnimatedVisibility
+import com.msa.petsearch.commoncompose.util.disableSplitMotionEvents
+import com.msa.petsearch.home.composable.HomeProgressIndicator
+import com.msa.petsearch.home.composable.LazyPetGrid
+import com.msa.petsearch.home.composable.tabrow.HomeTabRow
+import com.msa.petsearch.home.composable.tabrow.rememberHomeTabRowState
+import com.msa.petsearch.home.util.isLoading
+import com.msa.petsearch.shared.domain.homeuicontract.HomeViewModel
+import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeAction
 import kotlinx.coroutines.launch
-import com.petsapp.petfinder.commonres.R as commonR
+import com.msa.petsearch.commonres.R as commonR
 
 @Composable
 internal fun HomeScreen(

@@ -1,7 +1,7 @@
 package com.msa.petsearch.shared.datainfrastructurenetwork.mapper.pet_info
 
-import com.petsapp.petfinder.shared.coreentity.petinfo.PetEnv
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.dto.pet_info.PetEnvDTO
+import com.msa.petsearch.shared.coreentity.petinfo.PetEnv
+import com.msa.petsearch.shared.datainfrastructurenetwork.dto.pet_info.PetEnvDTO
 
 internal fun PetEnvDTO.toDomainEntity() =
     PetEnv(

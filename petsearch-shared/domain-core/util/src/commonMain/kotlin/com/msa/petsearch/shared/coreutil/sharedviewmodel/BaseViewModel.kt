@@ -1,15 +1,15 @@
 package com.msa.petsearch.shared.coreutil.sharedviewmodel
 
-import com.petsapp.petfinder.shared.coreutil.CommonFlow
-import com.petsapp.petfinder.shared.coreutil.asCommonFlow
-import com.petsapp.petfinder.shared.coreutil.resource.MessageDeque
-import com.petsapp.petfinder.shared.coreutil.resource.ResourceMessage
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.navigation.NavigationState
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.navigation.RouteNavigator
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.store.*
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.store.ActionDispatcher
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.store.NanoRedux.*
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.util.SuperViewModel
+import com.msa.petsearch.shared.coreutil.CommonFlow
+import com.msa.petsearch.shared.coreutil.asCommonFlow
+import com.msa.petsearch.shared.coreutil.resource.MessageDeque
+import com.msa.petsearch.shared.coreutil.resource.ResourceMessage
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationState
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.RouteNavigator
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.*
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.ActionDispatcher
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux.*
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.util.SuperViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,13 +1,13 @@
 package com.msa.petsearch.shared.domain.homeuicontract.contract
 
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.store.Updater
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.util.GlobalEvent
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.util.Next
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.util.ReduxGeneric
-import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeAction
-import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeNavigation
-import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeSideEffect
-import com.petsapp.petfinder.shared.domain.homeuicontract.contract.store.HomeState
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.Updater
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.util.GlobalEvent
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.util.Next
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.util.ReduxGeneric
+import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeAction
+import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeNavigation
+import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeSideEffect
+import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeState
 
 typealias NextResult = Next<HomeState, HomeSideEffect, GlobalEvent, HomeNavigation, ReduxGeneric.Error>
 

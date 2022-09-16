@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.datainfrastructurepreferences.di
 
-import com.petsapp.petfinder.shared.datainfrastructurepreferences.service.PreferenceDelegate
+import com.msa.petsearch.shared.datainfrastructurepreferences.service.PreferenceDelegate
 import com.russhwolf.settings.Settings
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module

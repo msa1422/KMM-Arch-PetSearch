@@ -1,7 +1,7 @@
 package com.msa.petsearch.shared.coreutil.sharedviewmodel.store
 
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.store.NanoRedux.*
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.util.Next
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux.*
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.util.Next
 
 interface Updater<A : Action, S : State, SE : SideEffect, E : Event, N : Navigation, ER : Error> {
 

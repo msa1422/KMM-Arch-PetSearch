@@ -1,9 +1,9 @@
 package com.msa.petsearch.extensions
 
 import org.gradle.api.Project
-import com.petsapp.petfinder.util.getLocalProperty
-import com.petsapp.petfinder.util.getKeystoreProperty
-import com.petsapp.petfinder.util.getApiProperty
+import com.msa.petsearch.util.getLocalProperty
+import com.msa.petsearch.util.getKeystoreProperty
+import com.msa.petsearch.util.getApiProperty
 
 /**
  * Obtain property declared on `$projectRoot/local.properties` file.

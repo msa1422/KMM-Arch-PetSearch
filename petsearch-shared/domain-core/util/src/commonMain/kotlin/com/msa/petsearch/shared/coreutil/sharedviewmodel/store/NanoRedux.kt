@@ -1,9 +1,9 @@
 package com.msa.petsearch.shared.coreutil.sharedviewmodel.store
 
 import com.benasher44.uuid.uuid4
-import com.petsapp.petfinder.shared.coreutil.resource.ResourceMessage
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.coroutines.DispatcherProvider
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.navigation.NavigationState
+import com.msa.petsearch.shared.coreutil.resource.ResourceMessage
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.coroutines.DispatcherProvider
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 

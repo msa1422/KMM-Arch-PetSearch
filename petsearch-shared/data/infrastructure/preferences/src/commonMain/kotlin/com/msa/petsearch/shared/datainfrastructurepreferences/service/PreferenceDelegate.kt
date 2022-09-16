@@ -1,10 +1,10 @@
 package com.msa.petsearch.shared.datainfrastructurepreferences.service
 
-import com.petsapp.petfinder.shared.coreutil.CommonFlow
-import com.petsapp.petfinder.shared.coreutil.asCommonFlow
-import com.petsapp.petfinder.shared.coreutil.resource.Resource
-import com.petsapp.petfinder.shared.coreutil.resource.asResource
-import com.petsapp.petfinder.shared.datainfrastructurepreferences.service.PreferenceKeys.PREF_THEME_PRIMARY
+import com.msa.petsearch.shared.coreutil.CommonFlow
+import com.msa.petsearch.shared.coreutil.asCommonFlow
+import com.msa.petsearch.shared.coreutil.resource.Resource
+import com.msa.petsearch.shared.coreutil.resource.asResource
+import com.msa.petsearch.shared.datainfrastructurepreferences.service.PreferenceKeys.PREF_THEME_PRIMARY
 import com.russhwolf.settings.ExperimentalSettingsApi
 import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.Settings

@@ -1,8 +1,8 @@
 package com.msa.petsearch.shared.repository.home
 
-import com.petsapp.petfinder.shared.coreentity.PetSearchParams
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.apiservice.ApiServiceDelegate
-import com.petsapp.petfinder.shared.domain.homedatasource.HomeDataSource
+import com.msa.petsearch.shared.coreentity.PetSearchParams
+import com.msa.petsearch.shared.datainfrastructurenetwork.apiservice.ApiServiceDelegate
+import com.msa.petsearch.shared.domain.homedatasource.HomeDataSource
 
 internal class HomeDataSourceImpl(
     private val delegate: ApiServiceDelegate

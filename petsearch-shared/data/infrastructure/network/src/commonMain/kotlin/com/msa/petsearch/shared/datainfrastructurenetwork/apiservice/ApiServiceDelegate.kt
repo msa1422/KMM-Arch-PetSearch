@@ -1,15 +1,15 @@
 package com.msa.petsearch.shared.datainfrastructurenetwork.apiservice
 
-import com.petsapp.petfinder.shared.coreentity.PetSearchParams
-import com.petsapp.petfinder.shared.coreentity.response.PetTypesResponse
-import com.petsapp.petfinder.shared.coreentity.response.SearchPetResponse
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.apiservice.EndPoints.ANIMALS
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.apiservice.EndPoints.ANIMAL_TYPES
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.apiservice.EndPoints.API_HOST
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.ktor.safeApiCall
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.mapper.response.toDomainEntity
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.response.PetTypesResponseDTO
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.response.SearchPetResponseDTO
+import com.msa.petsearch.shared.coreentity.PetSearchParams
+import com.msa.petsearch.shared.coreentity.response.PetTypesResponse
+import com.msa.petsearch.shared.coreentity.response.SearchPetResponse
+import com.msa.petsearch.shared.datainfrastructurenetwork.apiservice.EndPoints.ANIMALS
+import com.msa.petsearch.shared.datainfrastructurenetwork.apiservice.EndPoints.ANIMAL_TYPES
+import com.msa.petsearch.shared.datainfrastructurenetwork.apiservice.EndPoints.API_HOST
+import com.msa.petsearch.shared.datainfrastructurenetwork.ktor.safeApiCall
+import com.msa.petsearch.shared.datainfrastructurenetwork.mapper.response.toDomainEntity
+import com.msa.petsearch.shared.datainfrastructurenetwork.response.PetTypesResponseDTO
+import com.msa.petsearch.shared.datainfrastructurenetwork.response.SearchPetResponseDTO
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.http.*

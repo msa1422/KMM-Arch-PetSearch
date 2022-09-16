@@ -1,9 +1,9 @@
 package com.msa.petsearch.shared.datainfrastructurenetwork.mapper.pet_info
 
-import com.petsapp.petfinder.shared.coreentity.petinfo.PetInfo
-import com.petsapp.petfinder.shared.coreentity.petinfo.enum.*
-import com.petsapp.petfinder.shared.coreutil.extension.capitalizeWords
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.dto.pet_info.PetInfoDTO
+import com.msa.petsearch.shared.coreentity.petinfo.PetInfo
+import com.msa.petsearch.shared.coreentity.petinfo.enum.*
+import com.msa.petsearch.shared.coreutil.extension.capitalizeWords
+import com.msa.petsearch.shared.datainfrastructurenetwork.dto.pet_info.PetInfoDTO
 
 internal fun PetInfoDTO.toDomainEntity() =
     PetInfo(

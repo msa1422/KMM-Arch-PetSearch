@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.datainfrastructurecache.realm
 
-import com.petsapp.petfinder.shared.datainfrastructurecache.entity.PetInfoCacheEntity
+import com.msa.petsearch.shared.datainfrastructurecache.entity.PetInfoCacheEntity
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
 

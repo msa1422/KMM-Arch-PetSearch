@@ -17,7 +17,7 @@ import coil.request.ImageRequest
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import com.petsapp.petfinder.commonres.R
+import com.msa.petsearch.commonres.R
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable

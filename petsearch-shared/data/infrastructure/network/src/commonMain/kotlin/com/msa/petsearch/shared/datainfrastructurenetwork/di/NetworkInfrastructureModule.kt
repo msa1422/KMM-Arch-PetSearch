@@ -1,7 +1,7 @@
 package com.msa.petsearch.shared.datainfrastructurenetwork.di
 
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.apiservice.ApiServiceDelegate
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.ktor.KtorClient
+import com.msa.petsearch.shared.datainfrastructurenetwork.apiservice.ApiServiceDelegate
+import com.msa.petsearch.shared.datainfrastructurenetwork.ktor.KtorClient
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 

@@ -2,7 +2,7 @@ package com.msa.petsearch.commoncompose.theme
 
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
-import com.petsapp.petfinder.shared.coreres.CoreR
+import com.msa.petsearch.shared.coreres.CoreR
 
 private val backgroundGray = Color(CoreR.colors.background.color.argb)
 private val surfaceWhite = Color(CoreR.colors.surface.color.argb)

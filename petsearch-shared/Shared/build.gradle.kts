@@ -1,8 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.petsapp.petfinder.PackageNameAccessor.SHARED_PACKAGE
+import com.msa.petsearch.PackageNameAccessor.SHARED_PACKAGE
 import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode
-import com.petsapp.petfinder.util.libs
+import com.msa.petsearch.util.libs
 
 plugins {
     `kmm-shared-module-plugin`
@@ -15,7 +15,7 @@ kotlin {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.0"
-        podfile = project.file("${project.rootDir}/ios/Podfile")
+        podfile = project.file("${project.rootDir}/petsearch-ios/Podfile")
         framework {
             isStatic = true
             baseName = "Shared"
@@ -37,7 +37,6 @@ kotlin {
 }
 
 dependencies {
-
     commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.moko.resources)

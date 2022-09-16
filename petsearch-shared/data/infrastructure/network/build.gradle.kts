@@ -1,9 +1,9 @@
 @file:Suppress("UnstableApiUsage")
 
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
-import com.petsapp.petfinder.extensions.getApiProperty
-import com.petsapp.petfinder.util.libs
-import com.petsapp.petfinder.PackageNameAccessor.DATA_INFRASTRUCTURE_NETWORK_PACKAGE
+import com.msa.petsearch.extensions.getApiProperty
+import com.msa.petsearch.util.libs
+import com.msa.petsearch.PackageNameAccessor.DATA_INFRASTRUCTURE_NETWORK_PACKAGE
 
 plugins {
     `kmm-shared-module-plugin`

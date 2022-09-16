@@ -2,9 +2,9 @@ package com.msa.petsearch.home
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
-import com.petsapp.petfinder.commoncompose.NavRoute
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.navigation.NavigationScreen
-import com.petsapp.petfinder.shared.domain.homeuicontract.HomeViewModel
+import com.msa.petsearch.commoncompose.NavRoute
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationScreen
+import com.msa.petsearch.shared.domain.homeuicontract.HomeViewModel
 import org.koin.androidx.compose.koinViewModel
 
 object HomeNavRoute : NavRoute<HomeViewModel> {

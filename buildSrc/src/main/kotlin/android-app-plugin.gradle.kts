@@ -1,10 +1,12 @@
 @file:Suppress("UnstableApiUsage")
 
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
-import com.petsapp.petfinder.util.libs
-import com.petsapp.petfinder.extensions.BuildType
-import com.petsapp.petfinder.extensions.*
-import com.petsapp.petfinder.PackageNameAccessor
+import com.msa.petsearch.PackageNameAccessor
+import com.msa.petsearch.extensions.BuildType
+import com.msa.petsearch.extensions.BuildTypeDebug
+import com.msa.petsearch.extensions.BuildTypeRelease
+import com.msa.petsearch.extensions.getKeystoreProperty
+import com.msa.petsearch.util.libs
 
 plugins {
     id("com.android.application")

@@ -7,7 +7,7 @@ import coil.decode.SvgDecoder
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
 import coil.request.CachePolicy
-import com.petsapp.petfinder.shared.initKoin
+import com.msa.petsearch.shared.initKoin
 
 class MainApplication: Application(), ImageLoaderFactory {
 

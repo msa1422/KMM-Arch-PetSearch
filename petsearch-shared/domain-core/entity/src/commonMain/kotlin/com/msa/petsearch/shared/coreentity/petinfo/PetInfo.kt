@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.coreentity.petinfo
 
-import com.petsapp.petfinder.shared.coreentity.petinfo.enum.*
+import com.msa.petsearch.shared.coreentity.petinfo.enum.*
 import kotlinx.serialization.Serializable
 
 @Serializable

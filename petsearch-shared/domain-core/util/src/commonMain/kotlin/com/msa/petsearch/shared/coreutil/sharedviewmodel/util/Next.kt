@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.coreutil.sharedviewmodel.util
 
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.store.NanoRedux
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux
 
 sealed class Next<out S : NanoRedux.State, out SE : NanoRedux.SideEffect, out E : NanoRedux.Event, out N : NanoRedux.Navigation, out ER : NanoRedux.Error> {
 

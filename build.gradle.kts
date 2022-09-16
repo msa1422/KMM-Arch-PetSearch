@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.petsapp.petfinder.util.libs
+import com.msa.petsearch.util.libs
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -18,9 +18,9 @@ buildscript {
 allprojects {
     repositories.applyDefault()
 
-    plugins.apply("com.petsapp.petfinder.checks.detekt")
-    plugins.apply("com.petsapp.petfinder.checks.ktlint")
-    plugins.apply("com.petsapp.petfinder.checks.spotless")
+    plugins.apply("com.msa.petsearch.checks.detekt")
+    plugins.apply("com.msa.petsearch.checks.ktlint")
+    plugins.apply("com.msa.petsearch.checks.spotless")
 }
 
 subprojects {

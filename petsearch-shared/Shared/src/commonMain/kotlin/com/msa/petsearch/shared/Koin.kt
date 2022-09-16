@@ -1,12 +1,12 @@
 package com.msa.petsearch.shared
 
-import com.petsapp.petfinder.shared.coreutil.di.DomainCoreCommonUtilModule
-import com.petsapp.petfinder.shared.datainfrastructurecache.di.CacheInfrastructureModule
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.di.NetworkInfrastructureModule
-import com.petsapp.petfinder.shared.datainfrastructurepreferences.di.PreferenceInfrastructureModule
-import com.petsapp.petfinder.shared.domain.homeuicontract.di.HomeUiContractModule
-import com.petsapp.petfinder.shared.domain.petdetailuicontract.di.PetDetailUiContractModule
-import com.petsapp.petfinder.shared.repository.home.di.HomeRepositoryModule
+import com.msa.petsearch.shared.coreutil.di.DomainCoreCommonUtilModule
+import com.msa.petsearch.shared.datainfrastructurecache.di.CacheInfrastructureModule
+import com.msa.petsearch.shared.datainfrastructurenetwork.di.NetworkInfrastructureModule
+import com.msa.petsearch.shared.datainfrastructurepreferences.di.PreferenceInfrastructureModule
+import com.msa.petsearch.shared.domain.homeuicontract.di.HomeUiContractModule
+import com.msa.petsearch.shared.domain.petdetailuicontract.di.PetDetailUiContractModule
+import com.msa.petsearch.shared.repository.home.di.HomeRepositoryModule
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 

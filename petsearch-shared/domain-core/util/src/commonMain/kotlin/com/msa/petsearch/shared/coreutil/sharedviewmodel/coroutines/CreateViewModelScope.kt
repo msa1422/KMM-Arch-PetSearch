@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.coreutil.sharedviewmodel.coroutines
 
-import com.petsapp.petfinder.shared.coreutil.Closeable
+import com.msa.petsearch.shared.coreutil.Closeable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.petsapp.petfinder.shared.coreentity.petinfo.PetInfo
+import com.msa.petsearch.shared.coreentity.petinfo.PetInfo
 
 @Composable
 internal fun PetInfoItem(

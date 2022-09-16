@@ -15,9 +15,9 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import coil.compose.rememberAsyncImagePainter
-import com.petsapp.petfinder.commonres.R
-import com.petsapp.petfinder.home.util.items
-import com.petsapp.petfinder.shared.coreentity.petinfo.PetInfo
+import com.msa.petsearch.commonres.R
+import com.msa.petsearch.home.util.items
+import com.msa.petsearch.shared.coreentity.petinfo.PetInfo
 
 @Composable
 internal fun LazyPetGrid(

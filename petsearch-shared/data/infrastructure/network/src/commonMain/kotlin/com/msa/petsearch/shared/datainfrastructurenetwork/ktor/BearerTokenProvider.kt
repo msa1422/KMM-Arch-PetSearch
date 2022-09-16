@@ -1,9 +1,9 @@
 package com.msa.petsearch.shared.datainfrastructurenetwork.ktor
 
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.BuildKonfig
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.apiservice.EndPoints.ACCESS_TOKEN
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.apiservice.EndPoints.API_HOST
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.dto.TokenInfoDTO
+import com.msa.petsearch.shared.datainfrastructurenetwork.BuildKonfig
+import com.msa.petsearch.shared.datainfrastructurenetwork.apiservice.EndPoints.ACCESS_TOKEN
+import com.msa.petsearch.shared.datainfrastructurenetwork.apiservice.EndPoints.API_HOST
+import com.msa.petsearch.shared.datainfrastructurenetwork.dto.TokenInfoDTO
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.auth.providers.*

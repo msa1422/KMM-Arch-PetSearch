@@ -1,10 +1,10 @@
 package com.msa.petsearch.shared.coreutil.di
 
-import com.petsapp.petfinder.shared.coreutil.BaseLogger
-import com.petsapp.petfinder.shared.coreutil.resource.MessageDeque
-import com.petsapp.petfinder.shared.coreutil.resource.MessageDequeParameter
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.navigation.RouteNavigator
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.navigation.RouteNavigatorImpl
+import com.msa.petsearch.shared.coreutil.BaseLogger
+import com.msa.petsearch.shared.coreutil.resource.MessageDeque
+import com.msa.petsearch.shared.coreutil.resource.MessageDequeParameter
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.RouteNavigator
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.RouteNavigatorImpl
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module

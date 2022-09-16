@@ -11,15 +11,15 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.petsapp.petfinder.activity.composable.MainSnackbarHost
-import com.petsapp.petfinder.activity.composable.rememberSnackBarHostState
-import com.petsapp.petfinder.activity.di.provideAppScreens
-import com.petsapp.petfinder.activity.util.setFullScreenContent
-import com.petsapp.petfinder.commoncompose.add
-import com.petsapp.petfinder.commoncompose.theme.ApplicationTheme
-import com.petsapp.petfinder.shared.coreutil.resource.MessageType
-import com.petsapp.petfinder.shared.coreutil.resource.ResourceMessage
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.navigation.NavigationScreen.HomeNavScreen
+import com.msa.petsearch.activity.composable.MainSnackbarHost
+import com.msa.petsearch.activity.composable.rememberSnackBarHostState
+import com.msa.petsearch.activity.di.provideAppScreens
+import com.msa.petsearch.activity.util.setFullScreenContent
+import com.msa.petsearch.commoncompose.add
+import com.msa.petsearch.commoncompose.theme.ApplicationTheme
+import com.msa.petsearch.shared.coreutil.resource.MessageType
+import com.msa.petsearch.shared.coreutil.resource.ResourceMessage
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationScreen.HomeNavScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

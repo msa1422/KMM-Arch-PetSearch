@@ -1,8 +1,8 @@
 package com.msa.petsearch.shared.datainfrastructurenetwork.ktor
 
-import com.petsapp.petfinder.shared.coreutil.resource.Resource
-import com.petsapp.petfinder.shared.coreutil.resource.asResource
-import com.petsapp.petfinder.shared.datainfrastructurenetwork.util.ApiErrorException
+import com.msa.petsearch.shared.coreutil.resource.Resource
+import com.msa.petsearch.shared.coreutil.resource.asResource
+import com.msa.petsearch.shared.datainfrastructurenetwork.util.ApiErrorException
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*

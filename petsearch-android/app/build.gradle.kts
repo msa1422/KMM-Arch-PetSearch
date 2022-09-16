@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.petsapp.petfinder.util.libs
+import com.msa.petsearch.util.libs
 
 plugins {
     `android-app-plugin`

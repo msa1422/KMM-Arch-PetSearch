@@ -6,7 +6,7 @@ sealed class NavigationScreen(val route: String) {
     object PetDetailNavScreen : NavigationScreen("$PET_DETAIL_DESTINATION/?$ARG_PET_INFO={$ARG_PET_INFO}")
 }
 
-const val NAV_PREFIX: String = "com.petsapp.petfinder"
+const val NAV_PREFIX: String = "com.msa.petsearch"
 
 const val SPLASH_DESTINATION: String = "$NAV_PREFIX.splash/SplashScreen"
 const val HOME_DESTINATION: String = "$NAV_PREFIX.home/HomeScreen"

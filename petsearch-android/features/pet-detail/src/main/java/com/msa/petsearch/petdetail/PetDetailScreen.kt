@@ -15,10 +15,10 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.petsapp.petfinder.commoncompose.rememberFlowWithLifecycle
-import com.petsapp.petfinder.petdetail.composable.CollapsingTopAppBar
-import com.petsapp.petfinder.shared.coreres.CoreR
-import com.petsapp.petfinder.shared.domain.petdetailuicontract.PetDetailViewModel
+import com.msa.petsearch.commoncompose.rememberFlowWithLifecycle
+import com.msa.petsearch.petdetail.composable.CollapsingTopAppBar
+import com.msa.petsearch.shared.coreres.CoreR
+import com.msa.petsearch.shared.domain.petdetailuicontract.PetDetailViewModel
 
 @Composable
 internal fun PetDetailScreen(

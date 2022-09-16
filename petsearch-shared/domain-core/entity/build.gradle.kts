@@ -1,4 +1,4 @@
-import com.petsapp.petfinder.util.libs
+import com.msa.petsearch.util.libs
 
 plugins {
     `kmm-shared-module-plugin`

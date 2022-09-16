@@ -1,11 +1,11 @@
 package com.msa.petsearch.shared.domain.homeuicontract.contract.store
 
-import com.petsapp.petfinder.shared.coreentity.PetSearchParams
-import com.petsapp.petfinder.shared.coreentity.petinfo.PetInfo
-import com.petsapp.petfinder.shared.coreentity.response.PetTypesResponse
-import com.petsapp.petfinder.shared.coreutil.CommonFlow
-import com.petsapp.petfinder.shared.coreutil.asCommonFlow
-import com.petsapp.petfinder.shared.coreutil.sharedviewmodel.store.NanoRedux
+import com.msa.petsearch.shared.coreentity.PetSearchParams
+import com.msa.petsearch.shared.coreentity.petinfo.PetInfo
+import com.msa.petsearch.shared.coreentity.response.PetTypesResponse
+import com.msa.petsearch.shared.coreutil.CommonFlow
+import com.msa.petsearch.shared.coreutil.asCommonFlow
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux
 import com.kuuurt.paging.multiplatform.PagingData
 import kotlinx.coroutines.flow.flow
 

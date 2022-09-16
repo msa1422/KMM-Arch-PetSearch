@@ -24,10 +24,10 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
-import com.petsapp.petfinder.petdetail.composable.ChildrenId.BACK_BUTTON_ID
-import com.petsapp.petfinder.petdetail.composable.ChildrenId.PAGER_ID
-import com.petsapp.petfinder.petdetail.composable.ChildrenId.TITLE_BG_ID
-import com.petsapp.petfinder.petdetail.composable.ChildrenId.TITLE_ID
+import com.msa.petsearch.petdetail.composable.ChildrenId.BACK_BUTTON_ID
+import com.msa.petsearch.petdetail.composable.ChildrenId.PAGER_ID
+import com.msa.petsearch.petdetail.composable.ChildrenId.TITLE_BG_ID
+import com.msa.petsearch.petdetail.composable.ChildrenId.TITLE_ID
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
