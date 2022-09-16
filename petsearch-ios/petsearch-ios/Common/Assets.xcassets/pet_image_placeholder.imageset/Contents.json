@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "bg_paw_print_error.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
