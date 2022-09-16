@@ -10,6 +10,13 @@ plugins {
     id("dev.icerock.mobile.multiplatform-resources")
 }
 
+android {
+    sourceSets["main"].apply {
+        assets.srcDir(File(buildDir, "generated/moko/androidMain/assets"))
+        res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
+    }
+}
+
 kotlin {
     cocoapods {
         summary = "Some description for the Shared Module"

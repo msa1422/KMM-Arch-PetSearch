@@ -50,13 +50,13 @@ android {
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
             signingConfig = signingConfigs.getByName(BuildType.RELEASE)
             isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
-            isTestCoverageEnabled = BuildTypeRelease.isTestCoverageEnabled
+            enableUnitTestCoverage = BuildTypeRelease.enableUnitTestCoverage
         }
         getByName(BuildType.DEBUG) {
             applicationIdSuffix = BuildTypeDebug.applicationIdSuffix
             versionNameSuffix = BuildTypeDebug.versionNameSuffix
             isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
-            isTestCoverageEnabled = BuildTypeDebug.isTestCoverageEnabled
+            enableUnitTestCoverage = BuildTypeDebug.enableUnitTestCoverage
         }
     }
 

@@ -47,7 +47,7 @@ PetSearch has blended the following coding practices and techniques to create a 
 
 ### Android
 - Java 11
-- You require [Android Studio Chipmunk](https://developer.android.com/studio/releases)
+- You require [Android Studio Dolphin](https://developer.android.com/studio/releases)
 - Install Kmm Plugin. Checkout [this setup guide](https://kotlinlang.org/docs/kmm-setup.html).
 - Create `keystore.properties` in `root` dir and add the following lines in the file. Values can be anything as long as you're not generating a signed APK
     ```
@@ -65,11 +65,11 @@ PetSearch has blended the following coding practices and techniques to create a 
 
 
 ## Code Quality
-| Tools | Check command | Fix command |
-|-------|---------------|-------------|
-| [detekt](https://github.com/arturbosch/detekt) | `./gradlew detekt` | - |
-| [ktlint](https://github.com/pinterest/ktlint) | `./gradlew ktlintCheck` | `./gradlew ktlintFormat` |
-| [spotless](https://github.com/diffplug/spotless) | `./gradlew spotlessCheck` | `./gradlew spotlessApply`
+| Tools                                            | Check command             | Fix command               |
+|--------------------------------------------------|---------------------------|---------------------------|
+| [detekt](https://github.com/arturbosch/detekt)   | `./gradlew detekt`        | -                         |
+| [ktlint](https://github.com/pinterest/ktlint)    | `./gradlew ktlintCheck`   | `./gradlew ktlintFormat`  |
+| [spotless](https://github.com/diffplug/spotless) | `./gradlew spotlessCheck` | `./gradlew spotlessApply` |
 
 <br>
 
