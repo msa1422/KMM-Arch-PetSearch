@@ -12,11 +12,10 @@ class MainApplication: Application(), ImageLoaderFactory {
 
     override fun onCreate() {
         super.onCreate()
-
         initKoin()
-
     }
 
+    @Suppress("MagicNumber")
     override fun newImageLoader(): ImageLoader {
         return ImageLoader
             .Builder(this)
@@ -27,19 +26,16 @@ class MainApplication: Application(), ImageLoaderFactory {
             .memoryCachePolicy(CachePolicy.ENABLED)
             .memoryCache {
                 MemoryCache.Builder(this)
-                    .maxSizePercent(MEMORY_CACHE_MAX_SIZE)
+                    .maxSizePercent(0.25)
                     .build()
             }
             .diskCachePolicy(CachePolicy.ENABLED)
             .diskCache {
                 DiskCache.Builder()
                     .directory(this.cacheDir.resolve("image_cache"))
-                    .maxSizePercent(DISK_CACHE_MAX_SIZE)
+                    .maxSizePercent(0.025)
                     .build()
             }
             .build()
     }
 }
-
-private const val MEMORY_CACHE_MAX_SIZE = 0.25
-private const val DISK_CACHE_MAX_SIZE = 0.25

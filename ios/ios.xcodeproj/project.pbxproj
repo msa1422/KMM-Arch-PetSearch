@@ -88,8 +88,8 @@
 		5EC3B09428CB7D4E00A040F2 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				5EC3B09528CB7E4200A040F2 /* iOSApp.swift */,
 				5EC3B09A28CB7EA700A040F2 /* ContentView.swift */,
+				5EC3B09528CB7E4200A040F2 /* iOSApp.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -185,12 +185,12 @@
 		7555FF7D242A565900829871 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				5EC3B0DC28CB853500A040F2 /* ios.entitlements */,
-				7555FF8C242A565B00829871 /* Info.plist */,
 				5EC3B09428CB7D4E00A040F2 /* App */,
 				5EC3B09C28CB7F8C00A040F2 /* Common */,
 				5EC3B0C628CB81C200A040F2 /* Features */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
+				5EC3B0DC28CB853500A040F2 /* ios.entitlements */,
+				7555FF8C242A565B00829871 /* Info.plist */,
 			);
 			path = ios;
 			sourceTree = "<group>";

@@ -6,7 +6,8 @@ import kotlinx.serialization.json.Json
 import okio.ByteString.Companion.decodeBase64
 import okio.ByteString.Companion.encodeUtf8
 
-// Strings are Base64 encoded because, non encoded Json can be a problem while navigating with Uri
+// Strings are Base64 encoded because, non encoded json can be a problem while navigating with Uri
+// for example, when json contains an image url
 
 inline fun <reified T> T.encodeToString() =
     Json.encodeToString(this).encodeUtf8().base64()
