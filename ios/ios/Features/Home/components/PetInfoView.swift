@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import shared
+import Shared
 import SDWebImageSwiftUI
 
 struct PetInfoView: View {

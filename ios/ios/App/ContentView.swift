@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import shared
+import Shared
 import UIPilot
 import ToastSwiftUI
 
