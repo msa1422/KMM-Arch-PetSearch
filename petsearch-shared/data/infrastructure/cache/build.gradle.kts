@@ -8,7 +8,6 @@ plugins {
 }
 
 dependencies {
-    commonMainImplementation(projects.petsearchShared.domainCore.entity)
     commonMainImplementation(projects.petsearchShared.domainCore.util)
 
     commonMainImplementation(libs.kotlinx.coroutines.core)

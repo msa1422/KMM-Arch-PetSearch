@@ -3,7 +3,7 @@ package com.msa.petsearch.shared.datainfrastructurecache.entity
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
 
-internal class PetInfoCacheEntity(
+internal class PetInfoRealObject(
     @PrimaryKey
     var id: Long? = null,
     var name: String? = null,

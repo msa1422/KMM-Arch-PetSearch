@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.datainfrastructurecache.realm
 
-import com.msa.petsearch.shared.datainfrastructurecache.entity.PetInfoCacheEntity
+import com.msa.petsearch.shared.datainfrastructurecache.entity.PetInfoRealObject
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
 
@@ -10,7 +10,7 @@ internal val RealmDb: Realm
     get() {
         return Realm.open(
             RealmConfiguration
-                .Builder(setOf(PetInfoCacheEntity::class))
+                .Builder(setOf(PetInfoRealObject::class))
                 .name(REALM_DB_NAME)
                 .schemaVersion(0)
                 .build()

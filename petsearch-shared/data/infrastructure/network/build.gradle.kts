@@ -12,13 +12,11 @@ plugins {
 }
 
 dependencies {
+    commonMainImplementation(projects.petsearchShared.domainCore.util)
     commonMainImplementation(libs.kotlinx.coroutines.core)
-    commonMainImplementation(libs.bundles.ktor.common)
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.kermit.log)
-
-    commonMainImplementation(projects.petsearchShared.domainCore.entity)
-    commonMainImplementation(projects.petsearchShared.domainCore.util)
+    commonMainImplementation(libs.bundles.ktor.common)
 
     androidMainImplementation(libs.ktor.client.okHttp)
 
