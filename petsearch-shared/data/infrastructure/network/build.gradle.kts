@@ -12,7 +12,6 @@ plugins {
 }
 
 dependencies {
-
     commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.bundles.ktor.common)
     commonMainImplementation(libs.koin.core)

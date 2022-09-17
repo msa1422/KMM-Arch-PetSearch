@@ -27,8 +27,8 @@ dependencyResolutionManagement {
 rootProject.name = "PetFinder-Showcase"
 
 include(
-    ":petsearch-android",
     ":petsearch-shared",
+    ":petsearch-shared:Shared",
     ":petsearch-shared:domain-core",
     ":petsearch-shared:domain-core:entity",
     ":petsearch-shared:domain-core:util",
@@ -48,6 +48,7 @@ include(
     ":petsearch-shared:domain:pet-detail:data-source",
     ":petsearch-shared:domain:pet-detail:ui-contract",
     ":petsearch-shared:domain-core:resources",
+    ":petsearch-android",
     ":petsearch-android:app",
     ":petsearch-android:activity",
     ":petsearch-android:activity",
@@ -58,4 +59,3 @@ include(
     ":petsearch-android:features:home",
     ":petsearch-android:features:pet-detail"
 )
-include(":petsearch-shared:Shared")

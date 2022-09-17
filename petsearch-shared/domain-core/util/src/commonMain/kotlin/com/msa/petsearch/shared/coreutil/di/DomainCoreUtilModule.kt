@@ -9,7 +9,7 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-val DomainCoreCommonUtilModule = module {
+val DomainCoreUtilModule = module {
 
     singleOf(::RouteNavigatorImpl) bind RouteNavigator::class
 
