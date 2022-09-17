@@ -11,11 +11,11 @@ versionCode = "1"
 versionName = "0.1"
 
 # Dependencies
-coroutines = "1.6.3-native-mt"
+coroutines = "1.6.3"
 multiplatformSettings = "0.9"
 koin = "3.2.0"
 kotlin = "1.7.10"
-ktor = "2.1.1"
+ktor = "2.0.3"
 realm = "1.1.0"
 coil = "2.2.1"
 moko-resources = "0.20.1"

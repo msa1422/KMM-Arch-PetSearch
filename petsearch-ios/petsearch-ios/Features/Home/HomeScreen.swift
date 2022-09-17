@@ -164,7 +164,6 @@ struct HomeScreen: View {
             }
         }
         .onDisappear {
-            
             // If there is a cleaner way to handle the CommonFlow, you're welcome.
             renderStateObserver?.close()
             renderStateObserver = nil

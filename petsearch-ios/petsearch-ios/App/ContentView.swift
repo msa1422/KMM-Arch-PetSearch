@@ -68,7 +68,6 @@ struct ContentView: View {
         
     }
     
-    
     private func handle(the message: ResourceMessage) {
         switch message.messageType {
             
@@ -84,9 +83,7 @@ struct ContentView: View {
         default: break
         }
     }
-    
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

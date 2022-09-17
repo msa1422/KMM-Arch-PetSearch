@@ -25,7 +25,6 @@ import kotlinx.coroutines.flow.collectLatest
  *
  *
  */
-
 typealias AnimatedBackStack = AnimatedContentScope<NavBackStackEntry>
 
 interface NavRoute<T : RouteNavigator> {

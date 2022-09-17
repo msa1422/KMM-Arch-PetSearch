@@ -30,6 +30,7 @@ fun <T : Any> LazyGridScope.items(
     }
 }
 
+@Suppress("EXTENSION_SHADOWED_BY_MEMBER")
 private operator fun <T : Any> LazyPagingItems<T>.get(index: Int): T? {
     return this.peek(index)
 }
