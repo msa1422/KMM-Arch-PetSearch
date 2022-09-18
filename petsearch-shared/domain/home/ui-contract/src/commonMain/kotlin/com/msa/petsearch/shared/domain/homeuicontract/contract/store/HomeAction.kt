@@ -5,7 +5,7 @@ import com.msa.petsearch.shared.coreentity.response.PetTypesResponse
 import com.msa.petsearch.shared.coreutil.resource.ResourceMessage
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux
 import com.kuuurt.paging.multiplatform.PagingData
-import com.msa.petsearch.shared.coreutil.CommonFlow
+import com.msa.petsearch.shared.coreutil.commonflow.CommonFlow
 
 sealed class HomeAction : NanoRedux.Action {
 

@@ -1,7 +1,7 @@
 package com.msa.petsearch.shared.coreutil.sharedviewmodel
 
-import com.msa.petsearch.shared.coreutil.CommonFlow
-import com.msa.petsearch.shared.coreutil.asCommonFlow
+import com.msa.petsearch.shared.coreutil.commonflow.CommonFlow
+import com.msa.petsearch.shared.coreutil.commonflow.asCommonFlow
 import com.msa.petsearch.shared.coreutil.resource.MessageDeque
 import com.msa.petsearch.shared.coreutil.resource.ResourceMessage
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationState
@@ -24,10 +24,9 @@ import kotlin.coroutines.EmptyCoroutineContext
 /**
  *
  * Heavily modified version of the Arch Library written by fededri
- * @see https://github.com/fededri/Arch
+ * https://github.com/fededri/Arch
  *
  */
-
 abstract class BaseViewModel<A : Action, S : State, SE : SideEffect, RS : RenderState, N : Navigation, E : Event, ER : Error>
 constructor(
     private val updater: Updater<A, S, SE, E, N, ER>? = null,
@@ -135,8 +134,8 @@ constructor(
         }
     }
 
-    override fun onDestroy() {
+    public override fun onCleared() {
         state.value = initialState
-        super.onDestroy()
+        super.onCleared()
     }
 }

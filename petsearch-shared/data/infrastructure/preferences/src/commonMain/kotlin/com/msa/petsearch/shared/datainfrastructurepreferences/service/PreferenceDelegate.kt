@@ -1,7 +1,7 @@
 package com.msa.petsearch.shared.datainfrastructurepreferences.service
 
-import com.msa.petsearch.shared.coreutil.CommonFlow
-import com.msa.petsearch.shared.coreutil.asCommonFlow
+import com.msa.petsearch.shared.coreutil.commonflow.CommonFlow
+import com.msa.petsearch.shared.coreutil.commonflow.asCommonFlow
 import com.msa.petsearch.shared.coreutil.resource.Resource
 import com.msa.petsearch.shared.coreutil.resource.asResource
 import com.msa.petsearch.shared.datainfrastructurepreferences.service.PreferenceKeys.PREF_THEME_PRIMARY

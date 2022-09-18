@@ -1,7 +1,7 @@
-package com.msa.petsearch.shared.coreutil
+package com.msa.petsearch.shared.coreutil.commonflow
 
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.coroutines.DispatcherProvider
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
@@ -12,11 +12,13 @@ import kotlinx.coroutines.flow.onEach
 // Alternatively we can use the 'Kotlinx_coroutines_coreFlowCollector' protocol from Swift as demonstrated in https://stackoverflow.com/a/66030092
 // however the below wrapper gives us more control and hides the complexity in the shared Kotlin code.
 class CommonFlow<T>(private val origin: Flow<T>) : Flow<T> by origin {
+
+    @Suppress("Unused") // Called from Swift
     fun watch(block: (T) -> Unit): Closeable {
         val job = Job()
 
         onEach { block(it) }
-            .launchIn(CoroutineScope(Dispatchers.Main + job))
+            .launchIn(CoroutineScope(DispatcherProvider + job))
 
         return object : Closeable {
             override fun close() {
@@ -26,12 +28,4 @@ class CommonFlow<T>(private val origin: Flow<T>) : Flow<T> by origin {
     }
 }
 
-// Helper extension
-fun <T> Flow<T>.asCommonFlow(): CommonFlow<T> = CommonFlow(this)
 
-// Remove when Kotlin's Closeable is supported in K/N https://youtrack.jetbrains.com/issue/KT-31066
-// Alternatively use Ktor Closeable which is K/N ready.
-// To avoid the dependency of Ktor, this interface is being used
-interface Closeable {
-    fun close()
-}

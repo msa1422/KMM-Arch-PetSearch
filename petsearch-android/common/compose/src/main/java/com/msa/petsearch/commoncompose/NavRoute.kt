@@ -19,10 +19,8 @@ import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.RouteNavigat
 import kotlinx.coroutines.flow.collectLatest
 
 /**
- *
  * Heavily modified implementation of ViewModelNavigationCompose by Frank
- * @see <a href="https://github.com/Frank1234/ViewModelNavigationCompose">
- *
+ * Source - https://github.com/Frank1234/ViewModelNavigationCompose
  *
  */
 typealias AnimatedBackStack = AnimatedContentScope<NavBackStackEntry>
@@ -71,7 +69,7 @@ interface NavRoute<T : RouteNavigator> {
             (viewModel as? BaseViewModel<*, *, *, *, *, *, *>)?.let {
                 if (enableLifecycleObserver) {
                     backStackEntry.onDestroy {
-                        it.onDestroy()
+                        it.onCleared()
                     }
                 }
 

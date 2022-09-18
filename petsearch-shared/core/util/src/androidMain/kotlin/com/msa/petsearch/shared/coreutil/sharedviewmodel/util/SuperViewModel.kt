@@ -1,20 +1,15 @@
 package com.msa.petsearch.shared.coreutil.sharedviewmodel.util
 
 import androidx.lifecycle.ViewModel
-import com.msa.petsearch.shared.coreutil.sharedviewmodel.coroutines.createViewModelScope
+import androidx.lifecycle.viewModelScope as androidViewModelScope
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.cancel
 
-actual open class SuperViewModel actual constructor() : ViewModel() {
+actual abstract class SuperViewModel actual constructor() : ViewModel() {
 
-    actual open val viewModelScope: CoroutineScope = createViewModelScope()
+    // Not required in this architecture
+    // protected actual val viewModelScope: CoroutineScope = androidViewModelScope
 
-    actual open fun onDestroy() {
-        viewModelScope.cancel()
-    }
-
-    override fun onCleared() {
-        onDestroy()
+    actual override fun onCleared() {
         super.onCleared()
     }
 }

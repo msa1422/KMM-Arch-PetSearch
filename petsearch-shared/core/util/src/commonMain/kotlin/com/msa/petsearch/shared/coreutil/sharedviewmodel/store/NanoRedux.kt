@@ -6,6 +6,7 @@ import com.msa.petsearch.shared.coreutil.sharedviewmodel.coroutines.DispatcherPr
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 
 sealed interface NanoRedux {
 
@@ -33,8 +34,8 @@ sealed interface NanoRedux {
 
     interface SideEffect : NanoRedux {
         val dispatcher: CoroutineDispatcher
-            get() = DispatcherProvider.backgroundDispatcher()
+            get() = DispatcherProvider
         val coroutineScope: CoroutineScope
-            get() = CoroutineScope(dispatcher)
+            get() = CoroutineScope(SupervisorJob() + dispatcher)
     }
 }

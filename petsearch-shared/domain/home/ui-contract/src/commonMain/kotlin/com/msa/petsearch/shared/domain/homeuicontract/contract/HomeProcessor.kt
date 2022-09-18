@@ -5,7 +5,7 @@ import com.kuuurt.paging.multiplatform.PagingConfig
 import com.kuuurt.paging.multiplatform.PagingResult
 import com.kuuurt.paging.multiplatform.helpers.cachedIn
 import com.msa.petsearch.shared.coreentity.petinfo.PetInfo
-import com.msa.petsearch.shared.coreutil.asCommonFlow
+import com.msa.petsearch.shared.coreutil.commonflow.asCommonFlow
 import com.msa.petsearch.shared.coreutil.extension.loadNextPage
 import com.msa.petsearch.shared.coreutil.resource.MessageType
 import com.msa.petsearch.shared.coreutil.resource.ResourceMessage

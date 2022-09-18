@@ -68,7 +68,7 @@ class HomeUpdater :
         action: HomeAction.UpdatePetResponseInState,
         state: HomeState
     ): NextResult {
-        return Next.State(state = state.copy(petPagingData = action.petPagingData,))
+        return Next.State(state = state.copy(petPagingData = action.petPagingData))
     }
 
     private fun onSelectedPetTypeChanged(

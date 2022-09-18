@@ -3,8 +3,8 @@ package com.msa.petsearch.shared.domain.homeuicontract.contract.store
 import com.msa.petsearch.shared.coreentity.PetSearchParams
 import com.msa.petsearch.shared.coreentity.petinfo.PetInfo
 import com.msa.petsearch.shared.coreentity.response.PetTypesResponse
-import com.msa.petsearch.shared.coreutil.CommonFlow
-import com.msa.petsearch.shared.coreutil.asCommonFlow
+import com.msa.petsearch.shared.coreutil.commonflow.CommonFlow
+import com.msa.petsearch.shared.coreutil.commonflow.asCommonFlow
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux
 import com.kuuurt.paging.multiplatform.PagingData
 import kotlinx.coroutines.flow.flow
