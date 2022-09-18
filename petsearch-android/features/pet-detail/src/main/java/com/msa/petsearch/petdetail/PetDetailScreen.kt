@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.msa.petsearch.commoncompose.rememberFlowWithLifecycle
 import com.msa.petsearch.petdetail.composable.CollapsingTopAppBar
-import com.msa.petsearch.shared.coreres.CoreR
 import com.msa.petsearch.shared.domain.petdetailuicontract.PetDetailViewModel
+import com.msa.petsearch.shared.resources.SharedR
 
 @Composable
 internal fun PetDetailScreen(
@@ -94,7 +94,7 @@ internal fun PetDetailScreen(
             state?.petInfo?.tags
                 ?.takeIf { it.isNotEmpty() }
                 ?.let { tags ->
-                    sectionTitle(CoreR.strings.characteristics.resourceId)
+                    sectionTitle(SharedR.strings.characteristics.resourceId)
 
                     items(items = tags) { tag ->
                         Text(
@@ -112,14 +112,14 @@ internal fun PetDetailScreen(
             // OTHER_INFO ..........................................................................
             state?.petInfo?.attributes
                 ?.let { attr ->
-                    sectionTitle(CoreR.strings.attributes.resourceId)
+                    sectionTitle(SharedR.strings.attributes.resourceId)
 
                     val attrMap = hashMapOf<Int, Boolean>().apply {
-                        this[CoreR.strings.declawed.resourceId] = attr.declawed
-                        this[CoreR.strings.spay_neuter.resourceId] = attr.spayedNeutered
-                        this[CoreR.strings.spacial_needs.resourceId] = attr.specialNeeds
-                        this[CoreR.strings.house_trained.resourceId] = attr.houseTrained
-                        this[CoreR.strings.vaccinated.resourceId] = attr.shotsCurrent
+                        this[SharedR.strings.declawed.resourceId] = attr.declawed
+                        this[SharedR.strings.spay_neuter.resourceId] = attr.spayedNeutered
+                        this[SharedR.strings.spacial_needs.resourceId] = attr.specialNeeds
+                        this[SharedR.strings.house_trained.resourceId] = attr.houseTrained
+                        this[SharedR.strings.vaccinated.resourceId] = attr.shotsCurrent
                     }
 
                     items(items = attrMap.keys.toList()) { key ->
@@ -139,9 +139,9 @@ internal fun PetDetailScreen(
                             Text(
                                 text = stringResource(
                                     id = if (attrMap[key] == true) {
-                                        CoreR.strings.yes.resourceId
+                                        SharedR.strings.yes.resourceId
                                     } else {
-                                        CoreR.strings.no.resourceId
+                                        SharedR.strings.no.resourceId
                                     }
                                 ),
                                 style = MaterialTheme.typography.bodyMedium,

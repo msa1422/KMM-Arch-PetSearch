@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
@@ -18,6 +19,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.msa.petsearch.commonres.R
 import com.msa.petsearch.home.util.items
 import com.msa.petsearch.shared.coreentity.petinfo.PetInfo
+import com.msa.petsearch.shared.resources.SharedR
 
 @Composable
 internal fun LazyPetGrid(
@@ -56,6 +58,7 @@ internal fun LazyPetGrid(
             item(span = { GridItemSpan(2) }) {
                 HomeProgressIndicator(
                     animate = progressIndicatorVisibility,
+                    text = stringResource(id = SharedR.strings.loading.resourceId),
                     modifier = Modifier
                         .padding(bottom = 48.dp)
                         .fillMaxWidth()
@@ -87,6 +90,7 @@ internal fun LazyPetGrid(
             item(span = { GridItemSpan(2) }) {
                 HomeProgressIndicator(
                     animate = progressIndicatorVisibility,
+                    text = stringResource(id = SharedR.strings.loading.resourceId),
                     modifier = Modifier
                         .padding(bottom = 48.dp)
                         .fillMaxWidth()

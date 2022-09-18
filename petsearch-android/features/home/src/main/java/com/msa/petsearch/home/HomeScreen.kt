@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -25,6 +26,7 @@ import com.msa.petsearch.home.composable.tabrow.rememberHomeTabRowState
 import com.msa.petsearch.home.util.isLoading
 import com.msa.petsearch.shared.domain.homeuicontract.HomeViewModel
 import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeAction
+import com.msa.petsearch.shared.resources.SharedR
 import kotlinx.coroutines.launch
 import com.msa.petsearch.commonres.R as commonR
 
@@ -162,6 +164,7 @@ internal fun HomeScreen(
         else {
             HomeProgressIndicator(
                 animate = petList.isLoading(),
+                text = stringResource(id = SharedR.strings.loading.resourceId),
                 modifier = Modifier
                     .padding(bottom = 48.dp)
                     .fillMaxWidth()

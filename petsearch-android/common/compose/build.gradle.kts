@@ -17,7 +17,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.koin.androidx.compose)
@@ -28,8 +27,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.accompanist.navigation.animation)
 
-    implementation(projects.petsearchShared.domainCore.util)
-    implementation(projects.petsearchShared.domainCore.resources)
+    implementation(projects.petsearchShared.core.util)
+    implementation(projects.petsearchShared.resources)
 
     implementation(projects.petsearchAndroid.common.resources)
 }

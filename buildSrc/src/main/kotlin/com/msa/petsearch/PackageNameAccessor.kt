@@ -1,7 +1,7 @@
 package com.msa.petsearch
 
 object PackageNameAccessor {
-    val DATA_INFRASTRUCTURE_NETWORK_PACKAGE = "${this.javaClass.packageName}.shared.networkinfra"
-    val CORE_RESOURCES_PACKAGE = "${this.javaClass.packageName}.shared.coreres"
-    val SHARED_PACKAGE = "${this.javaClass.packageName}.shared"
+    const val DATA_INFRASTRUCTURE_NETWORK_PACKAGE = "com.msa.petsearch.shared.networkinfra"
+    const val SHARED_RESOURCES_PACKAGE = "com.msa.petsearch.shared.resources"
+    const val SHARED_PACKAGE = "com.msa.petsearch.shared"
 }

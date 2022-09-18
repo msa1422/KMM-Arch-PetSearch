@@ -66,7 +66,7 @@ struct PetDetailScreen: View {
                         // Chracteristics grid
                         if state?.petInfo?.tags?.isEmpty == false {
                             
-                            SectionTitle(title: CoreR.strings().characteristics.desc().localized().uppercased())
+                            SectionTitle(title: SharedR.strings().characteristics.desc().localized().uppercased())
                             
                             LazyVGrid(
                                 columns: [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)],
@@ -86,18 +86,18 @@ struct PetDetailScreen: View {
                         // Attributes grid
                         if let attrs = state?.petInfo?.attributes {
                             
-                            SectionTitle(title: CoreR.strings().attributes.desc().localized().uppercased())
+                            SectionTitle(title: SharedR.strings().attributes.desc().localized().uppercased())
 
-                            let yes = CoreR.strings().yes.desc().localized()
-                            let no = CoreR.strings().no.desc().localized()
+                            let yes = SharedR.strings().yes.desc().localized()
+                            let no = SharedR.strings().no.desc().localized()
 
                             // Create a map so that it can be used in LazyGrid
                             let attrMap = [
-                                CoreR.strings().declawed.desc().localized().uppercased():  attrs.declawed ? yes : no,
-                                CoreR.strings().spay_neuter.desc().localized().uppercased():  attrs.spayedNeutered ? yes : no,
-                                CoreR.strings().spacial_needs.desc().localized().uppercased():  attrs.specialNeeds ? yes : no,
-                                CoreR.strings().house_trained.desc().localized().uppercased():  attrs.houseTrained ? yes : no,
-                                CoreR.strings().vaccinated.desc().localized().uppercased():  attrs.shotsCurrent ? yes : no
+                                SharedR.strings().declawed.desc().localized().uppercased():  attrs.declawed ? yes : no,
+                                SharedR.strings().spay_neuter.desc().localized().uppercased():  attrs.spayedNeutered ? yes : no,
+                                SharedR.strings().spacial_needs.desc().localized().uppercased():  attrs.specialNeeds ? yes : no,
+                                SharedR.strings().house_trained.desc().localized().uppercased():  attrs.houseTrained ? yes : no,
+                                SharedR.strings().vaccinated.desc().localized().uppercased():  attrs.shotsCurrent ? yes : no
                             ]
                             
                             LazyVGrid(

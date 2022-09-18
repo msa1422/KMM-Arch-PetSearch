@@ -27,9 +27,9 @@ kotlin {
             isStatic = true
             baseName = "Shared"
 
-            export(projects.petsearchShared.domainCore.entity)
-            export(projects.petsearchShared.domainCore.util)
-            export(projects.petsearchShared.domainCore.resources)
+            export(projects.petsearchShared.core.entity)
+            export(projects.petsearchShared.core.util)
+            export(projects.petsearchShared.resources)
             export(projects.petsearchShared.domain.home.uiContract)
             export(projects.petsearchShared.domain.petDetail.uiContract)
 
@@ -58,12 +58,11 @@ dependencies {
     commonMainImplementation(projects.petsearchShared.data.infrastructure.cache)
     commonMainImplementation(projects.petsearchShared.data.infrastructure.preferences)
 
-    commonMainImplementation(projects.petsearchShared.domainCore.util)
+    commonMainImplementation(projects.petsearchShared.core.util)
 
-
-    iosMainApi(projects.petsearchShared.domainCore.entity)
-    iosMainApi(projects.petsearchShared.domainCore.util)
-    iosMainApi(projects.petsearchShared.domainCore.resources)
+    iosMainApi(projects.petsearchShared.core.entity)
+    iosMainApi(projects.petsearchShared.core.util)
+    iosMainApi(projects.petsearchShared.resources)
     iosMainApi(projects.petsearchShared.domain.home.uiContract)
     iosMainApi(projects.petsearchShared.domain.petDetail.uiContract)
     iosMainApi(libs.kermit.log)

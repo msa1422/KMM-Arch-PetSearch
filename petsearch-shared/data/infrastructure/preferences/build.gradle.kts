@@ -7,7 +7,7 @@ plugins {
 }
 
 dependencies {
-    commonMainImplementation(projects.petsearchShared.domainCore.util)
+    commonMainImplementation(projects.petsearchShared.core.util)
 
     commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.koin.core)

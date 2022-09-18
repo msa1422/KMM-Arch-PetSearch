@@ -3,6 +3,6 @@ plugins {
 }
 
 dependencies {
-    commonMainImplementation(projects.petsearchShared.domainCore.entity)
-    commonMainImplementation(projects.petsearchShared.domainCore.util)
+    commonMainImplementation(projects.petsearchShared.core.entity)
+    commonMainImplementation(projects.petsearchShared.core.util)
 }

@@ -10,7 +10,7 @@ import androidx.compose.ui.text.font.FontWeight.Companion.SemiBold
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.sp
-import com.msa.petsearch.shared.coreres.CoreR.fonts.Inter
+import com.msa.petsearch.shared.resources.SharedR.fonts.Inter
 
 private val InterFontFamily = FontFamily(
     listOf(

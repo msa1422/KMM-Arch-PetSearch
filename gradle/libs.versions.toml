@@ -33,7 +33,7 @@ accompanist = "0.25.1"
 
 [libraries]
 
-gradlePlugin-buildTools = { module = "com.android.tools.build:gradle", version = "7.3.0" }
+gradlePlugin-buildTools = { module = "com.android.tools.build:gradle", version = "7.2.2" }
 gradlePlugin-navigation-safeArgs = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "androidx-navigation" }
 gradlePlugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradlePlugin-kotlinSerialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }

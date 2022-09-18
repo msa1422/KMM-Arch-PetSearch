@@ -15,8 +15,8 @@ dependencies {
     api(projects.petsearchAndroid.features.home)
     api(projects.petsearchAndroid.features.petDetail)
 
-    implementation(projects.petsearchShared.domainCore.resources)
-    implementation(projects.petsearchShared.domainCore.util)
+    implementation(projects.petsearchShared.resources)
+    implementation(projects.petsearchShared.core.util)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

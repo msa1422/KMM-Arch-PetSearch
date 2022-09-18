@@ -1,5 +1,7 @@
+@file:Suppress("UnstableApiUsage")
+
 import com.msa.petsearch.util.libs
-import com.msa.petsearch.PackageNameAccessor.CORE_RESOURCES_PACKAGE
+import com.msa.petsearch.PackageNameAccessor.SHARED_RESOURCES_PACKAGE
 
 plugins {
     `kmm-shared-module-plugin`
@@ -19,6 +21,6 @@ dependencies {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = CORE_RESOURCES_PACKAGE
-    multiplatformResourcesClassName = "CoreR"
+    multiplatformResourcesPackage = SHARED_RESOURCES_PACKAGE
+    multiplatformResourcesClassName = "SharedR"
 }
