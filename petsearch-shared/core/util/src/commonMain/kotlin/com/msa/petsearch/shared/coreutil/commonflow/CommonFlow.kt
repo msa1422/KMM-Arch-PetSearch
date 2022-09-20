@@ -1,7 +1,7 @@
 package com.msa.petsearch.shared.coreutil.commonflow
 
-import com.msa.petsearch.shared.coreutil.sharedviewmodel.coroutines.DispatcherProvider
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
@@ -18,7 +18,7 @@ class CommonFlow<T>(private val origin: Flow<T>) : Flow<T> by origin {
         val job = Job()
 
         onEach { block(it) }
-            .launchIn(CoroutineScope(DispatcherProvider + job))
+            .launchIn(CoroutineScope(Main + job))
 
         return object : Closeable {
             override fun close() {
