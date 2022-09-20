@@ -16,5 +16,4 @@ sealed class HomeNavigation : NanoRedux.Navigation {
                 args = hashMapOf(Pair(ARG_PET_INFO, petInfo?.encodeToString() ?: ""))
             )
     }
-
 }

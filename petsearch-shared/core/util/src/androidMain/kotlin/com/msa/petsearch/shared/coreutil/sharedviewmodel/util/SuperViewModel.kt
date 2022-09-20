@@ -1,8 +1,6 @@
 package com.msa.petsearch.shared.coreutil.sharedviewmodel.util
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope as androidViewModelScope
-import kotlinx.coroutines.CoroutineScope
 
 actual abstract class SuperViewModel actual constructor() : ViewModel() {
 
