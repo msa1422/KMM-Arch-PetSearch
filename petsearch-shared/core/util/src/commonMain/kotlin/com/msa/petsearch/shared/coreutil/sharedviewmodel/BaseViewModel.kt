@@ -80,34 +80,27 @@ constructor(
     override suspend fun action(action: A) {
         updater?.onNewAction(action, state.value)?.let { next ->
 
-            if (next.events.isNotEmpty()) {
-                next.events.forEach {
-                    events.emit(it)
-                }
+            next.events.forEach {
+                events.emit(it)
             }
 
             if (next.sideEffects.isNotEmpty()) {
                 dispatchSideEffects(next.sideEffects)
             }
 
-            if (next.navigation.isNotEmpty()) {
-                next.navigation.firstOrNull()?.let {
-                    routeNavigator.onNavStart(it.state)
-                }
+            next.navigation.firstOrNull()?.let {
+                routeNavigator.onNavStart(it.state)
             }
 
-            if (next.errors.isNotEmpty()) {
-                next.errors.forEach { error ->
-                    error.message
-                        ?.let {
-                            messageDeque.enqueue(
-                                it.copy(
-                                    text = it.text,
-                                    messageType = it.messageType,
-                                    dequeueCallback = { messageDeque.dequeue() }
-                                )
-                            )
-                        }
+            next.errors.forEach { error ->
+                error.message?.let {
+                    val messageWithCallback = it.copy(
+                        text = it.text,
+                        messageType = it.messageType,
+                        dequeueCallback = { messageDeque.dequeue() }
+                    )
+
+                    messageDeque.enqueue(messageWithCallback)
                 }
             }
 
@@ -120,14 +113,13 @@ constructor(
     }
 
     private fun dispatchSideEffects(sideEffects: Set<SE>) {
-        sideEffects.forEach { effect ->
-            val coroutineContext = coroutineExceptionHandler ?: EmptyCoroutineContext
-            effect.coroutineScope.launch(coroutineContext) {
-                withContext(effect.dispatcher) {
-                    processor?.dispatchSideEffect(effect)?.let {
-                        withContext(effect.dispatcher) {
-                            action(it)
-                        }
+        processor?.let { processor ->
+            sideEffects.forEach { effect ->
+                val coroutineContext = coroutineExceptionHandler ?: EmptyCoroutineContext
+                effect.coroutineScope.launch(coroutineContext) {
+                    withContext(effect.dispatcher) {
+                        val effectAction = processor.dispatchSideEffect(effect)
+                        action(effectAction)
                     }
                 }
             }

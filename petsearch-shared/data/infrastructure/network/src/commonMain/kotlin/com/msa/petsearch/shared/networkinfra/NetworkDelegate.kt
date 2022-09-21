@@ -31,7 +31,7 @@ internal constructor(
             url {
                 this.protocol = URLProtocol.HTTPS
                 this.host = host
-                this.path(*path.map { it }.toTypedArray())
+                this.path(*path)
             }
 
             parameters?.forEach { entry ->
