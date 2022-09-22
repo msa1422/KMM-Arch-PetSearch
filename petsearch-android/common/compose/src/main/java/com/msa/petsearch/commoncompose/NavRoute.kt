@@ -200,7 +200,7 @@ interface NavRoute<T : RouteNavigator> {
     }
 }
 
-fun Iterable<NavRoute<*>>.add(
+fun Iterable<NavRoute<*>>.provide(
     builder: NavGraphBuilder,
     navController: NavHostController,
     messenger: (ResourceMessage) -> Unit

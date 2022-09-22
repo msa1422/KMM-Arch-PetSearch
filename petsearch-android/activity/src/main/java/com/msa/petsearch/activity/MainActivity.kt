@@ -13,9 +13,9 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.msa.petsearch.activity.composable.MainSnackbarHost
 import com.msa.petsearch.activity.composable.rememberSnackBarHostState
-import com.msa.petsearch.activity.di.provideAppScreens
+import com.msa.petsearch.activity.di.AppScreens
 import com.msa.petsearch.activity.util.setFullScreenContent
-import com.msa.petsearch.commoncompose.add
+import com.msa.petsearch.commoncompose.provide
 import com.msa.petsearch.commoncompose.theme.ApplicationTheme
 import com.msa.petsearch.shared.coreutil.resource.MessageType
 import com.msa.petsearch.shared.coreutil.resource.ResourceMessage
@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
                         .background(MaterialTheme.colorScheme.background)
                 ) {
                     AnimatedNavHost(navController, HomeNavScreen.route) {
-                        provideAppScreens().add(this, navController) {
+                        AppScreens.provide(this@AnimatedNavHost, navController) {
                             onMessageReceived(it, snackbarHostState, coroutineScope)
                         }
                     }
