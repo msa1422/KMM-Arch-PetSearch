@@ -39,15 +39,14 @@ struct PetDetailScreen: View {
                         
                         // Pet Name
                         Text(state?.petInfo?.name ?? "")
-                            .bold()
-                            .font(Font.headline)
+                            .font(Font.titleMedium)
                             .lineLimit(1)
                             .padding(.init(top: 20, leading: 24, bottom: .zero, trailing: 24))
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                         // Pet Description
                         Text(state?.petInfo?.shortDescription.replacingOccurrences(of: "\n", with: ", ") ?? "")
-                            .font(Font.caption)
+                            .font(Font.bodySmall)
                             .lineLimit(2)
                             .opacity(0.75)
                             .padding(.init(top: 4, leading: 24, bottom: 24, trailing: 24))
@@ -57,7 +56,7 @@ struct PetDetailScreen: View {
                         
                         // Pet Description
                         Text(state?.petInfo?.description_ ?? "")
-                            .font(Font.body)
+                            .font(Font.bodyMedium)
                             .lineSpacing(1.4)
                             .padding(.init(top: 20, leading: 24, bottom: .zero, trailing: 24))
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -74,7 +73,7 @@ struct PetDetailScreen: View {
                             ) {
                                 ForEach(state?.petInfo?.tags ?? [], id: \.self) { tag in
                                     Text("• \(tag)")
-                                        .font(Font.body)
+                                        .font(Font.bodyMedium)
                                         .padding(.init(top: 4, leading: 12, bottom: .zero, trailing: 12))
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }
@@ -110,32 +109,26 @@ struct PetDetailScreen: View {
                                         
                                         Text(attribute)
                                             .bold()
-                                            .font(Font.caption)
+                                            .font(Font.labelSmall)
                                             .foregroundColor(Color.black.opacity(0.62))
                                         
                                         Text(attrMap[attribute] ?? no)
-                                            .font(Font.body)
+                                            .font(Font.bodyMedium)
                                             .frame(maxWidth: .infinity, alignment: .leading)
-                                        
                                     }
                                     .padding(.init(top: 4, leading: 12, bottom: 8, trailing: 12))
-                                    
                                 }
                             }
                             .padding(.init(top: .zero, leading: 12, bottom: .zero, trailing: 12))
-                            
                         }
-                        
                         
                         Spacer().frame(height: 72)
                     }
                 }
 
-                
                 // Custom back button
                 Button(action: { presentationMode.wrappedValue.dismiss() }) {
                     Image(systemName: "chevron.left")
-                        //.padding(.init(top: 4, leading: .zero, bottom: 4, trailing: 4))
                         .frame(width: 60, height: 60)
                         .background(
                             Rectangle()
@@ -144,27 +137,22 @@ struct PetDetailScreen: View {
                         )
                 }
                 .padding(.init(top: proxy.safeAreaInsets.top, leading: .zero, bottom: .zero, trailing: .zero))
-            
-                
             }
             .background(Color.white)
             .ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
             .onAppear {
-    
                 if stateObserver == nil { // Should be always true
                     stateObserver = viewModel.observeState().watch { state in
                         guard let ns = state else { return }
                         self.state = ns
                     }
                 }
-
             }
             .onDisappear {
                 stateObserver?.close()
                 stateObserver = nil
-                
             }
         }
     }

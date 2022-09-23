@@ -30,7 +30,6 @@ struct TabRow: View {
                             },
                             label: {
                                 VStack(spacing: CGFloat.zero) {
-                                    
                                     // Bar Indicator
                                     if selectedTab == row {
                                         RoundedRectangle(cornerSize: CGSize.init(width: 3, height: 3))
@@ -44,9 +43,7 @@ struct TabRow: View {
                                     
                                     // Text
                                     Text(tabs[row].uppercased())
-                                        .font(selectedTab == row
-                                              ? Font.system(size: 16, weight: .black)
-                                              : Font.system(size: 14, weight: .semibold))
+                                        .font(selectedTab == row ? Font.tabSelected : Font.tabUnselected)
                                         .foregroundColor(Color.black)
                                         .frame(width: .none, height: 52)
                                         // for making text visually centered
@@ -55,7 +52,6 @@ struct TabRow: View {
                                         .transaction { transaction in
                                             transaction.animation = nil
                                         }
-                                    
                                 }
                                 .frame(alignment: .bottom)
                                 .fixedSize()
@@ -77,7 +73,6 @@ struct TabRow: View {
         }
         .frame(height: 55)
     }
-    
 }
 
 struct Tabs_Previews: PreviewProvider {

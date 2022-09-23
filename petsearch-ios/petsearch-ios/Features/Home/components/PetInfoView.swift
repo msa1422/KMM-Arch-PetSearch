@@ -38,25 +38,21 @@ struct PetInfoView: View {
                 )
                 .aspectRatio(0.9, contentMode: .fill)
                 .clipped()
-            
 
-            
             // Pet Name
             Text(petInfo.name)
-                .bold()
-                .font(Font.headline)
+                .font(Font.titleMedium)
                 .lineLimit(1)
                 .padding(.init(top: 10, leading: 12, bottom: .zero, trailing: 12))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             // Pet Description
             Text(petInfo.shortDescription)
-                .font(Font.caption)
+                .font(Font.bodySmall)
                 .lineLimit(2)
                 .opacity(0.75)
                 .padding(.init(top: 4, leading: 12, bottom: 20, trailing: 12))
                 .frame(maxWidth: .infinity, alignment: .leading)
-            
         }
         .frame(maxWidth: .infinity)
         .background(Color.white)
