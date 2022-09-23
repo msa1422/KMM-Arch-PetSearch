@@ -3,8 +3,8 @@ package com.msa.petsearch.shared.coreutil.resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-internal class MessageDeque(private val deque: ArrayDeque<ResourceMessage>) :
-    Queue<ResourceMessage> {
+class MessageDeque
+internal constructor(private val deque: ArrayDeque<ResourceMessage>) : Queue<ResourceMessage> {
 
     private val message = MutableStateFlow(deque.firstOrNull())
 
