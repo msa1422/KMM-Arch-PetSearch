@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 
-class LoadPetTypesUseCase(
+internal class LoadPetTypesUseCase(
     private val dataSource: HomeDataSource
 ) : FlowInteractor<Nothing, Resource<PetTypesResponse?>>() {
 
@@ -16,5 +16,4 @@ class LoadPetTypesUseCase(
         return flow { emit(dataSource.getPetTypes()) }
             .catch { emit(Resource.error(it, null)) }
     }
-
 }

@@ -23,7 +23,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
-class HomeProcessor(
+internal class HomeProcessor(
     private val useCases: UseCaseWrapper
 ) : Processor<HomeSideEffect, HomeAction> {
 

@@ -11,7 +11,7 @@ import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeState
 
 typealias NextResult = Next<HomeState, HomeSideEffect, GlobalEvent, HomeNavigation, ReduxGeneric.Error>
 
-class HomeUpdater :
+internal class HomeUpdater :
     Updater<HomeAction, HomeState, HomeSideEffect, GlobalEvent, HomeNavigation, ReduxGeneric.Error> {
 
     override fun onNewAction(action: HomeAction, currentState: HomeState): NextResult {

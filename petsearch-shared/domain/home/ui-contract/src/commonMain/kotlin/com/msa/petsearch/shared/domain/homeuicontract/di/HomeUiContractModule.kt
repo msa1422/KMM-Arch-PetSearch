@@ -10,14 +10,11 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 val HomeUiContractModule = module {
-
     singleOf(::LoadPetTypesUseCase)
     singleOf(::LoadPetsUseCase)
     singleOf(::UseCaseWrapper)
-
     singleOf(::HomeUpdater)
     singleOf(::HomeProcessor)
     singleOf(::HomeViewModel)
     singleOf(::HomeVmHelper)
-
 }

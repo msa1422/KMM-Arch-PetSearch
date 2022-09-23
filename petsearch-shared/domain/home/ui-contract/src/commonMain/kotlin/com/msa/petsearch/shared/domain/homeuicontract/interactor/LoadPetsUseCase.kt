@@ -7,7 +7,7 @@ import com.msa.petsearch.shared.coreutil.resource.Resource
 import com.msa.petsearch.shared.domain.homedatasource.HomeDataSource
 import kotlinx.coroutines.flow.*
 
-class LoadPetsUseCase(
+internal class LoadPetsUseCase(
     private val dataSource: HomeDataSource
 ) : FlowInteractor<LoadPetsUseCase.Params, Resource<SearchPetResponse?>>() {
 
@@ -29,5 +29,4 @@ class LoadPetsUseCase(
         }
             .catch { emit(Resource.error(it, null)) }
     }
-
 }
