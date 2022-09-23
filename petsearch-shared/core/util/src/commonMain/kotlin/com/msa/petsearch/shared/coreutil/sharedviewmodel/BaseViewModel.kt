@@ -17,8 +17,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import kotlin.coroutines.EmptyCoroutineContext
 
 /**
@@ -35,8 +33,9 @@ constructor(
     private val stateMapper: StateMapper<S, RS>? = null,
     private val argsMapper: ArgsMapper<S>? = null,
     private val coroutineExceptionHandler: CoroutineExceptionHandler? = null,
-    private val routeNavigator: RouteNavigator
-) : SuperViewModel(), ActionDispatcher<A>, KoinComponent, RouteNavigator by routeNavigator {
+    private val routeNavigator: RouteNavigator,
+    private val messageDeque: MessageDeque
+) : SuperViewModel(), ActionDispatcher<A>, RouteNavigator by routeNavigator {
 
     private val state = MutableStateFlow(initialState)
 
@@ -45,8 +44,6 @@ constructor(
     private val renderState by lazy {
         MutableStateFlow(stateMapper?.mapToRenderState(state.value))
     }
-
-    private val messageDeque: MessageDeque by inject()
 
     fun updateArgsInState(args: HashMap<String, String>) {
         argsMapper?.let { mapper ->
