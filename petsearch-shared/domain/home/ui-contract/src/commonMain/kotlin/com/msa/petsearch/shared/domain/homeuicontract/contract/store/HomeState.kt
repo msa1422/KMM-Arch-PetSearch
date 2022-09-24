@@ -7,11 +7,11 @@ import com.msa.petsearch.shared.coreutil.commonflow.CommonFlow
 import com.msa.petsearch.shared.coreutil.commonflow.asCommonFlow
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux
 import com.kuuurt.paging.multiplatform.PagingData
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.emptyFlow
 
 data class HomeState(
     val petTypesResponse: PetTypesResponse? = null,
-    val petPagingData: CommonFlow<PagingData<PetInfo>> = flow<PagingData<PetInfo>> {  }.asCommonFlow(),
+    val petPagingData: CommonFlow<PagingData<PetInfo>> = emptyFlow<PagingData<PetInfo>>().asCommonFlow(),
     val searchParams: PetSearchParams = PetSearchParams(),
 
 

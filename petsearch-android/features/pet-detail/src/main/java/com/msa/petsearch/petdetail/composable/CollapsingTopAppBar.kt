@@ -78,8 +78,9 @@ internal fun CollapsingTopAppBar(
 
     Surface(
         modifier = modifier
-            .height(expandedHeight +
-                    scrollBehavior.state.heightOffset.div(LocalDensity.current.density).dp
+            .height(
+                expandedHeight +
+                        scrollBehavior.state.heightOffset.div(LocalDensity.current.density).dp
             )
             .then(appBarDragModifier)
     ) {
@@ -218,7 +219,7 @@ internal fun CollapsingTopAppBar(
                     // Pager
                     pagerPlaceable.placeRelative(
                         x = 0,
-                        y = -(scrollBehavior.state.heightOffset/2).roundToInt()
+                        y = -(scrollBehavior.state.heightOffset / 2).roundToInt()
                     )
 
                     // Title Bg Gradient

@@ -47,7 +47,6 @@ internal fun HomeTabRow(
         modifier = modifier
     ) {
         items.forEachIndexed { index, petType ->
-
             val selected = index == state.selectedTabIndex
 
             Tab(
@@ -64,8 +63,7 @@ internal fun HomeTabRow(
                         fontSize = if (selected) 16.sp else 14.sp,
                         letterSpacing = TextUnit(if (selected) 0.009f else 0.015F, TextUnitType.Em),
                         onTextLayout = { textLayoutResult ->
-                            tabWidths[index] =
-                                with(density) { textLayoutResult.size.width.toDp() }
+                            tabWidths[index] = with(density) { textLayoutResult.size.width.toDp() }
                         }
                     )
                 }

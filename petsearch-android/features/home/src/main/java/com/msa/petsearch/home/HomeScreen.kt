@@ -1,34 +1,28 @@
 package com.msa.petsearch.home
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowDropDown
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarState
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.msa.petsearch.commoncompose.composable.FadeAnimatedVisibility
 import com.msa.petsearch.commoncompose.util.disableSplitMotionEvents
+import com.msa.petsearch.home.composable.CollapsibleTopBar
 import com.msa.petsearch.home.composable.HomeProgressIndicator
 import com.msa.petsearch.home.composable.LazyPetGrid
-import com.msa.petsearch.home.composable.tabrow.HomeTabRow
-import com.msa.petsearch.home.composable.tabrow.rememberHomeTabRowState
 import com.msa.petsearch.home.util.isLoading
+import com.msa.petsearch.home.util.isNullOrEmpty
 import com.msa.petsearch.shared.domain.homeuicontract.HomeViewModel
 import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeAction
 import com.msa.petsearch.shared.resources.SharedR
 import kotlinx.coroutines.launch
-import com.msa.petsearch.commonres.R as commonR
 
 @Composable
 internal fun HomeScreen(
@@ -36,123 +30,55 @@ internal fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
     val coroutineScope = rememberCoroutineScope()
-    val homeTabRowState = rememberHomeTabRowState()
     val gridState = rememberLazyGridState()
 
     val renderState by viewModel.observeRenderState().collectAsState(initial = null)
     val petList = renderState?.petPagingData?.collectAsLazyPagingItems()
 
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(
+        state = TopAppBarState(0F, 0F, 0F),
+        canScroll = { !petList.isNullOrEmpty() }
+    )
+
     LaunchedEffect(Unit) {
         if (renderState?.petTypes.isNullOrEmpty()) {
-            viewModel.action(HomeAction.GetPetTypes)
+            viewModel::action.invoke(HomeAction.GetPetTypes)
         }
     }
 
-    Column(modifier = modifier.fillMaxSize()) {
-        // TOOLBAR .................................................................................
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .background(color = MaterialTheme.colorScheme.surface)
-        ) {
-            Column(
-                verticalArrangement = Arrangement.Center,
+    Scaffold(
+        topBar = {
+            CollapsibleTopBar(
+                scrollBehavior = scrollBehavior,
+                petTypes = renderState?.petTypes,
                 modifier = Modifier
-                    .statusBarsPadding()
-                    .clickable { }
-                    .padding(start = 20.dp, top = 8.dp, end = 24.dp, bottom = 16.dp)
-                    .wrapContentSize()
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.wrapContentSize()
-                ) {
-                    Icon(
-                        painter = painterResource(id = commonR.drawable.ic_near_me),
-                        contentDescription = "Location icon",
-                        tint = MaterialTheme.colorScheme.onBackground
-                    )
-                    Text(
-                        text = "New York City",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onBackground,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier
-                            .wrapContentSize()
-                            .padding(start = 6.dp, end = 2.dp)
-                    )
-                    Icon(
-                        imageVector = Icons.Rounded.ArrowDropDown,
-                        contentDescription = "Drop down icon",
-                        tint = MaterialTheme.colorScheme.onBackground
-                    )
-                }
-                Text(
-                    text = "20 W 34th St., New York, United States",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.62F),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
-                        .wrapContentSize()
-                        .padding(start = 4.dp, top = 2.dp)
-                )
-            }
-        }
-
-        // TAB_LAYOUT ..............................................................................
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp)
-                .background(color = MaterialTheme.colorScheme.surface)
-        ) {
-            FadeAnimatedVisibility(
-                visible = !renderState?.petTypes.isNullOrEmpty(),
-                durationMillis = 500
-            ) {
-                renderState?.petTypes?.let { petTypes ->
-                    HomeTabRow(
-                        items = petTypes.map { it.name },
-                        state = homeTabRowState,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
-                    ) { index, name ->
-                        coroutineScope.launch {
-                            homeTabRowState.selectedTabIndex = index
-                            viewModel.action(HomeAction.OnPetTypeTabSelected(name))
-
-                            gridState.scrollToItem(0) // Reset grid state
-                        }
-                    }
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .background(color = MaterialTheme.colorScheme.surface)
+            ) { petTypeName ->
+                coroutineScope.launch {
+                    viewModel::action.invoke(HomeAction.OnPetTypeTabSelected(petTypeName))
+                    gridState.scrollToItem(0) // Reset grid state
                 }
             }
-        }
-
-        // DIVIDER .................................................................................
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(1.dp)
-                .background(MaterialTheme.colorScheme.onBackground.copy(0.1F))
-        )
-
+        },
+        modifier = modifier.fillMaxSize()
+    ) { innerPadding ->
         // LAZY_GRID ...............................................................................
-        if (petList != null && petList.itemCount != 0) {
+        if (!petList.isNullOrEmpty()) {
             LazyPetGrid(
-                petList = petList,
+                petList = petList!!,
                 state = gridState,
                 progressIndicatorVisibility = petList.isLoading(),
+                contentPadding = innerPadding,
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05F))
+                    .nestedScroll(scrollBehavior.nestedScrollConnection)
                     .disableSplitMotionEvents()
+                    .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05F))
             ) { petInfo ->
                 coroutineScope.launch {
-                    viewModel.action(HomeAction.NavigateToPetDetail(petInfo))
+                    viewModel::action.invoke(HomeAction.NavigateToPetDetail(petInfo))
                 }
             }
         }
@@ -161,12 +87,13 @@ internal fun HomeScreen(
         // and causes to GridScrollState to reset to 0
         // For detailed explanation, see
         // https://stackoverflow.com/a/70520441
+        // This issue also causes the collapsing toolbar to get back to extended position
         else {
             HomeProgressIndicator(
                 animate = petList.isLoading(),
                 text = stringResource(id = SharedR.strings.loading.resourceId),
                 modifier = Modifier
-                    .padding(bottom = 48.dp)
+                    .padding(top = innerPadding.calculateTopPadding(), bottom = 48.dp)
                     .fillMaxWidth()
                     .wrapContentHeight()
             )

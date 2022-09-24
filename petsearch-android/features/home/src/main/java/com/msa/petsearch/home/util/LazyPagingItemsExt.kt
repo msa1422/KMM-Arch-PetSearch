@@ -9,3 +9,7 @@ internal inline fun <reified T : Any> LazyPagingItems<T>?.isLoading(): Boolean {
             this.loadState.append is LoadState.Loading ||
             this.loadState.prepend is LoadState.Loading
 }
+
+internal inline fun <reified T : Any> LazyPagingItems<T>?.isNullOrEmpty(): Boolean {
+    return this == null || this.itemCount == 0
+}

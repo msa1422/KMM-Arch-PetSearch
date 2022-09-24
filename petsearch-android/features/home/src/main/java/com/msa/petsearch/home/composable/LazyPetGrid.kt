@@ -27,6 +27,7 @@ internal fun LazyPetGrid(
     state: LazyGridState,
     progressIndicatorVisibility: Boolean,
     modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
     onItemClick: (PetInfo) -> Unit = {}
 ) {
     // remember val(s) are here to improve list performance
@@ -52,6 +53,7 @@ internal fun LazyPetGrid(
         state = state,
         verticalArrangement = Arrangement.spacedBy(2.dp),
         horizontalArrangement = Arrangement.spacedBy(2.dp),
+        contentPadding = contentPadding,
         modifier = modifier
     ) {
         if (petList.loadState.prepend is LoadState.Loading) {
