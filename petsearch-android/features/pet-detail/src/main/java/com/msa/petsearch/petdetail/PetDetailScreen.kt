@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.material3.*
 import androidx.compose.material3.TopAppBarDefaults.exitUntilCollapsedScrollBehavior
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -16,7 +15,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.msa.petsearch.commoncompose.rememberFlowWithLifecycle
+import com.msa.petsearch.commoncompose.util.collectAsStateWithLifecycle
 import com.msa.petsearch.petdetail.composable.CollapsingTopAppBar
 import com.msa.petsearch.shared.domain.petdetailuicontract.PetDetailViewModel
 import com.msa.petsearch.shared.resources.SharedR
@@ -28,8 +27,7 @@ internal fun PetDetailScreen(
 ) {
     val backPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
-    val state by rememberFlowWithLifecycle(flow = viewModel.observeState())
-        .collectAsState(initial = null)
+    val state by viewModel.observeState().collectAsStateWithLifecycle(initialValue = null)
 
     val scrollBehavior = exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
 

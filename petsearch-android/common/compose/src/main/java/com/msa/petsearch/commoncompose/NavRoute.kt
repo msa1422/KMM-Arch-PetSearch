@@ -5,12 +5,12 @@ import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.*
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.google.accompanist.navigation.animation.composable
 import com.msa.petsearch.commoncompose.util.HandyDelay
+import com.msa.petsearch.commoncompose.util.collectAsStateWithLifecycle
 import com.msa.petsearch.commoncompose.util.onDestroy
 import com.msa.petsearch.shared.coreutil.resource.ResourceMessage
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.BaseViewModel
@@ -73,8 +73,8 @@ interface NavRoute<T : RouteNavigator> {
                     }
                 }
 
-                val navigationState by rememberFlowWithLifecycle(it.observeNavigationState())
-                    .collectAsState(initial = NavigationState.Idle)
+                val navigationState by it.observeNavigationState()
+                    .collectAsStateWithLifecycle(initialValue = NavigationState.Idle)
 
                 LaunchedEffect(navigationState) {
                     updateNavigationState(navController, navigationState, it::onNavComplete)
