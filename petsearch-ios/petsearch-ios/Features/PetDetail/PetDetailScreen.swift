@@ -40,6 +40,7 @@ struct PetDetailScreen: View {
                         // Pet Name
                         Text(state?.petInfo?.name ?? "")
                             .font(Font.titleMedium)
+                            .foregroundColor(Color.onSurface)
                             .lineLimit(1)
                             .padding(.init(top: 20, leading: 24, bottom: .zero, trailing: 24))
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -47,6 +48,7 @@ struct PetDetailScreen: View {
                         // Pet Description
                         Text(state?.petInfo?.shortDescription.replacingOccurrences(of: "\n", with: ", ") ?? "")
                             .font(Font.bodySmall)
+                            .foregroundColor(Color.onSurface)
                             .lineLimit(2)
                             .opacity(0.75)
                             .padding(.init(top: 4, leading: 24, bottom: 24, trailing: 24))
@@ -57,6 +59,7 @@ struct PetDetailScreen: View {
                         // Pet Description
                         Text(state?.petInfo?.description_ ?? "")
                             .font(Font.bodyMedium)
+                            .foregroundColor(Color.onSurface)
                             .lineSpacing(1.4)
                             .padding(.init(top: 20, leading: 24, bottom: .zero, trailing: 24))
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -74,6 +77,7 @@ struct PetDetailScreen: View {
                                 ForEach(state?.petInfo?.tags ?? [], id: \.self) { tag in
                                     Text("• \(tag)")
                                         .font(Font.bodyMedium)
+                                        .foregroundColor(Color.onSurface)
                                         .padding(.init(top: 4, leading: 12, bottom: .zero, trailing: 12))
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }
@@ -110,10 +114,11 @@ struct PetDetailScreen: View {
                                         Text(attribute)
                                             .bold()
                                             .font(Font.labelSmall)
-                                            .foregroundColor(Color.black.opacity(0.62))
+                                            .foregroundColor(Color.onSurface.opacity(0.62))
                                         
                                         Text(attrMap[attribute] ?? no)
                                             .font(Font.bodyMedium)
+                                            .foregroundColor(Color.onSurface)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                     .padding(.init(top: 4, leading: 12, bottom: 8, trailing: 12))
@@ -138,7 +143,7 @@ struct PetDetailScreen: View {
                 }
                 .padding(.init(top: proxy.safeAreaInsets.top, leading: .zero, bottom: .zero, trailing: .zero))
             }
-            .background(Color.white)
+            .background(Color.surface)
             .ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)

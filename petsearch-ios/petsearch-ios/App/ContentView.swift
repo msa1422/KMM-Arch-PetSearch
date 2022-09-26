@@ -47,7 +47,7 @@ struct ContentView: View {
                 
                 // Safe Area Translucent BottomInset
                 Rectangle()
-                    .fill(Color.white.opacity(0.38))
+                    .fill(Color.surface.opacity(0.38))
                     .frame(height: proxy.safeAreaInsets.bottom)
                 
             }
@@ -56,7 +56,7 @@ struct ContentView: View {
                 isPresenting: $showToast,
                 message: String(toastMessage?.prefix(120) ?? ""),
                 icon: nil,
-                backgroundColor: Color.black.opacity(0.9),
+                backgroundColor: Color.onSurface.opacity(0.9),
                 textColor: Color.blue,
                 autoDismiss: .after(5),
                 onDisappear: { toastMessage = nil }

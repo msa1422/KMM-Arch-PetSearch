@@ -33,7 +33,7 @@ struct TabRow: View {
                                     // Bar Indicator
                                     if selectedTab == row {
                                         RoundedRectangle(cornerSize: CGSize.init(width: 3, height: 3))
-                                            .fill(Color.black)
+                                            .fill(Color.onSurface)
                                             .frame(height: 3)
                                             .matchedGeometryEffect(id: "TAB", in: animation)
                                     }
@@ -44,7 +44,7 @@ struct TabRow: View {
                                     // Text
                                     Text(tabs[row].uppercased())
                                         .font(selectedTab == row ? Font.tabSelected : Font.tabUnselected)
-                                        .foregroundColor(Color.black)
+                                        .foregroundColor(Color.onSurface)
                                         .frame(width: .none, height: 52)
                                         // for making text visually centered
                                         .padding(.init(top: 0, leading: 0, bottom: 2, trailing: 0))

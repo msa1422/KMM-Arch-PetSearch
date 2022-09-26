@@ -11,6 +11,8 @@
 		47B8722466E59DBCA9E23E44 /* Pods_petsearch_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FAAD9219C9D63C1F7CB3F9 /* Pods_petsearch_ios.framework */; };
 		5E11056428D0581E00B36633 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E11056328D0581E00B36633 /* PaginationState.swift */; };
 		5E1FDBFC28CFBD350034107D /* ArrayExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1FDBFB28CFBD350034107D /* ArrayExt.swift */; };
+		5E54693C28E16DA000ADBF23 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54693B28E16DA000ADBF23 /* Type.swift */; };
+		5E54693E28E16DDB00ADBF23 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54693D28E16DDB00ADBF23 /* Color.swift */; };
 		5EBEB68A28DE264400AA7C84 /* FontExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEB68928DE264400AA7C84 /* FontExt.swift */; };
 		5EC3B09628CB7E4200A040F2 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B09528CB7E4200A040F2 /* iOSApp.swift */; };
 		5EC3B09B28CB7EA700A040F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B09A28CB7EA700A040F2 /* ContentView.swift */; };
@@ -36,6 +38,8 @@
 		2D0AC896FB64DC32721C0B1F /* Pods-petsearch-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petsearch-ios.debug.xcconfig"; path = "Target Support Files/Pods-petsearch-ios/Pods-petsearch-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		5E11056328D0581E00B36633 /* PaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationState.swift; sourceTree = "<group>"; };
 		5E1FDBFB28CFBD350034107D /* ArrayExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExt.swift; sourceTree = "<group>"; };
+		5E54693B28E16DA000ADBF23 /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
+		5E54693D28E16DDB00ADBF23 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5EBEB68928DE264400AA7C84 /* FontExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExt.swift; sourceTree = "<group>"; };
 		5EC3B09528CB7E4200A040F2 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		5EC3B09A28CB7EA700A040F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -87,6 +91,15 @@
 			path = state;
 			sourceTree = "<group>";
 		};
+		5E54693A28E16D6D00ADBF23 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				5E54693B28E16DA000ADBF23 /* Type.swift */,
+				5E54693D28E16DDB00ADBF23 /* Color.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		5EC3B09428CB7D4E00A040F2 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +112,7 @@
 		5EC3B09C28CB7F8C00A040F2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5E54693A28E16D6D00ADBF23 /* Theme */,
 				5EC3B0B528CB801E00A040F2 /* Util */,
 				5EC3B09D28CB7FC600A040F2 /* Assets.xcassets */,
 			);
@@ -360,6 +374,8 @@
 				5EC3B0D728CB82AE00A040F2 /* PetDetailRoute.swift in Sources */,
 				5E1FDBFC28CFBD350034107D /* ArrayExt.swift in Sources */,
 				5EC3B0CA28CB820800A040F2 /* HomeScreen.swift in Sources */,
+				5E54693C28E16DA000ADBF23 /* Type.swift in Sources */,
+				5E54693E28E16DDB00ADBF23 /* Color.swift in Sources */,
 				5EC3B0C528CB81A900A040F2 /* CornerRadiusStyle.swift in Sources */,
 				5EC3B0D228CB825800A040F2 /* PetInfoView.swift in Sources */,
 				5EBEB68A28DE264400AA7C84 /* FontExt.swift in Sources */,

@@ -118,7 +118,7 @@ struct HomeScreen: View {
                     .padding(.init(top: 32, leading: .zero, bottom: 64, trailing: .zero))
                     .opacity(paginationState == .loading ? 1 : 0)
             }
-            .background(Color.black.opacity(0.1))
+            .background(Color.background)
             
             // To push the TabRow to top when there are no items in GridView
             Spacer()

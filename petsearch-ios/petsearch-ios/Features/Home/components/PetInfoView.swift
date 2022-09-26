@@ -42,6 +42,7 @@ struct PetInfoView: View {
             // Pet Name
             Text(petInfo.name)
                 .font(Font.titleMedium)
+                .foregroundColor(Color.onSurface)
                 .lineLimit(1)
                 .padding(.init(top: 10, leading: 12, bottom: .zero, trailing: 12))
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -49,13 +50,14 @@ struct PetInfoView: View {
             // Pet Description
             Text(petInfo.shortDescription)
                 .font(Font.bodySmall)
+                .foregroundColor(Color.onSurface)
                 .lineLimit(2)
                 .opacity(0.75)
                 .padding(.init(top: 4, leading: 12, bottom: 20, trailing: 12))
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .frame(maxWidth: .infinity)
-        .background(Color.white)
+        .background(Color.surface)
         .onTapGesture { onClick() }
     }
 }
