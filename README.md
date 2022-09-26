@@ -11,12 +11,12 @@ With that said, author has realised that,
 
 ### Android Screenshots
 <div id="android" align="start">
-  <img src="https://user-images.githubusercontent.com/22452092/189471037-f8132942-e39b-416d-9498-536da1764cf4.png" width="640"/>
+  <img src="https://user-images.githubusercontent.com/22452092/192314402-44af9641-3292-45a5-8513-427ee3cd9711.jpg" width="640"/>
 </div>
 
 ### iOS Screenshots
 <div id="android" align="start">
-  <img src="https://user-images.githubusercontent.com/22452092/189471027-18cc52bf-2256-4f20-b9cb-dc33f64698c6.jpg" width="640"/>
+  <img src="https://user-images.githubusercontent.com/22452092/192314445-c9998c3f-fd40-456c-af4f-eed08ab8d7cb.jpg" width="640"/>
 </div>
 
 
