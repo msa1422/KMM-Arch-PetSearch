@@ -1,14 +1,18 @@
 PODS:
-  - SDWebImage (5.13.2):
-    - SDWebImage/Core (= 5.13.2)
-  - SDWebImage/Core (5.13.2)
-  - SDWebImageSwiftUI (2.1.0):
+  - Introspect (0.1.4)
+  - ScalingHeaderScrollView (0.0.4):
+    - Introspect
+  - SDWebImage (5.13.3):
+    - SDWebImage/Core (= 5.13.3)
+  - SDWebImage/Core (5.13.3)
+  - SDWebImageSwiftUI (2.2.1):
     - SDWebImage (~> 5.10)
   - Shared (1.0)
   - ToastSwiftUI (0.3.4)
   - UIPilot (1.3.1)
 
 DEPENDENCIES:
+  - ScalingHeaderScrollView
   - SDWebImageSwiftUI
   - Shared (from `../petsearch-shared/Shared`)
   - ToastSwiftUI
@@ -16,6 +20,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Introspect
+    - ScalingHeaderScrollView
     - SDWebImage
     - SDWebImageSwiftUI
     - ToastSwiftUI
@@ -26,12 +32,14 @@ EXTERNAL SOURCES:
     :path: "../petsearch-shared/Shared"
 
 SPEC CHECKSUMS:
-  SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
-  SDWebImageSwiftUI: 76c824afd24d896710e47f240755a31b80e056a0
+  Introspect: b62c4dd2063072327c21d618ef2bedc3c87bc366
+  ScalingHeaderScrollView: 357bde2dd24d4afb7721137729f53d2073eb3634
+  SDWebImage: af5bbffef2cde09f148d826f9733dcde1a9414cd
+  SDWebImageSwiftUI: 2ecf5ab6f574526326b10ecb155e72a88059d0f0
   Shared: db39b87a60694dd5f5e5df8589a6608930fa864a
   ToastSwiftUI: 3b9111e37719e4b1c4a4fdbc52a664ec8e676c0e
   UIPilot: f3aaea861e49c3e1b626c57b328a92c5107b2ca6
 
-PODFILE CHECKSUM: 9b2ae6a21428d799d495a5ee8445caccc9edbce5
+PODFILE CHECKSUM: b3b2571a49cf241e174ea9ce364ecc743a032123
 
 COCOAPODS: 1.11.3

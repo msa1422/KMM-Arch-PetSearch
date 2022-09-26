@@ -13,6 +13,7 @@
 		5E1FDBFC28CFBD350034107D /* ArrayExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1FDBFB28CFBD350034107D /* ArrayExt.swift */; };
 		5E54693C28E16DA000ADBF23 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54693B28E16DA000ADBF23 /* Type.swift */; };
 		5E54693E28E16DDB00ADBF23 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54693D28E16DDB00ADBF23 /* Color.swift */; };
+		5E54694228E1D01500ADBF23 /* HomeScreenNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54694128E1D01500ADBF23 /* HomeScreenNew.swift */; };
 		5EBEB68A28DE264400AA7C84 /* FontExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEB68928DE264400AA7C84 /* FontExt.swift */; };
 		5EC3B09628CB7E4200A040F2 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B09528CB7E4200A040F2 /* iOSApp.swift */; };
 		5EC3B09B28CB7EA700A040F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B09A28CB7EA700A040F2 /* ContentView.swift */; };
@@ -40,6 +41,7 @@
 		5E1FDBFB28CFBD350034107D /* ArrayExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExt.swift; sourceTree = "<group>"; };
 		5E54693B28E16DA000ADBF23 /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		5E54693D28E16DDB00ADBF23 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		5E54694128E1D01500ADBF23 /* HomeScreenNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenNew.swift; sourceTree = "<group>"; };
 		5EBEB68928DE264400AA7C84 /* FontExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExt.swift; sourceTree = "<group>"; };
 		5EC3B09528CB7E4200A040F2 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		5EC3B09A28CB7EA700A040F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				5EC3B0CE28CB823900A040F2 /* components */,
 				5EC3B0C928CB820800A040F2 /* HomeScreen.swift */,
 				5EC3B0CC28CB821900A040F2 /* HomeRoute.swift */,
+				5E54694128E1D01500ADBF23 /* HomeScreenNew.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EC3B09B28CB7EA700A040F2 /* ContentView.swift in Sources */,
+				5E54694228E1D01500ADBF23 /* HomeScreenNew.swift in Sources */,
 				5EC3B0BF28CB815500A040F2 /* UINavigationControllerExt.swift in Sources */,
 				5EC3B0BD28CB813B00A040F2 /* NavRoute.swift in Sources */,
 				5EC3B0D928CB82D300A040F2 /* ImagePager.swift in Sources */,
