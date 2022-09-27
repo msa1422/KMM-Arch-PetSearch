@@ -14,6 +14,7 @@
 		5E54693C28E16DA000ADBF23 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54693B28E16DA000ADBF23 /* Type.swift */; };
 		5E54693E28E16DDB00ADBF23 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54693D28E16DDB00ADBF23 /* Color.swift */; };
 		5E54694228E1D01500ADBF23 /* HomeScreenNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54694128E1D01500ADBF23 /* HomeScreenNew.swift */; };
+		5E9D8B0228E3369500EFAC59 /* Snackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D8B0128E3369500EFAC59 /* Snackbar.swift */; };
 		5EBEB68A28DE264400AA7C84 /* FontExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEB68928DE264400AA7C84 /* FontExt.swift */; };
 		5EC3B09628CB7E4200A040F2 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B09528CB7E4200A040F2 /* iOSApp.swift */; };
 		5EC3B09B28CB7EA700A040F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B09A28CB7EA700A040F2 /* ContentView.swift */; };
@@ -42,6 +43,7 @@
 		5E54693B28E16DA000ADBF23 /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		5E54693D28E16DDB00ADBF23 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5E54694128E1D01500ADBF23 /* HomeScreenNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenNew.swift; sourceTree = "<group>"; };
+		5E9D8B0128E3369500EFAC59 /* Snackbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snackbar.swift; sourceTree = "<group>"; };
 		5EBEB68928DE264400AA7C84 /* FontExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExt.swift; sourceTree = "<group>"; };
 		5EC3B09528CB7E4200A040F2 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		5EC3B09A28CB7EA700A040F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +104,14 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
+		5E9D8B0028E3368400EFAC59 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				5E9D8B0128E3369500EFAC59 /* Snackbar.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
 		5EC3B09428CB7D4E00A040F2 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +124,7 @@
 		5EC3B09C28CB7F8C00A040F2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5E9D8B0028E3368400EFAC59 /* components */,
 				5E54693A28E16D6D00ADBF23 /* Theme */,
 				5EC3B0B528CB801E00A040F2 /* Util */,
 				5EC3B09D28CB7FC600A040F2 /* Assets.xcassets */,
@@ -124,13 +135,13 @@
 		5EC3B0B528CB801E00A040F2 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				5EC3B0BC28CB813B00A040F2 /* NavRoute.swift */,
-				5EC3B0BE28CB815500A040F2 /* UINavigationControllerExt.swift */,
-				5EC3B0C028CB817500A040F2 /* StringExt.swift */,
+				5E1FDBFB28CFBD350034107D /* ArrayExt.swift */,
 				5EC3B0C228CB819500A040F2 /* BindingExt.swift */,
 				5EC3B0C428CB81A900A040F2 /* CornerRadiusStyle.swift */,
-				5E1FDBFB28CFBD350034107D /* ArrayExt.swift */,
 				5EBEB68928DE264400AA7C84 /* FontExt.swift */,
+				5EC3B0BC28CB813B00A040F2 /* NavRoute.swift */,
+				5EC3B0C028CB817500A040F2 /* StringExt.swift */,
+				5EC3B0BE28CB815500A040F2 /* UINavigationControllerExt.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -148,8 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				5EC3B0D328CB828C00A040F2 /* components */,
-				5EC3B0D428CB82A000A040F2 /* PetDetailScreen.swift */,
 				5EC3B0D628CB82AE00A040F2 /* PetDetailRoute.swift */,
+				5EC3B0D428CB82A000A040F2 /* PetDetailScreen.swift */,
 			);
 			path = PetDetail;
 			sourceTree = "<group>";
@@ -157,10 +168,10 @@
 		5EC3B0C828CB81FC00A040F2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				5E11056228D057E200B36633 /* state */,
 				5EC3B0CE28CB823900A040F2 /* components */,
-				5EC3B0C928CB820800A040F2 /* HomeScreen.swift */,
+				5E11056228D057E200B36633 /* state */,
 				5EC3B0CC28CB821900A040F2 /* HomeRoute.swift */,
+				5EC3B0C928CB820800A040F2 /* HomeScreen.swift */,
 				5E54694128E1D01500ADBF23 /* HomeScreenNew.swift */,
 			);
 			path = Home;
@@ -208,9 +219,9 @@
 				5EC3B09428CB7D4E00A040F2 /* App */,
 				5EC3B09C28CB7F8C00A040F2 /* Common */,
 				5EC3B0C628CB81C200A040F2 /* Features */,
-				058557D7273AAEEB004C7B11 /* Preview Content */,
-				5EC3B0DC28CB853500A040F2 /* petsearch-ios.entitlements */,
 				7555FF8C242A565B00829871 /* Info.plist */,
+				5EC3B0DC28CB853500A040F2 /* petsearch-ios.entitlements */,
+				058557D7273AAEEB004C7B11 /* Preview Content */,
 			);
 			path = "petsearch-ios";
 			sourceTree = "<group>";
@@ -375,6 +386,7 @@
 				5EC3B0DB28CB82E000A040F2 /* SectionTitle.swift in Sources */,
 				5EC3B0D528CB82A000A040F2 /* PetDetailScreen.swift in Sources */,
 				5EC3B0D028CB824900A040F2 /* TabRow.swift in Sources */,
+				5E9D8B0228E3369500EFAC59 /* Snackbar.swift in Sources */,
 				5EC3B0D728CB82AE00A040F2 /* PetDetailRoute.swift in Sources */,
 				5E1FDBFC28CFBD350034107D /* ArrayExt.swift in Sources */,
 				5EC3B0CA28CB820800A040F2 /* HomeScreen.swift in Sources */,

@@ -9,7 +9,6 @@
 import Foundation
 import SwiftUI
 
-
 // Source
 // https://stackoverflow.com/a/60512484
 

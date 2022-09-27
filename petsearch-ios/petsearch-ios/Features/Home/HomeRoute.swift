@@ -29,5 +29,4 @@ struct HomeRoute: NavRoute {
     func getArguments() -> Array<String> {
         return [String]()
     }
-    
 }
