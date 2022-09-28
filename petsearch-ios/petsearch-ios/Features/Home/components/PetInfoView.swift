@@ -41,7 +41,7 @@ struct PetInfoView: View {
 
             // Pet Name
             Text(petInfo.name)
-                .font(Font.titleMedium)
+                .style(.titleMedium)
                 .foregroundColor(Color.onSurface)
                 .lineLimit(1)
                 .padding(.init(top: 10, leading: 12, bottom: .zero, trailing: 12))
@@ -49,7 +49,7 @@ struct PetInfoView: View {
             
             // Pet Description
             Text(petInfo.shortDescription)
-                .font(Font.bodySmall)
+                .style(.bodySmall)
                 .foregroundColor(Color.onSurface)
                 .lineLimit(2)
                 .opacity(0.75)

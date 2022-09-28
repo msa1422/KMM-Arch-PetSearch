@@ -15,9 +15,8 @@ struct SectionTitle: View {
     var body: some View {
         HStack(alignment: .center) {
             Text(title)
-                .font(Font.titleSmall)
+                .style(.titleSmall)
                 .foregroundColor(Color.onSurface)
-                .tracking(0.07)
                 .opacity(0.62)
                 .padding(.init(top: 8, leading: 24, bottom: 8, trailing: 24))
             

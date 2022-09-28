@@ -46,14 +46,14 @@ struct Snackbar: View {
                         HStack {
                             //self.text.foregroundColor(self.colorScheme == .light ? .white : .black)
                             Text(self.text)
-                                .font(.bodyMedium)
+                                .style(.bodyMedium)
                                 .foregroundColor(.surface)
                             
                             Spacer()
                             
                             if let action = self.snackBar?.action {
                                 Text(action)
-                                    .font(.titleMedium)
+                                    .style(.titleMedium)
                                     //.foregroundColor(self.colorScheme == .light ? .white : .black)
                                     .foregroundColor(.surface)
                                     .onTapGesture {

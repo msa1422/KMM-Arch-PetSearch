@@ -34,12 +34,12 @@ struct HomeScreen: View {
                     HStack(alignment: .center, spacing: .zero) {
                         Image("near_me")
                         Text("New York City")
-                            .font(Font.titleMedium)
+                            .style(.titleMedium)
                             .padding(.init(top: .zero, leading: 6, bottom: .zero, trailing:.zero))
                         Image("arrow_drop_down")
                     }
                     Text("20 W 34th St., New York, United States")
-                        .font(Font.bodySmall)
+                        .style(.bodySmall)
                         .padding(.init(top: 4, leading: 4, bottom: .zero, trailing: .zero))
                 }
                 .padding(.init(top: 4, leading: 20, bottom: 18, trailing: 24))

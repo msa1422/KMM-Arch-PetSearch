@@ -44,7 +44,7 @@ struct PetDetailScreen: View {
                         
                         // Pet Name
                         Text(state?.petInfo?.name ?? "")
-                            .font(Font.titleMedium)
+                            .style(.titleMedium)
                             .foregroundColor(Color.onSurface)
                             .lineLimit(1)
                             .padding(.init(top: 16, leading: 24 + 36 * scrollProgress, bottom: .zero, trailing: 24))
@@ -52,7 +52,7 @@ struct PetDetailScreen: View {
                         
                         // Pet Description
                         Text(state?.petInfo?.shortDescription.replacingOccurrences(of: "\n", with: ", ") ?? "")
-                            .font(Font.bodySmall)
+                            .style(.bodySmall)
                             .foregroundColor(Color.onSurface)
                             .lineLimit(2)
                             .opacity(0.75)
@@ -80,7 +80,7 @@ struct PetDetailScreen: View {
                 VStack {
                     // Pet Description
                     Text(state?.petInfo?.description_ ?? "")
-                        .font(Font.bodyMedium)
+                        .style(.bodyMedium)
                         .foregroundColor(Color.onSurface)
                         .lineSpacing(1.4)
                         .padding(.init(top: 20, leading: 24, bottom: .zero, trailing: 24))
@@ -97,7 +97,7 @@ struct PetDetailScreen: View {
                         ) {
                             ForEach(state?.petInfo?.tags ?? [], id: \.self) { tag in
                                 Text("• \(tag)")
-                                    .font(Font.bodyMedium)
+                                    .style(.bodyMedium)
                                     .foregroundColor(Color.onSurface)
                                     .padding(.init(top: 4, leading: 12, bottom: .zero, trailing: 12))
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -139,11 +139,11 @@ struct PetDetailScreen: View {
                                     
                                     Text(attribute.0)
                                         .bold()
-                                        .font(Font.labelSmall)
+                                        .style(.labelSmall)
                                         .foregroundColor(Color.onSurface.opacity(0.62))
                                     
                                     Text(attribute.1)
-                                        .font(Font.bodyMedium)
+                                        .style(.bodyMedium)
                                         .foregroundColor(Color.onSurface)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }

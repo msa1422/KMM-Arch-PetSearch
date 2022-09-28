@@ -43,7 +43,7 @@ struct TabRow: View {
                                     
                                     // Text
                                     Text(tabs[row].uppercased())
-                                        .font(selectedTab == row ? Font.tabSelected : Font.tabUnselected)
+                                        .style(selectedTab == row ? .tabSelected : .tabUnselected)
                                         .foregroundColor(Color.onSurface)
                                         .frame(width: .none, height: 52)
                                         // for making text visually centered
