@@ -2,9 +2,6 @@
 <resources>
     <!-- format: #RRGGBB[AA] or 0xRRGGBB[AA] or RRGGBB[AA] where [AA] - optional -->
     <color name="background">0xF2F7FFFF</color>
-
     <color name="surface">0xFFFFFFFF</color>
     <color name="onSurface">0x050505E6</color>
-
-
 </resources>
