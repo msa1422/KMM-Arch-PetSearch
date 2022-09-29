@@ -11,8 +11,6 @@ import SDWebImageSwiftUI
 
 struct ImagePager: View {
     
-    let imageWidth: CGFloat
-    let topInsetHeight: CGFloat
     var images: [String]
     var onClick: (_ image: String) -> Void
     
@@ -37,8 +35,6 @@ struct ImagePager: View {
                     .clipped()
             }
         }
-        .frame(width: imageWidth, height: imageWidth + topInsetHeight)
         .tabViewStyle(PageTabViewStyle())
     }
-    
 }
