@@ -1,5 +1,6 @@
 package com.msa.petsearch.home.composable
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -8,42 +9,40 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.msa.petsearch.shared.coreentity.petinfo.PetInfo
+import com.msa.petsearch.commonres.R as commonR
 
 @Composable
 internal fun PetInfoItem(
     petInfo: PetInfo,
     imageHeight: Dp,
-    placeholderImage: Painter,
-    errorImage: Painter,
     colorFilter: ColorFilter,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
         val context = LocalContext.current
+        val painter = rememberAsyncImagePainter(
+            model = remember {
+                ImageRequest.Builder(context)
+                    .data(petInfo.photos.firstOrNull()?.medium)
+                    .placeholder(commonR.drawable.ic_bg_paw_print_loading)
+                    .error(commonR.drawable.ic_bg_paw_print_loaded)
+                    .crossfade(true)
+                    .build()
+            },
+            contentScale = ContentScale.Crop
+        )
 
-        // Remember so that a little amount of time can be saved during a recomposition
-        // little amount of time -> Probably just a negligible amount of time
-        val imageRequest = remember {
-            ImageRequest.Builder(context)
-                .data(petInfo.photos.firstOrNull()?.medium)
-                .crossfade(true)
-                .build()
-        }
-
-        AsyncImage(
-            model = imageRequest,
-            placeholder = placeholderImage,
-            error = errorImage,
+        Image(
+            painter = painter,
             contentScale = ContentScale.Crop,
             alignment = Alignment.Center,
             colorFilter = colorFilter,

@@ -37,7 +37,7 @@ internal fun PetDetailScreen(
                 CollapsingTopAppBar(
                     title = state?.petInfo?.name ?: "",
                     subtitle = state?.petInfo?.shortDescription ?: "",
-                    pagerImages = state?.petInfo?.photos?.map { it.large } ?: emptyList(),
+                    pagerImages = state?.petInfo?.photos ?: emptyList(),
                     onPagerImageClick = {
                         // Navigate to full screen image pager
                     },

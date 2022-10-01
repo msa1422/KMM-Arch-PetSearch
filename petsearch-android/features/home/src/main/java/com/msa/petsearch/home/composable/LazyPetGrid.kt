@@ -36,10 +36,6 @@ internal fun LazyPetGrid(
     // jank is still present in a Samsung S7 testing device
     // TODO: Add span logic for Tablet screen sizes
 
-    val placeholder = rememberAsyncImagePainter(R.drawable.ic_bg_paw_print_loading)
-
-    val errorImage = rememberAsyncImagePainter(R.drawable.ic_bg_paw_print_loaded)
-
     // Setting the ColorFilter to make the images pop a bit less. Skip in production
     val colorFilter = remember {
         ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(IMAGE_SATURATION) })
@@ -74,8 +70,6 @@ internal fun LazyPetGrid(
                 PetInfoItem(
                     petInfo = it,
                     imageHeight = imageHeight,
-                    placeholderImage = placeholder,
-                    errorImage = errorImage,
                     colorFilter = colorFilter,
                     modifier = Modifier
                         .fillMaxWidth()

@@ -28,6 +28,7 @@ import com.msa.petsearch.petdetail.composable.ChildrenId.BACK_BUTTON_ID
 import com.msa.petsearch.petdetail.composable.ChildrenId.PAGER_ID
 import com.msa.petsearch.petdetail.composable.ChildrenId.TITLE_BG_ID
 import com.msa.petsearch.petdetail.composable.ChildrenId.TITLE_ID
+import com.msa.petsearch.shared.coreentity.petinfo.PetPhoto
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,7 +36,7 @@ import kotlin.math.roundToInt
 internal fun CollapsingTopAppBar(
     title: String,
     subtitle: String,
-    pagerImages: List<String>,
+    pagerImages: List<PetPhoto>,
     onPagerImageClick: (index: Int) -> Unit,
     onBackPressed: () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior,

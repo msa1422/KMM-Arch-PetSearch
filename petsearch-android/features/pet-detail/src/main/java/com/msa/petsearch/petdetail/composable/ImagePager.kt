@@ -18,17 +18,17 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.msa.petsearch.commonres.R
+import com.msa.petsearch.shared.coreentity.petinfo.PetPhoto
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 internal fun ImagePager(
-    images: List<String>,
+    images: List<PetPhoto>,
     onImageClick: (index: Int) -> Unit,
     userScrollEnabled: Boolean,
     modifier: Modifier = Modifier
 ) {
     val pagerState = rememberPagerState()
-    val placeholder = rememberAsyncImagePainter(R.drawable.ic_bg_paw_print_loading)
     val errorImage = rememberAsyncImagePainter(R.drawable.ic_bg_paw_print_loaded)
 
     val colorFilter = remember {
@@ -45,9 +45,8 @@ internal fun ImagePager(
     ) { index ->
         if (images.size > index) { // This condition should always be true
             Image(
-                url = images[index],
+                photo = images[index],
                 colorFilter = colorFilter,
-                placeholder = placeholder,
                 error = errorImage,
                 modifier = Modifier
                     .fillMaxSize()
@@ -59,22 +58,27 @@ internal fun ImagePager(
 
 @Composable
 private fun Image(
-    url: String,
+    photo: PetPhoto,
     colorFilter: ColorFilter,
     modifier: Modifier = Modifier,
-    placeholder: Painter? = null,
     error: Painter? = null
 ) {
     val context = LocalContext.current
-    val imageRequest = remember {
+    val mainImage = remember {
         ImageRequest.Builder(context)
-            .data(url)
-            .crossfade(50)
+            .data(photo.large)
+            .crossfade(false)
             .build()
     }
+    val placeholder = rememberAsyncImagePainter(
+        model = ImageRequest.Builder(context)
+            .data(photo.medium)
+            .crossfade(false)
+            .build()
+    )
 
     AsyncImage(
-        model = imageRequest,
+        model = mainImage,
         placeholder = placeholder,
         error = error,
         contentScale = ContentScale.Crop,
