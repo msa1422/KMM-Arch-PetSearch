@@ -45,7 +45,7 @@ struct PetDetailScreen: View {
                         
                         return AnyView(
                             ImagePager(
-                                images: state?.petInfo?.photos.compactMap({ $0.full }) ?? [String]()
+                                photos: state?.petInfo?.photos ?? [PetPhoto]()
                             ) { image in
                                 // OnClick on event for image
                             }
@@ -58,7 +58,8 @@ struct PetDetailScreen: View {
                     Section(
                         header: PetDetailHeader(
                             petName: state?.petInfo?.name ?? "",
-                            shortDescription: state?.petInfo?.shortDescription.replacingOccurrences(of: "\n", with: ", ") ?? "",
+                            shortDescription: state?.petInfo?.shortDescription
+                                .replacingOccurrences(of: "\n", with: ", ") ?? "",
                             pagerHeight: pagerHeight,
                             scrollOffset: $scrollOffset
                         )

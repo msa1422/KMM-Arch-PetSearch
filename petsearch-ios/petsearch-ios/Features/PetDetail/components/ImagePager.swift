@@ -7,34 +7,57 @@
 //
 
 import SwiftUI
+import Shared
 import SDWebImageSwiftUI
 
 struct ImagePager: View {
     
-    var images: [String]
-    var onClick: (_ image: String) -> Void
+    private let photos: [PetPhoto]
+    private let onClick: (_ image: String) -> Void
+    
+    init(photos: [PetPhoto], onClick: @escaping (_: String) -> Void) {
+        self.photos = photos
+        self.onClick = onClick
+    }
     
     var body: some View {
         TabView {
-            ForEach(images, id: \.self) { imgURL in
+            ForEach(photos, id: \.self) { photo in
                 Color.clear
                     .overlay(
-                        WebImage(url: URL(string: imgURL))
+                        WebImage(url: URL(string: photo.large))
                             .resizable()
                             .placeholder {
-                                Image("pet_image_placeholder")
-                                    .resizable()
-                                    .scaledToFill()
+                                if photos.firstIndex(of: photo) == 0 {
+                                    WebImage(url: URL(string: photo.medium))
+                                        .resizable()
+                                        .placeholder {
+                                            placeholder
+                                                .scaledToFill()
+                                        }
+                                        .cancelOnDisappear(true)
+                                        .indicator(.activity)
+                                        .scaledToFill()
+                                } else {
+                                    placeholder
+                                        .scaledToFill()
+                                }
                             }
+                            .cancelOnDisappear(true)
                             .indicator(.activity)
                             .transition(.fade)
                             .scaledToFill()
                             .saturation(0.38)
-                            .onTapGesture { onClick(imgURL) }
+                            .onTapGesture { onClick(photo.large) }
                     )
                     .clipped()
             }
         }
         .tabViewStyle(PageTabViewStyle())
+    }
+    
+    var placeholder: Image {
+        Image("pet_image_placeholder")
+            .resizable()
     }
 }
