@@ -47,3 +47,4 @@ include(
     ":petsearch-android:features:pet-detail"
 )
 include(":petsearch-shared:resources")
+include(":petsearch-shared:core:test")
