@@ -18,6 +18,8 @@ abstract class FlowInteractor<Arg, ReturnType> {
 
     abstract fun run(params: Arg?): Flow<ReturnType>
 
+    operator fun invoke(params: Arg?): Flow<ReturnType> = run(params)
+
     operator fun invoke(
         args: Arg? = null,
         coroutineScope: CoroutineScope,
@@ -137,3 +139,5 @@ abstract class FlowInteractor<Arg, ReturnType> {
         }
     }
 }
+
+operator fun <Type> FlowInteractor<Unit, Type>.invoke(): Flow<Type> = this(Unit)
