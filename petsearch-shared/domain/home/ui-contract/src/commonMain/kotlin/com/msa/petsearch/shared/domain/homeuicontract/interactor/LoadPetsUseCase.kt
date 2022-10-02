@@ -12,21 +12,16 @@ internal class LoadPetsUseCase(
 ) : FlowInteractor<LoadPetsUseCase.Params, Resource<SearchPetResponse?>>() {
 
     data class Params(
-        val type: String,
-        val page: Int,
-        val searchParams: PetSearchParams?
+        val type: String, val page: Int, val searchParams: PetSearchParams?
     )
 
     override fun run(params: Params?): Flow<Resource<SearchPetResponse?>> {
         return flow {
-            params
-                ?.let {
-                    emit(dataSource.searchPets(it.type, it.page, it.searchParams))
-                }
-                ?: kotlin.run {
-                    throw IllegalArgumentException("Not enough parameters to fetch the data.")
-                }
-        }
-            .catch { emit(Resource.error(it, null)) }
+            params?.let {
+                emit(dataSource.searchPets(it.type, it.page, it.searchParams))
+            } ?: kotlin.run {
+                throw IllegalArgumentException("Not enough parameters to fetch the data.")
+            }
+        }.catch { emit(Resource.error(it, null)) }
     }
 }

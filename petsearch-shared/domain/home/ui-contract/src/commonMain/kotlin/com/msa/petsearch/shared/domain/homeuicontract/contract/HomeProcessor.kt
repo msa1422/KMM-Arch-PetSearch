@@ -49,7 +49,7 @@ internal class HomeProcessor(
         effect: HomeSideEffect.LoadPetTypesFromNetwork
     ) : HomeAction {
         return suspendCancellableCoroutine { continuation ->
-            useCases.getPetTypes.execute(
+            useCases.getPetTypes(
                 coroutineScope = effect.coroutineScope,
                 dispatcher = effect.dispatcher
             ) {
@@ -102,7 +102,7 @@ internal class HomeProcessor(
         currentKey: Int
     ) : PagingResult<Int, PetInfo> {
         return suspendCancellableCoroutine { continuation ->
-            useCases.getPets.execute(
+            useCases.getPets(
                 args = LoadPetsUseCase.Params(effect.type, currentKey, effect.params),
                 coroutineScope = effect.coroutineScope,
                 dispatcher = effect.dispatcher
