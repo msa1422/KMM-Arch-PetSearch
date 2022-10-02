@@ -27,5 +27,3 @@ class CommonFlow<T>(private val origin: Flow<T>) : Flow<T> by origin {
         }
     }
 }
-
-

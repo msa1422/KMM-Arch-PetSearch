@@ -176,8 +176,9 @@ internal fun CollapsibleTopBar(
                             .layoutId(DIVIDER_ID)
                             .fillMaxWidth()
                             .height(DividerHeight)
-                            .background(color = MaterialTheme.colorScheme.onBackground
-                                .copy(alpha = 0.15F))
+                            .background(
+                                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.15F)
+                            )
                     )
                 }
             ) { measurables, constraints ->
@@ -192,7 +193,6 @@ internal fun CollapsibleTopBar(
                     .measure(constraints)
 
                 layout(constraints.maxWidth, expandedHeightPx.roundToInt()) {
-
                     val heightOffsetPx = scrollBehavior.state.heightOffset / 2
 
                     val toolbarOffsetPx = statusBarHeightPx + heightOffsetPx

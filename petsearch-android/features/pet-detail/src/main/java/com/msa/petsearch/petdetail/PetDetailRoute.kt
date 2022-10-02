@@ -72,5 +72,4 @@ object PetDetailRoute : NavRoute<PetDetailViewModel> {
                 )
             )
     }
-
 }

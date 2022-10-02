@@ -17,12 +17,14 @@ fun <T : Any> LazyGridScope.items(
         count = items.itemCount,
         key = if (key == null) {
             null
-        } else { index ->
-            val item = items.peek(index)
-            if (item == null) {
-                GridPagingPlaceholderKey(index)
-            } else {
-                key(item)
+        } else {
+            { index ->
+                val item = items.peek(index)
+                if (item == null) {
+                    GridPagingPlaceholderKey(index)
+                } else {
+                    key(item)
+                }
             }
         }
     ) { index ->

@@ -177,8 +177,10 @@ fun <T> Flow<T>.collectAsStateWithLifecycle(
         lifecycle.repeatOnLifecycle(minActiveState) {
             if (context == EmptyCoroutineContext) {
                 this@collectAsStateWithLifecycle.collect { this@produceState.value = it }
-            } else withContext(context) {
-                this@collectAsStateWithLifecycle.collect { this@produceState.value = it }
+            } else {
+                withContext(context) {
+                    this@collectAsStateWithLifecycle.collect { this@produceState.value = it }
+                }
             }
         }
     }

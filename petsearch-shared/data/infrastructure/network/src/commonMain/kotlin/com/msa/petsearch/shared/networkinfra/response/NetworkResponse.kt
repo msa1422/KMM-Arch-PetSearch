@@ -11,6 +11,3 @@ internal data class NetworkResponse<T>(
             NetworkResponse(data, error)
     }
 }
-
-
-

@@ -37,5 +37,4 @@ object HomeNavRoute : NavRoute<HomeViewModel> {
             targetAlpha = 1F
         )
     }
-
 }
