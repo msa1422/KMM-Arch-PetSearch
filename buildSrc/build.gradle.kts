@@ -25,6 +25,7 @@ dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
     implementation(libs.gradlePlugin.kotlin)
     implementation(libs.gradlePlugin.buildTools)
+    implementation(libs.gradlePlugin.kotest.framework)
     implementation(libs.gradlePlugin.dependency.check)
     implementation(libs.gradlePlugin.detekt)
     implementation(libs.gradlePlugin.spotless)

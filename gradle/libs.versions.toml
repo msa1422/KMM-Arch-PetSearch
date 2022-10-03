@@ -30,11 +30,12 @@ compose-compiler = "1.3.1"
 compose-material3 = "1.0.0-beta03"
 accompanist = "0.25.1"
 
-testing-kotest = "5.5.0"
+testing-kotest = "5.4.2"
 testing-arch-core = "2.1.0"
 testing-junit = "4.13.2"
 testing-junitext = "1.1.4-alpha05"
 testing-junit5 = "5.9.1"
+testing-mockk = "1.12.5"
 
 [plugins]
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
@@ -51,6 +52,7 @@ gradlePlugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", ve
 gradlePlugin-kotlinSerialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 gradlePlugin-realm = { module = "io.realm.kotlin:gradle-plugin", version.ref = "realm" }
 gradlePlugin-mokoResources = { module = "dev.icerock.moko:resources-generator", version.ref = "moko-resources" }
+gradlePlugin-kotest-framework = { module = "io.kotest:kotest-framework-multiplatform-plugin-gradle", version.ref = "testing-kotest" }
 
 gradlePlugin-ktlint = { module = "org.jlleitschuh.gradle:ktlint-gradle", version = "10.2.1" }
 gradlePlugin-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version = "1.21.0" }
@@ -149,9 +151,9 @@ squareup-leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", v
 
 junit = { module = "junit:junit", version = "4.13.2" }
 
-testing-kotest-jvm = { module = "io.kotest:kotest-runner-junit5", version.ref = "testing-kotest" }
-testing-kotest-native = { module = "io.kotest:kotest-framework-engine", version.ref = "testing-kotest" }
-testing-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "testing-kotest" }
+testing-kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "testing-kotest" }
+testing-kotest-framework-engine = { module = "io.kotest:kotest-framework-engine", version.ref = "testing-kotest" }
+testing-kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "testing-kotest" }
 testing-kotest-property = { module = "io.kotest:kotest-property", version.ref = "testing-kotest" }
 
 testing-androidx-core = { module = "androidx.arch.core:core-testing", version.ref = "testing-arch-core" }
@@ -163,17 +165,10 @@ testing-junit5-vintage = { module = "org.junit.vintage:junit-vintage-engine", ve
 
 testing-turbine = { module = "app.cash.turbine:turbine", version = "0.11.0" }
 
+testing-mockk-core = { module = "io.mockk:mockk", version.ref = "testing-mockk" }
+testing-mockk-common = { module = "io.mockk:mockk-common", version.ref = "testing-mockk" }
 
 [bundles]
-gradlePlugins = [
-    "gradlePlugin-buildTools",
-    "gradlePlugin-navigation-safeArgs",
-    "gradlePlugin-kotlin",
-    "gradlePlugin-kotlinSerialization",
-    "gradlePlugin-realm",
-    "gradlePlugin-mokoResources",
-    "gradlePlugin-ktlint"
-]
 app-ui = [
     "androidx-compose-compiler",
     "androidx-core-ktx",

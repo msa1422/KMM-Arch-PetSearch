@@ -5,6 +5,7 @@ import com.msa.petsearch.util.libs
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("io.kotest.multiplatform")
 }
 
 version = libs.versions.project.version.get()
@@ -26,11 +27,23 @@ kotlin {
         val commonMain by getting
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+                implementation(libs.kotlinx.coroutines.test)
+                implementation(libs.testing.turbine)
+                implementation(libs.testing.kotest.framework.engine)
+                implementation(libs.testing.kotest.assertions.core)
+                implementation(libs.testing.kotest.property)
+                implementation(libs.testing.mockk.common)
             }
         }
         val androidMain by getting
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation(libs.testing.kotest.runner.junit5)
+                implementation(libs.testing.mockk.core)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
