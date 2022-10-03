@@ -16,10 +16,4 @@ dependencies {
     commonMainImplementation(projects.petsearchShared.core.util)
 
     commonMainImplementation(projects.petsearchShared.domain.petDetail.dataSource)
-
-    commonTestImplementation(projects.petsearchShared.core.test)
-    commonTestImplementation(kotlin("test"))
-    commonTestImplementation(libs.testing.kotest.assertions)
-    commonTestImplementation(libs.testing.turbine)
-    commonTestImplementation(libs.kotlinx.coroutines.test)
 }
