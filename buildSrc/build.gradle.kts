@@ -26,7 +26,6 @@ dependencies {
     implementation(libs.gradlePlugin.kotlin)
     implementation(libs.gradlePlugin.buildTools)
     implementation(libs.gradlePlugin.dependency.check)
-    implementation(libs.gradlePlugin.buildkonfig)
     implementation(libs.gradlePlugin.detekt)
     implementation(libs.gradlePlugin.spotless)
 }

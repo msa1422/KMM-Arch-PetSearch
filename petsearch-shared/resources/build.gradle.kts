@@ -1,11 +1,11 @@
-@file:Suppress("UnstableApiUsage")
+@file:Suppress("DSL_SCOPE_VIOLATION")
 
 import com.msa.petsearch.util.libs
 import com.msa.petsearch.PackageNameAccessor.SHARED_RESOURCES_PACKAGE
 
 plugins {
     `kmm-shared-module-plugin`
-    id("dev.icerock.mobile.multiplatform-resources")
+    alias(libs.plugins.moko.resources)
 }
 
 android {

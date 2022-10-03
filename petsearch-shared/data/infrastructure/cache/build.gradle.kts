@@ -1,10 +1,10 @@
-@file:Suppress("UnstableApiUsage")
+@file:Suppress("DSL_SCOPE_VIOLATION")
 
 import com.msa.petsearch.util.libs
 
 plugins {
     `kmm-shared-module-plugin`
-    id("io.realm.kotlin")
+    alias(libs.plugins.realm.kotlin)
 }
 
 dependencies {

@@ -1,18 +1,9 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.msa.petsearch.util.libs
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-plugins {
-    kotlin("jvm")
-}
 
 buildscript {
     repositories.applyDefault()
-
-    dependencies {
-        classpath(libs.bundles.gradlePlugins)
-    }
 }
 
 allprojects {
@@ -41,6 +32,10 @@ subprojects {
             )
         }
     }
+}
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
 }
 
 // DuplicateTaskException: Cannot add task 'clean' as a task with that name already exists.

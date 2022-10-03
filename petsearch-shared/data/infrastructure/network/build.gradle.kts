@@ -1,4 +1,4 @@
-@file:Suppress("UnstableApiUsage")
+@file:Suppress("DSL_SCOPE_VIOLATION")
 
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 import com.msa.petsearch.extensions.getApiProperty
@@ -7,8 +7,8 @@ import com.msa.petsearch.PackageNameAccessor.DATA_INFRASTRUCTURE_NETWORK_PACKAGE
 
 plugins {
     `kmm-shared-module-plugin`
-    kotlin("plugin.serialization")
-    id("com.codingfeline.buildkonfig")
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.codingfeline.buildkonfig)
 }
 
 dependencies {

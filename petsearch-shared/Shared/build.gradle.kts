@@ -1,4 +1,4 @@
-@file:Suppress("UnstableApiUsage")
+@file:Suppress("DSL_SCOPE_VIOLATION")
 
 import com.msa.petsearch.PackageNameAccessor.SHARED_PACKAGE
 import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode
@@ -7,7 +7,7 @@ import com.msa.petsearch.util.libs
 plugins {
     `kmm-shared-module-plugin`
     kotlin("native.cocoapods")
-    id("dev.icerock.mobile.multiplatform-resources")
+    alias(libs.plugins.moko.resources)
 }
 
 android {
