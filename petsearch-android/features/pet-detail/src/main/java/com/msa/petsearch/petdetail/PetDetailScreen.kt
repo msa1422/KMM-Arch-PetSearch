@@ -29,7 +29,7 @@ internal fun PetDetailScreen(
 
     val state by viewModel.observeState().collectAsStateWithLifecycle(initialValue = null)
 
-    val scrollBehavior = exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
+    val scrollBehavior = exitUntilCollapsedScrollBehavior(snapAnimationSpec = null)
 
     Scaffold(
         topBar = {
