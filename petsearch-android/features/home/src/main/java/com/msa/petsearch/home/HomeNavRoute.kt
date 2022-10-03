@@ -19,7 +19,7 @@ object HomeNavRoute : NavRoute<HomeViewModel> {
         get() = NavigationScreen.HomeNavScreen.route
 
     @Composable
-    override fun content(viewModel: HomeViewModel) =
+    override fun Content(viewModel: HomeViewModel) =
         HomeScreen(viewModel)
 
     @Composable

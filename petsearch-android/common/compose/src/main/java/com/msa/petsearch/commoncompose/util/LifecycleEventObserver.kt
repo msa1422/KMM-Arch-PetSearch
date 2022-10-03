@@ -7,7 +7,7 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 
 @Composable
-fun <T> T.lifecycleCallbackFor(
+fun <T> T.LifecycleCallbackFor(
     vararg event: Lifecycle.Event,
     onEvent: (Lifecycle.Event) -> Unit
 ) where T : LifecycleOwner {
@@ -37,7 +37,7 @@ fun <T> T.lifecycleCallbackFor(
 }
 
 @Composable
-fun <T> T.observe(
+fun <T> T.Observe(
     owner: LifecycleOwner = LocalLifecycleOwner.current,
     block: () -> Unit
 ) where T : Lifecycle.Event {
@@ -49,7 +49,7 @@ fun <T> T.observe(
         val lifecycle = lifecycleOwner.value.lifecycle
 
         val observer = LifecycleEventObserver { _, e ->
-            if (this@observe == e) {
+            if (this@Observe == e) {
                 eventHandler.value()
             }
         }

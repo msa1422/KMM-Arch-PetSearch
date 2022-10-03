@@ -21,7 +21,7 @@ object PetDetailRoute : NavRoute<PetDetailViewModel> {
         get() = NavigationScreen.PetDetailNavScreen.route
 
     @Composable
-    override fun content(viewModel: PetDetailViewModel) =
+    override fun Content(viewModel: PetDetailViewModel) =
         PetDetailScreen(viewModel)
 
     @Composable

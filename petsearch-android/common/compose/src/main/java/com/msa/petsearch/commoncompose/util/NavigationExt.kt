@@ -9,7 +9,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavBackStackEntry
 
 @Composable
-fun NavBackStackEntry.onDestroy(block: () -> Unit) {
+fun NavBackStackEntry.OnDestroy(block: () -> Unit) {
     val hasActiveObservers = remember { mutableStateOf(false) }
 
     // Add an observer to Lifecycle of the CurrentDestination
@@ -21,7 +21,7 @@ fun NavBackStackEntry.onDestroy(block: () -> Unit) {
                 override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
                     if (event == Lifecycle.Event.ON_DESTROY) {
                         block.invoke()
-                        this@onDestroy.lifecycle.removeObserver(this)
+                        this@OnDestroy.lifecycle.removeObserver(this)
                         hasActiveObservers.value = false
                     }
                 }

@@ -23,6 +23,7 @@ import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationSc
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+@Suppress("UnusedMaterial3ScaffoldPaddingParameter")
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

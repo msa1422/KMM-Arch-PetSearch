@@ -11,7 +11,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.google.accompanist.navigation.animation.composable
 import com.msa.petsearch.commoncompose.util.HandyDelay
 import com.msa.petsearch.commoncompose.util.collectAsStateWithLifecycle
-import com.msa.petsearch.commoncompose.util.onDestroy
+import com.msa.petsearch.commoncompose.util.OnDestroy
 import com.msa.petsearch.shared.coreutil.resource.ResourceMessage
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.BaseViewModel
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationState
@@ -33,7 +33,7 @@ interface NavRoute<T : RouteNavigator> {
         get() = true
 
     @Composable
-    fun content(viewModel: T)
+    fun Content(viewModel: T)
 
     @Composable
     fun viewModel(entry: NavBackStackEntry): T
@@ -68,7 +68,7 @@ interface NavRoute<T : RouteNavigator> {
 
             (viewModel as? BaseViewModel<*, *, *, *, *, *, *>)?.let {
                 if (enableLifecycleObserver) {
-                    backStackEntry.onDestroy {
+                    backStackEntry.OnDestroy {
                         it.onCleared()
                     }
                 }
@@ -102,7 +102,7 @@ interface NavRoute<T : RouteNavigator> {
                     }
                 }
 
-                content(viewModel)
+                Content(viewModel)
             }
         }
     }
