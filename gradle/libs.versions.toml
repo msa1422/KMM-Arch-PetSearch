@@ -30,7 +30,7 @@ compose-compiler = "1.3.1"
 compose-material3 = "1.0.0-beta03"
 accompanist = "0.25.1"
 
-testing-kotest = "5.4.2"
+testing-kotest = "5.5.0"
 testing-arch-core = "2.1.0"
 testing-junit = "4.13.2"
 testing-junitext = "1.1.4-alpha05"
@@ -153,7 +153,9 @@ junit = { module = "junit:junit", version = "4.13.2" }
 
 testing-kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "testing-kotest" }
 testing-kotest-framework-engine = { module = "io.kotest:kotest-framework-engine", version.ref = "testing-kotest" }
+testing-kotest-framework-datatest = { module = "io.kotest:kotest-framework-datatest", version.ref = "testing-kotest" }
 testing-kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "testing-kotest" }
+testing-kotest-assertions-json = { module = "io.kotest:kotest-assertions-json", version.ref = "testing-kotest" }
 testing-kotest-property = { module = "io.kotest:kotest-property", version.ref = "testing-kotest" }
 
 testing-androidx-core = { module = "androidx.arch.core:core-testing", version.ref = "testing-arch-core" }
