@@ -65,11 +65,18 @@ PetSearch has blended the following coding practices and techniques to create a 
 
 
 ## Code Quality
-| Tools                                            | Check command             | Fix command               |
-|--------------------------------------------------|---------------------------|---------------------------|
-| [detekt](https://github.com/arturbosch/detekt)   | `./gradlew detekt`        | -                         |
-| [ktlint](https://github.com/pinterest/ktlint)    | `./gradlew ktlintCheck`   | `./gradlew ktlintFormat`  |
-| [spotless](https://github.com/diffplug/spotless) | `./gradlew spotlessCheck` | `./gradlew spotlessApply` |
+| Tools                                                   | Check command             | Fix command               |
+|---------------------------------------------------------|---------------------------|---------------------------|
+| [lint](https://developer.android.com/studio/write/lint) | `./gradlew lint`          | -                         |
+| [detekt](https://github.com/arturbosch/detekt)          | `./gradlew detekt`        | -                         |
+| [ktlint](https://github.com/pinterest/ktlint)           | `./gradlew ktlintCheck`   | `./gradlew ktlintFormat`  |
+| [spotless](https://github.com/diffplug/spotless)        | `./gradlew spotlessCheck` | `./gradlew spotlessApply` |
+
+<br>
+
+## Tests
+Kotest Plugin doesn't support running common tests in Multiplatform project via green run icons in editor.
+Only way to run common tests is via Gradle command `./gradlew check`
 
 <br>
 
@@ -94,6 +101,7 @@ PetSearch has blended the following coding practices and techniques to create a 
 * [Moko-Resources](https://github.com/icerockdev/moko-resources)
 * [Multiplatform-paging](https://github.com/kuuuurt/multiplatform-paging)
 * [Uuid](https://github.com/benasher44/uuid)
+* [Kotest](https://kotest.io)
 
 ### iOS
 * [UIPilot](https://github.com/canopas/UIPilot)
