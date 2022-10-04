@@ -39,12 +39,6 @@ android {
 
 dependencies {
     api(libs.bundles.app.ui)
-
-    // Bug in the Compose version 1.2.0 which breaks the Preview
-    // Adding these dependencies is a workaround
-    // https://issuetracker.google.com/issues/227767363
-    debugImplementation("androidx.customview:customview:1.2.0-alpha01")
-    debugImplementation("androidx.customview:customview-poolingcontainer:1.0.0")
 }
 
 tasks.withType<Test>().configureEach {
