@@ -1,10 +1,10 @@
-package com.msa.petsearch.shared.datainfrastructurepreferences.service
+package com.msa.petsearch.shared.prefsinfra.service
 
 import com.msa.petsearch.shared.coreutil.commonflow.CommonFlow
 import com.msa.petsearch.shared.coreutil.commonflow.asCommonFlow
 import com.msa.petsearch.shared.coreutil.resource.Resource
 import com.msa.petsearch.shared.coreutil.resource.asResource
-import com.msa.petsearch.shared.datainfrastructurepreferences.service.PreferenceKeys.PREF_THEME_PRIMARY
+import com.msa.petsearch.shared.prefsinfra.service.PreferenceKeys.PREF_THEME_PRIMARY
 import com.russhwolf.settings.ExperimentalSettingsApi
 import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.Settings

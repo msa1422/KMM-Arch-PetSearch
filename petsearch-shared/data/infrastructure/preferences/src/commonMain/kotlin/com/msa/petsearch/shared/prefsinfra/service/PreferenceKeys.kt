@@ -1,4 +1,4 @@
-package com.msa.petsearch.shared.datainfrastructurepreferences.service
+package com.msa.petsearch.shared.prefsinfra.service
 
 object PreferenceKeys {
 

@@ -1,5 +1,6 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
 
+import com.msa.petsearch.PackageNameAccessor.ANDROID_COMMON_COMPOSE
 import com.msa.petsearch.util.libs
 
 plugins {
@@ -8,6 +9,8 @@ plugins {
 }
 
 android {
+    namespace = ANDROID_COMMON_COMPOSE
+
     buildFeatures {
         compose = true
     }

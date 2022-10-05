@@ -1,8 +1,8 @@
 package com.msa.petsearch.shared
 
 import com.msa.petsearch.shared.coreutil.di.DomainCoreUtilModule
-import com.msa.petsearch.shared.datainfrastructurecache.di.CacheInfrastructureModule
-import com.msa.petsearch.shared.datainfrastructurepreferences.di.PreferenceInfrastructureModule
+import com.msa.petsearch.shared.cacheinfra.di.CacheInfrastructureModule
+import com.msa.petsearch.shared.prefsinfra.di.PreferenceInfrastructureModule
 import com.msa.petsearch.shared.domain.homeuicontract.di.HomeUiContractModule
 import com.msa.petsearch.shared.domain.petdetailuicontract.di.PetDetailUiContractModule
 import com.msa.petsearch.shared.networkinfra.di.NetworkInfrastructureModule

@@ -1,9 +1,14 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
 
+import com.msa.petsearch.PackageNameAccessor.UI_CONTRACT_HOME
 import com.msa.petsearch.util.libs
 
 plugins {
     `kmm-shared-module-plugin`
+}
+
+android {
+    namespace = UI_CONTRACT_HOME
 }
 
 dependencies {

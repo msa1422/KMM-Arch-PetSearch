@@ -1,6 +1,6 @@
-package com.msa.petsearch.shared.datainfrastructurecache.di
+package com.msa.petsearch.shared.cacheinfra.di
 
-import com.msa.petsearch.shared.datainfrastructurecache.realm.RealmDb
+import com.msa.petsearch.shared.cacheinfra.realm.RealmDb
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 

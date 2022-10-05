@@ -9,8 +9,11 @@ import io.kotest.matchers.types.shouldBeTypeOf
 internal class ResourceTest : FunSpec({
     test("Should map to Resource object") {
         val testObj = FakeResourceMessages[0]
-        val testObjAsResource = testObj.asResource { it }
+        // val testObjAsResource = FakeResourceMessages[0].asResource()
 
-        testObjAsResource.shouldBeTypeOf<Resource<ResourceMessage>>().data shouldBe testObj
+        FakeResourceMessages[0]
+            .asResource { it }
+            .shouldBeTypeOf<Resource<ResourceMessage>>()
+            .data shouldBe testObj
     }
 })

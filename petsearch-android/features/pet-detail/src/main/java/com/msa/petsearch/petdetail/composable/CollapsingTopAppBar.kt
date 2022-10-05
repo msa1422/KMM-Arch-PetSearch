@@ -31,7 +31,6 @@ import com.msa.petsearch.petdetail.composable.ChildrenId.TITLE_ID
 import com.msa.petsearch.shared.coreentity.petinfo.PetPhoto
 import kotlin.math.roundToInt
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun CollapsingTopAppBar(
     title: String,
@@ -240,7 +239,7 @@ internal fun CollapsingTopAppBar(
 private object ChildrenId {
     const val BACK_BUTTON_ID = 1001
     const val PAGER_ID = 1002
-    const val PAGER_INDICATOR_ID = 1003
+    //const val PAGER_INDICATOR_ID = 1003
     const val TITLE_ID = 1004
     const val TITLE_BG_ID = 1005
 }

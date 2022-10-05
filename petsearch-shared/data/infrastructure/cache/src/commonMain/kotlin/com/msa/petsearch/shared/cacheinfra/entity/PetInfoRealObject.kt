@@ -1,4 +1,4 @@
-package com.msa.petsearch.shared.datainfrastructurecache.entity
+package com.msa.petsearch.shared.cacheinfra.entity
 
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey

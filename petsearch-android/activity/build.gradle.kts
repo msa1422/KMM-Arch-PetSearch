@@ -1,9 +1,14 @@
 @file:Suppress("UnstableApiUsage")
 
+import com.msa.petsearch.PackageNameAccessor.ANDROID_ACTIVITY
 import com.msa.petsearch.util.libs
 
 plugins {
     `android-ui-plugin`
+}
+
+android {
+    namespace = ANDROID_ACTIVITY
 }
 
 dependencies {

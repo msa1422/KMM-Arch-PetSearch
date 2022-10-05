@@ -30,8 +30,8 @@ enum class Status {
  */
 inline fun <reified T, S> T?.asResource(mapper: ((T) -> S?) = { null }): Resource<S> {
     return when {
-        this == null -> Resource.success(null)
-        this !is Throwable && this !is Unit -> Resource.success(mapper.invoke(this))
+        this == Unit -> Resource.success(null)
+        this !is Throwable && this != null -> Resource.success(mapper.invoke(this))
         else -> Resource.error(Throwable((this as? Throwable)?.message ?: "Error"), null)
     }
 }

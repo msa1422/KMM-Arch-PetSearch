@@ -16,13 +16,10 @@ import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeAction
 import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeSideEffect
 import com.msa.petsearch.shared.domain.homeuicontract.interactor.LoadPetsUseCase
 import com.msa.petsearch.shared.domain.homeuicontract.interactor.UseCaseWrapper
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
-@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 internal class HomeProcessor(
     private val useCases: UseCaseWrapper
 ) : Processor<HomeSideEffect, HomeAction> {

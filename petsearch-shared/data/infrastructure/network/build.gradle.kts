@@ -3,12 +3,16 @@
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 import com.msa.petsearch.extensions.getApiProperty
 import com.msa.petsearch.util.libs
-import com.msa.petsearch.PackageNameAccessor.DATA_INFRASTRUCTURE_NETWORK_PACKAGE
+import com.msa.petsearch.PackageNameAccessor.DATA_INFRASTRUCTURE_NETWORK
 
 plugins {
     `kmm-shared-module-plugin`
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.codingfeline.buildkonfig)
+}
+
+android {
+    namespace = DATA_INFRASTRUCTURE_NETWORK
 }
 
 dependencies {
@@ -24,7 +28,7 @@ dependencies {
 }
 
 buildkonfig {
-    packageName = DATA_INFRASTRUCTURE_NETWORK_PACKAGE
+    packageName = DATA_INFRASTRUCTURE_NETWORK
     defaultConfigs {
         buildConfigField(STRING, "PETFINDER_API_KEY", getApiProperty("API_KEY"))
         buildConfigField(STRING, "PETFINDER_SECRET", getApiProperty("API_SECRET"))
