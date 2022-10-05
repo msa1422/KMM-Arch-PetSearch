@@ -10,10 +10,9 @@ import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.coroutines.getStringFlow
 import com.russhwolf.settings.coroutines.toSuspendSettings
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.distinctUntilChanged
 
-@OptIn(ExperimentalSettingsApi::class, ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalSettingsApi::class)
 class PreferenceDelegate(private val settings: Settings) {
 
     private val suspendSettings by lazy { settings.toSuspendSettings() }
