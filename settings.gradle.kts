@@ -1,4 +1,3 @@
-enableFeaturePreview("VERSION_CATALOGS")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -17,6 +16,7 @@ rootProject.name = "PetFinder-Showcase"
 include(
     ":petsearch-shared",
     ":petsearch-shared:Shared",
+    ":petsearch-shared:resources",
     ":petsearch-shared:core",
     ":petsearch-shared:core:entity",
     ":petsearch-shared:core:util",
@@ -46,5 +46,3 @@ include(
     ":petsearch-android:features:home",
     ":petsearch-android:features:pet-detail"
 )
-include(":petsearch-shared:resources")
-include(":petsearch-shared:core:test")
