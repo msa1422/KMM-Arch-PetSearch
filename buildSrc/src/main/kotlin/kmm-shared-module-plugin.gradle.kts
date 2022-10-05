@@ -1,14 +1,22 @@
-@file:Suppress("UnstableApiUsage")
+@file:Suppress("UnstableApiUsage", "UNUSED_VARIABLE")
 
 import com.msa.petsearch.util.libs
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("io.kotest.multiplatform")
+    id("com.msa.petsearch.checks.detekt")
+    id("com.msa.petsearch.checks.ktlint")
+    id("com.msa.petsearch.checks.spotless")
 }
 
 version = libs.versions.project.version.get()
+
+repositories {
+    applyDefault()
+}
 
 kotlin {
     android()
@@ -20,6 +28,9 @@ kotlin {
         languageSettings.apply {
             optIn("kotlin.RequiresOptIn")
             optIn("kotlin.time.ExperimentalTime")
+            optIn("kotlinx.coroutines.FlowPreview")
+            optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+            optIn("kotlinx.serialization.ExperimentalSerializationApi")
         }
     }
 
@@ -88,9 +99,11 @@ android {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+
     filter {
         isFailOnNoMatchingTests = false
     }
+
     testLogging {
         showExceptions = true
         showStandardStreams = true
@@ -99,5 +112,12 @@ tasks.withType<Test>().configureEach {
             org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
         )
         exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+    }
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = libs.versions.java.get().toString()
+        languageVersion = libs.versions.kt.get().toString()
     }
 }

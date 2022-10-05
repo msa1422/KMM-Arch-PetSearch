@@ -7,10 +7,18 @@ import com.msa.petsearch.extensions.BuildTypeDebug
 import com.msa.petsearch.extensions.BuildTypeRelease
 import com.msa.petsearch.extensions.getKeystoreProperty
 import com.msa.petsearch.util.libs
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("com.msa.petsearch.checks.detekt")
+    id("com.msa.petsearch.checks.ktlint")
+    id("com.msa.petsearch.checks.spotless")
+}
+
+repositories {
+    applyDefault()
 }
 
 android {
@@ -79,5 +87,12 @@ android {
 
     dependencies {
         debugImplementation(libs.squareup.leakcanary)
+    }
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = libs.versions.java.get().toString()
+        languageVersion = libs.versions.kt.get().toString()
     }
 }

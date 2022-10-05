@@ -16,11 +16,6 @@ repositories {
     maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
 }
 
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    languageVersion = libs.versions.kotlin.get().toString()
-}
-
 dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
     implementation(libs.gradlePlugin.kotlin)
@@ -29,4 +24,11 @@ dependencies {
     implementation(libs.gradlePlugin.dependency.check)
     implementation(libs.gradlePlugin.detekt)
     implementation(libs.gradlePlugin.spotless)
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = libs.versions.java.get().toString()
+        languageVersion = libs.versions.kt.get().toString()
+    }
 }

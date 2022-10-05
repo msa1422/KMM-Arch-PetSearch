@@ -3,6 +3,10 @@
 # Project Version
 project-version = "1.0"
 
+# Language Versions
+kt = "1.7"
+java = "11"
+
 ## SDK Versions
 minSdk = "21"
 targetSdk = "33"

@@ -1,10 +1,18 @@
 @file:Suppress("UnstableApiUsage")
 
 import com.msa.petsearch.util.libs
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.library")
     kotlin("android")
+    id("com.msa.petsearch.checks.detekt")
+    id("com.msa.petsearch.checks.ktlint")
+    id("com.msa.petsearch.checks.spotless")
+}
+
+repositories {
+    applyDefault()
 }
 
 android {
@@ -27,8 +35,25 @@ android {
         test.java.srcDirs("src/test/kotlin")
     }
 
+    tasks.withType<Test>().configureEach {
+        useJUnitPlatform()
+    }
 }
 
-tasks.withType<Test>().configureEach {
-    useJUnitPlatform()
+kotlin {
+    sourceSets.all {
+        languageSettings.apply {
+            optIn("kotlin.RequiresOptIn")
+            optIn("androidx.compose.animation.ExperimentalAnimationApi")
+            optIn("androidx.compose.material3.ExperimentalMaterial3Api")
+            optIn("androidx.compose.ui.unit.ExperimentalUnitApi")
+        }
+    }
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = libs.versions.java.get().toString()
+        languageVersion = libs.versions.kt.get().toString()
+    }
 }
