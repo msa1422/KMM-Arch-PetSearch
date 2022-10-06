@@ -41,6 +41,7 @@ kotlin {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
                 implementation(libs.kotlinx.coroutines.test)
+                implementation(libs.koin.test)
                 implementation(libs.testing.turbine)
                 implementation(libs.testing.kotest.framework.engine)
                 implementation(libs.testing.kotest.framework.datatest)

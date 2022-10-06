@@ -161,6 +161,7 @@ testing-kotest-framework-datatest = { module = "io.kotest:kotest-framework-datat
 testing-kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "testing-kotest" }
 testing-kotest-assertions-json = { module = "io.kotest:kotest-assertions-json", version.ref = "testing-kotest" }
 testing-kotest-property = { module = "io.kotest:kotest-property", version.ref = "testing-kotest" }
+testing-kotest-ext-koin = { module = "io.kotest.extensions:kotest-extensions-koin", version = "1.1.0" }
 
 testing-androidx-core = { module = "androidx.arch.core:core-testing", version.ref = "testing-arch-core" }
 testing-androidx-junit = { module = "androidx.test.ext:junit", version.ref = "testing-junitext" }
