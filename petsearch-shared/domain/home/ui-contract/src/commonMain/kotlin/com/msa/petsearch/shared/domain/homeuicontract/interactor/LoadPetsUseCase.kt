@@ -11,9 +11,7 @@ internal class LoadPetsUseCase(
     private val dataSource: HomeDataSource
 ) : FlowInteractor<LoadPetsUseCase.Params, Resource<SearchPetResponse?>>() {
 
-    data class Params(
-        val type: String, val page: Int, val searchParams: PetSearchParams?
-    )
+    data class Params(val type: String, val page: Int, val searchParams: PetSearchParams?)
 
     override fun run(params: Params?): Flow<Resource<SearchPetResponse?>> {
         return flow {

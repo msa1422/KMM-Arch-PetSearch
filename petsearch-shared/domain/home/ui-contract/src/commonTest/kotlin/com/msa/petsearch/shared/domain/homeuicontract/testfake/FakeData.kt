@@ -1,5 +1,6 @@
 package com.msa.petsearch.shared.domain.homeuicontract.testfake
 
+import com.kuuurt.paging.multiplatform.PagingData
 import com.msa.petsearch.shared.coreentity.PetSearchParams
 import com.msa.petsearch.shared.coreentity.PetType
 import com.msa.petsearch.shared.coreentity.petinfo.PetInfo
@@ -7,7 +8,9 @@ import com.msa.petsearch.shared.coreentity.petinfo.enum.*
 import com.msa.petsearch.shared.coreentity.response.PaginationInfo
 import com.msa.petsearch.shared.coreentity.response.PetTypesResponse
 import com.msa.petsearch.shared.coreentity.response.SearchPetResponse
+import com.msa.petsearch.shared.coreutil.commonflow.asCommonFlow
 import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeState
+import kotlinx.coroutines.flow.emptyFlow
 
 internal object FakeData {
 
@@ -103,6 +106,14 @@ internal object FakeData {
         declawed = false,
         specialNeeds = false
     )
+
+    private const val petSearchResponseErrorMessage = "Some error occurred while fetching Pets"
+    val petSearchResponseError = Throwable(petSearchResponseErrorMessage)
+
+    const val petTypeResponseErrorMessage = "Some error occurred while fetching Pet types"
+    val petTypeResponseError = Throwable(petTypeResponseErrorMessage)
+
+    val fakePagingData = emptyFlow<PagingData<PetInfo>>().asCommonFlow()
 
     fun getHomeState() = HomeState(
         petTypesResponse = petTypesResponse,
