@@ -3,25 +3,17 @@ package com.msa.petsearch.shared.repository.home
 import com.msa.petsearch.shared.coreentity.PetSearchParams
 import com.msa.petsearch.shared.coreentity.response.SearchPetResponse
 import com.msa.petsearch.shared.coreutil.resource.Resource
-import com.msa.petsearch.shared.networkinfra.NetworkDelegate
 import com.msa.petsearch.shared.domain.homedatasource.HomeDataSource
-import com.msa.petsearch.shared.repository.home.network.EndPoints.ANIMALS
-import com.msa.petsearch.shared.repository.home.network.EndPoints.ANIMAL_TYPES
-import com.msa.petsearch.shared.repository.home.network.EndPoints.API_HOST
-import com.msa.petsearch.shared.repository.home.network.mapper.response.toDomainEntity
-import com.msa.petsearch.shared.repository.home.network.response.PetTypesResponseDTO
-import com.msa.petsearch.shared.repository.home.network.response.SearchPetResponseDTO
+import com.msa.petsearch.shared.networkinfra.PetFinderApi
+import com.msa.petsearch.shared.networkinfra.response.PetTypesResponseDTO
+import com.msa.petsearch.shared.networkinfra.response.SearchPetResponseDTO
+import com.msa.petsearch.shared.repository.home.mapper.network.response.toDomainEntity
 
 internal class HomeDataSourceImpl(
-    private val networkDelegate: NetworkDelegate
+    private val api: PetFinderApi
 ) : HomeDataSource {
 
-    override suspend fun getPetTypes() =
-        networkDelegate.get(
-            host = API_HOST,
-            path = arrayOf(ANIMAL_TYPES),
-            mapper = PetTypesResponseDTO::toDomainEntity
-        )
+    override suspend fun getPetTypes() = api.getPetTypes(PetTypesResponseDTO::toDomainEntity)
 
     override suspend fun searchPets(
         type: String,
@@ -50,9 +42,7 @@ internal class HomeDataSourceImpl(
             parameters["specialNeeds"] = params.specialNeeds
         }
 
-        return networkDelegate.get(
-            host = API_HOST,
-            path = arrayOf(ANIMALS),
+        return api.searchPets(
             parameters = parameters,
             mapper = SearchPetResponseDTO::toDomainEntity
         )

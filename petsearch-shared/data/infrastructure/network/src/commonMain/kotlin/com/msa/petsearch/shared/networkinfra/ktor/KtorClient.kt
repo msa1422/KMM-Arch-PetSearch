@@ -1,5 +1,6 @@
 package com.msa.petsearch.shared.networkinfra.ktor
 
+import com.msa.petsearch.shared.networkinfra.EndPoints.API_HOST
 import io.ktor.client.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*
@@ -9,10 +10,8 @@ import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 
-@OptIn(ExperimentalSerializationApi::class)
 internal val KtorClient: HttpClient
     get() {
         // Create a list which will hold the Authorization tokens
@@ -22,24 +21,21 @@ internal val KtorClient: HttpClient
         val bearerTokenStorage = mutableListOf(DUMMY_TOKEN)
 
         val ktorClient = withPlatformEngine {
-
             install(Logging) {
                 logger = Logger.SIMPLE
                 level = LogLevel.HEADERS
-                /*filter { request ->
-                    request.url.host.contains("api.petfinder.com")
-                }*/
+                filter { request ->
+                    request.url.host.contains(API_HOST)
+                }
             }
 
             install(Auth) {
                 bearer {
-
                     loadTokens {
                         bearerTokenStorage.last()
                     }
 
                     refreshTokens {
-
                         val refreshToken = provideBearerToken(client) {
                             markAsRefreshTokenRequest()
                         }
@@ -58,13 +54,11 @@ internal val KtorClient: HttpClient
             }
 
             install(ContentNegotiation) {
-                json(
-                    Json {
-                        explicitNulls = false // requires @ExperimentalSerializationApi
-                        ignoreUnknownKeys = true
-                        prettyPrint = true
-                    }
-                )
+                json(Json {
+                    explicitNulls = false
+                    ignoreUnknownKeys = true
+                    prettyPrint = true
+                })
             }
 
             install(DefaultRequest) {
