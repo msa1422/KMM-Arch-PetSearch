@@ -24,82 +24,13 @@ struct HomeScreen: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
-            // Location Selector button
-            Button(
-                action: {
-                    
-                }
-            ) {
-                VStack(alignment: .leading, spacing: .zero) {
-                    HStack(alignment: .center, spacing: .zero) {
-                        Image("near_me")
-                        Text("New York City")
-                            .style(.titleMedium)
-                            .padding(.init(top: .zero, leading: 6, bottom: .zero, trailing:.zero))
-                        Image("arrow_drop_down")
-                    }
-                    Text("20 W 34th St., New York, United States")
-                        .style(.bodySmall)
-                        .padding(.init(top: 4, leading: 4, bottom: .zero, trailing: .zero))
-                }
-                .padding(.init(top: 4, leading: 20, bottom: 18, trailing: 24))
-            }
+            locationButton
             
-            // Material style TabLayout
-            TabRow(
-                tabs: renderState?.petTypes?.compactMap({ $0.name }) ?? [String](),
-                selectedTab: $selectedTab.onChange { index in
-                    // First check if the index is same as already selectedTab or not
-                    if petInfoList.first?.type == renderState?.petTypes?[selectedTab].name {
-                        return
-                    }
-                                                
-                    paginationState = .loading
-
-                    // remove all items from the LazyGrid
-                    petInfoList.removeAll()
-                    
-                    viewModel.action(
-                        action: HomeAction.OnPetTypeTabSelected(
-                            tabName: renderState?.petTypes?[index].name ?? ""
-                        )
-                    )
-                }
-            )
+            tabRow
             
             Divider()
 
-            // GridView
-            ScrollView(.vertical, showsIndicators: false) {
-                LazyVGrid(
-                    columns: [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)],
-                    spacing: 2
-                ) {
-                    ForEach(petInfoList, id: \.id) { petInfo in
-                        PetInfoView(petInfo: petInfo) {
-                            viewModel
-                                .action(action: HomeAction.NavigateToPetDetail(petInfo: petInfo))
-                        }
-                        .onAppear {
-                            // Very basic and definitely not production ready implementation of pagination
-                            // Proper implementation and refinment is required.
-                            // Will implement it soon as I keep learning SwiftUI
-                            let thresholdIndex = petInfoList.index(petInfoList.endIndex, offsetBy: -5)
-                            
-                            if petInfoList.firstIndex(where: { $0.id == petInfo.id }) == thresholdIndex &&
-                                paginationState != .loading {
-                                paginationState = .loading
-                                viewModel.action(action: HomeAction.LoadPetListNextPage())
-                            }
-                        }
-                    }
-                }
-                
-                ProgressView()
-                    .padding(.init(top: 32, leading: .zero, bottom: 64, trailing: .zero))
-                    .opacity(paginationState == .loading ? 1 : 0)
-            }
-            .background(Color.background)
+            gridView
             
             // To push the TabRow to top when there are no items in GridView
             Spacer()
@@ -148,6 +79,87 @@ struct HomeScreen: View {
             petInfoListObserver?.close()
             petInfoListObserver = nil
         }
+    }
+}
+
+extension HomeScreen {
+    
+    private var locationButton: some View {
+        Button(
+            action: {
+                
+            }
+        ) {
+            VStack(alignment: .leading, spacing: .zero) {
+                HStack(alignment: .center, spacing: .zero) {
+                    Image("near_me")
+                    Text("New York City")
+                        .style(.titleMedium)
+                        .padding(.init(top: .zero, leading: 6, bottom: .zero, trailing:.zero))
+                    Image("arrow_drop_down")
+                }
+                Text("20 W 34th St., New York, United States")
+                    .style(.bodySmall)
+                    .padding(.init(top: 4, leading: 4, bottom: .zero, trailing: .zero))
+            }
+            .padding(.init(top: 4, leading: 20, bottom: 18, trailing: 24))
+        }
+    }
+    
+    private var tabRow: some View {
+        TabRow(
+            tabs: renderState?.petTypes?.compactMap({ $0.name }) ?? [String](),
+            selectedTab: $selectedTab.onChange { index in
+                // First check if the index is same as already selectedTab or not
+                if petInfoList.first?.type == renderState?.petTypes?[selectedTab].name {
+                    return
+                }
+                                            
+                paginationState = .loading
+
+                // remove all items from the LazyGrid
+                petInfoList.removeAll()
+                
+                viewModel.action(
+                    action: HomeAction.OnPetTypeTabSelected(
+                        tabName: renderState?.petTypes?[index].name ?? ""
+                    )
+                )
+            }
+        )
+    }
+    
+    private var gridView: some View {
+        ScrollView(.vertical, showsIndicators: false) {
+            LazyVGrid(
+                columns: [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)],
+                spacing: 2
+            ) {
+                ForEach(petInfoList, id: \.id) { petInfo in
+                    PetInfoView(petInfo: petInfo) {
+                        viewModel
+                            .action(action: HomeAction.NavigateToPetDetail(petInfo: petInfo))
+                    }
+                    .onAppear {
+                        // Very basic and definitely not production ready implementation of pagination
+                        // Proper implementation and refinment is required.
+                        // Will implement it soon as I keep learning SwiftUI
+                        let thresholdIndex = petInfoList.index(petInfoList.endIndex, offsetBy: -5)
+                        
+                        if petInfoList.firstIndex(where: { $0.id == petInfo.id }) == thresholdIndex &&
+                            paginationState != .loading {
+                            paginationState = .loading
+                            viewModel.action(action: HomeAction.LoadPetListNextPage())
+                        }
+                    }
+                }
+            }
+            
+            ProgressView()
+                .padding(.init(top: 32, leading: .zero, bottom: 64, trailing: .zero))
+                .opacity(paginationState == .loading ? 1 : 0)
+        }
+        .background(Color.background)
     }
 }
 
