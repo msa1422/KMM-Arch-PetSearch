@@ -6,6 +6,7 @@ object PackageNameAccessor {
 
     const val SHARED_CORE_ENTITY = "com.msa.petsearch.shared.coreentity"
     const val SHARED_CORE_UTIL = "com.msa.petsearch.shared.coreutil"
+    const val SHARED_CORE_TEST = "com.msa.petsearch.shared.coretest"
 
     const val DATA_INFRASTRUCTURE_CACHE = "com.msa.petsearch.shared.cacheinfra"
     const val DATA_INFRASTRUCTURE_NETWORK = "com.msa.petsearch.shared.networkinfra"
