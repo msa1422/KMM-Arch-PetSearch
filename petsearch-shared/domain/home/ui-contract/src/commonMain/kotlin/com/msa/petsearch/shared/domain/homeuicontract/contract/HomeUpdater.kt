@@ -1,9 +1,9 @@
 package com.msa.petsearch.shared.domain.homeuicontract.contract
 
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.Updater
-import com.msa.petsearch.shared.coreutil.sharedviewmodel.util.GlobalEvent
-import com.msa.petsearch.shared.coreutil.sharedviewmodel.util.Next
-import com.msa.petsearch.shared.coreutil.sharedviewmodel.util.ReduxGeneric
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.model.GlobalEvent
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.model.Next
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.model.ReduxGeneric
 import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeAction
 import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeNavigation
 import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeSideEffect

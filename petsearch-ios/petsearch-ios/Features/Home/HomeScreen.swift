@@ -49,26 +49,21 @@ struct HomeScreen: View {
             TabRow(
                 tabs: renderState?.petTypes?.compactMap({ $0.name }) ?? [String](),
                 selectedTab: $selectedTab.onChange { index in
-                    Task {
-                        do {
-                            // First check if the index is same as already selectedTab or not
-                            if petInfoList.first?.type == renderState?.petTypes?[selectedTab].name {
-                                return
-                            }
-                                                        
-                            paginationState = .loading
-
-                            // remove all items from the LazyGrid
-                            petInfoList.removeAll()
-                            
-                            try await viewModel.action(
-                                action: HomeAction.OnPetTypeTabSelected(
-                                    tabName: renderState?.petTypes?[index].name ?? ""
-                                )
-                            )
-                        }
-                        catch { print(error) }
+                    // First check if the index is same as already selectedTab or not
+                    if petInfoList.first?.type == renderState?.petTypes?[selectedTab].name {
+                        return
                     }
+                                                
+                    paginationState = .loading
+
+                    // remove all items from the LazyGrid
+                    petInfoList.removeAll()
+                    
+                    viewModel.action(
+                        action: HomeAction.OnPetTypeTabSelected(
+                            tabName: renderState?.petTypes?[index].name ?? ""
+                        )
+                    )
                 }
             )
             
@@ -82,14 +77,8 @@ struct HomeScreen: View {
                 ) {
                     ForEach(petInfoList, id: \.id) { petInfo in
                         PetInfoView(petInfo: petInfo) {
-                            Task {
-                                do {
-                                    try await viewModel.action(
-                                        action: HomeAction.NavigateToPetDetail(petInfo: petInfo)
-                                    )
-                                }
-                                catch { print(error) }
-                            }
+                            viewModel
+                                .action(action: HomeAction.NavigateToPetDetail(petInfo: petInfo))
                         }
                         .onAppear {
                             // Very basic and definitely not production ready implementation of pagination
@@ -99,16 +88,8 @@ struct HomeScreen: View {
                             
                             if petInfoList.firstIndex(where: { $0.id == petInfo.id }) == thresholdIndex &&
                                 paginationState != .loading {
-                                Task {
-                                    do {
-                                        paginationState = .loading
-                                        
-                                        try await viewModel.action(
-                                            action: HomeAction.LoadPetListNextPage()
-                                        )
-                                    }
-                                    catch { print(error) }
-                                }
+                                paginationState = .loading
+                                viewModel.action(action: HomeAction.LoadPetListNextPage())
                             }
                         }
                     }
@@ -156,10 +137,7 @@ struct HomeScreen: View {
             }
             
             if renderState == nil || renderState?.petTypes == nil {
-                Task {
-                    do { try await viewModel.action(action: HomeAction.GetPetTypes()) }
-                    catch { print(error) }
-                }
+                viewModel.action(action: HomeAction.GetPetTypes())
             }
         }
         .onDisappear {

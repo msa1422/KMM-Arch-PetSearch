@@ -1,19 +1,20 @@
 package com.msa.petsearch.shared.domain.homeuicontract.interactor
 
-import com.msa.petsearch.shared.coreentity.response.PetTypesResponse
-import com.msa.petsearch.shared.coreutil.FlowInteractor
-import com.msa.petsearch.shared.coreutil.resource.Resource
+import com.msa.petsearch.shared.coreutil.UseCase
+import com.msa.petsearch.shared.coreutil.resource.Status
 import com.msa.petsearch.shared.domain.homedatasource.HomeDataSource
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
+import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeAction
 
 internal class LoadPetTypesUseCase(
     private val dataSource: HomeDataSource
-) : FlowInteractor<Nothing, Resource<PetTypesResponse?>>() {
+) : UseCase<Unit, HomeAction>() {
 
-    override fun run(params: Nothing?): Flow<Resource<PetTypesResponse?>> {
-        return flow { emit(dataSource.getPetTypes()) }
-            .catch { emit(Resource.error(it, null)) }
+    override suspend fun run(arg: Unit, onError: ((Throwable?) -> HomeAction)?): HomeAction {
+        val resource = dataSource.getPetTypes()
+
+        return when (resource.status) {
+            Status.SUCCESS -> HomeAction.UpdatePetTypesInState(resource.data)
+            Status.ERROR -> onError!!(resource.throwable)
+        }
     }
 }

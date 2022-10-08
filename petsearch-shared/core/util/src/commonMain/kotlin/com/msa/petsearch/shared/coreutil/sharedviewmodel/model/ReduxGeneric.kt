@@ -1,4 +1,4 @@
-package com.msa.petsearch.shared.coreutil.sharedviewmodel.util
+package com.msa.petsearch.shared.coreutil.sharedviewmodel.model
 
 import com.benasher44.uuid.uuid4
 import com.msa.petsearch.shared.coreutil.resource.ResourceMessage

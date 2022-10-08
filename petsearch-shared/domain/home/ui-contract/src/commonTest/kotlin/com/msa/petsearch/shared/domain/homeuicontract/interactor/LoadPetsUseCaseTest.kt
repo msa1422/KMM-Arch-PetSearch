@@ -1,11 +1,11 @@
 package com.msa.petsearch.shared.domain.homeuicontract.interactor
 
-import app.cash.turbine.test
-import com.msa.petsearch.shared.coreutil.resource.asResource
+import com.kuuurt.paging.multiplatform.PagingResult
+import com.msa.petsearch.shared.coreentity.petinfo.PetInfo
 import com.msa.petsearch.shared.domain.homeuicontract.testfake.FakeData
 import com.msa.petsearch.shared.domain.homeuicontract.testfake.FakeHomeDataSource
 import io.kotest.core.spec.style.FunSpec
-import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeInstanceOf
 
 @Suppress("UNUSED")
 internal class LoadPetsUseCaseTest : FunSpec({
@@ -17,9 +17,6 @@ internal class LoadPetsUseCaseTest : FunSpec({
     }
 
     test("When invoked, should return the expected response") {
-        useCase.invoke(params = params).test {
-            awaitItem() shouldBe FakeData.petSearchResponse.asResource { it }
-            awaitComplete()
-        }
+        useCase.invoke(arg = params).shouldBeInstanceOf<PagingResult<Int, PetInfo>>()
     }
 })

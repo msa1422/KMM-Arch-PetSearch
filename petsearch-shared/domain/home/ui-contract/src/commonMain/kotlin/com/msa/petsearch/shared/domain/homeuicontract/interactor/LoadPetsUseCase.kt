@@ -1,25 +1,31 @@
 package com.msa.petsearch.shared.domain.homeuicontract.interactor
 
+import com.kuuurt.paging.multiplatform.PagingResult
 import com.msa.petsearch.shared.coreentity.PetSearchParams
-import com.msa.petsearch.shared.coreentity.response.SearchPetResponse
-import com.msa.petsearch.shared.coreutil.FlowInteractor
-import com.msa.petsearch.shared.coreutil.resource.Resource
+import com.msa.petsearch.shared.coreentity.petinfo.PetInfo
+import com.msa.petsearch.shared.coreutil.UseCase
 import com.msa.petsearch.shared.domain.homedatasource.HomeDataSource
-import kotlinx.coroutines.flow.*
 
 internal class LoadPetsUseCase(
     private val dataSource: HomeDataSource
-) : FlowInteractor<LoadPetsUseCase.Params, Resource<SearchPetResponse?>>() {
+) : UseCase<LoadPetsUseCase.Params, PagingResult<Int, PetInfo>>() {
 
     data class Params(val type: String, val page: Int, val searchParams: PetSearchParams?)
 
-    override fun run(params: Params?): Flow<Resource<SearchPetResponse?>> {
-        return flow {
-            params?.let {
-                emit(dataSource.searchPets(it.type, it.page, it.searchParams))
-            } ?: kotlin.run {
-                throw IllegalArgumentException("Not enough parameters to fetch the data.")
+    override suspend fun run(
+        arg: Params,
+        onError: ((Throwable?) -> PagingResult<Int, PetInfo>)?
+    ): PagingResult<Int, PetInfo> {
+        val resource = dataSource.searchPets(arg.type, arg.page, arg.searchParams)
+
+        return PagingResult(
+            items = resource.data?.animals!!,
+            currentKey = arg.page,
+            prevKey = { null },
+            nextKey = {
+                val totalPageCount = resource.data?.pagination?.totalCount ?: 1
+                arg.page.takeIf { it < totalPageCount }?.plus(1)
             }
-        }.catch { emit(Resource.error(it, null)) }
+        )
     }
 }

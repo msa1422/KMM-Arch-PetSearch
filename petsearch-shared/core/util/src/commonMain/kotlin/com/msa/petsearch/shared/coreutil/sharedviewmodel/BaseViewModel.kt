@@ -9,8 +9,9 @@ import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.RouteNavigat
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.*
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.ActionDispatcher
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux.*
-import com.msa.petsearch.shared.coreutil.sharedviewmodel.util.SuperViewModel
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.model.SuperViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -74,11 +75,14 @@ constructor(
         return events.asSharedFlow().asCommonFlow()
     }
 
-    override suspend fun action(action: A) {
+    override fun action(action: A) {
+
         updater?.onNewAction(action, state.value)?.let { next ->
 
-            next.events.forEach {
-                events.emit(it)
+            viewModelScope.launch {
+                next.events.forEach {
+                    events.emit(it)
+                }
             }
 
             if (next.sideEffects.isNotEmpty()) {
@@ -113,10 +117,12 @@ constructor(
         processor?.let { processor ->
             sideEffects.forEach { effect ->
                 val coroutineContext = coroutineExceptionHandler ?: EmptyCoroutineContext
-                effect.coroutineScope.launch(coroutineContext) {
+                viewModelScope.launch(coroutineContext) {
                     withContext(effect.dispatcher) {
                         val effectAction = processor.dispatchSideEffect(effect)
-                        action(effectAction)
+                        withContext(Dispatchers.Main) {
+                            action(effectAction)
+                        }
                     }
                 }
             }

@@ -50,8 +50,8 @@ internal fun HomeScreen(
                     .wrapContentHeight()
                     .background(color = MaterialTheme.colorScheme.surface)
             ) { petTypeName ->
+                viewModel::action.invoke(HomeAction.OnPetTypeTabSelected(petTypeName))
                 coroutineScope.launch {
-                    viewModel::action.invoke(HomeAction.OnPetTypeTabSelected(petTypeName))
                     gridState.scrollToItem(0) // Reset grid state
                 }
             }
@@ -71,9 +71,7 @@ internal fun HomeScreen(
                     .disableSplitMotionEvents()
                     .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05F))
             ) { petInfo ->
-                coroutineScope.launch {
-                    viewModel::action.invoke(HomeAction.NavigateToPetDetail(petInfo))
-                }
+                viewModel::action.invoke(HomeAction.NavigateToPetDetail(petInfo))
             }
         }
         // This else statement is a workaround for the issue where

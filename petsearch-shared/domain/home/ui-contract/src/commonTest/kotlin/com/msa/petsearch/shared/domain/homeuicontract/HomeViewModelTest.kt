@@ -5,6 +5,7 @@ import com.msa.petsearch.shared.coreutil.di.DomainCoreUtilModule
 import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeAction
 import com.msa.petsearch.shared.domain.homeuicontract.testfake.FakeData
 import com.msa.petsearch.shared.domain.homeuicontract.testfake.FakeHomeUiContractModule
+import com.msa.petsearch.shared.test.MainThreadSurrogate
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
@@ -19,6 +20,8 @@ internal class HomeViewModelTest : FunSpec(), KoinTest {
     private val viewModel by inject<HomeViewModel>()
 
     init {
+        extension(MainThreadSurrogate())
+
         beforeTest {
             startKoin {
                 modules(FakeHomeUiContractModule, DomainCoreUtilModule)

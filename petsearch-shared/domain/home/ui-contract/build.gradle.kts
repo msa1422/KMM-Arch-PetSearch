@@ -23,4 +23,6 @@ dependencies {
     commonMainImplementation(projects.petsearchShared.core.util)
 
     commonMainImplementation(projects.petsearchShared.domain.home.dataSource)
+
+    commonTestImplementation(projects.petsearchShared.core.test)
 }

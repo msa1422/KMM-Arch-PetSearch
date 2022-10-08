@@ -1,4 +1,4 @@
-package com.msa.petsearch.shared.coreutil.sharedviewmodel.util
+package com.msa.petsearch.shared.coreutil.sharedviewmodel.model
 
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux
 
