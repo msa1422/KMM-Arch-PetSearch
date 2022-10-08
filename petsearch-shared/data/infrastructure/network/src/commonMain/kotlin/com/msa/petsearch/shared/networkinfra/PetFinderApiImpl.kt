@@ -1,7 +1,5 @@
 package com.msa.petsearch.shared.networkinfra
 
-import com.msa.petsearch.shared.coreutil.resource.Resource
-import com.msa.petsearch.shared.coreutil.resource.asResource
 import com.msa.petsearch.shared.networkinfra.EndPoints.ANIMALS
 import com.msa.petsearch.shared.networkinfra.EndPoints.ANIMAL_TYPES
 import com.msa.petsearch.shared.networkinfra.EndPoints.API_HOST
@@ -16,10 +14,9 @@ internal class PetFinderApiImpl(
     private val httpClient: HttpClient
 ) : PetFinderApi {
 
-    override suspend fun <T> getPetTypes(mapper: PetTypesResponseDTO.() -> T): Resource<T> {
-        val response = httpClient.safeRequest<PetTypesResponseDTO> {
+    override suspend fun <T> getPetTypes(mapper: PetTypesResponseDTO.() -> T) =
+        httpClient.safeRequest(mapper) {
             method = HttpMethod.Get
-
             url {
                 this.protocol = URLProtocol.HTTPS
                 this.host = API_HOST
@@ -27,27 +24,18 @@ internal class PetFinderApiImpl(
             }
         }
 
-        return response.data?.asResource(mapper) ?: response.error.asResource()
-    }
-
     override suspend fun <T> searchPets(
         parameters: HashMap<String, Any?>?,
         mapper: SearchPetResponseDTO.() -> T
-    ): Resource<T> {
-        val response = httpClient.safeRequest<SearchPetResponseDTO> {
-            method = HttpMethod.Get
-
-            url {
-                this.protocol = URLProtocol.HTTPS
-                this.host = API_HOST
-                this.path(ANIMALS)
-            }
-
-            parameters?.forEach { entry ->
-                parameter(key = entry.key, value = entry.value)
-            }
+    ) = httpClient.safeRequest(mapper) {
+        method = HttpMethod.Get
+        url {
+            this.protocol = URLProtocol.HTTPS
+            this.host = API_HOST
+            this.path(ANIMALS)
         }
-
-        return response.data?.asResource(mapper) ?: response.error.asResource()
+        parameters?.forEach { entry ->
+            parameter(key = entry.key, value = entry.value)
+        }
     }
 }

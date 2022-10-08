@@ -11,5 +11,4 @@ interface HomeDataSource {
 
     suspend fun searchPets(type: String, page: Int, searchParams: PetSearchParams?):
             Resource<SearchPetResponse?>
-
 }
