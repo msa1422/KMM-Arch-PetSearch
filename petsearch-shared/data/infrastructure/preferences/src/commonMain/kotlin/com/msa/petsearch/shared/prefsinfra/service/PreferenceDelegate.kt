@@ -24,7 +24,7 @@ class PreferenceDelegate(private val settings: Settings) {
         }
         catch (e: IllegalArgumentException) {
             false
-        }.asResource { it }
+        }.asResource { this }
     }
 
     fun getThemeAsFlow(): CommonFlow<String> {

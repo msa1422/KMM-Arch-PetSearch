@@ -12,7 +12,7 @@ internal class ResourceTest : FunSpec({
         // val testObjAsResource = FakeResourceMessages[0].asResource()
 
         FakeResourceMessages[0]
-            .asResource { it }
+            .asResource { this }
             .shouldBeTypeOf<Resource<ResourceMessage>>()
             .data shouldBe testObj
     }

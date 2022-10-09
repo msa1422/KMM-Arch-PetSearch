@@ -9,13 +9,13 @@ import com.msa.petsearch.shared.networkinfra.response.SearchPetResponseDTO
 internal class FakePetFinderApi : PetFinderApi {
 
     override suspend fun <T> getPetTypes(mapper: PetTypesResponseDTO.() -> T): Resource<T> {
-        return FakePetTypesResponseDTO.asResource { mapper(it) }
+        return FakePetTypesResponseDTO.asResource { mapper(this) }
     }
 
     override suspend fun <T> searchPets(
         parameters: HashMap<String, Any?>?,
         mapper: SearchPetResponseDTO.() -> T
     ): Resource<T> {
-        return FakePetSearchResponseDTO.asResource { mapper(it) }
+        return FakePetSearchResponseDTO.asResource { mapper(this) }
     }
 }

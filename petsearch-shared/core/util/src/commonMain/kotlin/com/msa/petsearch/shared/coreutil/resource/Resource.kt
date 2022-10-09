@@ -28,10 +28,11 @@ enum class Status {
 /**
  * Generic Mapper for providing any class as a Resource
  */
-inline fun <reified T, S> T?.asResource(mapper: ((T) -> S?) = { null }): Resource<S> {
+@Suppress("UNCHECKED_CAST")
+inline fun <reified T, S> T.asResource(mapper: T.() -> S? = { this as? S }): Resource<S> {
     return when {
         this == Unit -> Resource.success(null)
-        this !is Throwable && this != null -> Resource.success(mapper.invoke(this))
+        this !is Throwable -> Resource.success(mapper.invoke(this))
         else -> Resource.error(Throwable((this as? Throwable)?.message ?: "Error"), null)
     }
 }
