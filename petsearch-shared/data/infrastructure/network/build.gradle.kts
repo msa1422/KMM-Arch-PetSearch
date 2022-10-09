@@ -23,8 +23,9 @@ dependencies {
     commonMainImplementation(libs.bundles.ktor.common)
 
     androidMainImplementation(libs.ktor.client.okHttp)
-
     iosMainImplementation(libs.ktor.client.darwin)
+
+    commonTestImplementation(libs.ktor.client.mock)
 }
 
 buildkonfig {
