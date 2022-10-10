@@ -1,12 +1,8 @@
 package com.msa.petsearch.shared.cacheinfra.realm
 
-import com.msa.petsearch.shared.cacheinfra.entity.PetInfoRealObject
-import io.realm.kotlin.Realm
-import io.realm.kotlin.RealmConfiguration
-
 private const val REALM_DB_NAME = "THE_REALM_OF_PETS"
 
-internal val RealmDb: Realm
+/*internal val RealmDb: Realm
     get() {
         return Realm.open(
             RealmConfiguration
@@ -15,4 +11,4 @@ internal val RealmDb: Realm
                 .schemaVersion(0)
                 .build()
         )
-    }
+    }*/

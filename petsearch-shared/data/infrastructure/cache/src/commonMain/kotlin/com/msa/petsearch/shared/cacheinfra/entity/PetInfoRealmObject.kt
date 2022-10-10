@@ -1,10 +1,7 @@
 package com.msa.petsearch.shared.cacheinfra.entity
 
-import io.realm.kotlin.types.RealmObject
-import io.realm.kotlin.types.annotations.PrimaryKey
-
-internal class PetInfoRealObject(
-    @PrimaryKey
+internal class PetInfoRealmObject(
+    // @PrimaryKey
     var id: Long? = null,
     var name: String? = null,
     var type: String? = null,
@@ -13,7 +10,7 @@ internal class PetInfoRealObject(
 
     // TODO: Add Other fields and respective Entities and Mappers
 
-) : RealmObject {
+) /*: RealmObject {
     @Suppress("UNUSED")
     constructor() : this(null)
-}
+}*/
