@@ -21,39 +21,43 @@ struct ImagePager: View {
     }
     
     var body: some View {
-        TabView {
-            ForEach(photos, id: \.self) { photo in
-                Color.clear
-                    .overlay(
-                        WebImage(url: URL(string: photo.large))
-                            .resizable()
-                            .placeholder {
-                                if photos.firstIndex(of: photo) == 0 {
-                                    WebImage(url: URL(string: photo.medium))
-                                        .resizable()
-                                        .placeholder {
-                                            placeholder
-                                                .scaledToFill()
-                                        }
-                                        .cancelOnDisappear(true)
-                                        .indicator(.activity)
-                                        .scaledToFill()
-                                } else {
-                                    placeholder
-                                        .scaledToFill()
-                                }
-                            }
-                            .cancelOnDisappear(true)
-                            .indicator(.activity)
-                            .transition(.fade)
-                            .scaledToFill()
-                            .saturation(0.38)
-                            .onTapGesture { onClick(photo.large) }
-                    )
-                    .clipped()
+        if !photos.isEmpty {
+            TabView {
+                ForEach(photos, id: \.self) { photo in
+                    Color.clear
+                        .overlay(image(from: photo))
+                        .clipped()
+                }
             }
+            .tabViewStyle(PageTabViewStyle())
         }
-        .tabViewStyle(PageTabViewStyle())
+    }
+    
+    func image(from photo: PetPhoto) -> some View {
+        WebImage(url: URL(string: photo.large))
+            .resizable()
+            .placeholder {
+                if photos.firstIndex(of: photo) == 0 {
+                    WebImage(url: URL(string: photo.medium))
+                        .resizable()
+                        .placeholder {
+                            placeholder
+                                .scaledToFill()
+                        }
+                        .cancelOnDisappear(true)
+                        .indicator(.activity)
+                        .scaledToFill()
+                } else {
+                    placeholder
+                        .scaledToFill()
+                }
+            }
+            .cancelOnDisappear(true)
+            .indicator(.activity)
+            .transition(.fade)
+            .scaledToFill()
+            .saturation(0.38)
+            .onTapGesture { onClick(photo.large) }
     }
     
     var placeholder: Image {

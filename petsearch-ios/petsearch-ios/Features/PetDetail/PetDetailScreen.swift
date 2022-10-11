@@ -44,9 +44,7 @@ struct PetDetailScreen: View {
                         }
                         
                         return AnyView(
-                            ImagePager(
-                                photos: state?.petInfo?.photos ?? [PetPhoto]()
-                            ) { image in
+                            ImagePager(photos: state?.petInfo?.photos ?? [PetPhoto]()) { image in
                                 // OnClick on event for image
                             }
                             .frame(width: pagerWidth, height: pagerHeight + (offset > 0 ? offset : 0) )
@@ -65,7 +63,7 @@ struct PetDetailScreen: View {
                         )
                     ) {
                         //
-                        // Pet Description
+                        // Pet Description ..........................................................
                         Text(state?.petInfo?.description_ ?? "")
                             .style(.bodyMedium)
                             .foregroundColor(Color.onSurface)
@@ -73,8 +71,8 @@ struct PetDetailScreen: View {
                             .padding(.init(top: 20, leading: 24, bottom: .zero, trailing: 24))
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        // Chracteristics grid
-                        if state?.petInfo?.tags?.isEmpty == false {
+                        // Chracteristics grid ......................................................
+                        if let petTags = state?.petInfo?.tags {
                             
                             SectionTitle(title: SharedR.strings().characteristics.desc().localized().uppercased())
                             
@@ -82,7 +80,7 @@ struct PetDetailScreen: View {
                                 columns: [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)],
                                 spacing: 2
                             ) {
-                                ForEach(state?.petInfo?.tags ?? [], id: \.self) { tag in
+                                ForEach(petTags, id: \.self) { tag in
                                     Text("• \(tag)")
                                         .style(.bodyMedium)
                                         .foregroundColor(Color.onSurface)
@@ -93,7 +91,7 @@ struct PetDetailScreen: View {
                             .padding(.init(top: .zero, leading: 12, bottom: .zero, trailing: 12))
                         }
                         
-                        // Attributes grid
+                        // Attributes grid ..........................................................
                         if let attrs = state?.petInfo?.attributes {
                             
                             SectionTitle(title: SharedR.strings().attributes.desc().localized().uppercased())
@@ -144,7 +142,7 @@ struct PetDetailScreen: View {
                     }
                 }
 
-                // Custom back button
+                // Custom back button ...............................................................
                 Button(
                     action: {
                         if scrollOffset < pagerHeight {
