@@ -32,6 +32,4 @@ dependencies {
 
     implementation(projects.petsearchShared.core.util)
     implementation(projects.petsearchShared.resources)
-
-    implementation(projects.petsearchAndroid.common.resources)
 }

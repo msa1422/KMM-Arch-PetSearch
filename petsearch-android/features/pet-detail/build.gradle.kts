@@ -18,7 +18,6 @@ dependencies {
     implementation(libs.accompanist.pager)
 
     implementation(projects.petsearchAndroid.common.compose)
-    implementation(projects.petsearchAndroid.common.resources)
 
     implementation(projects.petsearchShared.core.entity)
     implementation(projects.petsearchShared.core.util)

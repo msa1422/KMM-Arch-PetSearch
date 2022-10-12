@@ -19,6 +19,7 @@ include(
     ":petsearch-shared:resources",
     ":petsearch-shared:core",
     ":petsearch-shared:core:entity",
+    ":petsearch-shared:core:test",
     ":petsearch-shared:core:util",
     ":petsearch-shared:data",
     ":petsearch-shared:data:infrastructure",
@@ -41,9 +42,7 @@ include(
     ":petsearch-android:activity",
     ":petsearch-android:common",
     ":petsearch-android:common:compose",
-    ":petsearch-android:common:resources",
     ":petsearch-android:features",
     ":petsearch-android:features:home",
     ":petsearch-android:features:pet-detail"
 )
-include(":petsearch-shared:core:test")

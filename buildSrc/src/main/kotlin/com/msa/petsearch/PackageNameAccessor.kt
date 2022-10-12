@@ -25,7 +25,6 @@ object PackageNameAccessor {
     const val ANDROID_ACTIVITY = "com.msa.petsearch.activity"
 
     const val ANDROID_COMMON_COMPOSE = "com.msa.petsearch.commoncompose"
-    const val ANDROID_COMMON_RESOURCES = "com.msa.petsearch.commonres"
 
     const val ANDROID_FEATURE_HOME = "com.msa.petsearch.home"
     const val ANDROID_FEATURE_PET_DETAIL = "com.msa.petsearch.petdetail"
