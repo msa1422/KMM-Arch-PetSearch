@@ -7,8 +7,6 @@ import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -24,11 +22,14 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.msa.petsearch.petdetail.composable.ChildrenId.BACK_BUTTON_ID
 import com.msa.petsearch.petdetail.composable.ChildrenId.PAGER_ID
 import com.msa.petsearch.petdetail.composable.ChildrenId.TITLE_BG_ID
 import com.msa.petsearch.petdetail.composable.ChildrenId.TITLE_ID
 import com.msa.petsearch.shared.coreentity.petinfo.PetPhoto
+import com.msa.petsearch.shared.resources.SharedR
+import com.msa.petsearch.shared.resources.toAndroidAssetUri
 import kotlin.math.roundToInt
 
 @Composable
@@ -96,8 +97,11 @@ internal fun CollapsingTopAppBar(
                         LocalContentColor provides MaterialTheme.colorScheme.onBackground,
                         content = {
                             Icon(
+                                painter = rememberAsyncImagePainter(
+                                    model = SharedR.assets.arrow_back.toAndroidAssetUri()
+                                ),
                                 contentDescription = "Back Button",
-                                imageVector = Icons.Rounded.ArrowBack,
+                                tint = MaterialTheme.colorScheme.onBackground,
                                 modifier = Modifier
                                     .layoutId(BACK_BUTTON_ID)
                                     .size(ButtonSize)

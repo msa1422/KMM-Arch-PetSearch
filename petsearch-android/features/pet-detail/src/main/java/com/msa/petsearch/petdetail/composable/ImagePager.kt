@@ -17,8 +17,9 @@ import coil.request.ImageRequest
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import com.msa.petsearch.commonres.R
 import com.msa.petsearch.shared.coreentity.petinfo.PetPhoto
+import com.msa.petsearch.shared.resources.SharedR
+import com.msa.petsearch.shared.resources.toAndroidAssetUri
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
@@ -29,7 +30,9 @@ internal fun ImagePager(
     modifier: Modifier = Modifier
 ) {
     val pagerState = rememberPagerState()
-    val errorImage = rememberAsyncImagePainter(R.drawable.ic_bg_paw_print_loaded)
+    val errorImage = rememberAsyncImagePainter(
+        model = SharedR.assets.bg_paw_print_loaded.toAndroidAssetUri()
+    )
 
     val colorFilter = remember {
         ColorFilter.colorMatrix(
@@ -61,18 +64,18 @@ private fun Image(
     photo: PetPhoto,
     colorFilter: ColorFilter,
     modifier: Modifier = Modifier,
-    error: Painter? = null
+    error: Painter
 ) {
     val context = LocalContext.current
     val mainImage = remember {
         ImageRequest.Builder(context)
-            .data(photo.large)
+            .data(photo.large.ifBlank { error })
             .crossfade(false)
             .build()
     }
     val placeholder = rememberAsyncImagePainter(
         model = ImageRequest.Builder(context)
-            .data(photo.medium)
+            .data(photo.medium.ifBlank { error })
             .crossfade(false)
             .build()
     )

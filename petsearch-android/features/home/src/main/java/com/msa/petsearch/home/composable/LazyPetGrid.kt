@@ -15,9 +15,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import coil.compose.rememberAsyncImagePainter
 import com.msa.petsearch.home.util.items
 import com.msa.petsearch.shared.coreentity.petinfo.PetInfo
 import com.msa.petsearch.shared.resources.SharedR
+import com.msa.petsearch.shared.resources.toAndroidAssetUri
 
 @Composable
 internal fun LazyPetGrid(
@@ -41,6 +43,13 @@ internal fun LazyPetGrid(
 
     // Giving fixed height instead of aspectRatio (0.9F, in this case)
     val imageHeight = (LocalConfiguration.current.screenWidthDp / (ASPECT_RATIO * 2)).dp
+
+    val placeholder = rememberAsyncImagePainter(
+        model = SharedR.assets.bg_paw_print_loading.toAndroidAssetUri()
+    )
+    val error = rememberAsyncImagePainter(
+        model = SharedR.assets.bg_paw_print_loaded.toAndroidAssetUri()
+    )
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -69,6 +78,8 @@ internal fun LazyPetGrid(
                     petInfo = it,
                     imageHeight = imageHeight,
                     colorFilter = colorFilter,
+                    placeholder = placeholder,
+                    error = error,
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()

@@ -6,8 +6,6 @@ import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowDropDown
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -19,14 +17,15 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.msa.petsearch.commoncompose.composable.FadeAnimatedVisibility
-import com.msa.petsearch.commonres.R
 import com.msa.petsearch.home.composable.tabrow.HomeTabRow
 import com.msa.petsearch.home.composable.tabrow.rememberHomeTabRowState
 import com.msa.petsearch.shared.coreentity.PetType
+import com.msa.petsearch.shared.resources.SharedR
+import com.msa.petsearch.shared.resources.toAndroidAssetUri
 import kotlin.math.roundToInt
 
 @Composable
@@ -110,7 +109,9 @@ internal fun CollapsibleTopBar(
                                 modifier = Modifier.wrapContentSize()
                             ) {
                                 Icon(
-                                    painter = painterResource(id = R.drawable.ic_near_me),
+                                    painter = rememberAsyncImagePainter(
+                                        model = SharedR.assets.near_me.toAndroidAssetUri()
+                                    ),
                                     contentDescription = "Location icon",
                                     tint = MaterialTheme.colorScheme.onBackground
                                 )
@@ -125,8 +126,10 @@ internal fun CollapsibleTopBar(
                                         .padding(start = 6.dp, end = 2.dp)
                                 )
                                 Icon(
-                                    imageVector = Icons.Rounded.ArrowDropDown,
-                                    contentDescription = "Drop down icon",
+                                    painter = rememberAsyncImagePainter(
+                                        model = SharedR.assets.arrow_drop_down.toAndroidAssetUri()
+                                    ),
+                                    contentDescription = "Location icon",
                                     tint = MaterialTheme.colorScheme.onBackground
                                 )
                             }
