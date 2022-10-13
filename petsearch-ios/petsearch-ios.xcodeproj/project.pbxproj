@@ -13,6 +13,7 @@
 		5E1FDBFC28CFBD350034107D /* ArrayExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1FDBFB28CFBD350034107D /* ArrayExt.swift */; };
 		5E54693C28E16DA000ADBF23 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54693B28E16DA000ADBF23 /* Type.swift */; };
 		5E54693E28E16DDB00ADBF23 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54693D28E16DDB00ADBF23 /* Color.swift */; };
+		5E8A071428F7E3BB007EFA96 /* SharedSvgImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A071328F7E3BB007EFA96 /* SharedSvgImage.swift */; };
 		5E93005728E439610013F432 /* TextExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E93005628E439610013F432 /* TextExt.swift */; };
 		5E9D8B0228E3369500EFAC59 /* Snackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D8B0128E3369500EFAC59 /* Snackbar.swift */; };
 		5EBEB68A28DE264400AA7C84 /* FontExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEB68928DE264400AA7C84 /* FontExt.swift */; };
@@ -42,6 +43,7 @@
 		5E1FDBFB28CFBD350034107D /* ArrayExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExt.swift; sourceTree = "<group>"; };
 		5E54693B28E16DA000ADBF23 /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		5E54693D28E16DDB00ADBF23 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		5E8A071328F7E3BB007EFA96 /* SharedSvgImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSvgImage.swift; sourceTree = "<group>"; };
 		5E93005628E439610013F432 /* TextExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExt.swift; sourceTree = "<group>"; };
 		5E9D8B0128E3369500EFAC59 /* Snackbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snackbar.swift; sourceTree = "<group>"; };
 		5EBEB68928DE264400AA7C84 /* FontExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExt.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				5E9D8B0128E3369500EFAC59 /* Snackbar.swift */,
+				5E8A071328F7E3BB007EFA96 /* SharedSvgImage.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				5EC3B09B28CB7EA700A040F2 /* ContentView.swift in Sources */,
 				5EC3B0BF28CB815500A040F2 /* UINavigationControllerExt.swift in Sources */,
 				5EC3B0BD28CB813B00A040F2 /* NavRoute.swift in Sources */,
+				5E8A071428F7E3BB007EFA96 /* SharedSvgImage.swift in Sources */,
 				5EC3B0D928CB82D300A040F2 /* ImagePager.swift in Sources */,
 				5EC3B09628CB7E4200A040F2 /* iOSApp.swift in Sources */,
 				5E11056428D0581E00B36633 /* PaginationState.swift in Sources */,

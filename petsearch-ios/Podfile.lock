@@ -2,6 +2,8 @@ PODS:
   - SDWebImage (5.13.4):
     - SDWebImage/Core (= 5.13.4)
   - SDWebImage/Core (5.13.4)
+  - SDWebImageSVGCoder (1.6.1):
+    - SDWebImage/Core (~> 5.6)
   - SDWebImageSwiftUI (2.2.1):
     - SDWebImage (~> 5.10)
   - Shared (1.0)
@@ -9,6 +11,7 @@ PODS:
   - UIPilot (1.3.1)
 
 DEPENDENCIES:
+  - SDWebImageSVGCoder
   - SDWebImageSwiftUI
   - Shared (from `../petsearch-shared/Shared`)
   - ToastSwiftUI
@@ -17,6 +20,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - SDWebImage
+    - SDWebImageSVGCoder
     - SDWebImageSwiftUI
     - ToastSwiftUI
     - UIPilot
@@ -27,11 +31,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   SDWebImage: e5cc87bf736e60f49592f307bdf9e157189298a3
+  SDWebImageSVGCoder: 6fc109f9c2a82ab44510fff410b88b1a6c271ee8
   SDWebImageSwiftUI: 2ecf5ab6f574526326b10ecb155e72a88059d0f0
   Shared: 68cccdc5b92427ba1f325420fb5834bc6fb9788e
   ToastSwiftUI: 3b9111e37719e4b1c4a4fdbc52a664ec8e676c0e
   UIPilot: f3aaea861e49c3e1b626c57b328a92c5107b2ca6
 
-PODFILE CHECKSUM: 9b2ae6a21428d799d495a5ee8445caccc9edbce5
+PODFILE CHECKSUM: fb1863b536a85c072d3ff613f81b8c87171f9b84
 
 COCOAPODS: 1.11.3

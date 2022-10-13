@@ -18,17 +18,15 @@ struct PetInfoView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
-            
             // Pet Image
-            // Way to get scaleType=CENTER_CROP (Android)
+            // Way to get scaleType=CENTER_CROP (Android) "bg_paw_print_loaded"
             // Source https://stackoverflow.com/a/63651228
             Color.clear
                 .overlay(
                     WebImage(url: URL(string: petInfo.photos.first?.medium ?? ""))
                         .resizable()
                         .placeholder {
-                            Image("pet_image_placeholder")
-                                .resizable()
+                            SharedSvgImage("bg_paw_print_loaded")
                                 .scaledToFill()
                         }
                         .indicator(.activity)
@@ -38,7 +36,7 @@ struct PetInfoView: View {
                 )
                 .aspectRatio(0.9, contentMode: .fill)
                 .clipped()
-
+            
             // Pet Name
             Text(petInfo.name)
                 .style(.titleMedium)

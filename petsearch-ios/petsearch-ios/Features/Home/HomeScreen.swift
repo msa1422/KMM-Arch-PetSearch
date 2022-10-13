@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Shared
+import SDWebImageSwiftUI
 
 struct HomeScreen: View {
     let viewModel : HomeViewModel
@@ -92,11 +93,15 @@ extension HomeScreen {
         ) {
             VStack(alignment: .leading, spacing: .zero) {
                 HStack(alignment: .center, spacing: .zero) {
-                    Image("near_me")
+                    SharedSvgImage("near_me", renderingMode: .template)
+                        .frame(width: 24, height: 24)
+                    
                     Text("New York City")
                         .style(.titleMedium)
                         .padding(.init(top: .zero, leading: 6, bottom: .zero, trailing:.zero))
-                    Image("arrow_drop_down")
+                    
+                    SharedSvgImage("arrow_drop_down", renderingMode: .template)
+                        .frame(width: 24, height: 24)
                 }
                 Text("20 W 34th St., New York, United States")
                     .style(.bodySmall)

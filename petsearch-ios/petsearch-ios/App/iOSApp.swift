@@ -8,12 +8,15 @@
 
 import SwiftUI
 import Shared
+import SDWebImageSwiftUI
+import SDWebImageSVGCoder
 
 @main
 struct iOSApp: App {
     
     init() {
         KoinKt.doInitKoin(modules: nil)
+        SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
     }
     
     var body: some Scene {
@@ -22,4 +25,3 @@ struct iOSApp: App {
         }
     }
 }
-
