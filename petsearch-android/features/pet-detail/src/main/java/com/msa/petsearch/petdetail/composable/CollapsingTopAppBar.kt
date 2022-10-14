@@ -194,8 +194,7 @@ internal fun CollapsingTopAppBar(
 
                 val maxTitleWidth = if (constraints.maxWidth == Constraints.Infinity) {
                     constraints.maxWidth
-                }
-                else {
+                } else {
                     (constraints.maxWidth - backButtonPlaceable.width).coerceAtLeast(0)
                 }
 
@@ -243,7 +242,7 @@ internal fun CollapsingTopAppBar(
 private object ChildrenId {
     const val BACK_BUTTON_ID = 1001
     const val PAGER_ID = 1002
-    //const val PAGER_INDICATOR_ID = 1003
+    // const val PAGER_INDICATOR_ID = 1003
     const val TITLE_ID = 1004
     const val TITLE_BG_ID = 1005
 }
