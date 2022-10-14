@@ -23,7 +23,8 @@ struct PetDetailScreen: View {
     private let pagerHeight = UIScreen.main.bounds.width + (UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0)
     
     @State private var scrollOffset: CGFloat = 0
-    
+    @State private var backButtonOffset: CGFloat = 0
+
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             ZStack(alignment: .topLeading) {
@@ -37,11 +38,13 @@ struct PetDetailScreen: View {
                         
                         let offset = reader.frame(in: .global).minY
 
-                        if -offset + safeAreaInsetTop >= 0 {
-                            DispatchQueue.main.async {
+                        DispatchQueue.main.async {
+                            if -offset + safeAreaInsetTop >= 0 {
                                 self.scrollOffset = -offset
                             }
+                            self.backButtonOffset = -offset
                         }
+                        
                         
                         return AnyView(
                             ImagePager(photos: state?.petInfo?.photos ?? [PetPhoto]()) { image in
@@ -159,7 +162,7 @@ struct PetDetailScreen: View {
                         )
                 }
                 .padding(.init(top: safeAreaInsetTop + 6, leading: 0, bottom: 0, trailing: 0))
-                .offset(y: scrollOffset)
+                .offset(y: backButtonOffset)
                 .opacity(scrollOffset > pagerHeight ? 0 : 1)
             }
         }
