@@ -4,9 +4,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 
 @Composable
-fun ApplicationTheme(content: @Composable () -> Unit) {
+fun ApplicationTheme(isSystemInDarkTheme: Boolean, content: @Composable () -> Unit) {
     MaterialTheme(
-        colorScheme = AppColorScheme,
+        colorScheme = if (isSystemInDarkTheme) AppColorSchemeDark else AppColorSchemeLight,
         typography = AppTypography,
         shapes = AppShapes,
         content = content
