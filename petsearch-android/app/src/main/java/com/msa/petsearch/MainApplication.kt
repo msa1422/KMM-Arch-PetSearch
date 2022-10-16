@@ -9,7 +9,7 @@ import coil.memory.MemoryCache
 import coil.request.CachePolicy
 import com.msa.petsearch.shared.initKoin
 
-class MainApplication : Application(), ImageLoaderFactory {
+internal class MainApplication : Application(), ImageLoaderFactory {
 
     override fun onCreate() {
         super.onCreate()

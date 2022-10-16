@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.msa.petsearch">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <queries>
-
         <!-- Google Play-->
         <package android:name="com.android.vending" />
 
@@ -15,9 +13,7 @@
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="http" />
         </intent>
-
     </queries>
-
 
     <supports-screens
         android:anyDensity="true"
@@ -41,8 +37,6 @@
         android:resizeableActivity="false"
         android:supportsRtl="true"
         android:theme="@style/MainTheme"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning"
+        tools:ignore="AllowBackup,DataExtractionRules,GoogleAppIndexingWarning,MissingApplicationIcon"
         tools:targetApi="o"/>
-
-
 </manifest>
