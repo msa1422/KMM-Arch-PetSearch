@@ -19,6 +19,7 @@ import com.msa.petsearch.activity.composable.MainSnackbarHost
 import com.msa.petsearch.activity.composable.rememberSnackBarHostState
 import com.msa.petsearch.activity.di.AppScreens
 import com.msa.petsearch.commoncompose.provide
+import com.msa.petsearch.commoncompose.theme.ApplicationTheme
 import com.msa.petsearch.shared.coreutil.resource.MessageType
 import com.msa.petsearch.shared.coreutil.resource.ResourceMessage
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationScreen
@@ -26,7 +27,7 @@ import kotlinx.coroutines.launch
 
 @Suppress("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-internal fun MainScreen() {
+internal fun MainContent() {
     val context = LocalContext.current
 
     val coroutineScope = rememberCoroutineScope()
@@ -72,16 +73,18 @@ internal fun MainScreen() {
         }
     }
 
-    Scaffold(
-        snackbarHost = { MainSnackbarHost(snackbarHostState) },
-        modifier = Modifier
-            .navigationBarsPadding()
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        AnimatedNavHost(navController, NavigationScreen.HomeNavScreen.route) {
-            AppScreens.provide(this@AnimatedNavHost, navController) {
-                onMessageReceived(it)
+    ApplicationTheme {
+        Scaffold(
+            snackbarHost = { MainSnackbarHost(snackbarHostState) },
+            modifier = Modifier
+                .navigationBarsPadding()
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+        ) {
+            AnimatedNavHost(navController, NavigationScreen.HomeNavScreen.route) {
+                AppScreens.provide(this@AnimatedNavHost, navController) {
+                    onMessageReceived(it)
+                }
             }
         }
     }
