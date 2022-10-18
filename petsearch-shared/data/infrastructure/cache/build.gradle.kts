@@ -5,7 +5,7 @@ import com.msa.petsearch.util.libs
 
 plugins {
     `kmm-shared-module-plugin`
-    // alias(libs.plugins.realm.kotlin)
+    alias(libs.plugins.realm.kotlin)
 }
 
 android {
@@ -17,5 +17,5 @@ dependencies {
 
     commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.koin.core)
-    // commonMainImplementation(libs.realm.kotlin)
+    commonMainImplementation(libs.realm.kotlin)
 }
