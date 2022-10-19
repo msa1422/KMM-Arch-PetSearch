@@ -55,6 +55,8 @@ internal class HomeViewModelTest : FunSpec(), KoinTest {
 
             // Now observe state
             viewModel.observeState().test {
+                awaitItem()
+
                 // Implies that Paging Data has been updated with a new one
                 awaitItem().petPagingData.first() shouldNotBe FakeData.fakePagingData
 
