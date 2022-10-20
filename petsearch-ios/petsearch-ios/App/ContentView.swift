@@ -13,6 +13,8 @@ import ToastSwiftUI
 
 struct ContentView: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @StateObject var pilot = UIPilot(initial: NavigationScreenKt.HOME_DESTINATION)
     
     @State private var resourceMessageText: String?
@@ -49,7 +51,7 @@ struct ContentView: View {
                 
                 // Safe Area Translucent BottomInset
                 Rectangle()
-                    .fill(Color.surface.opacity(0.38))
+                    .fill(Color.surface(colorScheme).opacity(0.62))
                     .frame(height: proxy.safeAreaInsets.bottom)
             }
             .edgesIgnoringSafeArea(.bottom)
@@ -57,7 +59,7 @@ struct ContentView: View {
                 isPresenting: $showToast,
                 message: String(resourceMessageText?.prefix(120) ?? ""),
                 icon: nil,
-                backgroundColor: Color.onSurface.opacity(0.9),
+                backgroundColor: Color.onSurface(colorScheme).opacity(0.9),
                 textColor: Color.blue,
                 autoDismiss: .after(5),
                 onDisappear: { resourceMessageText = nil }

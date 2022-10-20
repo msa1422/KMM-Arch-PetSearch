@@ -11,6 +11,8 @@ import Shared
 import SDWebImageSwiftUI
 
 struct HomeScreen: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     let viewModel : HomeViewModel
         
     @State private var renderState: HomeRenderState? = nil
@@ -19,7 +21,7 @@ struct HomeScreen: View {
     @State private var petInfoList: [PetInfo] = []
     @State private var petInfoListObserver: Closeable? = nil
     
-    @State private var paginationState: PaginationState = .loading
+    @State private var paginationState = PaginationState.loading
     
     @State private var selectedTab: Int = 0
     
@@ -39,6 +41,7 @@ struct HomeScreen: View {
         .navigationTitle("")
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.bottom)
+        .background(Color.surface(colorScheme).ignoresSafeArea())
         .onAppear {
             if renderStateObserver == nil {
                 renderStateObserver = viewModel.observeRenderState().watch { state in
@@ -164,7 +167,7 @@ extension HomeScreen {
                 .padding(.init(top: 32, leading: .zero, bottom: 64, trailing: .zero))
                 .opacity(paginationState == .loading ? 1 : 0)
         }
-        .background(Color.background)
+        .background(Color.background(colorScheme))
     }
 }
 

@@ -11,7 +11,27 @@ import SwiftUI
 import Shared
 
 public extension SwiftUI.Color {
-    static let background = SwiftUI.Color(SharedR.colors.shared.background_light.color.toUIColor())
-    static let surface = SwiftUI.Color(SharedR.colors.shared.surface_light.color.toUIColor())
-    static let onSurface = SwiftUI.Color(SharedR.colors.shared.onSurface_light.color.toUIColor())
+    static func background(_ colorScheme: ColorScheme) -> Self {
+        return SwiftUI.Color(
+            colorScheme == .dark
+            ? SharedR.colors.shared.background_dark.color.toUIColor()
+            : SharedR.colors.shared.background_light.color.toUIColor()
+        )
+    }
+    
+    static func surface(_ colorScheme: ColorScheme) -> Self {
+        return SwiftUI.Color(
+            colorScheme == .dark
+            ? SharedR.colors.shared.surface_dark.color.toUIColor()
+            : SharedR.colors.shared.surface_light.color.toUIColor()
+        )
+    }
+    
+    static func onSurface(_ colorScheme: ColorScheme) -> Self {
+        return SwiftUI.Color(
+            colorScheme == .dark
+            ? SharedR.colors.shared.onSurface_dark.color.toUIColor()
+            : SharedR.colors.shared.onSurface_light.color.toUIColor()
+        )
+    }
 }

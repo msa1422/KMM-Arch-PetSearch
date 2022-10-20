@@ -12,6 +12,8 @@ import SDWebImageSwiftUI
 
 struct PetInfoView: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     let petInfo: PetInfo
     
     let onClick: () -> Void
@@ -40,7 +42,7 @@ struct PetInfoView: View {
             // Pet Name
             Text(petInfo.name)
                 .style(.titleMedium)
-                .foregroundColor(Color.onSurface)
+                .foregroundColor(Color.onSurface(colorScheme))
                 .lineLimit(1)
                 .padding(.init(top: 10, leading: 12, bottom: .zero, trailing: 12))
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -48,14 +50,14 @@ struct PetInfoView: View {
             // Pet Description
             Text(petInfo.shortDescription)
                 .style(.bodySmall)
-                .foregroundColor(Color.onSurface)
+                .foregroundColor(Color.onSurface(colorScheme))
                 .lineLimit(2)
                 .opacity(0.75)
                 .padding(.init(top: 4, leading: 12, bottom: 20, trailing: 12))
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .frame(maxWidth: .infinity)
-        .background(Color.surface)
+        .background(Color.surface(colorScheme))
         .onTapGesture { onClick() }
     }
 }

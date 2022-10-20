@@ -12,6 +12,8 @@ import SwiftUI
 
 struct TabRow: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var tabs: [String]
     
     @Binding var selectedTab: Int
@@ -33,7 +35,7 @@ struct TabRow: View {
                                     // Bar Indicator
                                     if selectedTab == row {
                                         RoundedRectangle(cornerSize: CGSize.init(width: 3, height: 3))
-                                            .fill(Color.onSurface)
+                                            .fill(Color.onSurface(colorScheme))
                                             .frame(height: 3)
                                             .matchedGeometryEffect(id: "TAB", in: animation)
                                     }
@@ -44,7 +46,7 @@ struct TabRow: View {
                                     // Text
                                     Text(tabs[row].uppercased())
                                         .style(selectedTab == row ? .tabSelected : .tabUnselected)
-                                        .foregroundColor(Color.onSurface)
+                                        .foregroundColor(Color.onSurface(colorScheme))
                                         .frame(width: .none, height: 52)
                                         // for making text visually centered
                                         .padding(.init(top: 0, leading: 0, bottom: 2, trailing: 0))
