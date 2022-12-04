@@ -44,7 +44,7 @@ struct HomeScreen: View {
         .background(Color.surface(colorScheme).ignoresSafeArea())
         .onAppear {
             if renderStateObserver == nil {
-                renderStateObserver = viewModel.observeRenderState().watch { state in
+                renderStateObserver = viewModel.renderState.watch { state in
                     guard let renderState = state else { return }
                     self.renderState = renderState
                     
@@ -72,7 +72,7 @@ struct HomeScreen: View {
             }
             
             if renderState == nil || renderState?.petTypes == nil {
-                viewModel.action(action: HomeAction.GetPetTypes())
+                viewModel.action(action: HomeActionGetPetTypes())
             }
         }
         .onDisappear {
@@ -129,7 +129,7 @@ extension HomeScreen {
                 petInfoList.removeAll()
                 
                 viewModel.action(
-                    action: HomeAction.OnPetTypeTabSelected(
+                    action: HomeActionOnPetTypeTabSelected(
                         tabName: renderState?.petTypes?[index].name ?? ""
                     )
                 )
@@ -146,7 +146,7 @@ extension HomeScreen {
                 ForEach(petInfoList, id: \.id) { petInfo in
                     PetInfoView(petInfo: petInfo) {
                         viewModel
-                            .action(action: HomeAction.NavigateToPetDetail(petInfo: petInfo))
+                            .action(action: HomeActionNavigateToPetDetail(petInfo: petInfo))
                     }
                     .onAppear {
                         // Very basic and definitely not production ready implementation of pagination
@@ -157,7 +157,7 @@ extension HomeScreen {
                         if petInfoList.firstIndex(where: { $0.id == petInfo.id }) == thresholdIndex &&
                             paginationState != .loading {
                             paginationState = .loading
-                            viewModel.action(action: HomeAction.LoadPetListNextPage())
+                            viewModel.action(action: HomeActionLoadPetListNextPage())
                         }
                     }
                 }

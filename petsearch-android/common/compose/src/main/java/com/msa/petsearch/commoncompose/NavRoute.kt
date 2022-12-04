@@ -73,7 +73,7 @@ interface NavRoute<T : RouteNavigator> {
                     }
                 }
 
-                val navigationState by it.observeNavigationState()
+                val navigationState by it.navigationState
                     .collectAsStateWithLifecycle(initialValue = NavigationState.Idle)
 
                 LaunchedEffect(navigationState) {
@@ -95,7 +95,7 @@ interface NavRoute<T : RouteNavigator> {
                 }
 
                 LaunchedEffect(it) {
-                    it.observeMessageDeque().collectLatest { message ->
+                    it.messageFlow.collectLatest { message ->
                         if (message != null) {
                             messenger.invoke(message)
                         }

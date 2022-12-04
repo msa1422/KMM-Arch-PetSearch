@@ -180,7 +180,7 @@ struct PetDetailScreen: View {
         .navigationBarHidden(true)
         .onAppear {
             if stateObserver == nil { // Should be always true
-                stateObserver = viewModel.observeState().watch { state in
+                stateObserver = viewModel.state.watch { state in
                     guard let ns = state else { return }
                     self.state = ns
                 }

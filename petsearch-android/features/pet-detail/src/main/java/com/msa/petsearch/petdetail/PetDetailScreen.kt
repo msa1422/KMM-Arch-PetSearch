@@ -29,7 +29,7 @@ internal fun PetDetailScreen(
 ) {
     val backPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
-    val state by viewModel.observeState().collectAsStateWithLifecycle(initialValue = null)
+    val state by viewModel.state.collectAsStateWithLifecycle(initialValue = null)
 
     val scrollBehavior = exitUntilCollapsedScrollBehavior(snapAnimationSpec = null)
 

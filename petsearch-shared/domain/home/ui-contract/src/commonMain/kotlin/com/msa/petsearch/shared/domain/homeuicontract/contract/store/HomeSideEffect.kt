@@ -2,17 +2,17 @@ package com.msa.petsearch.shared.domain.homeuicontract.contract.store
 
 import com.msa.petsearch.shared.coreentity.PetSearchParams
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux
+import kotlinx.coroutines.CoroutineScope
 
-sealed class HomeSideEffect : NanoRedux.SideEffect {
+sealed interface HomeSideEffect : NanoRedux.SideEffect {
 
-    object LoadPetTypesFromNetwork : HomeSideEffect()
+    object LoadPetTypesFromNetwork : HomeSideEffect
 
     data class LoadPetsFromNetwork(
         val type: String,
         val page: Int,
         val params: PetSearchParams
-    ) : HomeSideEffect()
+    ) : HomeSideEffect
 
-    object LoadPetListNextPageFromNetwork: HomeSideEffect()
-
+    object LoadPetListNextPageFromNetwork: HomeSideEffect
 }

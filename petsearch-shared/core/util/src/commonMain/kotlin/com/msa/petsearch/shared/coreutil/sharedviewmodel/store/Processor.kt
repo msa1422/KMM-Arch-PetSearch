@@ -9,4 +9,6 @@ interface Processor<SE : NanoRedux.SideEffect, out A : NanoRedux.Action> {
      * to the [kotlinx.coroutines.CoroutineExceptionHandler] of the [kotlin.coroutines.CoroutineContext] if it was set
      */
     suspend fun dispatchSideEffect(effect: SE): A
+
+    fun close()
 }

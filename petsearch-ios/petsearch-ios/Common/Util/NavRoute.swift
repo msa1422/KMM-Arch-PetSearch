@@ -31,7 +31,7 @@ extension NavRoute {
     
     func view(pilot: UIPilot<String>, route: String, messenger : @escaping (ResourceMessage) -> Void) -> some View {
         if let viewModel = self.viewModel as? BaseVm {
-            viewModel.observeNavigationState().watch { state in
+            viewModel.navigationState.watch { state in
                 if state != nil {
                     updateNavigationState(pilot: pilot, navigationState: state!) { newState in
                         viewModel.onNavComplete(state: newState)
@@ -51,7 +51,7 @@ extension NavRoute {
                 }
             }
             
-            viewModel.observeMessageDeque().watch { message in
+            viewModel.messageFlow.watch { message in
                 if let msg = message {
                     messenger(msg)
                 }

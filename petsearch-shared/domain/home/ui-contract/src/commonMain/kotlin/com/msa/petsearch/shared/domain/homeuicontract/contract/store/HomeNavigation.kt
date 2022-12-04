@@ -7,9 +7,9 @@ import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationSc
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationState
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux
 
-sealed class HomeNavigation : NanoRedux.Navigation {
+sealed interface HomeNavigation : NanoRedux.Navigation {
 
-    data class NavHomeToPetDetail(val petInfo: PetInfo?) : HomeNavigation() {
+    data class NavHomeToPetDetail(val petInfo: PetInfo?) : HomeNavigation {
         override val state: NavigationState =
             NavigationState.NavigateToRoute(
                 route = NavigationScreen.PetDetailNavScreen.route,

@@ -7,23 +7,22 @@ import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux
 import com.kuuurt.paging.multiplatform.PagingData
 import com.msa.petsearch.shared.coreutil.commonflow.CommonFlow
 
-sealed class HomeAction : NanoRedux.Action {
+sealed interface HomeAction : NanoRedux.Action {
 
-    object GetPetTypes : HomeAction()
+    object GetPetTypes : HomeAction
 
-    data class UpdatePetTypesInState(val petTypesResponse: PetTypesResponse?) : HomeAction()
+    data class UpdatePetTypesInState(val petTypesResponse: PetTypesResponse?) : HomeAction
 
     data class UpdatePetResponseInState(val petPagingData: CommonFlow<PagingData<PetInfo>>) :
-        HomeAction()
+        HomeAction
 
-    data class OnPetTypeTabSelected(val tabName: String) : HomeAction()
+    data class OnPetTypeTabSelected(val tabName: String) : HomeAction
 
-    data class NavigateToPetDetail(val petInfo: PetInfo?) : HomeAction()
+    data class NavigateToPetDetail(val petInfo: PetInfo?) : HomeAction
 
-    object LoadPetListNextPage: HomeAction()
+    object LoadPetListNextPage: HomeAction
 
-    object OnLoadPetListNextPageActionComplete: HomeAction()
+    object OnLoadPetListNextPageActionComplete: HomeAction
 
-    data class Error(val message: ResourceMessage?): HomeAction()
-
+    data class Error(val message: ResourceMessage?): HomeAction
 }

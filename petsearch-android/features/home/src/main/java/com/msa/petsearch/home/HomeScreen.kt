@@ -29,7 +29,7 @@ internal fun HomeScreen(
     val coroutineScope = rememberCoroutineScope()
     val gridState = rememberLazyGridState()
 
-    val renderState by viewModel.observeRenderState().collectAsState(initial = null)
+    val renderState by viewModel.renderState.collectAsState(initial = null)
     val petList = renderState?.petPagingData?.collectAsLazyPagingItems()
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())

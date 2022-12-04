@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation
 
-import kotlinx.coroutines.flow.StateFlow
+import com.msa.petsearch.shared.coreutil.commonflow.CommonStateFlow
 
 /**
  * A simplified rewrite of the RouteNavigator from the source below
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
  * Navigator to use when initiating navigation from a ViewModel.
  */
 interface RouteNavigator {
-    val navigationState: StateFlow<NavigationState>
+    val navigationState: CommonStateFlow<NavigationState>
     fun onNavStart(state: NavigationState)
     fun onNavComplete(state: NavigationState)
 }

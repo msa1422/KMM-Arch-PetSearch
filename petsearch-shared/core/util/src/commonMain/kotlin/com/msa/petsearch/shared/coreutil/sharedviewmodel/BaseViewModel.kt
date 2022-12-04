@@ -1,21 +1,15 @@
 package com.msa.petsearch.shared.coreutil.sharedviewmodel
 
-import com.msa.petsearch.shared.coreutil.commonflow.CommonFlow
 import com.msa.petsearch.shared.coreutil.commonflow.asCommonFlow
+import com.msa.petsearch.shared.coreutil.commonflow.asCommonStateFlow
 import com.msa.petsearch.shared.coreutil.resource.MessageDeque
-import com.msa.petsearch.shared.coreutil.resource.ResourceMessage
-import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.NavigationState
+import com.msa.petsearch.shared.coreutil.sharedviewmodel.model.SuperViewModel
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.navigation.RouteNavigator
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.*
-import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.ActionDispatcher
 import com.msa.petsearch.shared.coreutil.sharedviewmodel.store.NanoRedux.*
-import com.msa.petsearch.shared.coreutil.sharedviewmodel.model.SuperViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.EmptyCoroutineContext
@@ -38,50 +32,36 @@ constructor(
     private val messageDeque: MessageDeque
 ) : SuperViewModel(), ActionDispatcher<A>, RouteNavigator by routeNavigator {
 
-    private val state = MutableStateFlow(initialState)
+    private val _state = MutableStateFlow(initialState)
+    val state = _state.asStateFlow().asCommonStateFlow()
 
-    private val events = MutableSharedFlow<E>()
-
-    private val renderState by lazy {
-        MutableStateFlow(stateMapper?.mapToRenderState(state.value))
+    private val _renderState by lazy {
+        _state.map { stateMapper?.mapToRenderState(it) }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5000),
+                initialValue = null
+            )
     }
+    val renderState by lazy { _renderState.asCommonStateFlow() }
+
+    private val _events = MutableSharedFlow<E>()
+    val events = _events.asSharedFlow().asCommonFlow()
+
+    val messageFlow = messageDeque.readOnlyStateFlow().asCommonStateFlow()
 
     fun updateArgsInState(args: HashMap<String, String>) {
         argsMapper?.let { mapper ->
-            state.value = mapper.mapArgsToState(currentState = state.value, args = args)
+            _state.value = mapper.mapArgsToState(currentState = _state.value, args = args)
         }
-        stateMapper?.let { mapper ->
-            renderState.value = mapper.mapToRenderState(state = state.value)
-        }
-    }
-
-    fun observeMessageDeque(): CommonFlow<ResourceMessage?> {
-        return messageDeque.readOnlyStateFlow().asCommonFlow()
-    }
-
-    fun observeNavigationState(): CommonFlow<NavigationState> {
-        return routeNavigator.navigationState.asCommonFlow()
-    }
-
-    fun observeRenderState(): CommonFlow<RS?> {
-        return renderState.asStateFlow().asCommonFlow()
-    }
-
-    fun observeState(): CommonFlow<S> {
-        return state.asStateFlow().asCommonFlow()
-    }
-
-    fun observeEvents(): CommonFlow<E> {
-        return events.asSharedFlow().asCommonFlow()
     }
 
     override fun action(action: A) {
-
         updater?.onNewAction(action, state.value)?.let { next ->
 
             viewModelScope.launch {
                 next.events.forEach {
-                    events.emit(it)
+                    _events.emit(it)
                 }
             }
 
@@ -105,11 +85,9 @@ constructor(
                 }
             }
 
-            state.value = next.state
+            _state.value = next.state
 
-            stateMapper?.mapToRenderState(next.state)?.let { rs ->
-                renderState.value = rs
-            }
+            _state.update { next.state }
         }
     }
 
@@ -130,7 +108,8 @@ constructor(
     }
 
     public override fun onCleared() {
-        state.value = initialState
+        _state.update { initialState }
+        processor?.close()
         super.onCleared()
     }
 }

@@ -13,6 +13,7 @@ import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeAction
 import com.msa.petsearch.shared.domain.homeuicontract.contract.store.HomeSideEffect
 import com.msa.petsearch.shared.domain.homeuicontract.interactor.LoadPetsUseCase
 import com.msa.petsearch.shared.domain.homeuicontract.interactor.UseCaseWrapper
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 internal class HomeProcessor(
@@ -21,6 +22,7 @@ internal class HomeProcessor(
 
     private lateinit var petListPager: Pager<Int, PetInfo>
     private lateinit var currentPetType: String
+    private lateinit var coroutineScope: CoroutineScope
 
     private val pagingConfig = PagingConfig(
         pageSize = 20,
@@ -49,8 +51,17 @@ internal class HomeProcessor(
             !this::currentPetType.isInitialized ||
             currentPetType != effect.type
         ) {
+            if (!this::coroutineScope.isInitialized) {
+                val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+                    onError(throwable)
+                }
+
+                coroutineScope =
+                    CoroutineScope(SupervisorJob() + Dispatchers.Main + exceptionHandler)
+            }
+
             petListPager = Pager(
-                clientScope = effect.coroutineScope,
+                clientScope = coroutineScope,
                 config = pagingConfig,
                 initialKey = 1
             ) { currentKey, _ ->
@@ -61,7 +72,7 @@ internal class HomeProcessor(
         val flow = petListPager
             .pagingData
             .distinctUntilChanged()
-            .cachedIn(effect.coroutineScope)
+            .cachedIn(coroutineScope)
             .asCommonFlow()
 
         return HomeAction.UpdatePetResponseInState(flow)
@@ -74,5 +85,11 @@ internal class HomeProcessor(
                 messageType = MessageType.SnackBar()
             )
         )
+    }
+
+    override fun close() {
+        if (this::coroutineScope.isInitialized) {
+            coroutineScope.cancel()
+        }
     }
 }
