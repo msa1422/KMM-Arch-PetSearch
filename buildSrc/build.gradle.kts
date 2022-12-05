@@ -9,8 +9,8 @@ plugins {
 
 repositories {
     google()
-    gradlePluginPortal()
     mavenCentral()
+    gradlePluginPortal()
     maven("https://dl.bintray.com/kotlin/kotlin-eap")
     maven("https://plugins.gradle.org/m2/")
     maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
