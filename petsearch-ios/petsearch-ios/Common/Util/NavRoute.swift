@@ -12,7 +12,6 @@ import SwiftUI
 import UIPilot
 
 protocol NavRoute {
-    
     associatedtype T : RouteNavigator
     associatedtype V : View
     
@@ -30,35 +29,50 @@ extension NavRoute {
     typealias BaseVm = BaseViewModel<AnyObject, AnyObject, AnyObject, AnyObject, AnyObject, AnyObject, AnyObject>
     
     func view(pilot: UIPilot<String>, route: String, messenger : @escaping (ResourceMessage) -> Void) -> some View {
-        if let viewModel = self.viewModel as? BaseVm {
-            viewModel.navigationState.watch { state in
-                if state != nil {
-                    updateNavigationState(pilot: pilot, navigationState: state!) { newState in
-                        viewModel.onNavComplete(state: newState)
-                    }
-                    
-                    if !getArguments().isEmpty {
-                        let argsMap = KotlinMutableDictionary<NSString, NSString>()
-                        
-                        getArguments().forEach { argName in
-                            if let arg = route.valueOf(param: argName) {
-                                argsMap.setValue(arg, forKey: argName)
+        var navStateObserver: Closeable? = nil
+        var messageDequeObserver: Closeable? = nil
+        
+        return content
+            .onAppear {
+                if let viewModel = self.viewModel as? BaseVm {
+                    if navStateObserver == nil {
+                        navStateObserver = viewModel.navigationState.watch { state in
+                            if state != nil {
+                                updateNavigationState(pilot: pilot, navigationState: state!) { newState in
+                                    viewModel.onNavComplete(state: newState)
+                                }
+                                
+                                if !getArguments().isEmpty {
+                                    let argsMap = KotlinMutableDictionary<NSString, NSString>()
+                                    
+                                    getArguments().forEach { argName in
+                                        if let arg = route.valueOf(param: argName) {
+                                            argsMap.setValue(arg, forKey: argName)
+                                        }
+                                    }
+                                    
+                                    viewModel.updateArgsInState(args: argsMap)
+                                }
                             }
                         }
-                        
-                        viewModel.updateArgsInState(args: argsMap)
+                    }
+                    
+                    if messageDequeObserver == nil {
+                        messageDequeObserver = viewModel.messageFlow.watch { message in
+                            if let msg = message {
+                                messenger(msg)
+                            }
+                        }
                     }
                 }
             }
-            
-            viewModel.messageFlow.watch { message in
-                if let msg = message {
-                    messenger(msg)
-                }
+            .onDisappear {
+                navStateObserver?.close()
+                navStateObserver = nil
+                
+                messageDequeObserver?.close()
+                messageDequeObserver = nil
             }
-        }
-    
-        return content
     }
     
     func updateNavigationState(
@@ -140,66 +154,37 @@ extension NavRoute {
         default : break
         }
     }
-        
-    // For some reason this implementation doesn't work
-    // First time Navigate from Home to PetDetail works
-    // Navigate back from PetDetail to Home works
-    // But then Navigate from Home to PetDetail again fails
-//    func view(pilot: UIPilot<String>, route: String, messenger : @escaping (ResourceMessage) -> Void) -> some View {
-//
-//        var navStateObserver: Closeable? = nil
-//        var messageDequeObserver: Closeable? = nil
-//
-//        return content
-//            .onAppear {
-//
-//                if let viewModel = self.viewModel as? BaseVm {
-//
-//                    if navStateObserver == nil {
-//                        navStateObserver = viewModel.observeNavigationState().watch { state in
-//
-//                            if state != nil {
-//
-//                                updateNavigationState(pilot: pilot, navigationState: state!) { newState in
-//                                    viewModel.onNavComplete(state: newState)
-//                                }
-//
-//                                if !getArguments().isEmpty {
-//
-//                                    let argsMap = KotlinMutableDictionary<NSString, NSString>()
-//
-//                                    getArguments().forEach { argName in
-//                                        if let arg = route.valueOf(param: argName) {
-//                                            argsMap.setValue(arg, forKey: argName)
-//                                        }
-//                                    }
-//
-//                                    viewModel.updateArgsInState(args: argsMap)
-//                                }
-//                            }
-//                        }
-//                    }
-//
-//
-//                    if messageDequeObserver == nil {
-//                        messageDequeObserver = viewModel.observeMessageDeque().watch { message in
-//                            if let msg = message {
-//                                messenger(msg)
-//                            }
-//                        }
-//                    }
-//
-//                }
-//
-//            }
-//            .onDisappear {
-//                navStateObserver?.close()
-//                navStateObserver = nil
-//
-//                messageDequeObserver?.close()
-//                messageDequeObserver = nil
-//            }
-//
-//    }
-
+    
+    // Older implementation for view method
+    //    func view(pilot: UIPilot<String>, route: String, messenger : @escaping (ResourceMessage) -> Void) -> some View {
+    //        if let viewModel = self.viewModel as? BaseVm {
+    //            viewModel.navigationState.watch { state in
+    //                if state != nil {
+    //                    updateNavigationState(pilot: pilot, navigationState: state!) { newState in
+    //                        viewModel.onNavComplete(state: newState)
+    //                    }
+    //
+    //                    if !getArguments().isEmpty {
+    //                        let argsMap = KotlinMutableDictionary<NSString, NSString>()
+    //
+    //                        getArguments().forEach { argName in
+    //                            if let arg = route.valueOf(param: argName) {
+    //                                argsMap.setValue(arg, forKey: argName)
+    //                            }
+    //                        }
+    //
+    //                        viewModel.updateArgsInState(args: argsMap)
+    //                    }
+    //                }
+    //            }
+    //
+    //            viewModel.messageFlow.watch { message in
+    //                if let msg = message {
+    //                    messenger(msg)
+    //                }
+    //            }
+    //        }
+    //
+    //        return content
+    //    }
 }
