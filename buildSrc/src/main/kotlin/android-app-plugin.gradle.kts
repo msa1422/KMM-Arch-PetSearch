@@ -2,7 +2,7 @@
 
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.msa.petsearch.PackageNameAccessor
-import com.msa.petsearch.extensions.BuildType
+import com.msa.petsearch.extensions.BuildTypeBenchmark
 import com.msa.petsearch.extensions.BuildTypeDebug
 import com.msa.petsearch.extensions.BuildTypeRelease
 import com.msa.petsearch.extensions.getKeystoreProperty
@@ -45,7 +45,7 @@ android {
     }
 
     signingConfigs {
-        create(BuildType.RELEASE) {
+        val release by creating {
             storeFile = file(getKeystoreProperty("STORE_FILE"))
             storePassword = getKeystoreProperty("STORE_PASSWORD")
             keyAlias = getKeystoreProperty("KEY_ALIAS")
@@ -54,17 +54,33 @@ android {
     }
 
     buildTypes {
-        getByName(BuildType.RELEASE) {
-            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
-            signingConfig = signingConfigs.getByName(BuildType.RELEASE)
-            isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
-            enableUnitTestCoverage = BuildTypeRelease.enableUnitTestCoverage
-        }
-        getByName(BuildType.DEBUG) {
+        val debug by getting {
             applicationIdSuffix = BuildTypeDebug.applicationIdSuffix
             versionNameSuffix = BuildTypeDebug.versionNameSuffix
             isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
             enableUnitTestCoverage = BuildTypeDebug.enableUnitTestCoverage
+            enableAndroidTestCoverage = BuildTypeDebug.enableAndroidTestCoverage
+        }
+
+        val release by getting {
+            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
+            enableUnitTestCoverage = BuildTypeRelease.enableUnitTestCoverage
+            enableAndroidTestCoverage = BuildTypeRelease.enableAndroidTestCoverage
+        }
+
+        val benchmark by creating {
+            initWith(release)
+            matchingFallbacks.add("release")
+
+            signingConfig = debug.signingConfig
+
+            proguardFiles("benchmark-rules.pro")
+            applicationIdSuffix = BuildTypeBenchmark.applicationIdSuffix
+            versionNameSuffix = BuildTypeBenchmark.versionNameSuffix
+            enableUnitTestCoverage = BuildTypeBenchmark.enableUnitTestCoverage
+            enableAndroidTestCoverage = BuildTypeBenchmark.enableAndroidTestCoverage
         }
     }
 
