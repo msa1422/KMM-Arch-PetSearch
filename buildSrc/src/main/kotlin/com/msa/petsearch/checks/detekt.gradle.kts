@@ -8,17 +8,15 @@ import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 apply<DetektPlugin>()
 
 configure<DetektExtension> {
-
     parallel = true
     buildUponDefaultConfig = true
     allRules = false
-    source = project.files("src/main/kotlin")
+    autoCorrect = true
+    source = project.files(rootProject.projectDir)
     config = files("${rootProject.projectDir}/config/detekt.yml")
-
 }
 
 tasks.withType<Detekt>().configureEach {
-
     jvmTarget = JavaVersion.VERSION_11.toString()
 
     reports {
@@ -33,6 +31,9 @@ tasks.withType<Detekt>().configureEach {
         // sarif.required.set(true)
         // md.required.set(true) // simple Markdown format
     }
+
+    exclude("**/*.kts")
+    exclude("**/build/**")
 }
 
 tasks.withType<DetektCreateBaselineTask>().configureEach {

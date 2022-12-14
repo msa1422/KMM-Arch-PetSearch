@@ -1,6 +1,5 @@
-@file:Suppress("UnstableApiUsage")
-
-import com.msa.petsearch.PackageNameAccessor.ANDROID_APP
+import com.msa.petsearch.ANDROID_PACKAGE
+import com.msa.petsearch.join
 import com.msa.petsearch.util.libs
 
 plugins {
@@ -8,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = ANDROID_APP
+    namespace = ANDROID_PACKAGE.join(projects.petsearchAndroid.app)
 }
 
 dependencies {

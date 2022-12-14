@@ -1,7 +1,8 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
 
+import com.msa.petsearch.SHARED_PACKAGE
+import com.msa.petsearch.join
 import com.msa.petsearch.util.libs
-import com.msa.petsearch.PackageNameAccessor.SHARED_RESOURCES
 
 plugins {
     `kmm-shared-module-plugin`
@@ -9,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = SHARED_RESOURCES
+    namespace = SHARED_PACKAGE.join(projects.petsearchShared.resources)
 
     sourceSets["main"].apply {
         assets.srcDir(File(buildDir, "generated/moko/androidMain/assets"))
@@ -23,6 +24,7 @@ dependencies {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = SHARED_RESOURCES
+    multiplatformResourcesPackage = SHARED_PACKAGE.join(projects.petsearchShared.resources)
     multiplatformResourcesClassName = "SharedR"
+    disableStaticFrameworkWarning = true
 }

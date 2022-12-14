@@ -1,6 +1,7 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
 
-import com.msa.petsearch.PackageNameAccessor.SHARED_CORE_ENTITY
+import com.msa.petsearch.SHARED_PACKAGE
+import com.msa.petsearch.join
 import com.msa.petsearch.util.libs
 
 plugins {
@@ -9,7 +10,10 @@ plugins {
 }
 
 android {
-    namespace = SHARED_CORE_ENTITY
+    namespace = SHARED_PACKAGE.join(
+        projects.petsearchShared.core,
+        projects.petsearchShared.core.entity
+    )
 }
 
 dependencies {

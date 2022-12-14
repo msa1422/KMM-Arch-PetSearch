@@ -1,7 +1,6 @@
-@file:Suppress("UnstableApiUsage")
+@file:Suppress("UnstableApiUsage", "UNUSED_VARIABLE")
 
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
-import com.msa.petsearch.PackageNameAccessor
 import com.msa.petsearch.extensions.BuildTypeBenchmark
 import com.msa.petsearch.extensions.BuildTypeDebug
 import com.msa.petsearch.extensions.BuildTypeRelease
@@ -15,6 +14,7 @@ plugins {
     id("com.msa.petsearch.checks.detekt")
     id("com.msa.petsearch.checks.ktlint")
     id("com.msa.petsearch.checks.spotless")
+    id("com.msa.petsearch.checks.dependency-updates")
 }
 
 repositories {
@@ -26,7 +26,7 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = PackageNameAccessor.javaClass.packageName
+        applicationId = "com.msa.petsearch"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()
@@ -97,13 +97,13 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    tasks.withType<Test>().configureEach {
-        useJUnitPlatform()
+    sourceSets.all {
+        java.srcDirs("src/$name/kotlin")
     }
+}
 
-    dependencies {
-        debugImplementation(libs.squareup.leakcanary)
-    }
+dependencies {
+    debugImplementation(libs.squareup.leakcanary)
 }
 
 tasks.withType<KotlinCompile>().configureEach {
@@ -111,4 +111,8 @@ tasks.withType<KotlinCompile>().configureEach {
         jvmTarget = libs.versions.java.get().toString()
         languageVersion = libs.versions.kt.get().toString()
     }
+}
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
 }

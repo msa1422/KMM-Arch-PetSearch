@@ -1,4 +1,5 @@
-import com.msa.petsearch.PackageNameAccessor.SHARED_CORE_TEST
+import com.msa.petsearch.SHARED_PACKAGE
+import com.msa.petsearch.join
 import com.msa.petsearch.util.libs
 
 plugins {
@@ -6,7 +7,10 @@ plugins {
 }
 
 android {
-    namespace = SHARED_CORE_TEST
+    namespace = SHARED_PACKAGE.join(
+        projects.petsearchShared.core,
+        projects.petsearchShared.core.test
+    )
 }
 
 dependencies {

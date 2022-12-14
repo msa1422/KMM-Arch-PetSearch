@@ -1,6 +1,7 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
 
-import com.msa.petsearch.PackageNameAccessor.ANDROID_COMMON_COMPOSE
+import com.msa.petsearch.ANDROID_PACKAGE
+import com.msa.petsearch.join
 import com.msa.petsearch.util.libs
 
 plugins {
@@ -9,7 +10,10 @@ plugins {
 }
 
 android {
-    namespace = ANDROID_COMMON_COMPOSE
+    namespace = ANDROID_PACKAGE.join(
+        projects.petsearchAndroid.common,
+        projects.petsearchAndroid.common.compose
+    )
 
     buildFeatures {
         compose = true
@@ -20,15 +24,10 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.lifecycle.runtime)
-    implementation(libs.koin.androidx.compose)
-    implementation(libs.kotlinx.serialization)
-
     implementation(libs.bundles.app.ui)
 
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.accompanist.navigation.animation)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.kotlinx.serialization)
 
     implementation(projects.petsearchShared.core.util)
     implementation(projects.petsearchShared.resources)

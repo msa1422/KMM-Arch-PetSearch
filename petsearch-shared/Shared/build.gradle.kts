@@ -1,6 +1,6 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
 
-import com.msa.petsearch.PackageNameAccessor.SHARED
+import com.msa.petsearch.SHARED_PACKAGE
 import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode
 import com.msa.petsearch.util.libs
 
@@ -11,7 +11,7 @@ plugins {
 }
 
 android {
-    namespace = SHARED
+    namespace = SHARED_PACKAGE
 
     sourceSets["main"].apply {
         assets.srcDir(File(buildDir, "generated/moko/androidMain/assets"))
@@ -27,13 +27,13 @@ kotlin {
         podfile = project.file("${project.rootDir}/petsearch-ios/Podfile")
         framework {
             isStatic = true
-            baseName = "Shared"
+            baseName = projects.petsearchShared.shared.name
 
             export(projects.petsearchShared.core.entity)
             export(projects.petsearchShared.core.util)
             export(projects.petsearchShared.resources)
-            export(projects.petsearchShared.domain.home.uiContract)
-            export(projects.petsearchShared.domain.petDetail.uiContract)
+            export(projects.petsearchShared.ui.home)
+            export(projects.petsearchShared.ui.petdetail)
 
             export(libs.kermit.log)
             export(libs.moko.resources)
@@ -50,29 +50,29 @@ dependencies {
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.moko.resources)
 
-    commonMainImplementation(projects.petsearchShared.domain.home.uiContract)
-    commonMainImplementation(projects.petsearchShared.domain.petDetail.uiContract)
+    commonMainImplementation(projects.petsearchShared.ui.home)
+    commonMainImplementation(projects.petsearchShared.ui.petdetail)
 
-    commonMainImplementation(projects.petsearchShared.data.repository.home)
-    commonMainImplementation(projects.petsearchShared.data.repository.petDetail)
+    commonMainImplementation(projects.petsearchShared.data.source)
 
-    commonMainImplementation(projects.petsearchShared.data.infrastructure.network)
-    commonMainImplementation(projects.petsearchShared.data.infrastructure.cache)
-    commonMainImplementation(projects.petsearchShared.data.infrastructure.preferences)
+    commonMainImplementation(projects.petsearchShared.data.infra.network)
+    commonMainImplementation(projects.petsearchShared.data.infra.cache)
+    commonMainImplementation(projects.petsearchShared.data.infra.preferences)
 
     commonMainImplementation(projects.petsearchShared.core.util)
 
     iosMainApi(projects.petsearchShared.core.entity)
     iosMainApi(projects.petsearchShared.core.util)
     iosMainApi(projects.petsearchShared.resources)
-    iosMainApi(projects.petsearchShared.domain.home.uiContract)
-    iosMainApi(projects.petsearchShared.domain.petDetail.uiContract)
+    iosMainApi(projects.petsearchShared.ui.home)
+    iosMainApi(projects.petsearchShared.ui.petdetail)
     iosMainApi(libs.kermit.log)
     iosMainApi(libs.moko.resources)
     iosMainApi(libs.kuuuurt.multiplatform.paging)
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = SHARED
+    multiplatformResourcesPackage = SHARED_PACKAGE
     multiplatformResourcesClassName = "MR"
+    disableStaticFrameworkWarning = true
 }

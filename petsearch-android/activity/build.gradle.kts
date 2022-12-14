@@ -1,6 +1,5 @@
-@file:Suppress("UnstableApiUsage")
-
-import com.msa.petsearch.PackageNameAccessor.ANDROID_ACTIVITY
+import com.msa.petsearch.ANDROID_PACKAGE
+import com.msa.petsearch.join
 import com.msa.petsearch.util.libs
 
 plugins {
@@ -8,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = ANDROID_ACTIVITY
+    namespace = ANDROID_PACKAGE.join(projects.petsearchAndroid.activity)
 }
 
 dependencies {
@@ -16,14 +15,11 @@ dependencies {
     implementation(libs.koin.androidx.compose)
 
     api(projects.petsearchAndroid.common.compose)
+    api(projects.petsearchAndroid.common.components)
 
     api(projects.petsearchAndroid.features.home)
-    api(projects.petsearchAndroid.features.petDetail)
+    api(projects.petsearchAndroid.features.petdetail)
 
     implementation(projects.petsearchShared.resources)
     implementation(projects.petsearchShared.core.util)
-
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }

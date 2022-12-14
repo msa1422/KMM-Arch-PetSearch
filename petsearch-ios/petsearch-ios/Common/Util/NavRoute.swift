@@ -26,7 +26,7 @@ protocol NavRoute {
 
 extension NavRoute {
     
-    typealias BaseVm = BaseViewModel<AnyObject, AnyObject, AnyObject, AnyObject, AnyObject, AnyObject, AnyObject>
+    typealias BaseVm = BaseViewModel<AnyObject, AnyObject, AnyObject, AnyObject, AnyObject, AnyObject>
     
     func view(pilot: UIPilot<String>, route: String, messenger : @escaping (ResourceMessage) -> Void) -> some View {
         var navStateObserver: Closeable? = nil

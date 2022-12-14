@@ -65,7 +65,7 @@ struct PetInfoView: View {
 struct PetInfoView_Previews: PreviewProvider {
     static var previews: some View {
         PetInfoView(
-            petInfo: PetInfo(id: 1, organizationId: "anm", url: "a", type: "Dog", species: "Dog", breeds: PetBreed(primary: "primary", secondary: "secondary", mixed: false, unknown: false), colors: PetColor(primary: "Brown", secondary: "MoreBrown", tertiary: "Little brown"), age: PetAge.adult, gender: PetGender.female, size: PetSize.extraLarge, coat: PetCoat.curly, name: "Barney Stinson", description: "Some is cute", shortDescription: "Very cute", photos: [], videos: [], status: PetStatus.adoptable, attributes: nil, environment: nil, tags: nil, contact: nil, published_at: "Now", distance: 0.0)
+            petInfo: PetInfo(id: 1, organizationId: "anm", url: "a", type: "Dog", species: "Dog", breeds: PetBreed(primary: "primary", secondary: "secondary", mixed: false, unknown: false), colors: PetColor(primary: "Brown", secondary: "MoreBrown", tertiary: "Little brown"), age: PetAge.adult, gender: PetGender.female, size: PetSize.extraLarge, coat: PetCoat.curly, name: "Barney Stinson", description: "Some is cute", shortDescription: "Very cute", photos: [], videos: [], status: PetStatus.adoptable, attributes: nil, environment: nil, tags: nil, contact: nil, publishedAt: "Now", distance: 0.0)
         ) {
             
         }

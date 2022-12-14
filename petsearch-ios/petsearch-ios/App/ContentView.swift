@@ -23,7 +23,6 @@ struct ContentView: View {
     @State private var showToast: Bool = false
     
     var body: some View {
-        
         GeometryReader { proxy in
             ZStack(alignment: .bottom) {
                 

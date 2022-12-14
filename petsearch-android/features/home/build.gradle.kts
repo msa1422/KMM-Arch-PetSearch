@@ -1,6 +1,5 @@
-@file:Suppress("UnstableApiUsage")
-
-import com.msa.petsearch.PackageNameAccessor.ANDROID_FEATURE_HOME
+import com.msa.petsearch.ANDROID_PACKAGE
+import com.msa.petsearch.join
 import com.msa.petsearch.util.libs
 
 plugins {
@@ -8,11 +7,13 @@ plugins {
 }
 
 android {
-    namespace = ANDROID_FEATURE_HOME
+    namespace = ANDROID_PACKAGE.join(
+        projects.petsearchAndroid.features,
+        projects.petsearchAndroid.features.home
+    )
 }
 
 dependencies {
-
     implementation(libs.koin.core)
     implementation(libs.koin.androidx.compose)
     implementation(libs.androidx.compose.paging)
@@ -20,10 +21,11 @@ dependencies {
     implementation(libs.kuuuurt.multiplatform.paging)
 
     implementation(projects.petsearchAndroid.common.compose)
+    implementation(projects.petsearchAndroid.common.components)
 
     implementation(projects.petsearchShared.core.entity)
     implementation(projects.petsearchShared.core.util)
     implementation(projects.petsearchShared.resources)
 
-    implementation(projects.petsearchShared.domain.home.uiContract)
+    implementation(projects.petsearchShared.ui.home)
 }

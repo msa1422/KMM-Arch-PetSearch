@@ -28,15 +28,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    sourceSets {
-        val androidTest by getting
-        val test by getting
-        androidTest.java.srcDirs("src/androidTest/kotlin")
-        test.java.srcDirs("src/test/kotlin")
-    }
-
-    tasks.withType<Test>().configureEach {
-        useJUnitPlatform()
+    sourceSets.all {
+        java.srcDirs("src/$name/kotlin")
     }
 }
 
@@ -56,4 +49,8 @@ tasks.withType<KotlinCompile>().configureEach {
         jvmTarget = libs.versions.java.get().toString()
         languageVersion = libs.versions.kt.get().toString()
     }
+}
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
 }
