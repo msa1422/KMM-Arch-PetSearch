@@ -89,11 +89,7 @@ struct HomeScreen: View {
 extension HomeScreen {
     
     private var locationButton: some View {
-        Button(
-            action: {
-                
-            }
-        ) {
+        Button(action: {}) {
             VStack(alignment: .leading, spacing: .zero) {
                 HStack(alignment: .center, spacing: .zero) {
                     SharedSvgImage("near_me", renderingMode: .template)
@@ -173,6 +169,6 @@ extension HomeScreen {
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreen(viewModel: HomeVmHelper().provide())
+        HomeScreen(viewModel: HomeViewModelDelegate().get)
     }
 }

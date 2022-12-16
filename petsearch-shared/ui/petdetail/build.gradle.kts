@@ -15,6 +15,7 @@ android {
 
 dependencies {
     androidMainImplementation(libs.androidx.lifecycle.viewmodel.compose)
+    androidMainImplementation(libs.koin.androidx.compose)
 
     commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.koin.core)

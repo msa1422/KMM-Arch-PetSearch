@@ -23,7 +23,7 @@ struct HomeRoute: NavRoute {
     }
     
     var viewModel: HomeViewModel {
-        return HomeVmHelper().provide()
+        return HomeViewModelDelegate().get
     }
     
     func getArguments() -> Array<String> {

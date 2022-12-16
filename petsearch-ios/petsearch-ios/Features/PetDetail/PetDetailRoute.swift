@@ -10,7 +10,6 @@ import Foundation
 import SwiftUI
 import Shared
 
-
 struct PetDetailRoute: NavRoute {
 
     typealias T = PetDetailViewModel
@@ -24,11 +23,10 @@ struct PetDetailRoute: NavRoute {
     }
     
     var viewModel: PetDetailViewModel {
-        return PetDetailVmHelper().provide()
+        return PetDetailViewModelDelegate().get
     }
     
     func getArguments() -> Array<String> {
         return [NavigationScreenKt.ARG_PET_INFO]
     }
-    
 }

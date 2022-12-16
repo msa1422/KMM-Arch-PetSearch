@@ -263,10 +263,10 @@ struct PetDetailHeader: View {
     }
 }
 
-// Preview crashes with PetDetailVmHelper().provide()
+// Preview crashes with PetDetailViewModelDelegate().get
 // So pretty much useless
 struct PetDetailScreen_Previews: PreviewProvider {
     static var previews: some View {
-        PetDetailScreen(viewModel: PetDetailVmHelper().provide())
+        PetDetailScreen(viewModel: PetDetailViewModelDelegate().get)
     }
 }
