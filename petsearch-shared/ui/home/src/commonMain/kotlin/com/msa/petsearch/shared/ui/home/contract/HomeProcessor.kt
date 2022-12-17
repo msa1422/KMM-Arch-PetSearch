@@ -16,13 +16,14 @@ import com.msa.petsearch.shared.ui.home.contract.store.HomeAction
 import com.msa.petsearch.shared.ui.home.contract.store.HomeSideEffect
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainCoroutineDispatcher
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 internal class HomeProcessor(
-    private val useCases: HomeUseCaseWrapper
+    private val useCases: HomeUseCaseWrapper,
+    private val coroutineDispatcher: MainCoroutineDispatcher,
 ) : Processor<HomeSideEffect, HomeAction> {
 
     private lateinit var petListPager: Pager<Int, PetInfo>
@@ -58,17 +59,17 @@ internal class HomeProcessor(
     private suspend fun getPetListPagedFlow(
         effect: HomeSideEffect.LoadPetsFromNetwork
     ): HomeAction {
-        if (!this::petListPager.isInitialized ||
-            !this::currentPetType.isInitialized ||
+        if (!::petListPager.isInitialized ||
+            !::currentPetType.isInitialized ||
             currentPetType != effect.type
         ) {
-            if (!this::coroutineScope.isInitialized) {
+            if (!::coroutineScope.isInitialized) {
                 val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
                     onError(throwable)
                 }
 
                 coroutineScope =
-                    CoroutineScope(SupervisorJob() + Dispatchers.Main + exceptionHandler)
+                    CoroutineScope(SupervisorJob() + coroutineDispatcher + exceptionHandler)
             }
 
             petListPager = Pager(
@@ -99,7 +100,7 @@ internal class HomeProcessor(
     }
 
     override fun close() {
-        if (this::coroutineScope.isInitialized) {
+        if (::coroutineScope.isInitialized) {
             coroutineScope.cancel()
         }
     }
