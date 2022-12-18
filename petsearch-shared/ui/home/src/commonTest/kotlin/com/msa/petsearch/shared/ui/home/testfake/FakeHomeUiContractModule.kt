@@ -7,16 +7,18 @@ import com.msa.petsearch.shared.domain.home.usecase.LoadPetsUseCase
 import com.msa.petsearch.shared.ui.home.HomeViewModel
 import com.msa.petsearch.shared.ui.home.contract.HomeProcessor
 import com.msa.petsearch.shared.ui.home.contract.HomeUpdater
-import org.koin.core.module.dsl.singleOf
+import kotlinx.coroutines.Dispatchers
+import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
 internal val FakeSharedUiHomeModule = module {
-    singleOf(::FakeAnimalRepository) bind AnimalRepository::class
-    singleOf(::LoadPetsUseCase)
-    singleOf(::LoadPetTypesUseCase)
-    singleOf(::HomeUseCaseWrapper)
-    singleOf(::HomeProcessor)
-    singleOf(::HomeUpdater)
-    singleOf(::HomeViewModel)
+    factoryOf(::FakeAnimalRepository) bind AnimalRepository::class
+    factoryOf(::LoadPetsUseCase)
+    factoryOf(::LoadPetTypesUseCase)
+    factoryOf(::HomeUseCaseWrapper)
+    factoryOf(::HomeProcessor)
+    factoryOf(::HomeUpdater)
+    factoryOf(::HomeViewModel)
+    single { Dispatchers.Main }
 }

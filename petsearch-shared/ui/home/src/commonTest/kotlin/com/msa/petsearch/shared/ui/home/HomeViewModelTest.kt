@@ -9,16 +9,16 @@ import com.msa.petsearch.shared.ui.home.testfake.FakeSharedUiHomeModule
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.flow.first
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.inject
 
+@OptIn(DelicateCoroutinesApi::class)
 @Suppress("UNUSED")
 internal class HomeViewModelTest : FunSpec(), KoinTest {
-    private val viewModel by inject<HomeViewModel>()
-
     init {
         extension(MainThreadSurrogate())
 
@@ -33,6 +33,8 @@ internal class HomeViewModelTest : FunSpec(), KoinTest {
         }
 
         test("GetPetTypes should update HomeState with expected response") {
+            val viewModel by inject<HomeViewModel>()
+
             // Call action
             viewModel.action(HomeAction.GetPetTypes)
 
@@ -50,6 +52,8 @@ internal class HomeViewModelTest : FunSpec(), KoinTest {
         }
 
         test("OnPetTypeTabSelected should update the HomeState with expected response") {
+            val viewModel by inject<HomeViewModel>()
+
             // Call action
             viewModel.action(HomeAction.OnPetTypeTabSelected("Dog"))
 

@@ -11,10 +11,10 @@ import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 
+@DelicateCoroutinesApi
 class MainThreadSurrogate : BeforeTestListener, AfterTestListener {
     private lateinit var mainDispatcher: CloseableCoroutineDispatcher
 
-    @DelicateCoroutinesApi
     override suspend fun beforeTest(testCase: TestCase) {
         mainDispatcher = newSingleThreadContext("UI thread")
         Dispatchers.setMain(mainDispatcher)

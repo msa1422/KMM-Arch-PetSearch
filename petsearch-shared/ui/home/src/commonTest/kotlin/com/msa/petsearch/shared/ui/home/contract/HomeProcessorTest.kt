@@ -17,6 +17,7 @@ import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.types.shouldBeInstanceOf
+import kotlinx.coroutines.Dispatchers
 
 @Suppress("UNUSED")
 internal class HomeProcessorTest : FunSpec({
@@ -35,7 +36,7 @@ internal class HomeProcessorTest : FunSpec({
             getPetTypes = LoadPetTypesUseCase(repository),
             getPets = LoadPetsUseCase(repository)
         )
-        processor = HomeProcessor(useCases)
+        processor = HomeProcessor(useCases, Dispatchers.Main)
     }
 
     test("LoadPetTypesFromNetwork should return expected Action") {
