@@ -28,7 +28,9 @@ import com.msa.petsearch.android.features.home.util.isLoading
 import com.msa.petsearch.android.features.home.util.isNullOrEmpty
 import com.msa.petsearch.shared.resources.SharedR
 import com.msa.petsearch.shared.ui.home.HomeViewModel
-import com.msa.petsearch.shared.ui.home.contract.store.HomeAction
+import com.msa.petsearch.shared.ui.home.contract.store.GetInitialData
+import com.msa.petsearch.shared.ui.home.contract.store.NavigateToPetDetail
+import com.msa.petsearch.shared.ui.home.contract.store.OnPetTypeTabChanged
 import kotlinx.coroutines.launch
 
 @Composable
@@ -44,12 +46,6 @@ internal fun HomeScreen(
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
-    LaunchedEffect(Unit) {
-        if (renderState?.petTypes.isNullOrEmpty()) {
-            viewModel::action.invoke(HomeAction.GetPetTypes)
-        }
-    }
-
     Scaffold(
         topBar = {
             CollapsibleTopBar(
@@ -60,7 +56,7 @@ internal fun HomeScreen(
                     .wrapContentHeight()
                     .background(color = MaterialTheme.colorScheme.surface)
             ) { petTypeName ->
-                viewModel::action.invoke(HomeAction.OnPetTypeTabSelected(petTypeName))
+                viewModel.action(OnPetTypeTabChanged(petTypeName))
                 coroutineScope.launch {
                     gridState.scrollToItem(0) // Reset grid state
                 }
@@ -81,7 +77,7 @@ internal fun HomeScreen(
                     .disableSplitMotionEvents()
                     .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05F))
             ) { petInfo ->
-                viewModel::action.invoke(HomeAction.NavigateToPetDetail(petInfo))
+                viewModel.action(NavigateToPetDetail(petInfo))
             }
         }
         // This else statement is a workaround for the issue where
@@ -99,6 +95,12 @@ internal fun HomeScreen(
                     .fillMaxWidth()
                     .wrapContentHeight()
             )
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        if (renderState?.petTypes.isNullOrEmpty()) {
+            viewModel.action(GetInitialData)
         }
     }
 }

@@ -120,7 +120,7 @@ internal object FakeData {
     val fakePagingData = emptyFlow<PagingData<PetInfo>>().asCommonFlow()
 
     fun getHomeState() = HomeState(
-        petTypesResponse = petTypesResponse,
+        petTypes = petTypesResponse,
         searchParams = searchParams
     )
 }

@@ -72,7 +72,7 @@ struct HomeScreen: View {
             }
             
             if renderState == nil || renderState?.petTypes == nil {
-                viewModel.action(action: HomeActionGetPetTypes())
+                viewModel.action(action: GetInitialData())
             }
         }
         .onDisappear {
@@ -125,9 +125,7 @@ extension HomeScreen {
                 petInfoList.removeAll()
                 
                 viewModel.action(
-                    action: HomeActionOnPetTypeTabSelected(
-                        tabName: renderState?.petTypes?[index].name ?? ""
-                    )
+                    action: OnPetTypeTabChanged(tabName: renderState?.petTypes?[index].name ?? "")
                 )
             }
         )
@@ -141,8 +139,7 @@ extension HomeScreen {
             ) {
                 ForEach(petInfoList, id: \.id) { petInfo in
                     PetInfoView(petInfo: petInfo) {
-                        viewModel
-                            .action(action: HomeActionNavigateToPetDetail(petInfo: petInfo))
+                        viewModel.action(action: NavigateToPetDetail(petInfo: petInfo))
                     }
                     .onAppear {
                         // Very basic and definitely not production ready implementation of pagination
@@ -153,7 +150,7 @@ extension HomeScreen {
                         if petInfoList.firstIndex(where: { $0.id == petInfo.id }) == thresholdIndex &&
                             paginationState != .loading {
                             paginationState = .loading
-                            viewModel.action(action: HomeActionLoadPetListNextPage())
+                            viewModel.action(action: LoadPetListNextPage())
                         }
                     }
                 }

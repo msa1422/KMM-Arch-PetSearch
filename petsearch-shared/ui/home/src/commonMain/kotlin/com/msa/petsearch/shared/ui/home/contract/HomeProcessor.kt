@@ -2,8 +2,11 @@ package com.msa.petsearch.shared.ui.home.contract
 
 import com.kuuurt.paging.multiplatform.Pager
 import com.kuuurt.paging.multiplatform.PagingConfig
+import com.kuuurt.paging.multiplatform.PagingData
 import com.kuuurt.paging.multiplatform.helpers.cachedIn
+import com.msa.petsearch.shared.core.entity.PetSearchParams
 import com.msa.petsearch.shared.core.entity.petinfo.PetInfo
+import com.msa.petsearch.shared.core.util.commonflow.CommonFlow
 import com.msa.petsearch.shared.core.util.commonflow.asCommonFlow
 import com.msa.petsearch.shared.core.util.extension.loadNextPage
 import com.msa.petsearch.shared.core.util.resource.MessageType
@@ -12,8 +15,15 @@ import com.msa.petsearch.shared.core.util.resource.Status
 import com.msa.petsearch.shared.core.util.sharedviewmodel.store.Processor
 import com.msa.petsearch.shared.domain.home.HomeUseCaseWrapper
 import com.msa.petsearch.shared.domain.home.usecase.LoadPetsUseCase
+import com.msa.petsearch.shared.ui.home.contract.store.Error
+import com.msa.petsearch.shared.ui.home.contract.store.ForwardInitialDataToState
+import com.msa.petsearch.shared.ui.home.contract.store.ForwardPetResponseToState
+import com.msa.petsearch.shared.ui.home.contract.store.GetInitialData
 import com.msa.petsearch.shared.ui.home.contract.store.HomeAction
 import com.msa.petsearch.shared.ui.home.contract.store.HomeSideEffect
+import com.msa.petsearch.shared.ui.home.contract.store.IdleAction
+import com.msa.petsearch.shared.ui.home.contract.store.LoadPetListNextPage
+import com.msa.petsearch.shared.ui.home.contract.store.OnPetTypeTabChanged
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainCoroutineDispatcher
@@ -37,31 +47,34 @@ internal class HomeProcessor(
         initialLoadSize = 30
     )
 
-    override suspend fun dispatchSideEffect(effect: HomeSideEffect): HomeAction {
-        return when (effect) {
-            is HomeSideEffect.LoadPetTypesFromNetwork -> getPetTypes()
-            is HomeSideEffect.LoadPetsFromNetwork -> getPetListPagedFlow(effect)
-            is HomeSideEffect.LoadPetListNextPageFromNetwork -> {
-                petListPager.loadNextPage()
-                return HomeAction.OnLoadPetListNextPageActionComplete
-            }
+    override suspend fun dispatchSideEffect(effect: HomeSideEffect) = when (effect) {
+        is GetInitialData -> getInitialData()
+        is OnPetTypeTabChanged -> onPetTypeTabChanged(effect)
+        is LoadPetListNextPage -> loadPetListNextPage()
+    }
+
+    private suspend fun getInitialData(): HomeAction = useCases.getPetTypes().run {
+        val firstType = data?.types?.firstOrNull()?.name
+
+        return@run if (status == Status.SUCCESS && !firstType.isNullOrBlank()) {
+            ForwardInitialDataToState(
+                petTypes = data,
+                petPagingData = getPetListFlow(type = firstType, params = PetSearchParams())
+            )
+        } else {
+            onError(throwable ?: Throwable("No Items found in PetTypes list"))
         }
     }
 
-    private suspend fun getPetTypes(): HomeAction {
-        val resource = useCases.getPetTypes()
-        return when (resource.status) {
-            Status.SUCCESS -> HomeAction.UpdatePetTypesInState(petTypesResponse = resource.data)
-            else -> onError(resource.throwable)
-        }
-    }
+    private suspend fun onPetTypeTabChanged(effect: OnPetTypeTabChanged) =
+        ForwardPetResponseToState(getPetListFlow(type = effect.tabName, params = PetSearchParams()))
 
-    private suspend fun getPetListPagedFlow(
-        effect: HomeSideEffect.LoadPetsFromNetwork
-    ): HomeAction {
+    private suspend fun getPetListFlow(
+        type: String, params: PetSearchParams
+    ): CommonFlow<PagingData<PetInfo>> {
         if (!::petListPager.isInitialized ||
             !::currentPetType.isInitialized ||
-            currentPetType != effect.type
+            currentPetType != type
         ) {
             if (!::coroutineScope.isInitialized) {
                 val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -77,27 +90,21 @@ internal class HomeProcessor(
                 config = pagingConfig,
                 initialKey = 1
             ) { currentKey, _ ->
-                useCases.getPets(LoadPetsUseCase.Params(effect.type, currentKey, effect.params))
+                useCases.getPets(LoadPetsUseCase.Params(type, currentKey, params))
             }
         }
 
-        val flow = petListPager
+        return petListPager
             .pagingData
             .distinctUntilChanged()
             .cachedIn(coroutineScope)
             .asCommonFlow()
-
-        return HomeAction.UpdatePetResponseInState(flow)
     }
 
-    private fun onError(throwable: Throwable?): HomeAction {
-        return HomeAction.Error(
-            message = ResourceMessage(
-                text = throwable?.message,
-                messageType = MessageType.SnackBar()
-            )
-        )
-    }
+    private fun loadPetListNextPage() = IdleAction.also { petListPager.loadNextPage() }
+
+    private fun onError(throwable: Throwable?) =
+        Error(ResourceMessage(text = throwable?.message, messageType = MessageType.SnackBar()))
 
     override fun close() {
         if (::coroutineScope.isInitialized) {

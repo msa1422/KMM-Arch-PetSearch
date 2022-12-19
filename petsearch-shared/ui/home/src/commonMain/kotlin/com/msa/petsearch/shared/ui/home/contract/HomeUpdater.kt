@@ -3,111 +3,54 @@ package com.msa.petsearch.shared.ui.home.contract
 import com.msa.petsearch.shared.core.util.sharedviewmodel.model.GlobalEvent
 import com.msa.petsearch.shared.core.util.sharedviewmodel.model.Next
 import com.msa.petsearch.shared.core.util.sharedviewmodel.store.Updater
+import com.msa.petsearch.shared.ui.home.contract.store.Error
+import com.msa.petsearch.shared.ui.home.contract.store.ForwardInitialDataToState
+import com.msa.petsearch.shared.ui.home.contract.store.ForwardPetResponseToState
+import com.msa.petsearch.shared.ui.home.contract.store.GetInitialData
 import com.msa.petsearch.shared.ui.home.contract.store.HomeAction
 import com.msa.petsearch.shared.ui.home.contract.store.HomeNavigation
 import com.msa.petsearch.shared.ui.home.contract.store.HomeSideEffect
 import com.msa.petsearch.shared.ui.home.contract.store.HomeState
+import com.msa.petsearch.shared.ui.home.contract.store.IdleAction
+import com.msa.petsearch.shared.ui.home.contract.store.LoadPetListNextPage
+import com.msa.petsearch.shared.ui.home.contract.store.NavigateToPetDetail
+import com.msa.petsearch.shared.ui.home.contract.store.OnPetTypeTabChanged
 
 typealias NextResult = Next<HomeState, HomeSideEffect, GlobalEvent, HomeNavigation>
 
 internal class HomeUpdater :
     Updater<HomeAction, HomeState, HomeSideEffect, GlobalEvent, HomeNavigation> {
 
-    override fun onNewAction(action: HomeAction, currentState: HomeState): NextResult {
-        return when (action) {
-            is HomeAction.GetPetTypes -> loadPetTypes(currentState)
-            is HomeAction.UpdatePetTypesInState -> updatePetTypesResponse(action, currentState)
+    override fun onNewAction(action: HomeAction, currentState: HomeState) = when (action) {
+        is GetInitialData -> getInitialData(action, currentState)
+        is ForwardInitialDataToState -> copyInitialData(action, currentState)
 
-            is HomeAction.UpdatePetResponseInState -> updateSearchPetResponse(action, currentState)
+        is OnPetTypeTabChanged -> onPetTypeTabChanged(action, currentState)
+        is ForwardPetResponseToState -> copyPetResponse(action, currentState)
 
-            is HomeAction.OnPetTypeTabSelected -> onSelectedPetTypeChanged(action, currentState)
+        is LoadPetListNextPage -> loadPetListNextPage(action, currentState)
+        is IdleAction -> Next.State(state = currentState)
 
-            is HomeAction.NavigateToPetDetail -> navigateToPetDetail(action, currentState)
+        is NavigateToPetDetail -> navigateToPetDetail(action, currentState)
 
-            is HomeAction.LoadPetListNextPage -> loadPetListNextPage(currentState)
-            is HomeAction.OnLoadPetListNextPageActionComplete ->
-                onLoadPetListNextPageActionComplete(currentState)
-
-            is HomeAction.Error -> onError(action.message, currentState)
-        }
+        is Error -> onError(action.message, currentState)
     }
 
-    private fun loadPetTypes(state: HomeState): NextResult {
-        return Next
-            .StateWithSideEffects(
-                state = state,
-                sideEffects = setOf(HomeSideEffect.LoadPetTypesFromNetwork)
-            )
-    }
+    private fun getInitialData(action: GetInitialData, state: HomeState): NextResult =
+        Next.StateWithSideEffects(state = state, sideEffects = setOf(action))
 
-    private fun updatePetTypesResponse(
-        action: HomeAction.UpdatePetTypesInState,
-        state: HomeState
-    ): NextResult {
-        val sideEffects = action.petTypesResponse?.types?.firstOrNull()?.name
-            ?.let {
-                setOf(
-                    HomeSideEffect.LoadPetsFromNetwork(
-                        type = it,
-                        page = 1,
-                        params = state.searchParams
-                    )
-                )
-            }
-            ?: setOf()
+    private fun copyInitialData(action: ForwardInitialDataToState, state: HomeState): NextResult =
+        Next.State(state.copy(petTypes = action.petTypes, petPagingData = action.petPagingData))
 
-        return Next
-            .StateWithSideEffects(
-                state = state.copy(petTypesResponse = action.petTypesResponse),
-                sideEffects = sideEffects
-            )
-    }
+    private fun copyPetResponse(action: ForwardPetResponseToState, state: HomeState): NextResult =
+        Next.State(state = state.copy(petPagingData = action.petPagingData))
 
-    private fun updateSearchPetResponse(
-        action: HomeAction.UpdatePetResponseInState,
-        state: HomeState
-    ): NextResult {
-        return Next.State(state = state.copy(petPagingData = action.petPagingData))
-    }
+    private fun onPetTypeTabChanged(action: OnPetTypeTabChanged, state: HomeState): NextResult =
+        Next.StateWithSideEffects(state = state, sideEffects = setOf(action))
 
-    private fun onSelectedPetTypeChanged(
-        action: HomeAction.OnPetTypeTabSelected,
-        state: HomeState
-    ): NextResult {
-        return Next
-            .StateWithSideEffects(
-                state = state,
-                sideEffects = setOf(
-                    HomeSideEffect.LoadPetsFromNetwork(
-                        type = action.tabName,
-                        page = 1,
-                        params = state.searchParams
-                    )
-                )
-            )
-    }
+    private fun loadPetListNextPage(action: LoadPetListNextPage, state: HomeState): NextResult =
+        Next.StateWithSideEffects(state = state, sideEffects = setOf(action))
 
-    private fun loadPetListNextPage(state: HomeState): NextResult {
-        return Next
-            .StateWithSideEffects(
-                state = state,
-                sideEffects = setOf(HomeSideEffect.LoadPetListNextPageFromNetwork)
-            )
-    }
-
-    private fun onLoadPetListNextPageActionComplete(state: HomeState): NextResult {
-        // A method that does nothing
-        return Next.State(state = state)
-    }
-
-    private fun navigateToPetDetail(
-        action: HomeAction.NavigateToPetDetail,
-        state: HomeState
-    ): NextResult {
-        return Next
-            .StateWithNavigation(
-                state = state,
-                navigation = setOf(HomeNavigation.NavHomeToPetDetail(action.petInfo))
-            )
-    }
+    private fun navigateToPetDetail(action: NavigateToPetDetail, state: HomeState): NextResult =
+        Next.StateWithNavigation(state = state, navigation = setOf(action))
 }

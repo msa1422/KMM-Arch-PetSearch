@@ -3,7 +3,8 @@ package com.msa.petsearch.shared.ui.home
 import app.cash.turbine.test
 import com.msa.petsearch.shared.core.test.MainThreadSurrogate
 import com.msa.petsearch.shared.core.util.di.CoreUtilModule
-import com.msa.petsearch.shared.ui.home.contract.store.HomeAction
+import com.msa.petsearch.shared.ui.home.contract.store.GetInitialData
+import com.msa.petsearch.shared.ui.home.contract.store.OnPetTypeTabChanged
 import com.msa.petsearch.shared.ui.home.testfake.FakeData
 import com.msa.petsearch.shared.ui.home.testfake.FakeSharedUiHomeModule
 import io.kotest.core.spec.style.FunSpec
@@ -36,7 +37,7 @@ internal class HomeViewModelTest : FunSpec(), KoinTest {
             val viewModel by inject<HomeViewModel>()
 
             // Call action
-            viewModel.action(HomeAction.GetPetTypes)
+            viewModel.action(GetInitialData)
 
             // Now observe state
             viewModel.state.test {
@@ -44,7 +45,7 @@ internal class HomeViewModelTest : FunSpec(), KoinTest {
                 awaitItem()
 
                 // Second emit should contain the expected PetTypesResponse
-                awaitItem().petTypesResponse shouldBe FakeData.petTypesResponse
+                awaitItem().petTypes shouldBe FakeData.petTypesResponse
 
                 // cancel remaining emits and events
                 cancelAndIgnoreRemainingEvents()
@@ -55,7 +56,7 @@ internal class HomeViewModelTest : FunSpec(), KoinTest {
             val viewModel by inject<HomeViewModel>()
 
             // Call action
-            viewModel.action(HomeAction.OnPetTypeTabSelected("Dog"))
+            viewModel.action(OnPetTypeTabChanged("Dog"))
 
             // Now observe state
             viewModel.state.test {

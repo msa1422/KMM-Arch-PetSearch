@@ -7,8 +7,13 @@ import com.msa.petsearch.shared.data.repository.AnimalRepository
 import com.msa.petsearch.shared.domain.home.HomeUseCaseWrapper
 import com.msa.petsearch.shared.domain.home.usecase.LoadPetTypesUseCase
 import com.msa.petsearch.shared.domain.home.usecase.LoadPetsUseCase
-import com.msa.petsearch.shared.ui.home.contract.store.HomeAction
-import com.msa.petsearch.shared.ui.home.contract.store.HomeSideEffect
+import com.msa.petsearch.shared.ui.home.contract.store.Error
+import com.msa.petsearch.shared.ui.home.contract.store.ForwardInitialDataToState
+import com.msa.petsearch.shared.ui.home.contract.store.ForwardPetResponseToState
+import com.msa.petsearch.shared.ui.home.contract.store.GetInitialData
+import com.msa.petsearch.shared.ui.home.contract.store.IdleAction
+import com.msa.petsearch.shared.ui.home.contract.store.LoadPetListNextPage
+import com.msa.petsearch.shared.ui.home.contract.store.OnPetTypeTabChanged
 import com.msa.petsearch.shared.ui.home.testfake.FakeAnimalRepository
 import com.msa.petsearch.shared.ui.home.testfake.FakeData
 import com.msa.petsearch.shared.ui.home.testfake.FakeErrorAnimalRepository
@@ -24,11 +29,11 @@ internal class HomeProcessorTest : FunSpec({
     lateinit var processor: HomeProcessor
     lateinit var useCases: HomeUseCaseWrapper
     lateinit var repository: AnimalRepository
-    val sideEffect = HomeSideEffect.LoadPetsFromNetwork("Dog", 1, FakeData.searchParams)
+    val sideEffect = OnPetTypeTabChanged("Dog")
 
     beforeTest {
         repository = when (it.name.testName) {
-            "LoadPetTypesFromNetwork should handle exceptions" -> FakeErrorAnimalRepository()
+            "GetInitialData should handle exceptions" -> FakeErrorAnimalRepository()
             else -> FakeAnimalRepository()
         }
 
@@ -39,39 +44,40 @@ internal class HomeProcessorTest : FunSpec({
         processor = HomeProcessor(useCases, Dispatchers.Main)
     }
 
-    test("LoadPetTypesFromNetwork should return expected Action") {
-        processor.dispatchSideEffect(HomeSideEffect.LoadPetTypesFromNetwork)
-            .shouldBeInstanceOf<HomeAction.UpdatePetTypesInState>()
-            .petTypesResponse shouldBe FakeData.petTypesResponse
+    test("GetInitialData should return expected Action") {
+        val action = processor.dispatchSideEffect(GetInitialData)
+
+        action.shouldBeInstanceOf<ForwardInitialDataToState>()
+        action.petTypes shouldBe FakeData.petTypesResponse
+        action.petPagingData.shouldBeInstanceOf<CommonFlow<PagingData<PetInfo>>>()
     }
 
-    test("LoadPetTypesFromNetwork should handle exceptions") {
-        processor.dispatchSideEffect(HomeSideEffect.LoadPetTypesFromNetwork)
-            .shouldBeInstanceOf<HomeAction.Error>()
+    test("GetInitialData should handle exceptions") {
+        processor.dispatchSideEffect(GetInitialData)
+            .shouldBeInstanceOf<Error>()
             .message.text shouldBe FakeData.petTypeResponseErrorMessage
     }
 
-    test("LoadPetsFromNetwork should return expected Action") {
+    test("OnPetTypeTabSelected should return expected Action") {
         processor.dispatchSideEffect(sideEffect)
-            .shouldBeInstanceOf<HomeAction.UpdatePetResponseInState>()
+            .shouldBeInstanceOf<ForwardPetResponseToState>()
             .petPagingData
             .shouldBeInstanceOf<CommonFlow<PagingData<PetInfo>>>()
     }
 
-    test("LoadPetListNextPageFromNetwork should throw exception if called before LoadPetsFromNetwork") {
+    test("LoadPetListNextPage should throw exception if called before OnPetTypeTabSelected") {
         val exception = shouldThrow<RuntimeException> {
-            processor.dispatchSideEffect(HomeSideEffect.LoadPetListNextPageFromNetwork)
+            processor.dispatchSideEffect(LoadPetListNextPage)
         }
 
         exception.message shouldContain "lateinit property petListPager has not been initialized"
     }
 
-    test("LoadPetListNextPageFromNetwork should return expected Action") {
+    test("LoadPetListNextPage should return expected Action") {
         // This call will initialize the Pager components inside the HomeProcessor
         processor.dispatchSideEffect(sideEffect)
 
         // Now check with the Actual SideEffect
-        processor.dispatchSideEffect(HomeSideEffect.LoadPetListNextPageFromNetwork)
-            .shouldBeInstanceOf<HomeAction.OnLoadPetListNextPageActionComplete>()
+        processor.dispatchSideEffect(LoadPetListNextPage).shouldBeInstanceOf<IdleAction>()
     }
 })

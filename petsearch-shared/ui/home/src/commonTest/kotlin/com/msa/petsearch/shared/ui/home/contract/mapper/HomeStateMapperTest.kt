@@ -10,7 +10,7 @@ internal class HomeStateMapperTest : FunSpec({
         val state = FakeData.getHomeState()
         val renderState = HomeStateMapper.mapToRenderState(state)
 
-        renderState.petTypes shouldBe state.petTypesResponse?.types
+        renderState.petTypes shouldBe state.petTypes?.types
         renderState.petPagingData shouldBe state.petPagingData
     }
 })

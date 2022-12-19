@@ -7,7 +7,7 @@ import com.msa.petsearch.shared.ui.home.contract.store.HomeState
 internal object HomeStateMapper : StateMapper<HomeState, HomeRenderState> {
     override fun mapToRenderState(state: HomeState) =
         HomeRenderState(
-            petTypes = state.petTypesResponse?.types,
+            petTypes = state.petTypes?.types,
             petPagingData = state.petPagingData
         )
 }

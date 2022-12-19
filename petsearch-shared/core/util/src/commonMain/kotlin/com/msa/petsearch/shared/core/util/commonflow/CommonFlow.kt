@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -29,3 +30,5 @@ class CommonFlow<T>(private val origin: Flow<T>) : Flow<T> by origin {
 }
 
 fun <T> Flow<T>.asCommonFlow(): CommonFlow<T> = CommonFlow(this)
+
+fun <T> commonFlowOf(): CommonFlow<T> = flowOf<T>().asCommonFlow()
