@@ -11,4 +11,4 @@ private fun PetTypeDTO.toDomainEntity() =
         genders = genders ?: emptyList()
     )
 
-internal fun List<PetTypeDTO>.toDomainEntityList() = map { it.toDomainEntity() }
+internal fun List<PetTypeDTO>.toDomainEntityList() = map(PetTypeDTO::toDomainEntity)

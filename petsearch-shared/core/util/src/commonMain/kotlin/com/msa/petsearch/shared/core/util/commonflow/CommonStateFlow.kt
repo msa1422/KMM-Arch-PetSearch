@@ -10,16 +10,11 @@ import kotlinx.coroutines.flow.onEach
 class CommonStateFlow<T>(private val origin: StateFlow<T>) : StateFlow<T> by origin {
 
     @Suppress("Unused") // Called from Swift
-    fun watch(block: (T) -> Unit): Closeable {
-        val job = Job()
+    fun watch(block: (T) -> Unit) = Job().run job@{
+        onEach(block).launchIn(CoroutineScope(Dispatchers.Main + this@job))
 
-        onEach { block(it) }
-            .launchIn(CoroutineScope(Dispatchers.Main + job))
-
-        return object : Closeable {
-            override fun close() {
-                job.cancel()
-            }
+        object : Closeable {
+            override fun close() = this@job.cancel()
         }
     }
 }

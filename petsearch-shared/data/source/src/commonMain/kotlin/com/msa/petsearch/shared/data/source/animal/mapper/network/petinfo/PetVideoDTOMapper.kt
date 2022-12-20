@@ -5,4 +5,4 @@ import com.msa.petsearch.shared.data.source.animal.model.network.petinfo.PetVide
 
 internal fun PetVideoDTO.toDomainEntity() = PetVideo(embed = embed ?: "")
 
-internal fun List<PetVideoDTO>.toDomainEntityList() = map { it.toDomainEntity() }
+internal fun List<PetVideoDTO>.toDomainEntityList() = map(PetVideoDTO::toDomainEntity)

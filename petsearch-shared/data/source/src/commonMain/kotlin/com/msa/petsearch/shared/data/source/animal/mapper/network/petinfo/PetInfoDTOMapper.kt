@@ -36,7 +36,7 @@ internal fun PetInfoDTO.toDomainEntity() =
         distance = distance ?: 0.0
     )
 
-internal fun List<PetInfoDTO>.toDomainEntityList() = map { it.toDomainEntity() }
+internal fun List<PetInfoDTO>.toDomainEntityList() = map(PetInfoDTO::toDomainEntity)
 
 private fun formatShortDescription(age: String?, gender: String?, breed: String?): String {
     var shortDescription = ""

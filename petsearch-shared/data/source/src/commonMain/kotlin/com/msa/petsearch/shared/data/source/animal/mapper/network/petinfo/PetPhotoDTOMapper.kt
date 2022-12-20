@@ -6,4 +6,4 @@ import com.msa.petsearch.shared.data.source.animal.model.network.petinfo.PetPhot
 internal fun PetPhotoDTO.toDomainEntity() =
     PetPhoto(small = small ?: "", medium = medium ?: "", large = large ?: "", full = full ?: "")
 
-internal fun List<PetPhotoDTO>.toDomainEntityList() = map { it.toDomainEntity() }
+internal fun List<PetPhotoDTO>.toDomainEntityList() = map(PetPhotoDTO::toDomainEntity)
