@@ -43,8 +43,9 @@ import com.msa.petsearch.shared.resources.SharedR
 import com.msa.petsearch.shared.resources.uri
 import kotlin.math.roundToInt
 
+@Suppress("unused")
 @Composable
-internal fun CollapsibleTopBar(
+private fun CollapsibleTopBar(
     scrollBehavior: TopAppBarScrollBehavior,
     modifier: Modifier = Modifier,
     petTypes: List<PetType>? = null,
