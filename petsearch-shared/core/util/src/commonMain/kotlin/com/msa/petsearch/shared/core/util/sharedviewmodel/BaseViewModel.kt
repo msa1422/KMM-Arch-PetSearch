@@ -48,12 +48,11 @@ constructor(
     private val _state = MutableStateFlow(initialState)
     val state = _state.asStateFlow().asCommonStateFlow()
 
-    @Suppress("MagicNumber")
     private val _renderState by lazy {
         _state.map { stateMapper?.mapToRenderState(it) }
             .stateIn(
                 scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
+                started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000),
                 initialValue = null
             )
     }
@@ -66,7 +65,7 @@ constructor(
 
     fun updateArgsInState(args: HashMap<String, String>) {
         argsMapper?.let { mapper ->
-            _state.value = mapper.mapArgsToState(currentState = _state.value, args = args)
+            _state.update { mapper.mapArgsToState(currentState = it, args = args) }
         }
     }
 
