@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.core.util.sharedviewmodel
 
-import com.msa.petsearch.shared.core.util.commonflow.asCommonFlow
+import com.msa.petsearch.shared.core.util.commonflow.asCommonSharedFlow
 import com.msa.petsearch.shared.core.util.commonflow.asCommonStateFlow
 import com.msa.petsearch.shared.core.util.resource.MessageDeque
 import com.msa.petsearch.shared.core.util.sharedviewmodel.model.SuperViewModel
@@ -58,8 +58,8 @@ constructor(
     }
     val renderState by lazy { _renderState.asCommonStateFlow() }
 
-    private val _events = MutableSharedFlow<E>()
-    val events = _events.asSharedFlow().asCommonFlow()
+    private val _events by lazy { MutableSharedFlow<E>() }
+    val events by lazy { _events.asSharedFlow().asCommonSharedFlow() }
 
     val messageFlow = messageDeque.readOnlyStateFlow().asCommonStateFlow()
 
@@ -71,10 +71,8 @@ constructor(
 
     override fun action(action: A) {
         updater?.onNewAction(action, state.value)?.let { next ->
-            viewModelScope.launch {
-                next.events.forEach {
-                    _events.emit(it)
-                }
+            next.events.forEach {
+                viewModelScope.launch { _events.emit(it) }
             }
 
             if (next.sideEffects.isNotEmpty()) {

@@ -8,6 +8,7 @@ import com.msa.petsearch.shared.ui.home.contract.store.OnPetTypeTabChanged
 import com.msa.petsearch.shared.ui.home.testfake.FakeData
 import com.msa.petsearch.shared.ui.home.testfake.FakeSharedUiHomeModule
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -36,11 +37,11 @@ internal class HomeViewModelTest : FunSpec(), KoinTest {
         test("GetPetTypes should update HomeState with expected response") {
             val viewModel by inject<HomeViewModel>()
 
-            // Call action
-            viewModel.action(GetInitialData)
-
             // Now observe state
             viewModel.state.test {
+                // Call action
+                viewModel.action(GetInitialData)
+
                 // First emit would be null as HomeState starts empty
                 awaitItem()
 
@@ -55,11 +56,11 @@ internal class HomeViewModelTest : FunSpec(), KoinTest {
         test("OnPetTypeTabSelected should update the HomeState with expected response") {
             val viewModel by inject<HomeViewModel>()
 
-            // Call action
-            viewModel.action(OnPetTypeTabChanged("Dog"))
-
             // Now observe state
             viewModel.state.test {
+                // Call action
+                viewModel.action(OnPetTypeTabChanged("Dog"))
+
                 awaitItem()
 
                 // Implies that Paging Data has been updated with a new one
