@@ -18,12 +18,12 @@ repositories {
 
 dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
-    implementation(libs.gradlePlugin.kotlin)
-    implementation(libs.gradlePlugin.buildTools)
-    implementation(libs.gradlePlugin.kotest.framework)
-    implementation(libs.gradlePlugin.dependency.check)
-    implementation(libs.gradlePlugin.detekt)
-    implementation(libs.gradlePlugin.spotless)
+    implementation(libs.gradle.plugin.android.build.tools)
+    implementation(libs.gradle.plugin.dependency.check)
+    implementation(libs.gradle.plugin.detekt)
+    implementation(libs.gradle.plugin.kotest.framework)
+    implementation(libs.gradle.plugin.kotlin)
+    implementation(libs.gradle.plugin.spotless)
 }
 
 tasks.withType<KotlinCompile>().configureEach {

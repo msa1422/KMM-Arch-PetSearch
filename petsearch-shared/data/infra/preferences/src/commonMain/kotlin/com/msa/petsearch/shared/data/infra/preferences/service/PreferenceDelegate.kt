@@ -20,7 +20,7 @@ class PreferenceDelegate(private val settings: Settings) {
         suspendSettings.putString(PREF_THEME_PRIMARY, theme).asResource()
 
     fun getThemeAsFlow() = (settings as ObservableSettings)
-        .getStringFlow(PREF_THEME_PRIMARY)
+        .getStringFlow(PREF_THEME_PRIMARY, defaultValue = "")
         .distinctUntilChanged()
         .asCommonFlow()
 }

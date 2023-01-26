@@ -17,7 +17,7 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.androidx.compose)
     implementation(libs.androidx.compose.paging)
-    implementation(libs.androidx.paging.runtime)
+    // implementation(libs.androidx.compose.paging.runtime)
     implementation(libs.kuuuurt.multiplatform.paging)
 
     implementation(projects.petsearchAndroid.common.compose)

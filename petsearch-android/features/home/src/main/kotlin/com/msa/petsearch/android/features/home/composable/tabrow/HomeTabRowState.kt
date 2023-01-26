@@ -5,7 +5,6 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.Saver
-import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.structuralEqualityPolicy
@@ -33,11 +32,9 @@ class HomeTabRowState(selectedTabIndex: Int = 0) {
         /**
          * The default [Saver] implementation for [HomeTabRowState].
          */
-        val Saver: Saver<HomeTabRowState, *> = listSaver(
-            save = { listOf(it.selectedTabIndex) },
-            restore = {
-                HomeTabRowState(selectedTabIndex = it[0])
-            }
+        val Saver: Saver<HomeTabRowState, *> = Saver(
+            save = { it.selectedTabIndex },
+            restore = ::HomeTabRowState
         )
     }
 }

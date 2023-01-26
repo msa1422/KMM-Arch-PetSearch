@@ -6,7 +6,6 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
@@ -54,7 +53,6 @@ interface NavRoute<T : RouteNavigator> {
 
     fun getPopExitTransition(): (AnimatedBackStack.() -> ExitTransition?)? = getExitTransition()
 
-    @OptIn(ExperimentalLifecycleComposeApi::class)
     fun asComposable(
         builder: NavGraphBuilder,
         navController: NavHostController,

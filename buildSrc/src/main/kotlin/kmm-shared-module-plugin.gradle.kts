@@ -54,7 +54,7 @@ kotlin {
             }
         }
         val androidMain by getting
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependencies {
                 implementation(libs.testing.kotest.runner.junit5)
 
@@ -89,7 +89,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
     }
 
     compileOptions {

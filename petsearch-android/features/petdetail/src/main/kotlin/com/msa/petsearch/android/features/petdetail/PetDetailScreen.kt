@@ -29,14 +29,12 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.msa.petsearch.android.features.petdetail.composable.CollapsingTopAppBar
 import com.msa.petsearch.shared.resources.SharedR
 import com.msa.petsearch.shared.ui.petdetail.PetDetailViewModel
 import com.msa.petsearch.shared.ui.petdetail.contract.store.PetDetailState
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 internal fun PetDetailScreen(
     viewModel: PetDetailViewModel,
