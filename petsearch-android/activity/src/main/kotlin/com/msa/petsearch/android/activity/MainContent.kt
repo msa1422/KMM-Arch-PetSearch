@@ -4,7 +4,6 @@ import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
@@ -39,7 +38,6 @@ internal fun MainContent() {
         Scaffold(
             snackbarHost = { MainSnackbarHost(snackbarHostState) },
             modifier = Modifier
-                .navigationBarsPadding()
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
         ) {
