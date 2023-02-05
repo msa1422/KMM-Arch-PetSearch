@@ -42,7 +42,8 @@ constructor(
     private val argsMapper: ArgsMapper<S>? = null,
     private val coroutineExceptionHandler: CoroutineExceptionHandler? = null,
     private val routeNavigator: RouteNavigator,
-    private val messageDeque: MessageDeque
+    private val messageDeque: MessageDeque,
+    initialEffects: Set<SE> = emptySet()
 ) : SuperViewModel(), ActionDispatcher<A>, RouteNavigator by routeNavigator {
 
     private val _state = MutableStateFlow(initialState)
@@ -62,6 +63,8 @@ constructor(
     val events by lazy { _events.asSharedFlow().asCommonSharedFlow() }
 
     val messageFlow = messageDeque.readOnlyStateFlow().asCommonStateFlow()
+
+    init { dispatchSideEffects(initialEffects) }
 
     fun updateArgsInState(args: HashMap<String, String>) {
         argsMapper?.let { mapper ->
