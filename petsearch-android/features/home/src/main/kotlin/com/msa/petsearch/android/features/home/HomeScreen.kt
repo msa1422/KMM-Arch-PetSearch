@@ -27,8 +27,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -43,6 +41,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.rememberAsyncImagePainter
 import com.msa.petsearch.android.common.components.util.disableSplitMotionEvents
@@ -55,7 +54,6 @@ import com.msa.petsearch.android.features.home.util.isNullOrEmpty
 import com.msa.petsearch.shared.resources.SharedR
 import com.msa.petsearch.shared.resources.uri
 import com.msa.petsearch.shared.ui.home.HomeViewModel
-import com.msa.petsearch.shared.ui.home.contract.store.GetInitialData
 import com.msa.petsearch.shared.ui.home.contract.store.NavigateToPetDetail
 import com.msa.petsearch.shared.ui.home.contract.store.OnPetTypeTabChanged
 import kotlinx.coroutines.launch
@@ -68,7 +66,7 @@ internal fun HomeScreen(
     val coroutineScope = rememberCoroutineScope()
     val gridState = rememberLazyGridState()
 
-    val renderState by viewModel.renderState.collectAsState(initial = null)
+    val renderState by viewModel.renderState.collectAsStateWithLifecycle()
     val petList = renderState?.petPagingData?.collectAsLazyPagingItems()
 
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
@@ -175,12 +173,6 @@ internal fun HomeScreen(
                     )
                 }
             }
-        }
-    }
-
-    LaunchedEffect(Unit) {
-        if (renderState?.petTypes.isNullOrEmpty()) {
-            viewModel.action(GetInitialData)
         }
     }
 }

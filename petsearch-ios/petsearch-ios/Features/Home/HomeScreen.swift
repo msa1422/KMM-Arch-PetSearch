@@ -70,10 +70,6 @@ struct HomeScreen: View {
                     }
                 }
             }
-            
-            if renderState == nil || renderState?.petTypes == nil {
-                viewModel.action(action: GetInitialData())
-            }
         }
         .onDisappear {
             // If there is a cleaner way to handle the CommonFlow, you're welcome.

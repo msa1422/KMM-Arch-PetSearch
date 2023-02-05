@@ -15,8 +15,6 @@ sealed interface HomeAction : NanoRedux.Action
 
 // _________________________________________________________________________________________________
 // ACTIONS WITH SIDE-EFFECT ________________________________________________________________________
-object GetInitialData : HomeAction, HomeSideEffect
-
 data class OnPetTypeTabChanged(val tabName: String) : HomeAction, HomeSideEffect
 
 object LoadPetListNextPage : HomeAction, HomeSideEffect

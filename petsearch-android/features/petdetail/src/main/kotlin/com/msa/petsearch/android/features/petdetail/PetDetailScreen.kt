@@ -40,7 +40,7 @@ internal fun PetDetailScreen(
     viewModel: PetDetailViewModel,
     modifier: Modifier = Modifier
 ) {
-    val state by viewModel.state.collectAsStateWithLifecycle(initialValue = null)
+    val state by viewModel.state.collectAsStateWithLifecycle()
     val scrollBehavior = exitUntilCollapsedScrollBehavior(snapAnimationSpec = null)
 
     Scaffold(

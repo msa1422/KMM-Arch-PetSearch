@@ -6,7 +6,6 @@ import com.msa.petsearch.shared.core.util.sharedviewmodel.store.Updater
 import com.msa.petsearch.shared.ui.home.contract.store.Error
 import com.msa.petsearch.shared.ui.home.contract.store.ForwardInitialDataToState
 import com.msa.petsearch.shared.ui.home.contract.store.ForwardPetResponseToState
-import com.msa.petsearch.shared.ui.home.contract.store.GetInitialData
 import com.msa.petsearch.shared.ui.home.contract.store.HomeAction
 import com.msa.petsearch.shared.ui.home.contract.store.HomeNavigation
 import com.msa.petsearch.shared.ui.home.contract.store.HomeSideEffect
@@ -22,7 +21,6 @@ internal class HomeUpdater :
     Updater<HomeAction, HomeState, HomeSideEffect, GlobalEvent, HomeNavigation> {
 
     override fun onNewAction(action: HomeAction, currentState: HomeState) = when (action) {
-        is GetInitialData -> getInitialData(action, currentState)
         is ForwardInitialDataToState -> copyInitialData(action, currentState)
 
         is OnPetTypeTabChanged -> onPetTypeTabChanged(action, currentState)
@@ -35,9 +33,6 @@ internal class HomeUpdater :
 
         is Error -> onError(action.message, currentState)
     }
-
-    private fun getInitialData(action: GetInitialData, state: HomeState): NextResult =
-        Next.StateWithSideEffects(state = state, sideEffects = setOf(action))
 
     private fun copyInitialData(action: ForwardInitialDataToState, state: HomeState): NextResult =
         Next.State(state.copy(petTypes = action.petTypes, petPagingData = action.petPagingData))
