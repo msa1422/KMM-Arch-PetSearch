@@ -8,7 +8,7 @@ import com.msa.petsearch.shared.core.util.extension.encodeToString
 import com.msa.petsearch.shared.core.util.resource.ResourceMessage
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.ARG_PET_INFO
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationScreen
-import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationState
+import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent
 import com.msa.petsearch.shared.core.util.sharedviewmodel.store.NanoRedux
 
 sealed interface HomeAction : NanoRedux.Action
@@ -22,7 +22,7 @@ object LoadPetListNextPage : HomeAction, HomeSideEffect
 // _________________________________________________________________________________________________
 // ACTIONS WITH NAVIGATION _________________________________________________________________________
 data class NavigateToPetDetail(val petInfo: PetInfo?) : HomeAction, HomeNavigation {
-    override val state = NavigationState.NavigateToRoute(
+    override val state = NavigationEvent.NavigateToRoute(
         route = NavigationScreen.PetDetailNavScreen.route,
         args = hashMapOf(Pair(ARG_PET_INFO, petInfo?.encodeToString() ?: ""))
     )

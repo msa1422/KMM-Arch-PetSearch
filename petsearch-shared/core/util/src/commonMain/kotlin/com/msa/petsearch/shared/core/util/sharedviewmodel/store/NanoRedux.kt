@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.core.util.sharedviewmodel.store
 
-import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationState
+import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
@@ -17,7 +17,7 @@ sealed interface NanoRedux {
     interface Action : NanoRedux
 
     interface Navigation : NanoRedux {
-        val state: NavigationState
+        val state: NavigationEvent
         val delay: Long
             get() = 0
     }

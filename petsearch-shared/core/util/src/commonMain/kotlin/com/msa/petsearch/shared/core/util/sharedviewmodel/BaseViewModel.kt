@@ -83,7 +83,7 @@ constructor(
             }
 
             next.navigation.firstOrNull()?.let {
-                routeNavigator.onNavStart(it.state)
+                viewModelScope.launch { routeNavigator.onNavEvent(it.state) }
             }
 
             next.errors.forEach {

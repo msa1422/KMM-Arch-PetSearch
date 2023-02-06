@@ -5,8 +5,6 @@ import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDeepLink
@@ -14,12 +12,16 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
-import com.msa.petsearch.android.common.compose.util.HandyDelay
 import com.msa.petsearch.android.common.compose.util.OnDestroy
 import com.msa.petsearch.shared.core.util.resource.ResourceMessage
 import com.msa.petsearch.shared.core.util.sharedviewmodel.BaseViewModel
-import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationState
+import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent
+import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateAndPopUpToRoute
+import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateToRoute
+import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateUp
+import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.PopToRoute
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.RouteNavigator
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 
 typealias AnimatedBackStack = AnimatedContentScope<NavBackStackEntry>
@@ -74,22 +76,23 @@ interface NavRoute<T : RouteNavigator> {
                     backStackEntry.OnDestroy(it::onCleared)
                 }
 
-                val navigationState by it.navigationState
-                    .collectAsStateWithLifecycle(initialValue = NavigationState.Idle)
-
-                LaunchedEffect(navigationState) {
-                    updateNavigationState(navController, navigationState, it::onNavComplete)
-
-                    // Update Args in ViewModel
-                    val argsMap = hashMapOf<String, String>().also { hashMap ->
-                        getArguments().forEach { namedArg ->
-                            backStackEntry.arguments?.getString(namedArg.name)?.let { arg ->
-                                hashMap[namedArg.name] = arg
+                LaunchedEffect(it) {
+                    if (getArguments().isNotEmpty()) {
+                        // Update Args in ViewModel
+                        val argsMap = hashMapOf<String, String>().also { hashMap ->
+                            getArguments().forEach { namedArg ->
+                                backStackEntry.arguments?.getString(namedArg.name)?.let { arg ->
+                                    hashMap[namedArg.name] = arg
+                                }
                             }
                         }
+
+                        it.updateArgsInState(argsMap)
                     }
 
-                    it.updateArgsInState(argsMap)
+                    it.navigationEvent.collect { state ->
+                        onNavEvent(navController, state)
+                    }
                 }
 
                 LaunchedEffect(it) {
@@ -103,27 +106,13 @@ interface NavRoute<T : RouteNavigator> {
         }
     }
 
-    private fun updateNavigationState(
-        navController: NavHostController,
-        navigationState: NavigationState,
-        onComplete: (NavigationState) -> Unit
-    ) {
-        when (navigationState) {
-            is NavigationState.NavigateToRoute ->
-                handleNavigateToRoute(navController, navigationState, onComplete)
-
-            is NavigationState.NavigateAndPopUpToRoute ->
-                handleNavigateAndPopUpToRoute(navController, navigationState, onComplete)
-
-            is NavigationState.PopToRoute ->
-                handlePopToRoute(navController, navigationState, onComplete)
-
-            is NavigationState.NavigateUp ->
-                handleNavigateUp(navController, navigationState, onComplete)
-
-            is NavigationState.Idle -> Unit
+    private suspend fun onNavEvent(controller: NavHostController, event: NavigationEvent) =
+        when (event) {
+            is NavigateToRoute -> handleNavigateToRoute(controller, event)
+            is NavigateAndPopUpToRoute -> handleNavigateAndPopUpToRoute(controller, event)
+            is PopToRoute -> handlePopToRoute(controller, event)
+            is NavigateUp -> handleNavigateUp(controller, event)
         }
-    }
 }
 
 fun Iterable<NavRoute<*>>.provide(
@@ -132,101 +121,89 @@ fun Iterable<NavRoute<*>>.provide(
     messenger: (ResourceMessage) -> Unit
 ) = forEach { it.asComposable(builder, navController, messenger) }
 
-private fun handleNavigateToRoute(
-    navController: NavHostController,
-    navigationState: NavigationState.NavigateToRoute,
-    onComplete: (NavigationState) -> Unit
+private suspend fun handleNavigateToRoute(
+    navController: NavHostController, navigationState: NavigateToRoute
 ) {
     if (navController.currentDestination?.route == navigationState.route) {
         return
     }
 
-    HandyDelay.with(duration = navigationState.delay) {
-        var currentRoute = navigationState.route
+    delay(navigationState.delay)
 
-        navigationState.args?.forEach { entry ->
-            currentRoute = currentRoute
-                .replace(
-                    oldValue = "{${entry.key}}",
-                    newValue = entry.value.takeIf { it.isNotBlank() } ?: "null"
-                )
-        }
+    var currentRoute = navigationState.route
 
-        navController.navigate(currentRoute) {
-            launchSingleTop = true
-            restoreState = true
-            popUpTo(navController.graph.findStartDestination().id) {
-                saveState = true
-            }
+    navigationState.args?.forEach { entry ->
+        currentRoute = currentRoute
+            .replace(
+                oldValue = "{${entry.key}}",
+                newValue = entry.value.takeIf { it.isNotBlank() } ?: "null"
+            )
+    }
+
+    navController.navigate(currentRoute) {
+        launchSingleTop = true
+        restoreState = true
+        popUpTo(navController.graph.findStartDestination().id) {
+            saveState = true
         }
-        onComplete(navigationState)
     }
 }
 
-private fun handleNavigateAndPopUpToRoute(
-    navController: NavHostController,
-    navigationState: NavigationState.NavigateAndPopUpToRoute,
-    onComplete: (NavigationState) -> Unit
+private suspend fun handleNavigateAndPopUpToRoute(
+    navController: NavHostController, navigationState: NavigateAndPopUpToRoute
 ) {
     if (navController.currentDestination?.route == navigationState.route) {
         return
     }
 
-    HandyDelay.with(duration = navigationState.delay) {
-        var currentRoute = navigationState.route
+    delay(navigationState.delay)
 
-        navigationState.args?.forEach { args ->
-            currentRoute = currentRoute
-                .replace(
-                    oldValue = "{${args.key}}",
-                    newValue = args.value.takeIf { it.isNotBlank() } ?: "null"
-                )
-        }
+    var currentRoute = navigationState.route
 
-        navController.navigate(currentRoute) {
-            launchSingleTop = true
-            restoreState = true
-            popUpTo(navigationState.popUpTo) {
-                inclusive = true
-                saveState = true
-            }
+    navigationState.args?.forEach { args ->
+        currentRoute = currentRoute
+            .replace(
+                oldValue = "{${args.key}}",
+                newValue = args.value.takeIf { it.isNotBlank() } ?: "null"
+            )
+    }
+
+    navController.navigate(currentRoute) {
+        launchSingleTop = true
+        restoreState = true
+        popUpTo(navigationState.popUpTo) {
+            inclusive = true
+            saveState = true
         }
-        onComplete(navigationState)
     }
 }
 
-private fun handlePopToRoute(
-    navController: NavHostController,
-    navigationState: NavigationState.PopToRoute,
-    onComplete: (NavigationState) -> Unit
+private suspend fun handlePopToRoute(
+    navController: NavHostController, navigationState: PopToRoute
 ) {
     if (navController.currentDestination?.route == navigationState.staticRoute) {
         return
     }
 
-    HandyDelay.with(duration = navigationState.delay) {
-        navController
-            .getBackStackEntry(navigationState.staticRoute)
-            .arguments?.let { bundle ->
-                navigationState.args?.forEach { args ->
-                    bundle.putString(args.key, args.value)
-                }
-            }
+    delay(navigationState.delay)
 
-        navController.popBackStack(navigationState.staticRoute, false)
-        onComplete(navigationState)
-    }
+    navController
+        .getBackStackEntry(navigationState.staticRoute)
+        .arguments?.let { bundle ->
+            navigationState.args?.forEach { args ->
+                bundle.putString(args.key, args.value)
+            }
+        }
+
+    navController.popBackStack(navigationState.staticRoute, false)
 }
 
-private fun handleNavigateUp(
-    navController: NavHostController,
-    navigationState: NavigationState.NavigateUp,
-    onComplete: (NavigationState) -> Unit
+private suspend fun handleNavigateUp(
+    navController: NavHostController, navigationState: NavigateUp
 ) {
-    HandyDelay.with(duration = navigationState.delay) {
-        navController.currentDestination?.route?.let {
-            navController.popBackStack(route = it, inclusive = true)
-            onComplete(navigationState)
-        }
+    delay(navigationState.delay)
+
+    navController.currentDestination?.route?.let {
+        navController.popBackStack(route = it, inclusive = true)
     }
 }

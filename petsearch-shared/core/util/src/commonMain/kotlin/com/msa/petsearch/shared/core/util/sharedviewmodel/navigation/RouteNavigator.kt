@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.core.util.sharedviewmodel.navigation
 
-import com.msa.petsearch.shared.core.util.commonflow.CommonStateFlow
+import com.msa.petsearch.shared.core.util.commonflow.CommonSharedFlow
 
 /**
  * A simplified rewrite of the RouteNavigator from the source below
@@ -9,7 +9,6 @@ import com.msa.petsearch.shared.core.util.commonflow.CommonStateFlow
  * Navigator to use when initiating navigation from a ViewModel.
  */
 interface RouteNavigator {
-    val navigationState: CommonStateFlow<NavigationState>
-    fun onNavStart(state: NavigationState)
-    fun onNavComplete(state: NavigationState)
+    val navigationEvent: CommonSharedFlow<NavigationEvent>
+    suspend fun onNavEvent(event: NavigationEvent)
 }

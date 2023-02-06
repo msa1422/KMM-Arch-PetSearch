@@ -10,7 +10,6 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val CoreUtilModule = module {
-
     singleOf(::RouteNavigatorImpl) bind RouteNavigator::class
 
     singleOf(::MessageDequeParameter)
