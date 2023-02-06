@@ -6,5 +6,5 @@ data class ResourceMessage(
     val id: String = uuid4().toString(),
     val text: String?,
     val messageType: MessageType = MessageType.None,
-    val dequeueCallback: (() -> Unit) = {}
+    val dequeueCallback: suspend () -> Unit = {}
 )

@@ -10,6 +10,7 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -20,6 +21,7 @@ import com.msa.petsearch.android.activity.composable.rememberSnackBarHostState
 import com.msa.petsearch.android.activity.di.AppScreens
 import com.msa.petsearch.android.common.compose.provide
 import com.msa.petsearch.android.common.compose.theme.ApplicationTheme
+import com.msa.petsearch.shared.core.util.resource.MessageDeque
 import com.msa.petsearch.shared.core.util.resource.MessageType
 import com.msa.petsearch.shared.core.util.resource.ResourceMessage
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationScreen
@@ -42,15 +44,14 @@ internal fun MainContent() {
                 .background(MaterialTheme.colorScheme.background)
         ) {
             AnimatedNavHost(navController, NavigationScreen.HomeNavScreen.route) {
-                AppScreens.provide(this@AnimatedNavHost, navController) {
-                    onMessageReceived(
-                        message = it,
-                        snackbarHostState = snackbarHostState,
-                        coroutineScope = coroutineScope,
-                        context = context
-                    )
-                }
+                AppScreens.provide(this@AnimatedNavHost, navController)
             }
+        }
+    }
+
+    LaunchedEffect(context) {
+        MessageDeque().collect {
+            onMessageReceived(it, snackbarHostState, coroutineScope, context)
         }
     }
 }

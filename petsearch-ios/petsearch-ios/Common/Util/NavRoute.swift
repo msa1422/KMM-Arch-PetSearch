@@ -28,10 +28,8 @@ extension NavRoute {
     
     typealias BaseVm = BaseViewModel<AnyObject, AnyObject, AnyObject, AnyObject, AnyObject, AnyObject>
     
-    func view(pilot: UIPilot<String>, route: String, messenger : @escaping (ResourceMessage) -> Void) -> some View {
+    func view(pilot: UIPilot<String>, route: String) -> some View {
         var navEventObserver: Closeable? = nil
-        var messageDequeObserver: Closeable? = nil
-        
         return content
             .onAppear {
                 if let viewModel = self.viewModel as? BaseVm {
@@ -54,22 +52,11 @@ extension NavRoute {
                             }
                         }
                     }
-                    
-                    if messageDequeObserver == nil {
-                        messageDequeObserver = viewModel.messageFlow.watch { message in
-                            if let msg = message {
-                                messenger(msg)
-                            }
-                        }
-                    }
                 }
             }
             .onDisappear {
                 navEventObserver?.close()
                 navEventObserver = nil
-                
-                messageDequeObserver?.close()
-                messageDequeObserver = nil
             }
     }
     

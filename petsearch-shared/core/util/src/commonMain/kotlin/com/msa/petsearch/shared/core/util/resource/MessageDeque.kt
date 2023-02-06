@@ -1,36 +1,24 @@
 package com.msa.petsearch.shared.core.util.resource
 
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import com.msa.petsearch.shared.core.util.commonflow.asCommonSharedFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
 
-class MessageDeque
-internal constructor(private val deque: ArrayDeque<ResourceMessage>) : Queue<ResourceMessage> {
+object MessageDeque : Queue<ResourceMessage> {
+    private val deque = ArrayDeque<ResourceMessage>()
+    private val message = MutableSharedFlow<ResourceMessage>()
 
-    private val message = MutableStateFlow(deque.firstOrNull())
+    operator fun invoke() = message.asCommonSharedFlow()
 
-    fun readOnlyStateFlow() = message.asStateFlow()
+    override val count: Int
+        get() = deque.size
 
-    override val count get() = deque.size
-
-    override fun enqueue(element: ResourceMessage): Boolean {
-        // prevent duplicate errors added to stack
-        deque.firstOrNull { it.id == element.id }?.let {
-            return false
-        }
-
-        val transaction = deque.add(element)
-
-        peekAndUpdate()
-
-        return transaction
+    override suspend fun enqueue(element: ResourceMessage): Boolean {
+        return deque.none { it.id == element.id } && deque.add(element).also { peekAndUpdate() }
     }
 
-    override fun dequeue(): ResourceMessage? {
+    override suspend fun dequeue(): ResourceMessage? {
         // First remove the message from the ArrayDeque
         val transaction = deque.removeFirstOrNull()
-
-        // Now remove the value from the FlowData
-        message.value = null
 
         // Now peek and see if there are other messages in queue. If yes, then update FlowData
         peekAndUpdate()
@@ -39,11 +27,7 @@ internal constructor(private val deque: ArrayDeque<ResourceMessage>) : Queue<Res
         return transaction
     }
 
-    override fun peekAndUpdate() {
-        if (message.value == null) {
-            deque.firstOrNull()?.let { message.value = it }
-        }
+    override suspend fun peekAndUpdate() {
+        deque.firstOrNull()?.let { message.emit(it) }
     }
 }
-
-internal val MessageDequeParameter = ArrayDeque<ResourceMessage>()

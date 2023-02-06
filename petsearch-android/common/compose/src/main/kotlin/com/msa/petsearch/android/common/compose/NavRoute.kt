@@ -13,7 +13,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
 import com.msa.petsearch.android.common.compose.util.OnDestroy
-import com.msa.petsearch.shared.core.util.resource.ResourceMessage
 import com.msa.petsearch.shared.core.util.sharedviewmodel.BaseViewModel
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateAndPopUpToRoute
@@ -22,7 +21,6 @@ import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationE
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.PopToRoute
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.RouteNavigator
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collectLatest
 
 typealias AnimatedBackStack = AnimatedContentScope<NavBackStackEntry>
 
@@ -55,11 +53,7 @@ interface NavRoute<T : RouteNavigator> {
 
     fun getPopExitTransition(): (AnimatedBackStack.() -> ExitTransition?)? = getExitTransition()
 
-    fun asComposable(
-        builder: NavGraphBuilder,
-        navController: NavHostController,
-        messenger: (ResourceMessage) -> Unit
-    ) {
+    fun asComposable(builder: NavGraphBuilder, navController: NavHostController) =
         builder.composable(
             route = route,
             arguments = getArguments(),
@@ -95,16 +89,9 @@ interface NavRoute<T : RouteNavigator> {
                     }
                 }
 
-                LaunchedEffect(it) {
-                    it.messageFlow.collectLatest { message ->
-                        message?.let(messenger::invoke)
-                    }
-                }
-
                 Content(viewModel)
             }
         }
-    }
 
     private suspend fun onNavEvent(controller: NavHostController, event: NavigationEvent) =
         when (event) {
@@ -115,24 +102,19 @@ interface NavRoute<T : RouteNavigator> {
         }
 }
 
-fun Iterable<NavRoute<*>>.provide(
-    builder: NavGraphBuilder,
-    navController: NavHostController,
-    messenger: (ResourceMessage) -> Unit
-) = forEach { it.asComposable(builder, navController, messenger) }
+fun Iterable<NavRoute<*>>.provide(builder: NavGraphBuilder, navController: NavHostController) =
+    forEach { it.asComposable(builder, navController) }
 
-private suspend fun handleNavigateToRoute(
-    navController: NavHostController, navigationState: NavigateToRoute
-) {
-    if (navController.currentDestination?.route == navigationState.route) {
+private suspend fun handleNavigateToRoute(controller: NavHostController, event: NavigateToRoute) {
+    if (controller.currentDestination?.route == event.route) {
         return
     }
 
-    delay(navigationState.delay)
+    delay(event.delay)
 
-    var currentRoute = navigationState.route
+    var currentRoute = event.route
 
-    navigationState.args?.forEach { entry ->
+    event.args?.forEach { entry ->
         currentRoute = currentRoute
             .replace(
                 oldValue = "{${entry.key}}",
@@ -140,27 +122,27 @@ private suspend fun handleNavigateToRoute(
             )
     }
 
-    navController.navigate(currentRoute) {
+    controller.navigate(currentRoute) {
         launchSingleTop = true
         restoreState = true
-        popUpTo(navController.graph.findStartDestination().id) {
+        popUpTo(controller.graph.findStartDestination().id) {
             saveState = true
         }
     }
 }
 
 private suspend fun handleNavigateAndPopUpToRoute(
-    navController: NavHostController, navigationState: NavigateAndPopUpToRoute
+    controller: NavHostController, event: NavigateAndPopUpToRoute
 ) {
-    if (navController.currentDestination?.route == navigationState.route) {
+    if (controller.currentDestination?.route == event.route) {
         return
     }
 
-    delay(navigationState.delay)
+    delay(event.delay)
 
-    var currentRoute = navigationState.route
+    var currentRoute = event.route
 
-    navigationState.args?.forEach { args ->
+    event.args?.forEach { args ->
         currentRoute = currentRoute
             .replace(
                 oldValue = "{${args.key}}",
@@ -168,42 +150,38 @@ private suspend fun handleNavigateAndPopUpToRoute(
             )
     }
 
-    navController.navigate(currentRoute) {
+    controller.navigate(currentRoute) {
         launchSingleTop = true
         restoreState = true
-        popUpTo(navigationState.popUpTo) {
+        popUpTo(event.popUpTo) {
             inclusive = true
             saveState = true
         }
     }
 }
 
-private suspend fun handlePopToRoute(
-    navController: NavHostController, navigationState: PopToRoute
-) {
-    if (navController.currentDestination?.route == navigationState.staticRoute) {
+private suspend fun handlePopToRoute(controller: NavHostController, event: PopToRoute) {
+    if (controller.currentDestination?.route == event.staticRoute) {
         return
     }
 
-    delay(navigationState.delay)
+    delay(event.delay)
 
-    navController
-        .getBackStackEntry(navigationState.staticRoute)
+    controller
+        .getBackStackEntry(event.staticRoute)
         .arguments?.let { bundle ->
-            navigationState.args?.forEach { args ->
+            event.args?.forEach { args ->
                 bundle.putString(args.key, args.value)
             }
         }
 
-    navController.popBackStack(navigationState.staticRoute, false)
+    controller.popBackStack(event.staticRoute, false)
 }
 
-private suspend fun handleNavigateUp(
-    navController: NavHostController, navigationState: NavigateUp
-) {
-    delay(navigationState.delay)
+private suspend fun handleNavigateUp(controller: NavHostController, event: NavigateUp) {
+    delay(event.delay)
 
-    navController.currentDestination?.route?.let {
-        navController.popBackStack(route = it, inclusive = true)
+    controller.currentDestination?.route?.let {
+        controller.popBackStack(route = it, inclusive = true)
     }
 }

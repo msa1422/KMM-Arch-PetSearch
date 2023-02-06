@@ -75,7 +75,7 @@ struct Snackbar: View {
                         .animation(.default)
                         .onAppear {
                             guard !self.isBeingDismissedByAction else { return }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                                 withAnimation {
                                     self.isShowing = false
                                 }

@@ -1,14 +1,14 @@
 package com.msa.petsearch.shared.core.util.resource
 
-interface Queue<T : Any> {
+internal interface Queue<T : Any> {
 
     val count: Int
 
     val isEmpty: Boolean get() = count == 0
 
-    fun enqueue(element: T): Boolean
+    suspend fun enqueue(element: T): Boolean
 
-    fun dequeue(): T?
+    suspend fun dequeue(): T?
 
-    fun peekAndUpdate()
+    suspend fun peekAndUpdate()
 }

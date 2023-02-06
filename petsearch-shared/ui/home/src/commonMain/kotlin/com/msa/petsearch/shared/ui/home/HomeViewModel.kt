@@ -1,6 +1,5 @@
 package com.msa.petsearch.shared.ui.home
 
-import com.msa.petsearch.shared.core.util.resource.MessageDeque
 import com.msa.petsearch.shared.core.util.sharedviewmodel.BaseViewModel
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.RouteNavigator
 import com.msa.petsearch.shared.ui.home.contract.HomeProcessor
@@ -18,14 +17,12 @@ class HomeViewModel
 internal constructor(
     updater: HomeUpdater,
     processor: HomeProcessor,
-    routeNavigator: RouteNavigator,
-    messageDeque: MessageDeque
+    routeNavigator: RouteNavigator
 ) : BaseViewModel<HA, HS, HSE, HRS, HN, GE>(
     updater = updater,
     initialState = HS(),
     processor = processor,
     stateMapper = HSM,
     routeNavigator = routeNavigator,
-    messageDeque = messageDeque,
     initialEffects = setOf(GetInitialData)
 )
