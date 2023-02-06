@@ -24,45 +24,36 @@ struct ContentView: View {
     @State private var messageDequeObserver: Closeable? = nil
     
     var body: some View {
-        GeometryReader { proxy in
-            ZStack(alignment: .bottom) {
-                // Main Navigation Controller host
-                UIPilotHost(pilot) { route in
-                    switch route {
-                        
-                    case _ where route.starts(with: NavigationScreenKt.HOME_DESTINATION) :
-                        HomeRoute().view(pilot: pilot, route: route)
-                        
-                    case _ where route.starts(with: NavigationScreenKt.PET_DETAIL_DESTINATION) :
-                        PetDetailRoute().view(pilot: pilot, route: route)
-                        
-                    // Workaround for default case, because Swift only truly verifies that a
-                    // switch block is exhaustive when working with enum types
-                    default : EmptyView()
-                    }
-                }
+        // Main Navigation Controller host
+        UIPilotHost(pilot) { route in
+            switch route {
                 
-                // Safe Area Translucent BottomInset
-                Rectangle()
-                    .fill(Color.surface(colorScheme).opacity(0.62))
-                    .frame(height: proxy.safeAreaInsets.bottom)
+            case _ where route.starts(with: NavigationScreenKt.HOME_DESTINATION) :
+                HomeRoute().view(pilot: pilot, route: route)
+                
+            case _ where route.starts(with: NavigationScreenKt.PET_DETAIL_DESTINATION) :
+                PetDetailRoute().view(pilot: pilot, route: route)
+                
+            // Workaround for default case, because Swift only truly verifies that a
+            // switch block is exhaustive when working with enum types
+            default : EmptyView()
             }
-            .edgesIgnoringSafeArea(.bottom)
-            .toast(
-                isPresenting: $showToast,
-                message: String(resourceMessageText?.prefix(120) ?? ""),
-                icon: nil,
-                backgroundColor: Color.onSurface(colorScheme).opacity(0.9),
-                textColor: Color.blue,
-                autoDismiss: .after(5),
-                onDisappear: { resourceMessageText = nil }
-            )
-            .snackBar(
-                isShowing: $showSnackBar,
-                text: resourceMessageText ?? "",
-                snackBar: snackBar
-            )
         }
+        .edgesIgnoringSafeArea(.bottom)
+        .toast(
+            isPresenting: $showToast,
+            message: String(resourceMessageText?.prefix(120) ?? ""),
+            icon: nil,
+            backgroundColor: Color.onSurface(colorScheme).opacity(0.9),
+            textColor: Color.blue,
+            autoDismiss: .after(5),
+            onDisappear: { resourceMessageText = nil }
+        )
+        .snackBar(
+            isShowing: $showSnackBar,
+            text: resourceMessageText ?? "",
+            snackBar: snackBar
+        )
         .onAppear {
             messageDequeObserver = MessageDeque.shared.invoke().watch { message in
                 if message != nil {
