@@ -17,6 +17,7 @@ import com.msa.petsearch.shared.core.util.sharedviewmodel.store.Processor
 import com.msa.petsearch.shared.core.util.sharedviewmodel.store.StateMapper
 import com.msa.petsearch.shared.core.util.sharedviewmodel.store.Updater
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -80,7 +81,10 @@ constructor(
             }
 
             next.navigation.firstOrNull()?.let {
-                viewModelScope.launch { routeNavigator.onNavEvent(it.state) }
+                viewModelScope.launch {
+                    delay(it.delay)
+                    routeNavigator.onNavEvent(it.event)
+                }
             }
 
             next.errors.forEach {

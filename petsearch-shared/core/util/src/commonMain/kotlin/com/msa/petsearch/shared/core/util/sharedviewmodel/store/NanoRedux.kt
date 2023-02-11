@@ -17,7 +17,7 @@ sealed interface NanoRedux {
     interface Action : NanoRedux
 
     interface Navigation : NanoRedux {
-        val state: NavigationEvent
+        val event: NavigationEvent
         val delay: Long
             get() = 0
     }

@@ -60,8 +60,7 @@ struct ImagePager: View {
             .onTapGesture { onClick(photo.large) }
     }
     
-    var placeholder: Image {
-        Image("pet_image_placeholder")
-            .resizable()
+    var placeholder: SharedSvgImage {
+        SharedSvgImage("bg_paw_print_loaded", renderingMode: .template)
     }
 }

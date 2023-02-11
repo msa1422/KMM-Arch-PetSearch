@@ -9,7 +9,6 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.navigation.NamedNavArgument
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.msa.petsearch.android.common.compose.AnimatedBackStack
@@ -25,12 +24,10 @@ object PetDetailRoute : NavRoute<PetDetailViewModel> {
         get() = NavigationScreen.PetDetailNavScreen.route
 
     @Composable
-    override fun Content(viewModel: PetDetailViewModel) =
-        PetDetailScreen(viewModel)
+    override fun Content(viewModel: PetDetailViewModel) = PetDetailScreen(viewModel)
 
     @Composable
-    override fun viewModel(entry: NavBackStackEntry): PetDetailViewModel =
-        koinViewModel(owner = { entry.viewModelStore })
+    override fun viewModel(): PetDetailViewModel = koinViewModel()
 
     override fun getArguments(): List<NamedNavArgument> =
         listOf(navArgument(ARG_PET_INFO) { type = NavType.StringType })
