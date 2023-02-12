@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridState
@@ -73,31 +72,30 @@ internal fun LazyPetGrid(
                     modifier = Modifier
                         .padding(bottom = 48.dp)
                         .fillMaxWidth()
-                        .wrapContentHeight()
                 )
             }
         }
 
-        items(items = petList) { info ->
-            info?.let {
-                PetInfoItem(
-                    petInfo = it,
-                    imageHeight = imageHeight,
-                    colorFilter = colorFilter,
-                    placeholder = placeholder,
-                    error = error,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                        .background(color = MaterialTheme.colorScheme.surface)
-                        .clickable { onItemClick.invoke(it) }
-                )
+        val refresh = petList.loadState.refresh is LoadState.Loading
+        if (!refresh) {
+            items(items = petList) { info ->
+                info?.let {
+                    PetInfoItem(
+                        petInfo = it,
+                        imageHeight = imageHeight,
+                        colorFilter = colorFilter,
+                        placeholder = placeholder,
+                        error = error,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = MaterialTheme.colorScheme.surface)
+                            .clickable { onItemClick.invoke(it) }
+                    )
+                }
             }
         }
 
-        if (petList.loadState.refresh is LoadState.Loading ||
-            petList.loadState.append is LoadState.Loading
-        ) {
+        if (refresh|| petList.loadState.append is LoadState.Loading) {
             item(span = { GridItemSpan(2) }) {
                 HomeProgressIndicator(
                     animate = progressIndicatorVisibility,
@@ -105,7 +103,6 @@ internal fun LazyPetGrid(
                     modifier = Modifier
                         .padding(bottom = 48.dp)
                         .fillMaxWidth()
-                        .wrapContentHeight()
                 )
             }
         }
