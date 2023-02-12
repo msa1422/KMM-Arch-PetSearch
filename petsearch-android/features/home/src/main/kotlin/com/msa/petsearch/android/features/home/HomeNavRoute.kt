@@ -28,11 +28,11 @@ object HomeNavRoute : NavRoute<HomeViewModel> {
     override fun getPopExitTransition() = HomePopExitTransition
 }
 
-private val HomePopEnterTransition: AnimatedBackStack.() -> EnterTransition? = {
+val HomePopEnterTransition: AnimatedBackStack.() -> EnterTransition? = {
     fadeIn(animationSpec = tween(durationMillis = 300))
 }
 
-private val HomePopExitTransition: AnimatedBackStack.() -> ExitTransition? = {
+val HomePopExitTransition: AnimatedBackStack.() -> ExitTransition? = {
     // Basically a MaterialHold
     fadeOut(
         animationSpec = tween(durationMillis = 300),
