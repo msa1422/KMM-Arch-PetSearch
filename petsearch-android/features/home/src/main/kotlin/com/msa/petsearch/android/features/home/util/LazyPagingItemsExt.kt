@@ -10,6 +10,6 @@ internal inline fun <reified T : Any> LazyPagingItems<T>?.isLoading(): Boolean {
         this.loadState.prepend is LoadState.Loading
 }
 
-internal inline fun <reified T : Any> LazyPagingItems<T>?.isNullOrEmpty(): Boolean {
-    return this == null || this.itemCount == 0
+internal inline fun <reified T : Any> LazyPagingItems<T>.isNotEmpty(): Boolean {
+    return itemCount != 0
 }
