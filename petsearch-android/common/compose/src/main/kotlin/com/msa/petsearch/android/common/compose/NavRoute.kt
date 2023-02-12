@@ -12,8 +12,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
-import com.msa.petsearch.android.common.compose.util.OnDestroy
-import com.msa.petsearch.shared.core.util.sharedviewmodel.BaseViewModel
+import com.msa.petsearch.shared.core.util.sharedviewmodel.BaseViewModel2
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateAndPopUpToRoute
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateToRoute
@@ -30,9 +29,6 @@ typealias AnimatedBackStack = AnimatedContentScope<NavBackStackEntry>
 interface NavRoute<T : RouteNavigator> {
 
     val route: String
-
-    val enableLifecycleObserver: Boolean
-        get() = true
 
     @Composable
     fun Content(viewModel: T)
@@ -64,11 +60,7 @@ interface NavRoute<T : RouteNavigator> {
         ) { backStackEntry ->
             val viewModel = viewModel()
 
-            (viewModel as? BaseViewModel<*, *, *, *, *, *>)?.let {
-                if (enableLifecycleObserver) {
-                    backStackEntry.OnDestroy(it::onCleared)
-                }
-
+            (viewModel as? BaseViewModel2<*, *, *, *>)?.let {
                 LaunchedEffect(it) {
                     if (getArguments().isNotEmpty()) {
                         // Update Args in ViewModel
@@ -80,7 +72,7 @@ interface NavRoute<T : RouteNavigator> {
                             }
                         }
 
-                        it.updateArgsInState(argsMap)
+                        it.updateArgs(argsMap)
                     }
 
                     it.navigationEvent.collect { event ->
@@ -94,7 +86,7 @@ interface NavRoute<T : RouteNavigator> {
 
     private fun onNavEvent(controller: NavHostController, event: NavigationEvent) =
         when (event) {
-            is NavigateToRoute -> onNavToRoute(controller, event)
+            is NavigateToRoute -> handleNavToRoute(controller, event)
             is NavigateAndPopUpToRoute -> onNavAndPopUpToRoute(controller, event)
             is PopToRoute -> onPopToRoute(controller, event)
             is NavigateUp -> onNavigateUp(controller)
@@ -104,7 +96,7 @@ interface NavRoute<T : RouteNavigator> {
 fun Iterable<NavRoute<*>>.provide(builder: NavGraphBuilder, navController: NavHostController) =
     forEach { it.asComposable(builder, navController) }
 
-private fun onNavToRoute(controller: NavHostController, event: NavigateToRoute) {
+private fun handleNavToRoute(controller: NavHostController, event: NavigateToRoute) {
     if (controller.currentDestination?.route == event.route) {
         return
     }

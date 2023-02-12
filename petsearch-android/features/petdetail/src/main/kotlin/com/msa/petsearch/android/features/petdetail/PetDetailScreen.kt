@@ -31,20 +31,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.msa.petsearch.android.features.petdetail.composable.CollapsingTopAppBar
+import com.msa.petsearch.shared.core.entity.petinfo.PetInfo
 import com.msa.petsearch.shared.resources.SharedR
-import com.msa.petsearch.shared.ui.petdetail.PetDetailViewModel
-import com.msa.petsearch.shared.ui.petdetail.contract.store.PetDetailState
+import com.msa.petsearch.shared.ui.petdetail.PetDetailViewModel2
 
 @Composable
 internal fun PetDetailScreen(
-    viewModel: PetDetailViewModel,
+    viewModel: PetDetailViewModel2,
     modifier: Modifier = Modifier
 ) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
+    val petInfo by viewModel.petInfo.collectAsStateWithLifecycle()
     val scrollBehavior = exitUntilCollapsedScrollBehavior(snapAnimationSpec = null)
 
     Scaffold(
-        topBar = { TopBar(state = state, scrollBehavior = scrollBehavior) },
+        topBar = { TopBar(petInfo = petInfo, scrollBehavior = scrollBehavior) },
         modifier = modifier.fillMaxSize()
     ) { innerPadding ->
         LazyVerticalGrid(
@@ -57,18 +57,18 @@ internal fun PetDetailScreen(
                 .nestedScroll(scrollBehavior.nestedScrollConnection)
                 .background(color = MaterialTheme.colorScheme.surface)
         ) {
-            fullDescription(state)
+            fullDescription(petInfo)
 
-            tags(state)
+            tags(petInfo)
 
-            attributes(state)
+            attributes(petInfo)
         }
     }
 }
 
 @Composable
 private fun TopBar(
-    state: PetDetailState?,
+    petInfo: PetInfo?,
     scrollBehavior: TopAppBarScrollBehavior,
     modifier: Modifier = Modifier
 ) {
@@ -77,9 +77,9 @@ private fun TopBar(
             LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
         CollapsingTopAppBar(
-            title = state?.petInfo?.name ?: "",
-            subtitle = state?.petInfo?.shortDescription ?: "",
-            pagerImages = state?.petInfo?.photos ?: emptyList(),
+            title = petInfo?.name ?: "",
+            subtitle = petInfo?.shortDescription ?: "",
+            pagerImages = petInfo?.photos ?: emptyList(),
             onPagerImageClick = {
                 // Navigate to full screen image pager
             },
@@ -121,8 +121,8 @@ private fun LazyGridScope.sectionTitle(resId: Int) {
     }
 }
 
-private fun LazyGridScope.fullDescription(state: PetDetailState?) {
-    state?.petInfo?.description
+private fun LazyGridScope.fullDescription(petInfo: PetInfo?) {
+    petInfo?.description
         ?.takeIf { it.isNotBlank() }
         ?.let {
             item(span = { GridItemSpan(2) }) {
@@ -140,8 +140,8 @@ private fun LazyGridScope.fullDescription(state: PetDetailState?) {
         }
 }
 
-private fun LazyGridScope.tags(state: PetDetailState?) {
-    state?.petInfo?.tags
+private fun LazyGridScope.tags(petInfo: PetInfo?) {
+    petInfo?.tags
         ?.takeIf { it.isNotEmpty() }
         ?.let { tags ->
             sectionTitle(SharedR.strings.characteristics.resourceId)
@@ -160,8 +160,8 @@ private fun LazyGridScope.tags(state: PetDetailState?) {
         }
 }
 
-private fun LazyGridScope.attributes(state: PetDetailState?) {
-    state?.petInfo?.attributes
+private fun LazyGridScope.attributes(petInfo: PetInfo?) {
+    petInfo?.attributes
         ?.let { attr ->
             sectionTitle(SharedR.strings.attributes.resourceId)
 

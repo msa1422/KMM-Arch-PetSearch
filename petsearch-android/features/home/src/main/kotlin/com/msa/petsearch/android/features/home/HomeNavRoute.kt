@@ -9,30 +9,30 @@ import androidx.compose.runtime.Composable
 import com.msa.petsearch.android.common.compose.AnimatedBackStack
 import com.msa.petsearch.android.common.compose.NavRoute
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationScreen
-import com.msa.petsearch.shared.ui.home.HomeViewModel
+import com.msa.petsearch.shared.ui.home.HomeViewModel2
 import org.koin.androidx.compose.koinViewModel
 
-object HomeNavRoute : NavRoute<HomeViewModel> {
+object HomeNavRoute : NavRoute<HomeViewModel2> {
 
     override val route: String
         get() = NavigationScreen.HomeNavScreen.route
 
     @Composable
-    override fun Content(viewModel: HomeViewModel) = HomeScreen(viewModel)
+    override fun Content(viewModel: HomeViewModel2) = HomeScreen(viewModel)
 
     @Composable
-    override fun viewModel(): HomeViewModel = koinViewModel()
+    override fun viewModel(): HomeViewModel2 = koinViewModel()
 
     override fun getPopEnterTransition() = HomePopEnterTransition
 
     override fun getPopExitTransition() = HomePopExitTransition
 }
 
-val HomePopEnterTransition: AnimatedBackStack.() -> EnterTransition? = {
+private val HomePopEnterTransition: AnimatedBackStack.() -> EnterTransition? = {
     fadeIn(animationSpec = tween(durationMillis = 300))
 }
 
-val HomePopExitTransition: AnimatedBackStack.() -> ExitTransition? = {
+private val HomePopExitTransition: AnimatedBackStack.() -> ExitTransition? = {
     // Basically a MaterialHold
     fadeOut(
         animationSpec = tween(durationMillis = 300),
