@@ -37,7 +37,7 @@ object PetDetailRoute : NavRoute<PetDetailViewModel> {
     override fun getExitTransition() = PetDetailExitTransition
 }
 
-private val PetDetailEnterTransition: AnimatedBackStack.() -> EnterTransition? = {
+val PetDetailEnterTransition: AnimatedBackStack.() -> EnterTransition? = {
     slideIntoContainer(
         towards = AnimatedContentScope.SlideDirection.Up,
         animationSpec = tween(
@@ -58,7 +58,7 @@ private val PetDetailEnterTransition: AnimatedBackStack.() -> EnterTransition? =
         )
 }
 
-private val PetDetailExitTransition: AnimatedBackStack.() -> ExitTransition? = {
+val PetDetailExitTransition: AnimatedBackStack.() -> ExitTransition? = {
     slideOutOfContainer(
         towards = AnimatedContentScope.SlideDirection.Down,
         animationSpec = tween(
