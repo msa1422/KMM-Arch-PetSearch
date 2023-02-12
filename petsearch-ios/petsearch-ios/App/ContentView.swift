@@ -78,7 +78,7 @@ struct ContentView: View {
                     showSnackBar.toggle()
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    Task { try await message.dequeueCallback.invoke() }
+                    Task { try await MessageDeque.shared.dequeue() }
                 }
             }
         }
@@ -87,7 +87,7 @@ struct ContentView: View {
             resourceMessageText = message.text
             showToast = true
             DispatchQueue.main.asyncAfter(deadline: .now()) {
-                Task { try await message.dequeueCallback.invoke() }
+                Task { try await MessageDeque.shared.dequeue() }
             }
         }
             

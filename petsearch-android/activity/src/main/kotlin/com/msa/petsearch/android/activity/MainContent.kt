@@ -11,7 +11,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -25,14 +24,12 @@ import com.msa.petsearch.shared.core.util.resource.MessageDeque
 import com.msa.petsearch.shared.core.util.resource.MessageType
 import com.msa.petsearch.shared.core.util.resource.ResourceMessage
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationScreen
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 
 @Suppress("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 internal fun MainContent() {
     val context = LocalContext.current
-    val coroutineScope = rememberCoroutineScope()
     val navController = rememberAnimatedNavController()
     val snackbarHostState = rememberSnackBarHostState()
 
@@ -49,38 +46,36 @@ internal fun MainContent() {
         }
     }
 
-    LaunchedEffect(context) {
+    LaunchedEffect(Unit) {
         MessageDeque().collect {
-            onMessageReceived(it, snackbarHostState, coroutineScope, context)
+            onMessageReceived(it, snackbarHostState, context)
         }
     }
 }
 
-private fun onMessageReceived(
+private suspend fun onMessageReceived(
     message: ResourceMessage,
     snackbarHostState: SnackbarHostState,
-    coroutineScope: CoroutineScope,
     context: Context
 ) {
     when (val component = message.messageType) {
         is MessageType.SnackBar -> {
             message.text?.let {
-                coroutineScope.launch {
-                    val result = snackbarHostState.showSnackbar(
-                        message = it,
-                        actionLabel = component.action,
-                        withDismissAction = true,
-                        duration = SnackbarDuration.Short
-                    )
-                    when (result) {
-                        SnackbarResult.Dismissed -> {
-                            component.onDismiss.invoke()
-                            message.dequeueCallback.invoke()
-                        }
-                        SnackbarResult.ActionPerformed -> {
-                            component.onAction.invoke()
-                            message.dequeueCallback.invoke()
-                        }
+                val result = snackbarHostState.showSnackbar(
+                    message = it,
+                    actionLabel = component.action,
+                    withDismissAction = true,
+                    duration = SnackbarDuration.Short
+                )
+
+                when (result) {
+                    SnackbarResult.Dismissed -> {
+                        component.onDismiss.invoke()
+                        MessageDeque.dequeue()
+                    }
+                    SnackbarResult.ActionPerformed -> {
+                        component.onAction.invoke()
+                        MessageDeque.dequeue()
                     }
                 }
             }
@@ -88,6 +83,9 @@ private fun onMessageReceived(
 
         is MessageType.Toast -> {
             Toast.makeText(context, message.text, Toast.LENGTH_LONG).show()
+
+            delay(timeMillis = 4_000)
+            MessageDeque.dequeue()
         }
 
         else -> {

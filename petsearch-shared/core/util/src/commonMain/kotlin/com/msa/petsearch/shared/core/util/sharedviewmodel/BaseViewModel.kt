@@ -88,9 +88,7 @@ constructor(
             }
 
             next.errors.forEach {
-                viewModelScope.launch {
-                    MessageDeque.enqueue(it.copy(dequeueCallback = MessageDeque::dequeue))
-                }
+                viewModelScope.launch { MessageDeque.enqueue(it) }
             }
 
             _state.update { next.state }
