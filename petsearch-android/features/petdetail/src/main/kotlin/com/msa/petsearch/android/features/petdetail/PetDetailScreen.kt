@@ -33,11 +33,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.msa.petsearch.android.features.petdetail.composable.CollapsingTopAppBar
 import com.msa.petsearch.shared.core.entity.petinfo.PetInfo
 import com.msa.petsearch.shared.resources.SharedR
-import com.msa.petsearch.shared.ui.petdetail.PetDetailViewModel2
+import com.msa.petsearch.shared.ui.petdetail.PetDetailViewModel
 
 @Composable
 internal fun PetDetailScreen(
-    viewModel: PetDetailViewModel2,
+    viewModel: PetDetailViewModel,
     modifier: Modifier = Modifier
 ) {
     val petInfo by viewModel.petInfo.collectAsStateWithLifecycle()

@@ -4,11 +4,10 @@ import app.cash.turbine.test
 import com.msa.petsearch.shared.core.test.MainThreadSurrogate
 import com.msa.petsearch.shared.core.util.di.CoreUtilModule
 import com.msa.petsearch.shared.ui.home.contract.store.GetInitialData
-import com.msa.petsearch.shared.ui.home.contract.store.OnPetTypeTabChanged
+import com.msa.petsearch.shared.ui.home.contract.OnPetTypeTabChanged
 import com.msa.petsearch.shared.ui.home.testfake.FakeData
 import com.msa.petsearch.shared.ui.home.testfake.FakeSharedUiHomeModule
 import io.kotest.core.spec.style.FunSpec
-import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import kotlinx.coroutines.DelicateCoroutinesApi

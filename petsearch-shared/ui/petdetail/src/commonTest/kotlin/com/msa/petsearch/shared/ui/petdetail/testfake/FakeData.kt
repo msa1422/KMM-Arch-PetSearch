@@ -8,7 +8,7 @@ import com.msa.petsearch.shared.core.entity.petinfo.enum.PetSize
 import com.msa.petsearch.shared.core.entity.petinfo.enum.PetStatus
 import com.msa.petsearch.shared.core.util.extension.encodeToString
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.ARG_PET_INFO
-import com.msa.petsearch.shared.ui.petdetail.contract.store.PetDetailState
+import com.msa.petsearch.shared.ui.petdetail.contract.store.PetDetailNavArgs
 
 internal object FakeData {
 
@@ -40,5 +40,5 @@ internal object FakeData {
 
     val argsMap = hashMapOf(Pair(ARG_PET_INFO, petInfo.encodeToString()))
 
-    val petDetailState = PetDetailState()
+    val petDetailNavArgs = PetDetailNavArgs()
 }

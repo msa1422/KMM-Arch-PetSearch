@@ -12,7 +12,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
-import com.msa.petsearch.shared.core.util.sharedviewmodel.BaseViewModel2
+import com.msa.petsearch.shared.core.util.sharedviewmodel.BaseViewModel
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateAndPopUpToRoute
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateToRoute
@@ -60,7 +60,7 @@ interface NavRoute<T : RouteNavigator> {
         ) { backStackEntry ->
             val viewModel = viewModel()
 
-            (viewModel as? BaseViewModel2<*, *, *, *>)?.let {
+            (viewModel as? BaseViewModel<*, *, *, *>)?.let {
                 LaunchedEffect(it) {
                     if (getArguments().isNotEmpty()) {
                         // Update Args in ViewModel

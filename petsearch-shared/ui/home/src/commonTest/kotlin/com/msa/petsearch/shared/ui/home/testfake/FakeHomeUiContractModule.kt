@@ -3,10 +3,8 @@ package com.msa.petsearch.shared.ui.home.testfake
 import com.msa.petsearch.shared.data.repository.AnimalRepository
 import com.msa.petsearch.shared.domain.home.usecase.LoadPetTypesUseCase
 import com.msa.petsearch.shared.domain.home.usecase.LoadPetsUseCase
-import com.msa.petsearch.shared.ui.home.HomeViewModel
-import com.msa.petsearch.shared.ui.home.contract.HomeProcessor
 import com.msa.petsearch.shared.ui.home.contract.HomeUpdater
-import com.msa.petsearch.shared.ui.home.model.HomeUseCaseWrapper
+import com.msa.petsearch.shared.ui.home.HomeUseCaseWrapper
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.bind

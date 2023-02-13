@@ -13,19 +13,19 @@ import com.msa.petsearch.android.common.compose.AnimatedBackStack
 import com.msa.petsearch.android.common.compose.NavRoute
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.ARG_PET_INFO
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationScreen
-import com.msa.petsearch.shared.ui.petdetail.PetDetailViewModel2
+import com.msa.petsearch.shared.ui.petdetail.PetDetailViewModel
 import org.koin.androidx.compose.koinViewModel
 
-object PetDetailRoute : NavRoute<PetDetailViewModel2> {
+object PetDetailRoute : NavRoute<PetDetailViewModel> {
 
     override val route: String
         get() = NavigationScreen.PetDetailNavScreen.route
 
     @Composable
-    override fun Content(viewModel: PetDetailViewModel2) = PetDetailScreen(viewModel)
+    override fun Content(viewModel: PetDetailViewModel) = PetDetailScreen(viewModel)
 
     @Composable
-    override fun viewModel(): PetDetailViewModel2 = koinViewModel()
+    override fun viewModel(): PetDetailViewModel = koinViewModel()
 
     override fun getArguments(): List<NamedNavArgument> =
         listOf(navArgument(ARG_PET_INFO) { type = NavType.StringType })

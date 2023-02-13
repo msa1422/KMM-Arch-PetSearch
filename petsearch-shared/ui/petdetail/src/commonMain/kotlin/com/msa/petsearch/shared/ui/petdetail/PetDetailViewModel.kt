@@ -1,15 +1,24 @@
 package com.msa.petsearch.shared.ui.petdetail
 
+import com.msa.petsearch.shared.core.util.extension.stateInWhenSubscribed
 import com.msa.petsearch.shared.core.util.sharedviewmodel.BaseViewModel
-import com.msa.petsearch.shared.core.util.sharedviewmodel.model.GlobalEvent
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.RouteNavigator
 import com.msa.petsearch.shared.ui.petdetail.contract.mapper.PetDetailArgsMapper
-import com.msa.petsearch.shared.ui.petdetail.contract.store.PetDetailState
+import com.msa.petsearch.shared.ui.petdetail.contract.store.PetDetailNavArgs
+import kotlinx.coroutines.flow.map
 
 class PetDetailViewModel
-internal constructor(routeNavigator: RouteNavigator) :
-    BaseViewModel<Nothing, PetDetailState, Nothing, Nothing, Nothing, GlobalEvent>(
-        initialState = PetDetailState(),
+internal constructor(navigator: RouteNavigator) :
+    BaseViewModel<Nothing, Nothing, Nothing, PetDetailNavArgs>(
+        emptyArgs = PetDetailNavArgs(),
         argsMapper = PetDetailArgsMapper,
-        routeNavigator = routeNavigator
+        routeNavigator = navigator
     )
+{
+    val petInfo = navArgs
+        .map { it.petInfo }
+        .stateInWhenSubscribed(scope = viewModelScope, initialValue = null)
+
+    // No action to dispatch
+    override fun dispatch(action: Nothing) = Unit
+}

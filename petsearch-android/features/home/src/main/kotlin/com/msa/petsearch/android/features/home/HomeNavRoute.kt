@@ -9,19 +9,19 @@ import androidx.compose.runtime.Composable
 import com.msa.petsearch.android.common.compose.AnimatedBackStack
 import com.msa.petsearch.android.common.compose.NavRoute
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationScreen
-import com.msa.petsearch.shared.ui.home.HomeViewModel2
+import com.msa.petsearch.shared.ui.home.HomeViewModel
 import org.koin.androidx.compose.koinViewModel
 
-object HomeNavRoute : NavRoute<HomeViewModel2> {
+object HomeNavRoute : NavRoute<HomeViewModel> {
 
     override val route: String
         get() = NavigationScreen.HomeNavScreen.route
 
     @Composable
-    override fun Content(viewModel: HomeViewModel2) = HomeScreen(viewModel)
+    override fun Content(viewModel: HomeViewModel) = HomeScreen(viewModel)
 
     @Composable
-    override fun viewModel(): HomeViewModel2 = koinViewModel()
+    override fun viewModel(): HomeViewModel = koinViewModel()
 
     override fun getPopEnterTransition() = HomePopEnterTransition
 

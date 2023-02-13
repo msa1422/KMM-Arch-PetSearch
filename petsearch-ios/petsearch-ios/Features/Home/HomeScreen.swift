@@ -13,7 +13,7 @@ import SDWebImageSwiftUI
 struct HomeScreen: View {
     @Environment(\.colorScheme) var colorScheme
             
-    @StateObject var observable = HomeViewModelObservable()
+    @StateObject var viewModel = HomeViewModelDelegate()
     
     @State private var paginationState = PaginationState.loading
     
@@ -64,20 +64,20 @@ extension HomeScreen {
     
     private var tabRow: some View {
         TabRow(
-            tabs: observable.petTypes.compactMap({ $0.name }),
+            tabs: viewModel.petTypes.compactMap({ $0.name }),
             selectedTab: $selectedTab.onChange { index in
                 // First check if the index is same as already selectedTab or not
-                if observable.pagingData.first?.type == observable.petTypes[selectedTab].name {
+                if viewModel.pagingData.first?.type == viewModel.petTypes[selectedTab].name {
                     return
                 }
                                             
                 paginationState = .loading
 
                 // remove all items from the LazyGrid
-                observable.pagingData.removeAll()
+                viewModel.pagingData.removeAll()
                 
-                observable.dispatch(
-                    action: OnPetTypeTabChanged(tabName: observable.petTypes[index].name)
+                viewModel.dispatch(
+                    action: OnPetTypeTabChanged(tabName: viewModel.petTypes[index].name)
                 )
             }
         )
@@ -89,22 +89,22 @@ extension HomeScreen {
                 columns: [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)],
                 spacing: 2
             ) {
-                ForEach(observable.pagingData, id: \.id) { petInfo in
+                ForEach(viewModel.pagingData, id: \.id) { petInfo in
                     PetInfoView(petInfo: petInfo) {
-                        observable.dispatch(action: NavigateToPetDetail(petInfo: petInfo))
+                        viewModel.dispatch(action: NavigateToPetDetail(petInfo: petInfo))
                     }
                     .onAppear {
                         // Very basic and definitely not production ready implementation of pagination
                         // Proper implementation and refinment is required.
                         // Will implement it soon as I keep learning SwiftUI
-                        let data = observable.pagingData
+                        let data = viewModel.pagingData
 
                         let thresholdIndex = data.index(data.endIndex, offsetBy: -5)
                         
                         if data.firstIndex(where: { $0.id == petInfo.id }) == thresholdIndex &&
                             paginationState != .loading {
                             paginationState = .loading
-                            observable.dispatch(action: LoadPetListNextPage())
+                            viewModel.dispatch(action: LoadPetListNextPage())
                         }
                     }
                 }

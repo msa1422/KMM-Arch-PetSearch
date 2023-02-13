@@ -53,15 +53,15 @@ import com.msa.petsearch.android.features.home.util.isNotEmpty
 import com.msa.petsearch.shared.core.entity.PetType
 import com.msa.petsearch.shared.resources.SharedR
 import com.msa.petsearch.shared.resources.uri
-import com.msa.petsearch.shared.ui.home.HomeViewModel2
-import com.msa.petsearch.shared.ui.home.contract.store.NavigateToPetDetail
-import com.msa.petsearch.shared.ui.home.contract.store.OnPetTypeTabChanged
+import com.msa.petsearch.shared.ui.home.HomeViewModel
+import com.msa.petsearch.shared.ui.home.contract.NavigateToPetDetail
+import com.msa.petsearch.shared.ui.home.contract.OnPetTypeTabChanged
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
 internal fun HomeScreen(
-    viewModel: HomeViewModel2,
+    viewModel: HomeViewModel,
     modifier: Modifier = Modifier
 ) {
     val coroutineScope = rememberCoroutineScope()

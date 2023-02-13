@@ -14,20 +14,13 @@ extension KoinApplication {
     static let shared = KoinKt.doInitKoin(modules: nil)
     
     @discardableResult
-    static func start() -> KoinApplication {
-        shared
-    }
+    static func start() -> KoinApplication { shared }
 }
 
 extension KoinApplication {
-    private static let keyPaths: [PartialKeyPath<Koin>] = [
-        \.homeViewModel2,
-        \.petDetailViewModel2
-    ]
+    private static let keyPaths: [PartialKeyPath<Koin>] = [\.homeViewModel, \.petDetailViewModel]
     
-    static func inject<T>() -> T {
-        shared.inject()
-    }
+    static func inject<T>() -> T { shared.inject() }
     
     func inject<T>() -> T {
         for partialKeyPath in Self.keyPaths {

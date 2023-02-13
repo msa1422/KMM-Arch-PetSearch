@@ -6,14 +6,11 @@ import com.msa.petsearch.shared.core.util.commonflow.CommonFlow
 import com.msa.petsearch.shared.data.repository.AnimalRepository
 import com.msa.petsearch.shared.domain.home.usecase.LoadPetTypesUseCase
 import com.msa.petsearch.shared.domain.home.usecase.LoadPetsUseCase
-import com.msa.petsearch.shared.ui.home.contract.store.Error
 import com.msa.petsearch.shared.ui.home.contract.store.ForwardInitialDataToState
 import com.msa.petsearch.shared.ui.home.contract.store.ForwardPetResponseToState
 import com.msa.petsearch.shared.ui.home.contract.store.GetInitialData
 import com.msa.petsearch.shared.ui.home.contract.store.IdleAction
-import com.msa.petsearch.shared.ui.home.contract.store.LoadPetListNextPage
-import com.msa.petsearch.shared.ui.home.contract.store.OnPetTypeTabChanged
-import com.msa.petsearch.shared.ui.home.model.HomeUseCaseWrapper
+import com.msa.petsearch.shared.ui.home.HomeUseCaseWrapper
 import com.msa.petsearch.shared.ui.home.testfake.FakeAnimalRepository
 import com.msa.petsearch.shared.ui.home.testfake.FakeData
 import com.msa.petsearch.shared.ui.home.testfake.FakeErrorAnimalRepository

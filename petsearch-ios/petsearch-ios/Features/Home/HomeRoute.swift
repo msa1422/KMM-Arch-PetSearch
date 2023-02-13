@@ -12,7 +12,7 @@ import Shared
 
 struct HomeRoute: NavRoute {
 
-    typealias T = HomeViewModel2
+    typealias T = HomeViewModel
     
     var route: String {
         return NavigationScreen.HomeNavScreen.shared.route
@@ -22,8 +22,8 @@ struct HomeRoute: NavRoute {
         return HomeScreen()
     }
     
-    var viewModel: HomeViewModel2 {
-        @LazyKoin var delegate: HomeViewModel2
+    var viewModel: HomeViewModel {
+        @LazyKoin var delegate: HomeViewModel
         return delegate
     }
     

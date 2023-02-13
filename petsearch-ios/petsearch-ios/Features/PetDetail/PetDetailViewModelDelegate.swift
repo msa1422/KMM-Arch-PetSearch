@@ -11,10 +11,10 @@ import KMPNativeCoroutinesAsync
 import Shared
 
 @MainActor
-class PetDetailViewModelObservable : ObservableObject {
+class PetDetailViewModelDelegate : ObservableObject {
     
     @LazyKoin
-    private var delegate: PetDetailViewModel2
+    private var delegate: PetDetailViewModel
     
     @Published
     var petInfo: PetInfo? = nil

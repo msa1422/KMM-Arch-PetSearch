@@ -13,7 +13,6 @@ import com.msa.petsearch.shared.core.entity.response.PaginationInfo
 import com.msa.petsearch.shared.core.entity.response.PetTypesResponse
 import com.msa.petsearch.shared.core.entity.response.SearchPetResponse
 import com.msa.petsearch.shared.core.util.commonflow.asCommonFlow
-import com.msa.petsearch.shared.ui.home.contract.store.HomeState
 import kotlinx.coroutines.flow.emptyFlow
 
 internal object FakeData {

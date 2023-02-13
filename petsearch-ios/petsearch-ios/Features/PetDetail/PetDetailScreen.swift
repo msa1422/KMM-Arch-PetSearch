@@ -14,7 +14,7 @@ struct PetDetailScreen: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @StateObject var observable = PetDetailViewModelObservable()
+    @StateObject var viewModel = PetDetailViewModelDelegate()
     
     private let safeAreaInsetTop = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
     private let pagerWidth = UIScreen.main.bounds.width
@@ -45,7 +45,7 @@ struct PetDetailScreen: View {
                         
                         
                         return AnyView(
-                            ImagePager(photos: observable.petInfo?.photos ?? [PetPhoto]()) { image in
+                            ImagePager(photos: viewModel.petInfo?.photos ?? [PetPhoto]()) { image in
                                 // OnClick on event for image
                             }
                             .frame(width: pagerWidth, height: pagerHeight + (offset > 0 ? offset : 0) )
@@ -56,8 +56,8 @@ struct PetDetailScreen: View {
 
                     Section(
                         header: PetDetailHeader(
-                            petName: observable.petInfo?.name ?? "",
-                            shortDescription: observable.petInfo?.shortDescription
+                            petName: viewModel.petInfo?.name ?? "",
+                            shortDescription: viewModel.petInfo?.shortDescription
                                 .replacingOccurrences(of: "\n", with: ", ") ?? "",
                             pagerHeight: pagerHeight,
                             scrollOffset: $scrollOffset
@@ -65,7 +65,7 @@ struct PetDetailScreen: View {
                     ) {
                         //
                         // Pet Description ..........................................................
-                        Text(observable.petInfo?.description_ ?? "")
+                        Text(viewModel.petInfo?.description_ ?? "")
                             .style(.bodyMedium)
                             .foregroundColor(Color.onSurface(colorScheme))
                             .lineSpacing(1.4)
@@ -73,7 +73,7 @@ struct PetDetailScreen: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                         // Chracteristics grid ......................................................
-                        if let petTags = observable.petInfo?.tags {
+                        if let petTags = viewModel.petInfo?.tags {
                             
                             SectionTitle(title: SharedR.strings().characteristics.desc().localized().uppercased())
                             
@@ -93,7 +93,7 @@ struct PetDetailScreen: View {
                         }
                         
                         // Attributes grid ..........................................................
-                        if let attrs = observable.petInfo?.attributes {
+                        if let attrs = viewModel.petInfo?.attributes {
                             
                             SectionTitle(title: SharedR.strings().attributes.desc().localized().uppercased())
 

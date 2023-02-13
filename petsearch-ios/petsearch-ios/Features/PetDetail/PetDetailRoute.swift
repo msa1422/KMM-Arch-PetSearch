@@ -12,7 +12,7 @@ import Shared
 
 struct PetDetailRoute: NavRoute {
 
-    typealias T = PetDetailViewModel2
+    typealias T = PetDetailViewModel
     
     var route: String {
         return NavigationScreen.PetDetailNavScreen.shared.route
@@ -22,8 +22,8 @@ struct PetDetailRoute: NavRoute {
         return PetDetailScreen()
     }
     
-    var viewModel: PetDetailViewModel2 {
-        @LazyKoin var delegate: PetDetailViewModel2
+    var viewModel: PetDetailViewModel {
+        @LazyKoin var delegate: PetDetailViewModel
         return delegate
     }
     

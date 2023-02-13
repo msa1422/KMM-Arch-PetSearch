@@ -11,10 +11,10 @@ import KMPNativeCoroutinesAsync
 import Shared
 
 @MainActor
-class HomeViewModelObservable : ObservableObject {
+class HomeViewModelDelegate : ObservableObject {
     
     @LazyKoin
-    private var delegate: HomeViewModel2
+    private var delegate: HomeViewModel
         
     @Published
     var petTypes = [PetType]()
