@@ -48,6 +48,7 @@ ktor = "2.2.2"
 kuuuurt-multiplatform-paging = "0.6.2"
 moko-resources = "0.20.1"
 multiplatformSettings = "1.0.0"
+nativecoroutines = "0.13.3"
 realm = "1.6.0"
 squareup-leakcanary = "2.9.1"
 squareup-okio = "3.2.0"
@@ -66,6 +67,7 @@ kotest-multiplatform = { id = "io.kotest.multiplatform", version.ref = "testing-
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
+nativecoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "nativecoroutines" }
 realm-kotlin = { id = "io.realm.kotlin", version.ref = "realm" }
 
 
