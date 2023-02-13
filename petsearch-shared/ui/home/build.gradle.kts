@@ -1,9 +1,12 @@
+@file:Suppress("DSL_SCOPE_VIOLATION")
+
 import com.msa.petsearch.SHARED_PACKAGE
 import com.msa.petsearch.join
 import com.msa.petsearch.util.libs
 
 plugins {
     `kmm-shared-module-plugin`
+    alias(libs.plugins.nativecoroutines)
 }
 
 android {
