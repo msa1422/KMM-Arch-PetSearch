@@ -12,14 +12,8 @@ import SDWebImageSwiftUI
 
 struct HomeScreen: View {
     @Environment(\.colorScheme) var colorScheme
-    
-    let viewModel : HomeViewModel
-        
-    @State private var renderState: HomeRenderState? = nil
-    @State private var renderStateObserver: Closeable? = nil
-    
-    @State private var petInfoList: [PetInfo] = []
-    @State private var petInfoListObserver: Closeable? = nil
+            
+    @StateObject var observable = HomeViewModelObservable()
     
     @State private var paginationState = PaginationState.loading
     
@@ -35,50 +29,12 @@ struct HomeScreen: View {
 
             gridView
             
-            // To push the TabRow to top when there are no items in GridView
             Spacer()
         }
         .navigationTitle("")
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.bottom)
         .background(Color.surface(colorScheme).ignoresSafeArea())
-        .onAppear {
-            if renderStateObserver == nil {
-                renderStateObserver = viewModel.renderState.watch { state in
-                    guard let renderState = state else { return }
-                    self.renderState = renderState
-                    
-                    // Initialize the PetListInfoObserver inside the RenderStateObserver
-                    // Because, if PetListInfoObserver is initialized outside RenderstateObserver,
-                    // in OnAppear, the RenderState will be nil and
-                    // hence PetListInfoObserver will not be initialized
-                    if petInfoListObserver == nil {
-                        self.renderState?.petPagingData.watch { infoList in
-                            
-                            // This condition checks any unwanted updates to LazyGrid
-                            if (infoList?.firstObject as? PetInfo)?.type
-                                == self.renderState?.petTypes?[selectedTab].name {
-                                
-                                guard let list = infoList?.compactMap({ $0 as? PetInfo }) else { return }
-                                petInfoList = list.uniqued()
-                                // .uniqued() because API is returning data with dulicate items,
-                                // causing an exception in LazyVGrid
-                                
-                                paginationState = .idle
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .onDisappear {
-            // If there is a cleaner way to handle the CommonFlow, you're welcome.
-            renderStateObserver?.close()
-            renderStateObserver = nil
-            
-            petInfoListObserver?.close()
-            petInfoListObserver = nil
-        }
     }
 }
 
@@ -108,20 +64,20 @@ extension HomeScreen {
     
     private var tabRow: some View {
         TabRow(
-            tabs: renderState?.petTypes?.compactMap({ $0.name }) ?? [String](),
+            tabs: observable.petTypes.compactMap({ $0.name }),
             selectedTab: $selectedTab.onChange { index in
                 // First check if the index is same as already selectedTab or not
-                if petInfoList.first?.type == renderState?.petTypes?[selectedTab].name {
+                if observable.pagingData.first?.type == observable.petTypes[selectedTab].name {
                     return
                 }
                                             
                 paginationState = .loading
 
                 // remove all items from the LazyGrid
-                petInfoList.removeAll()
+                observable.pagingData.removeAll()
                 
-                viewModel.action(
-                    action: OnPetTypeTabChanged(tabName: renderState?.petTypes?[index].name ?? "")
+                observable.dispatch(
+                    action: OnPetTypeTabChanged(tabName: observable.petTypes[index].name)
                 )
             }
         )
@@ -133,20 +89,22 @@ extension HomeScreen {
                 columns: [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)],
                 spacing: 2
             ) {
-                ForEach(petInfoList, id: \.id) { petInfo in
+                ForEach(observable.pagingData, id: \.id) { petInfo in
                     PetInfoView(petInfo: petInfo) {
-                        viewModel.action(action: NavigateToPetDetail(petInfo: petInfo))
+                        observable.dispatch(action: NavigateToPetDetail(petInfo: petInfo))
                     }
                     .onAppear {
                         // Very basic and definitely not production ready implementation of pagination
                         // Proper implementation and refinment is required.
                         // Will implement it soon as I keep learning SwiftUI
-                        let thresholdIndex = petInfoList.index(petInfoList.endIndex, offsetBy: -5)
+                        let data = observable.pagingData
+
+                        let thresholdIndex = data.index(data.endIndex, offsetBy: -5)
                         
-                        if petInfoList.firstIndex(where: { $0.id == petInfo.id }) == thresholdIndex &&
+                        if data.firstIndex(where: { $0.id == petInfo.id }) == thresholdIndex &&
                             paginationState != .loading {
                             paginationState = .loading
-                            viewModel.action(action: LoadPetListNextPage())
+                            observable.dispatch(action: LoadPetListNextPage())
                         }
                     }
                 }
@@ -162,6 +120,6 @@ extension HomeScreen {
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreen(viewModel: HomeViewModelDelegate().get)
+        HomeScreen()
     }
 }

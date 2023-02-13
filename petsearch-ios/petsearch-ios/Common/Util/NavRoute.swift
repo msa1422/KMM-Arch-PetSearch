@@ -26,7 +26,7 @@ protocol NavRoute {
 
 extension NavRoute {
     
-    typealias BaseVm = BaseViewModel<AnyObject, AnyObject, AnyObject, AnyObject, AnyObject, AnyObject>
+    typealias BaseVm = BaseViewModel2<AnyObject, AnyObject, AnyObject, AnyObject>
     
     func view(pilot: UIPilot<String>, route: String) -> some View {
         var navEventObserver: Closeable? = nil
@@ -43,7 +43,7 @@ extension NavRoute {
                                 }
                             }
                             
-                            viewModel.updateArgsInState(args: argsMap)
+                            viewModel.updateArgs(map: argsMap)
                         }
                         
                         navEventObserver = viewModel.navigationEvent.watch { event in
@@ -63,11 +63,11 @@ extension NavRoute {
     func onNavEvent(pilot: UIPilot<String>, event: NavigationEvent) {
         switch event {
         case let navEvent as NavigationEvent.NavigateToRoute : do {
-            var currentRoute: String = navEvent.route
-            
-            if route == currentRoute {
+            if route == navEvent.route {
                 break
             }
+            
+            var currentRoute: String = navEvent.route
             
             let args: KotlinMutableDictionary<NSString, NSString>? = navEvent.args
             if args != nil {
@@ -83,11 +83,11 @@ extension NavRoute {
         }
             
         case let navEvent as NavigationEvent.NavigateAndPopUpToRoute : do {
-            var currentRoute: String = navEvent.route
-            
-            if route == currentRoute {
+            if route == navEvent.route {
                 break
             }
+            
+            var currentRoute: String = navEvent.route
             
             let args: KotlinMutableDictionary<NSString, NSString>? = navEvent.args
             if args != nil {
@@ -104,11 +104,11 @@ extension NavRoute {
         }
             
         case let navEvent as NavigationEvent.PopToRoute : do {
-            var currentRoute: String = navEvent.staticRoute
-            
-            if route == currentRoute {
+            if route == navEvent.staticRoute {
                 break
             }
+            
+            var currentRoute: String = navEvent.staticRoute
             
             let args: KotlinMutableDictionary<NSString, NSString>? = navEvent.args
             if args != nil {

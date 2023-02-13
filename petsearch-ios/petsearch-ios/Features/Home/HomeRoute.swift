@@ -12,18 +12,19 @@ import Shared
 
 struct HomeRoute: NavRoute {
 
-    typealias T = HomeViewModel
+    typealias T = HomeViewModel2
     
     var route: String {
         return NavigationScreen.HomeNavScreen.shared.route
     }
     
     var content: some View {
-        return HomeScreen(viewModel: viewModel)
+        return HomeScreen()
     }
     
-    var viewModel: HomeViewModel {
-        return HomeViewModelDelegate().get
+    var viewModel: HomeViewModel2 {
+        @LazyKoin var delegate: HomeViewModel2
+        return delegate
     }
     
     func getArguments() -> Array<String> {

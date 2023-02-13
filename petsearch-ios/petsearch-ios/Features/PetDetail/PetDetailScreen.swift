@@ -13,11 +13,8 @@ struct PetDetailScreen: View {
     
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
-    let viewModel: PetDetailViewModel
     
-    @State private var state: PetDetailState?
-    @State private var stateObserver: Closeable? = nil
+    @StateObject var observable = PetDetailViewModelObservable()
     
     private let safeAreaInsetTop = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
     private let pagerWidth = UIScreen.main.bounds.width
@@ -48,7 +45,7 @@ struct PetDetailScreen: View {
                         
                         
                         return AnyView(
-                            ImagePager(photos: state?.petInfo?.photos ?? [PetPhoto]()) { image in
+                            ImagePager(photos: observable.petInfo?.photos ?? [PetPhoto]()) { image in
                                 // OnClick on event for image
                             }
                             .frame(width: pagerWidth, height: pagerHeight + (offset > 0 ? offset : 0) )
@@ -59,8 +56,8 @@ struct PetDetailScreen: View {
 
                     Section(
                         header: PetDetailHeader(
-                            petName: state?.petInfo?.name ?? "",
-                            shortDescription: state?.petInfo?.shortDescription
+                            petName: observable.petInfo?.name ?? "",
+                            shortDescription: observable.petInfo?.shortDescription
                                 .replacingOccurrences(of: "\n", with: ", ") ?? "",
                             pagerHeight: pagerHeight,
                             scrollOffset: $scrollOffset
@@ -68,7 +65,7 @@ struct PetDetailScreen: View {
                     ) {
                         //
                         // Pet Description ..........................................................
-                        Text(state?.petInfo?.description_ ?? "")
+                        Text(observable.petInfo?.description_ ?? "")
                             .style(.bodyMedium)
                             .foregroundColor(Color.onSurface(colorScheme))
                             .lineSpacing(1.4)
@@ -76,7 +73,7 @@ struct PetDetailScreen: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                         // Chracteristics grid ......................................................
-                        if let petTags = state?.petInfo?.tags {
+                        if let petTags = observable.petInfo?.tags {
                             
                             SectionTitle(title: SharedR.strings().characteristics.desc().localized().uppercased())
                             
@@ -96,7 +93,7 @@ struct PetDetailScreen: View {
                         }
                         
                         // Attributes grid ..........................................................
-                        if let attrs = state?.petInfo?.attributes {
+                        if let attrs = observable.petInfo?.attributes {
                             
                             SectionTitle(title: SharedR.strings().attributes.desc().localized().uppercased())
 
@@ -178,18 +175,6 @@ struct PetDetailScreen: View {
         .background(Color.surface(colorScheme).ignoresSafeArea(edges: .all))
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-        .onAppear {
-            if stateObserver == nil { // Should be always true
-                stateObserver = viewModel.state.watch { state in
-                    guard let ns = state else { return }
-                    self.state = ns
-                }
-            }
-        }
-        .onDisappear {
-            stateObserver?.close()
-            stateObserver = nil
-        }
     }
 }
 
@@ -263,10 +248,8 @@ struct PetDetailHeader: View {
     }
 }
 
-// Preview crashes with PetDetailViewModelDelegate().get
-// So pretty much useless
 struct PetDetailScreen_Previews: PreviewProvider {
     static var previews: some View {
-        PetDetailScreen(viewModel: PetDetailViewModelDelegate().get)
+        PetDetailScreen()
     }
 }

@@ -15,7 +15,7 @@ import SDWebImageSVGCoder
 struct iOSApp: App {
     
     init() {
-        KoinKt.doInitKoin(modules: nil)
+        KoinApplication.start()
         SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
     }
     

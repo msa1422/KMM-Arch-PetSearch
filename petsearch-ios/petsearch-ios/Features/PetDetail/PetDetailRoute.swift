@@ -12,18 +12,19 @@ import Shared
 
 struct PetDetailRoute: NavRoute {
 
-    typealias T = PetDetailViewModel
+    typealias T = PetDetailViewModel2
     
     var route: String {
         return NavigationScreen.PetDetailNavScreen.shared.route
     }
     
     var content: some View {
-        return PetDetailScreen(viewModel: viewModel)
+        return PetDetailScreen()
     }
     
-    var viewModel: PetDetailViewModel {
-        return PetDetailViewModelDelegate().get
+    var viewModel: PetDetailViewModel2 {
+        @LazyKoin var delegate: PetDetailViewModel2
+        return delegate
     }
     
     func getArguments() -> Array<String> {
