@@ -13,7 +13,6 @@ import com.msa.petsearch.shared.core.util.resource.MessageType
 import com.msa.petsearch.shared.core.util.resource.ResourceMessage
 import com.msa.petsearch.shared.core.util.resource.Status
 import com.msa.petsearch.shared.core.util.sharedviewmodel.store.Processor
-import com.msa.petsearch.shared.domain.home.HomeUseCaseWrapper
 import com.msa.petsearch.shared.domain.home.usecase.LoadPetsUseCase
 import com.msa.petsearch.shared.ui.home.contract.store.Error
 import com.msa.petsearch.shared.ui.home.contract.store.ForwardInitialDataToState
@@ -24,6 +23,7 @@ import com.msa.petsearch.shared.ui.home.contract.store.HomeSideEffect
 import com.msa.petsearch.shared.ui.home.contract.store.IdleAction
 import com.msa.petsearch.shared.ui.home.contract.store.LoadPetListNextPage
 import com.msa.petsearch.shared.ui.home.contract.store.OnPetTypeTabChanged
+import com.msa.petsearch.shared.ui.home.model.HomeUseCaseWrapper
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainCoroutineDispatcher

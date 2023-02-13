@@ -1,9 +1,9 @@
-package com.msa.petsearch.shared.domain.home
+package com.msa.petsearch.shared.ui.home.model
 
 import com.msa.petsearch.shared.domain.home.usecase.LoadPetTypesUseCase
 import com.msa.petsearch.shared.domain.home.usecase.LoadPetsUseCase
 
-data class HomeUseCaseWrapper(
+internal data class HomeUseCaseWrapper(
     val getPetTypes: LoadPetTypesUseCase,
     val getPets: LoadPetsUseCase
 )

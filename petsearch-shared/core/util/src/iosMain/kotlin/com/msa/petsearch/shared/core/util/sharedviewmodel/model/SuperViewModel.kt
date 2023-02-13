@@ -1,5 +1,6 @@
 package com.msa.petsearch.shared.core.util.sharedviewmodel.model
 
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import platform.darwin.dispatch_async
@@ -8,6 +9,7 @@ import kotlin.native.internal.GC
 
 actual open class SuperViewModel actual constructor() {
 
+    @NativeCoroutineScope
     protected actual val viewModelScope: CoroutineScope = MainScope()
 
     protected actual open fun onCleared() {
