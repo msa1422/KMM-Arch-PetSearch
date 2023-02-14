@@ -24,7 +24,7 @@ With that said, author has realised that,
 ## Project Architecture
 PetSearch has blended the following coding practices and techniques to create a flavor of its own.
 - Clean Architecture
-- Redux MVI
+- MVI (Redux inspired)
 - **SO**L**ID**
 - Feature-wise and Layer-wise Modularized code (Android and Shared)
 - Shared ViewModel
@@ -93,6 +93,7 @@ Only way to run common tests is via Gradle command `./gradlew check`
 ### Kmm - Shared
 * [Ktor](https://ktor.io/)
 * [Realm-kotlin](https://github.com/realm/realm-kotlin)
+* [KMP-NativeCoroutines](https://github.com/rickclephas/KMP-NativeCoroutines)
 * [Multiplatform Settings](https://github.com/russhwolf/multiplatform-settings)
 * [Kotlinx Serialization](https://ktor.io/docs/kotlin-serialization.html)
 * [Coroutines](https://github.com/Kotlin/kotlinx.coroutines#multiplatform)
