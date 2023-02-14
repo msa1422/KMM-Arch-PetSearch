@@ -175,6 +175,8 @@ struct PetDetailScreen: View {
         .background(Color.surface(colorScheme).ignoresSafeArea(edges: .all))
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
+        .onAppear { viewModel.onAppear() }
+        .onDisappear { viewModel.onDisappear() }
     }
 }
 

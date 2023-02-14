@@ -10,45 +10,43 @@ import Foundation
 import KMPNativeCoroutinesAsync
 import Shared
 
-@MainActor
-class HomeViewModelDelegate : ObservableObject {
+class HomeViewModelDelegate : LifecycleAwareObservableObject {
     
-    @LazyKoin
-    private var delegate: HomeViewModel
-        
-    @Published
-    var petTypes = [PetType]()
+    @LazyKoin private var delegate: HomeViewModel
+    @Published var petTypes = [PetType]()
+    @Published var pagingData = [PetInfo]()
+    @Published var paginationState = PaginationState.loading
     
-    @Published
-    var pagingData = [PetInfo]()
-    
-    init() {
-        streamPetTypes()
-        streamPagingData()
-    }
+    private var pagingDataStream: Task<(), Error>? = nil
+    private var petTypeStream: Task<(), Error>? = nil
     
     func dispatch(action: HomeAction) {
         delegate.dispatch(action: action)
     }
     
-    func streamPagingData() {
-        Task {
-            do {
-                let stream = asyncStream(for: delegate.pagingDataNative)
-                for try await data in stream {
-                    pagingData = data
-                }
+    func onAppear() {
+        resumePetTypeStream()
+        resumePagingDataStream()
+    }
+    
+    func onDisappear() {
+        petTypeStream?.cancel()
+        pagingDataStream?.cancel()
+    }
+    
+    private func resumePagingDataStream() {
+        pagingDataStream = Task {
+            for try await data in asyncStream(for: delegate.pagingDataNative) {
+                paginationState = .idle
+                pagingData = data.uniqued()
             }
         }
     }
     
-    func streamPetTypes() {
-        Task {
-            do {
-                let stream = asyncStream(for: delegate.petTypesNative)
-                for try await data in stream {
-                    petTypes = data
-                }
+    private func resumePetTypeStream() {
+        petTypeStream = Task {
+            for try await data in asyncStream(for: delegate.petTypesNative) {
+                petTypes = data
             }
         }
     }

@@ -10,26 +10,21 @@ import Foundation
 import KMPNativeCoroutinesAsync
 import Shared
 
-@MainActor
-class PetDetailViewModelDelegate : ObservableObject {
+class PetDetailViewModelDelegate : LifecycleAwareObservableObject {
     
-    @LazyKoin
-    private var delegate: PetDetailViewModel
+    @LazyKoin private var delegate: PetDetailViewModel
+    @Published var petInfo: PetInfo? = nil
     
-    @Published
-    var petInfo: PetInfo? = nil
+    private var petInfoStream: Task<(), Error>? = nil
     
-    init() {
-        streamPetInfo()
-    }
+    func onAppear() { resumePetInfoStream() }
     
-    func streamPetInfo() {
-        Task {
-            do {
-                let stream = asyncStream(for: delegate.petInfoNative)
-                for try await data in stream {
-                    petInfo = data
-                }
+    func onDisappear() { petInfoStream?.cancel() }
+    
+    private func resumePetInfoStream() {
+        petInfoStream = Task {
+            for try await data in asyncStream(for: delegate.petInfoNative) {
+                petInfo = data
             }
         }
     }

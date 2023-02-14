@@ -12,10 +12,8 @@ import SDWebImageSwiftUI
 
 struct HomeScreen: View {
     @Environment(\.colorScheme) var colorScheme
-            
-    @StateObject var viewModel = HomeViewModelDelegate()
     
-    @State private var paginationState = PaginationState.loading
+    @StateObject var viewModel = HomeViewModelDelegate()
     
     @State private var selectedTab: Int = 0
     
@@ -26,7 +24,7 @@ struct HomeScreen: View {
             tabRow
             
             Divider()
-
+            
             gridView
             
             Spacer()
@@ -35,6 +33,8 @@ struct HomeScreen: View {
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.bottom)
         .background(Color.surface(colorScheme).ignoresSafeArea())
+        .onAppear { viewModel.onAppear() }
+        .onDisappear { viewModel.onDisappear() }
     }
 }
 
@@ -70,9 +70,9 @@ extension HomeScreen {
                 if viewModel.pagingData.first?.type == viewModel.petTypes[selectedTab].name {
                     return
                 }
-                                            
-                paginationState = .loading
-
+                
+                viewModel.paginationState = .loading
+                
                 // remove all items from the LazyGrid
                 viewModel.pagingData.removeAll()
                 
@@ -98,12 +98,12 @@ extension HomeScreen {
                         // Proper implementation and refinment is required.
                         // Will implement it soon as I keep learning SwiftUI
                         let data = viewModel.pagingData
-
+                        
                         let thresholdIndex = data.index(data.endIndex, offsetBy: -5)
                         
                         if data.firstIndex(where: { $0.id == petInfo.id }) == thresholdIndex &&
-                            paginationState != .loading {
-                            paginationState = .loading
+                            viewModel.paginationState != .loading {
+                            viewModel.paginationState = .loading
                             viewModel.dispatch(action: LoadPetListNextPage())
                         }
                     }
@@ -112,7 +112,7 @@ extension HomeScreen {
             
             ProgressView()
                 .padding(.init(top: 32, leading: .zero, bottom: 64, trailing: .zero))
-                .opacity(paginationState == .loading ? 1 : 0)
+                .opacity(viewModel.paginationState == .loading ? 1 : 0)
         }
         .background(Color.background(colorScheme))
     }
