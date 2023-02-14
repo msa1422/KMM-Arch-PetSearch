@@ -18,10 +18,10 @@ import com.msa.petsearch.shared.ui.home.contract.LoadPetListNextPage
 import com.msa.petsearch.shared.ui.home.contract.NavigateToPetDetail
 import com.msa.petsearch.shared.ui.home.contract.OnPetTypeTabChanged
 import com.msa.petsearch.shared.ui.home.model.PagerConfig
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesIgnore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNot
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.update
@@ -31,27 +31,40 @@ class HomeViewModel
 internal constructor(private val useCases: HomeUseCaseWrapper, routeNavigator: RouteNavigator) :
     BaseViewModel<HomeAction, HomeNavigation, Nothing, Nothing>(routeNavigator = routeNavigator) {
 
+    @NativeCoroutinesIgnore
     private val _petTypes = MutableStateFlow(emptyList<PetType>())
+
+    @NativeCoroutinesIgnore
     private val _currentPetType = MutableStateFlow("")
+
+    @NativeCoroutinesIgnore
     private val _pager = _currentPetType
         .filterNot(::isCurrentTypeBlank)
         .mapLatest(::createPager)
+        .stateInWhenSubscribed(scope = viewModelScope, initialValue = null)
 
     val petTypes = _petTypes
         .stateInWhenSubscribed(scope = viewModelScope, initialValue = emptyList())
 
     val pagingData = _pager
-        .flatMapLatest { it.pagingData }
+        .filterNot { it == null }
+        .flatMapLatest { it!!.pagingData }
         .distinctUntilChanged()
         .cachedIn(viewModelScope)
 
     override fun dispatch(action: HomeAction) = when (action) {
         is NavigateToPetDetail -> emit(action)
         is OnPetTypeTabChanged -> _currentPetType.update { action.tabName }
-        is LoadPetListNextPage -> viewModelScope.launch { _pager.first().loadNextPage() }
+        is LoadPetListNextPage -> viewModelScope.launch { _pager.value?.loadNextPage() }
             .run { } // Hack to provide expected return type
     }
 
+    private fun createPager(type: String) =
+        Pager(clientScope = viewModelScope, config = PagerConfig, initialKey = 1) { key, _ ->
+            useCases.getPets(LoadPetsUseCase.Params(type, key, PetSearchParams()))
+        }
+
+    @NativeCoroutinesIgnore
     private suspend fun isCurrentTypeBlank(type: String): Boolean {
         if (type.isBlank()) {
             useCases.getPetTypes().run {
@@ -68,9 +81,4 @@ internal constructor(private val useCases: HomeUseCaseWrapper, routeNavigator: R
 
         return type.isBlank()
     }
-
-    private fun createPager(type: String) =
-        Pager(clientScope = viewModelScope, config = PagerConfig, initialKey = 1) { key, _ ->
-            useCases.getPets(LoadPetsUseCase.Params(type, key, PetSearchParams()))
-        }
 }
