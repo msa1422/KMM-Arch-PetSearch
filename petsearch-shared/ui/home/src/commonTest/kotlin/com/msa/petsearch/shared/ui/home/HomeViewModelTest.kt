@@ -1,17 +1,19 @@
 package com.msa.petsearch.shared.ui.home
 
 import app.cash.turbine.test
+import com.kuuurt.paging.multiplatform.PagingData
+import com.kuuurt.paging.multiplatform.map
+import com.msa.petsearch.shared.core.entity.petinfo.PetInfo
 import com.msa.petsearch.shared.core.test.MainThreadSurrogate
-import com.msa.petsearch.shared.core.util.di.CoreUtilModule
-import com.msa.petsearch.shared.ui.home.contract.store.GetInitialData
+import com.msa.petsearch.shared.ui.home.contract.NavigateToPetDetail
 import com.msa.petsearch.shared.ui.home.contract.OnPetTypeTabChanged
-import com.msa.petsearch.shared.ui.home.testfake.FakeData
-import com.msa.petsearch.shared.ui.home.testfake.FakeSharedUiHomeModule
+import com.msa.petsearch.shared.ui.home.di.SharedUiHomeTestModule
+import com.msa.petsearch.shared.ui.home.testdoubles.TestFake
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
+import io.kotest.matchers.types.shouldBeInstanceOf
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.flow.first
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
@@ -25,7 +27,7 @@ internal class HomeViewModelTest : FunSpec(), KoinTest {
 
         beforeTest {
             startKoin {
-                modules(FakeSharedUiHomeModule, CoreUtilModule)
+                modules(SharedUiHomeTestModule)
             }
         }
 
@@ -33,40 +35,70 @@ internal class HomeViewModelTest : FunSpec(), KoinTest {
             stopKoin()
         }
 
-        test("GetPetTypes should update HomeState with expected response") {
+        test("GivenInitialObserver_ViewModel_ReturnsPetTypesAfterObservingPagingData") {
             val viewModel by inject<HomeViewModel>()
 
-            // Now observe state
-            viewModel.state.test {
-                // Call action
-                viewModel.action(GetInitialData)
+            // Start observing petTypes
+            viewModel.petTypes.test {
+                // First emit would be empty list as LoadPetTypesUseCase hasn't been invoked yet
+                awaitItem() shouldBe emptyList()
 
-                // First emit would be null as HomeState starts empty
-                awaitItem()
+                // Attach an observer to the pagingData in viewModel
+                viewModel.pagingData.test { }
 
-                // Second emit should contain the expected PetTypesResponse
-                awaitItem().petTypes shouldBe FakeData.petTypesResponse
-
-                // cancel remaining emits and events
-                cancelAndIgnoreRemainingEvents()
+                // Observing the pagingData will trigger the LoadPetTypesUseCase invocation
+                // which will result in second emit with desired data
+                awaitItem() shouldBe TestFake.petTypesResponse.types
             }
         }
 
-        test("OnPetTypeTabSelected should update the HomeState with expected response") {
+        test("GivenInitialObserverToPagingData_ViewModel_ReturnsPagingDataWithPetInfoList") {
             val viewModel by inject<HomeViewModel>()
 
-            // Now observe state
-            viewModel.state.test {
-                // Call action
-                viewModel.action(OnPetTypeTabChanged("Dog"))
-
+            // Start observing petTypes
+            viewModel.pagingData.test {
                 awaitItem()
+                    .shouldBeInstanceOf<PagingData<PetInfo>>()
+                    .map {
+                        // Can't think of a better way than this to test
+                        // PagingData exposes only a couple of methods.
+                        // First element in PetTypes in related to "Dog", so dog result
+                        TestFake.petDogSearchResponse.animals!! shouldContain it
+                        return@map it
+                    }
+            }
+        }
 
-                // Implies that Paging Data has been updated with a new one
-                awaitItem().petPagingData.first() shouldNotBe FakeData.fakePagingData
+        test("GivenOnPetTypeTabChanged_ViewModel_UpdatesPagingData") {
+            val viewModel by inject<HomeViewModel>()
 
-                // cancel remaining emits and events
-                cancelAndIgnoreRemainingEvents()
+            // Start observing petTypes
+            viewModel.pagingData.test {
+                awaitItem()
+                    .shouldBeInstanceOf<PagingData<PetInfo>>()
+                    .map {
+                        // First element in PetTypes in related to "Dog", so dog result
+                        TestFake.petDogSearchResponse.animals!! shouldContain it
+                        return@map it
+                    }
+
+                viewModel.dispatch(OnPetTypeTabChanged("Cat"))
+                awaitItem()
+                    .shouldBeInstanceOf<PagingData<PetInfo>>()
+                    .map {
+                        TestFake.petCatSearchResponse.animals!! shouldContain it
+                        return@map it
+                    }
+            }
+        }
+
+        test("GivenNavigateToPetDetailAction_ViewModel_EmitsItInNavigationEventSharedFlow") {
+            val viewModel by inject<HomeViewModel>()
+            val navigation = NavigateToPetDetail(TestFake.petCatSearchResponse.animals!!.first())
+
+            viewModel.navigationEvent.test {
+                viewModel.dispatch(navigation)
+                awaitItem() shouldBe navigation.event
             }
         }
     }

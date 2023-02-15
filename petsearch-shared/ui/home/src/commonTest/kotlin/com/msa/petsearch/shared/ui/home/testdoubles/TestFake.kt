@@ -1,7 +1,5 @@
-package com.msa.petsearch.shared.ui.home.testfake
+package com.msa.petsearch.shared.ui.home.testdoubles
 
-import com.kuuurt.paging.multiplatform.PagingData
-import com.msa.petsearch.shared.core.entity.PetSearchParams
 import com.msa.petsearch.shared.core.entity.PetType
 import com.msa.petsearch.shared.core.entity.petinfo.PetInfo
 import com.msa.petsearch.shared.core.entity.petinfo.enum.PetAge
@@ -12,10 +10,8 @@ import com.msa.petsearch.shared.core.entity.petinfo.enum.PetStatus
 import com.msa.petsearch.shared.core.entity.response.PaginationInfo
 import com.msa.petsearch.shared.core.entity.response.PetTypesResponse
 import com.msa.petsearch.shared.core.entity.response.SearchPetResponse
-import com.msa.petsearch.shared.core.util.commonflow.asCommonFlow
-import kotlinx.coroutines.flow.emptyFlow
 
-internal object FakeData {
+internal object TestFake {
 
     val petTypesResponse = PetTypesResponse(
         types = listOf(
@@ -58,7 +54,7 @@ internal object FakeData {
         )
     )
 
-    val petSearchResponse = SearchPetResponse(
+    val petDogSearchResponse = SearchPetResponse(
         animals = listOf(
             PetInfo(
                 id = 0,
@@ -94,32 +90,39 @@ internal object FakeData {
         )
     )
 
-    val searchParams = PetSearchParams(
-        breed = listOf("Breed0", "Breed2"),
-        size = listOf(PetSize.SMALL, PetSize.MEDIUM),
-        gender = listOf(PetGender.MALE, PetGender.MALE),
-        age = listOf(PetAge.ADULT),
-        color = listOf("PetColor0", "PetColor1"),
-        coat = listOf(PetCoat.CURLY, PetCoat.SHORT),
-        status = listOf(PetStatus.ADOPTABLE),
-        goodWithChildren = false,
-        goodWithDogs = true,
-        goodWithCats = false,
-        houseTrained = false,
-        declawed = false,
-        specialNeeds = false
-    )
-
-    private const val petSearchResponseErrorMessage = "Some error occurred while fetching Pets"
-    val petSearchResponseError = Throwable(petSearchResponseErrorMessage)
-
-    const val petTypeResponseErrorMessage = "Some error occurred while fetching Pet types"
-    val petTypeResponseError = Throwable(petTypeResponseErrorMessage)
-
-    val fakePagingData = emptyFlow<PagingData<PetInfo>>().asCommonFlow()
-
-    fun getHomeState() = HomeState(
-        petTypes = petTypesResponse,
-        searchParams = searchParams
+    val petCatSearchResponse = SearchPetResponse(
+        animals = listOf(
+            PetInfo(
+                id = 1,
+                organizationId = "0",
+                url = "someUrl",
+                type = "Cat",
+                name = "Smelly Cat",
+                species = "Domestic short hair",
+                breeds = null,
+                colors = null,
+                age = PetAge.BABY,
+                gender = PetGender.FEMALE,
+                size = PetSize.SMALL,
+                coat = PetCoat.SHORT,
+                description = "Smelly Cat, Smelly Cat, What are they feeding you?",
+                shortDescription = "Fat cat, Smelly Cat",
+                photos = listOf(),
+                videos = listOf(),
+                status = PetStatus.ADOPTABLE,
+                attributes = null,
+                environment = null,
+                tags = listOf("Smelly", "Fat"),
+                contact = null,
+                publishedAt = "Sometime in 1994",
+                distance = 1.0
+            )
+        ),
+        pagination = PaginationInfo(
+            countPerPage = 20,
+            totalCount = 100,
+            currentPage = 1,
+            totalPages = 5
+        )
     )
 }
