@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import KMPNativeCoroutinesAsync
 import Shared
 import SwiftUI
 import UIPilot
@@ -24,16 +25,17 @@ protocol NavRoute {
     func getArguments() -> Array<String>
 }
 
+@MainActor
 extension NavRoute {
-    
     typealias BaseVm = BaseViewModel<AnyObject, AnyObject, AnyObject, AnyObject>
     
     func view(pilot: UIPilot<String>, route: String) -> some View {
-        var navEventObserver: Closeable? = nil
+        var navEventStream: Task<(), Error>? = nil
+        
         return content
             .onAppear {
                 if let viewModel = self.viewModel as? BaseVm {
-                    if navEventObserver == nil {
+                    if navEventStream == nil {
                         if !getArguments().isEmpty {
                             let argsMap = KotlinMutableDictionary<NSString, NSString>()
                             
@@ -46,17 +48,18 @@ extension NavRoute {
                             viewModel.updateArgs(map: argsMap)
                         }
                         
-                        navEventObserver = viewModel.navigationEvent.watch { event in
-                            if event != nil {
-                                onNavEvent(pilot: pilot, event: event!)
+                        navEventStream = Task {
+                            let eventStream = asyncStream(for: viewModel.navigationEventNative)
+                            for try await event in eventStream {
+                                onNavEvent(pilot: pilot, event: event)
                             }
                         }
                     }
                 }
             }
             .onDisappear {
-                navEventObserver?.close()
-                navEventObserver = nil
+                navEventStream?.cancel()
+                navEventStream = nil
             }
     }
     
