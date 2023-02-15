@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.core.util.sharedviewmodel.navigation
 
-import com.msa.petsearch.shared.core.util.commonflow.CommonSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 
 /**
  * A simplified rewrite of the RouteNavigator from the source below
@@ -9,6 +9,6 @@ import com.msa.petsearch.shared.core.util.commonflow.CommonSharedFlow
  * Navigator to use when initiating navigation from a ViewModel.
  */
 interface RouteNavigator {
-    val navigationEvent: CommonSharedFlow<NavigationEvent>
+    val navigationEvent: SharedFlow<NavigationEvent>
     suspend fun onNavEvent(event: NavigationEvent)
 }

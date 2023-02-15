@@ -1,6 +1,5 @@
 package com.msa.petsearch.shared.data.infra.preferences.service
 
-import com.msa.petsearch.shared.core.util.commonflow.asCommonFlow
 import com.msa.petsearch.shared.core.util.resource.Resource
 import com.msa.petsearch.shared.core.util.resource.asResource
 import com.msa.petsearch.shared.data.infra.preferences.service.PreferenceKeys.PREF_THEME_PRIMARY
@@ -22,5 +21,4 @@ class PreferenceDelegate(private val settings: Settings) {
     fun getThemeAsFlow() = (settings as ObservableSettings)
         .getStringFlow(PREF_THEME_PRIMARY, defaultValue = "")
         .distinctUntilChanged()
-        .asCommonFlow()
 }

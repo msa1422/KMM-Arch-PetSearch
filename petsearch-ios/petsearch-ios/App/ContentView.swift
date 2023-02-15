@@ -6,10 +6,11 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
-import SwiftUI
+import KMPNativeCoroutinesAsync
 import Shared
-import UIPilot
+import SwiftUI
 import ToastSwiftUI
+import UIPilot
 
 struct ContentView: View {
     
@@ -21,7 +22,7 @@ struct ContentView: View {
     @State private var snackBar: MessageType.SnackBar?
     @State private var showSnackBar: Bool = false
     @State private var showToast: Bool = false
-    @State private var messageDequeObserver: Closeable? = nil
+    @State private var messageDequeObserver: Task<(), Error>? = nil
     
     var body: some View {
         // Main Navigation Controller host
@@ -55,14 +56,16 @@ struct ContentView: View {
             snackBar: snackBar
         )
         .onAppear {
-            messageDequeObserver = MessageDeque.shared.invoke().watch { message in
-                if message != nil {
-                    handle(resource: message!)
+            if messageDequeObserver == nil {
+                messageDequeObserver = Task {
+                    for try await message in asyncStream(for: MessageDeque.shared.invokeNative()) {
+                        handle(resource: message)
+                    }
                 }
             }
         }
         .onDisappear {
-            messageDequeObserver?.close()
+            messageDequeObserver?.cancel()
             messageDequeObserver = nil
         }
     }

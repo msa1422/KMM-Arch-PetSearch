@@ -1,13 +1,13 @@
 package com.msa.petsearch.shared.core.util.resource
 
-import com.msa.petsearch.shared.core.util.commonflow.asCommonSharedFlow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 
 object MessageDeque : Queue<ResourceMessage> {
     private val deque = ArrayDeque<ResourceMessage>()
     private val message = MutableSharedFlow<ResourceMessage>()
 
-    operator fun invoke() = message.asCommonSharedFlow()
+    operator fun invoke() = message.asSharedFlow()
 
     override val count: Int
         get() = deque.size
