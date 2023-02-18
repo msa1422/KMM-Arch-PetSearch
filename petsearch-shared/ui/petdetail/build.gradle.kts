@@ -6,6 +6,7 @@ import com.msa.petsearch.util.libs
 
 plugins {
     `kmm-shared-module-plugin`
+    alias(libs.plugins.ksp)
     alias(libs.plugins.nativecoroutines)
 }
 

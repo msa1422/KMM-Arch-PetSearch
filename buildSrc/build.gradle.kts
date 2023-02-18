@@ -23,6 +23,7 @@ dependencies {
     implementation(libs.gradle.plugin.detekt)
     implementation(libs.gradle.plugin.kotest.framework)
     implementation(libs.gradle.plugin.kotlin)
+    implementation(libs.gradle.plugin.ksp)
     implementation(libs.gradle.plugin.spotless)
 }
 
