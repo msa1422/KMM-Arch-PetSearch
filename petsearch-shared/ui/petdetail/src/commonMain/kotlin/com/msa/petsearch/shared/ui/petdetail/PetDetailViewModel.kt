@@ -15,6 +15,7 @@ internal constructor(navigator: RouteNavigator) :
         routeNavigator = navigator
     )
 {
+    //@NativeCoroutines
     val petInfo = navArgs
         .map { it.petInfo }
         .stateInWhenSubscribed(scope = viewModelScope, initialValue = null)

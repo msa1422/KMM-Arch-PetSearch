@@ -43,9 +43,11 @@ internal constructor(private val useCases: HomeUseCaseWrapper, routeNavigator: R
         .mapLatest(::createPager)
         .stateInWhenSubscribed(scope = viewModelScope, initialValue = null)
 
+    //@NativeCoroutines
     val petTypes = _petTypes
         .stateInWhenSubscribed(scope = viewModelScope, initialValue = emptyList())
 
+    //@NativeCoroutines
     val pagingData = _pager
         .filterNot { it == null }
         .flatMapLatest { it!!.pagingData }
