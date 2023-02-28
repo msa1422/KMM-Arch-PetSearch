@@ -25,6 +25,7 @@ import com.msa.petsearch.shared.core.util.resource.MessageType
 import com.msa.petsearch.shared.core.util.resource.ResourceMessage
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationScreen
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
 
 @Suppress("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -47,7 +48,7 @@ internal fun MainContent() {
     }
 
     LaunchedEffect(Unit) {
-        MessageDeque().collect {
+        MessageDeque().collectLatest {
             onMessageReceived(it, snackbarHostState, context)
         }
     }
