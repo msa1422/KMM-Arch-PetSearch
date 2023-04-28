@@ -36,12 +36,12 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
-import coil.compose.rememberAsyncImagePainter
 import com.msa.petsearch.android.common.components.composable.FadeAnimatedVisibility
 import com.msa.petsearch.android.common.components.util.disableSplitMotionEvents
 import com.msa.petsearch.android.features.home.composable.HomeProgressIndicator
@@ -185,9 +185,7 @@ private fun HomeScreenTopBar(scrollState: ScrollState, modifier: Modifier = Modi
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                    painter = rememberAsyncImagePainter(
-                        model = SharedR.images.near_me.drawableResId
-                    ),
+                    painter = painterResource(id = SharedR.images.near_me.drawableResId),
                     contentDescription = "Location icon",
                     tint = MaterialTheme.colorScheme.onBackground
                 )
@@ -202,9 +200,7 @@ private fun HomeScreenTopBar(scrollState: ScrollState, modifier: Modifier = Modi
                 )
 
                 Icon(
-                    painter = rememberAsyncImagePainter(
-                        model = SharedR.images.arrow_drop_down.drawableResId
-                    ),
+                    painter = painterResource(id = SharedR.images.arrow_drop_down.drawableResId),
                     contentDescription = "Location icon",
                     tint = MaterialTheme.colorScheme.onBackground
                 )

@@ -33,9 +33,9 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
 import com.msa.petsearch.android.features.home.composable.tabrow.HomeTabRow
 import com.msa.petsearch.android.features.home.composable.tabrow.rememberHomeTabRowState
 import com.msa.petsearch.shared.core.entity.PetType
@@ -164,9 +164,7 @@ private fun CollapsibleLayoutContent(
                 modifier = Modifier.wrapContentSize()
             ) {
                 Icon(
-                    painter = rememberAsyncImagePainter(
-                        model = SharedR.images.near_me.drawableResId
-                    ),
+                    painter = painterResource(id = SharedR.images.near_me.drawableResId),
                     contentDescription = "Location icon",
                     tint = MaterialTheme.colorScheme.onBackground
                 )
@@ -181,9 +179,7 @@ private fun CollapsibleLayoutContent(
                         .padding(start = 6.dp, end = 2.dp)
                 )
                 Icon(
-                    painter = rememberAsyncImagePainter(
-                        model = SharedR.images.arrow_drop_down.drawableResId
-                    ),
+                    painter = painterResource(id = SharedR.images.arrow_drop_down.drawableResId),
                     contentDescription = "Location icon",
                     tint = MaterialTheme.colorScheme.onBackground
                 )

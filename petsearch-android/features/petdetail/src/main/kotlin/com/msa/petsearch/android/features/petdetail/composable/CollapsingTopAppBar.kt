@@ -36,11 +36,11 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
 import com.msa.petsearch.android.features.petdetail.composable.ChildrenId.BACK_BUTTON_ID
 import com.msa.petsearch.android.features.petdetail.composable.ChildrenId.PAGER_ID
 import com.msa.petsearch.android.features.petdetail.composable.ChildrenId.TITLE_BG_ID
@@ -194,9 +194,7 @@ private fun CollapsibleLayoutContent(
         LocalContentColor provides MaterialTheme.colorScheme.onBackground,
         content = {
             Icon(
-                painter = rememberAsyncImagePainter(
-                    model = SharedR.images.arrow_back.drawableResId
-                ),
+                painter = painterResource(id = SharedR.images.arrow_back.drawableResId),
                 contentDescription = "Back Button",
                 tint = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier
