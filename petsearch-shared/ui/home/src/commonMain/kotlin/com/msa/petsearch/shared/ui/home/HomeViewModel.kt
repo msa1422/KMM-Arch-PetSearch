@@ -10,7 +10,6 @@ import com.msa.petsearch.shared.core.util.resource.MessageType.SnackBar
 import com.msa.petsearch.shared.core.util.resource.ResourceMessage
 import com.msa.petsearch.shared.core.util.resource.Status
 import com.msa.petsearch.shared.core.util.sharedviewmodel.BaseViewModel
-import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.RouteNavigator
 import com.msa.petsearch.shared.domain.home.usecase.LoadPetsUseCase
 import com.msa.petsearch.shared.ui.home.contract.HomeAction
 import com.msa.petsearch.shared.ui.home.contract.HomeNavigation
@@ -18,39 +17,37 @@ import com.msa.petsearch.shared.ui.home.contract.LoadPetListNextPage
 import com.msa.petsearch.shared.ui.home.contract.NavigateToPetDetail
 import com.msa.petsearch.shared.ui.home.contract.OnPetTypeTabChanged
 import com.msa.petsearch.shared.ui.home.model.PagerConfig
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesIgnore
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNot
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class HomeViewModel
-internal constructor(private val useCases: HomeUseCaseWrapper, routeNavigator: RouteNavigator) :
-    BaseViewModel<HomeAction, HomeNavigation, Nothing, Nothing>(routeNavigator = routeNavigator) {
+internal constructor(private val useCases: HomeUseCaseWrapper) :
+    BaseViewModel<HomeAction, HomeNavigation, Nothing, Nothing>() {
 
-    @NativeCoroutinesIgnore
     private val _petTypes = MutableStateFlow(emptyList<PetType>())
 
-    @NativeCoroutinesIgnore
     private val _currentPetType = MutableStateFlow("")
 
-    @NativeCoroutinesIgnore
     private val _pager = _currentPetType
         .filterNot(::isCurrentTypeBlank)
         .mapLatest(::createPager)
         .stateInWhenSubscribed(scope = viewModelScope, initialValue = null)
 
-    //@NativeCoroutines
+    @NativeCoroutines
     val petTypes = _petTypes
         .stateInWhenSubscribed(scope = viewModelScope, initialValue = emptyList())
 
-    //@NativeCoroutines
+    @NativeCoroutines
     val pagingData = _pager
-        .filterNot { it == null }
-        .flatMapLatest { it!!.pagingData }
+        .filterNotNull()
+        .flatMapLatest { it.pagingData }
         .distinctUntilChanged()
         .cachedIn(viewModelScope)
 
@@ -66,7 +63,6 @@ internal constructor(private val useCases: HomeUseCaseWrapper, routeNavigator: R
             useCases.getPets(LoadPetsUseCase.Params(type, key, PetSearchParams()))
         }
 
-    @NativeCoroutinesIgnore
     private suspend fun isCurrentTypeBlank(type: String): Boolean {
         if (type.isBlank()) {
             useCases.getPetTypes().run {

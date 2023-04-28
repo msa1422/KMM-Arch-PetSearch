@@ -33,7 +33,7 @@ fun ApplicationTheme(content: @Composable () -> Unit) {
     if (Build.VERSION.SDK_INT >= Q) window.isNavigationBarContrastEnforced = false
 
     MaterialTheme(
-        colorScheme = if (isSystemInDarkTheme()) AppColorSchemeDark else AppColorSchemeLight,
+        colorScheme = AppColorScheme,
         typography = AppTypography,
         shapes = AppShapes,
         content = content

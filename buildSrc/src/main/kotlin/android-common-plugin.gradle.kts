@@ -1,7 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
 import com.msa.petsearch.util.libs
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.library")
@@ -23,8 +22,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
 
     sourceSets.all {
@@ -40,13 +39,6 @@ kotlin {
             optIn("androidx.compose.material3.ExperimentalMaterial3Api")
             optIn("androidx.compose.ui.unit.ExperimentalUnitApi")
         }
-    }
-}
-
-tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = libs.versions.java.get().toString()
-        languageVersion = libs.versions.kt.get().toString()
     }
 }
 

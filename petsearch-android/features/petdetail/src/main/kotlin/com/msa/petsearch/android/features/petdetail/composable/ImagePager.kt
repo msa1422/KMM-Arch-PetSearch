@@ -1,7 +1,10 @@
 package com.msa.petsearch.android.features.petdetail.composable
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -14,15 +17,11 @@ import androidx.compose.ui.platform.LocalContext
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.rememberPagerState
 import com.msa.petsearch.shared.core.entity.petinfo.PetPhoto
 import com.msa.petsearch.shared.resources.SharedR
-import com.msa.petsearch.shared.resources.uri
 
+@OptIn(ExperimentalFoundationApi::class)
 @Suppress("MagicNumber")
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 internal fun ImagePager(
     images: List<PetPhoto>,
@@ -31,7 +30,9 @@ internal fun ImagePager(
     modifier: Modifier = Modifier
 ) {
     val pagerState = rememberPagerState()
-    val errorImage = rememberAsyncImagePainter(model = SharedR.assets.bg_paw_print_loaded.uri)
+    val errorImage = rememberAsyncImagePainter(
+        model = SharedR.images.bg_paw_print_loaded.drawableResId
+    )
 
     val colorFilter = remember {
         ColorFilter.colorMatrix(
@@ -40,7 +41,7 @@ internal fun ImagePager(
     }
 
     HorizontalPager(
-        count = images.size,
+        pageCount = images.size,
         state = pagerState,
         userScrollEnabled = userScrollEnabled,
         modifier = modifier

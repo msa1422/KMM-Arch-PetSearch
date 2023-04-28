@@ -1,6 +1,6 @@
 package com.msa.petsearch.android.common.compose
 
-import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
@@ -20,7 +20,7 @@ import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationE
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.PopToRoute
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.RouteNavigator
 
-typealias AnimatedBackStack = AnimatedContentScope<NavBackStackEntry>
+typealias AnimatedBackStack = AnimatedContentTransitionScope<NavBackStackEntry>
 
 /**
  * Heavily modified implementation of ViewModelNavigationCompose by Frank

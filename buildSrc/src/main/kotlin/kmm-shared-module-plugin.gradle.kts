@@ -1,7 +1,6 @@
-@file:Suppress("UnstableApiUsage", "UNUSED_VARIABLE")
+@file:Suppress("UnstableApiUsage", "UNUSED_VARIABLE", "DSL_SCOPE_VIOLATION")
 
 import com.msa.petsearch.util.libs
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("multiplatform")
@@ -31,6 +30,7 @@ kotlin {
             optIn("kotlinx.coroutines.FlowPreview")
             optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
             optIn("kotlinx.serialization.ExperimentalSerializationApi")
+            optIn("kotlin.experimental.ExperimentalObjCName")
         }
     }
 
@@ -92,8 +92,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
 }
 
@@ -112,12 +112,5 @@ tasks.withType<Test>().configureEach {
             org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
         )
         exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
-    }
-}
-
-tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = libs.versions.java.get().toString()
-        languageVersion = libs.versions.kt.get().toString()
     }
 }

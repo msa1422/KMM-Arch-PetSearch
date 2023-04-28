@@ -23,7 +23,7 @@ class PetDetailViewModelDelegate : LifecycleAwareObservableObject {
     
     private func resumePetInfoStream() {
         petInfoStream = Task {
-            for try await data in asyncStream(for: delegate.petInfoNative) {
+            for try await data in asyncSequence(for: delegate.petInfo) {
                 petInfo = data
             }
         }

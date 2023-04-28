@@ -10,5 +10,5 @@ internal actual val SharedUiHomePlatformModule = module {
 }
 
 @Suppress("unused") // Used in Swift
-val Koin.homeViewModel: HomeViewModel
+val Koin.HomeViewModel: HomeViewModel
     get() = get()

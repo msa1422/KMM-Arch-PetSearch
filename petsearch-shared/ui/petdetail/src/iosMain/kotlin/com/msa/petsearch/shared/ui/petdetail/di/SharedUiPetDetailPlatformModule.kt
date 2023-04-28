@@ -10,5 +10,5 @@ internal actual val SharedUiPetDetailPlatformModule = module {
 }
 
 @Suppress("unused")
-val Koin.petDetailViewModel: PetDetailViewModel
+val Koin.PetDetailViewModel: PetDetailViewModel
     get() = get()

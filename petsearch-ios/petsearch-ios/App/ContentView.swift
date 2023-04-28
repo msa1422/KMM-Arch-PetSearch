@@ -14,8 +14,6 @@ import UIPilot
 
 struct ContentView: View {
     
-    @Environment(\.colorScheme) var colorScheme
-    
     @StateObject var pilot = UIPilot(initial: NavigationScreenKt.HOME_DESTINATION)
     
     @State private var resourceMessageText: String?
@@ -45,7 +43,7 @@ struct ContentView: View {
             isPresenting: $showToast,
             message: String(resourceMessageText?.prefix(120) ?? ""),
             icon: nil,
-            backgroundColor: Color.onSurface(colorScheme).opacity(0.9),
+            backgroundColor: Color.onSurface.opacity(0.9),
             textColor: Color.blue,
             autoDismiss: .after(5),
             onDisappear: { resourceMessageText = nil }
@@ -58,7 +56,7 @@ struct ContentView: View {
         .onAppear {
             if messageDequeObserver == nil {
                 messageDequeObserver = Task {
-                    for try await message in asyncStream(for: MessageDeque.shared.invokeNative()) {
+                    for try await message in asyncSequence(for: MessageDeque.shared.invoke()) {
                         handle(resource: message)
                     }
                 }

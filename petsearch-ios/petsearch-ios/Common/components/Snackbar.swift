@@ -12,8 +12,6 @@ import Shared
 
 struct Snackbar: View {
     
-    @Environment(\.colorScheme) private var colorScheme
-    
     @Binding var isShowing: Bool
     private let presenting: AnyView
     
@@ -47,7 +45,7 @@ struct Snackbar: View {
                         HStack {
                             Text(self.text)
                                 .style(.bodyMedium)
-                                .foregroundColor(.surface(colorScheme))
+                                .foregroundColor(.surface)
                             
                             Spacer()
                             
@@ -55,7 +53,7 @@ struct Snackbar: View {
                                 Text(action)
                                     .style(.titleMedium)
                                     //.foregroundColor(self.colorScheme == .light ? .white : .black)
-                                    .foregroundColor(.surface(colorScheme))
+                                    .foregroundColor(.surface)
                                     .onTapGesture {
                                         self.isActionTapped = true
                                         self.snackBar?.onAction()
@@ -68,7 +66,7 @@ struct Snackbar: View {
                         .padding()
                         .shadow(radius: 8)
                         //.background(self.colorScheme == .light ? Color.black : Color.white)
-                        .background(Color.onSurface(colorScheme))
+                        .background(Color.onSurface)
                         .cornerRadius(8)
                         .padding(16)
                         .transition(.move(edge: .bottom).combined(with: .opacity))

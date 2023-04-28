@@ -8,6 +8,6 @@ import java.util.Locale
  * @return true if the operating system is one of them
  */
 fun isLinuxOrMacOs(): Boolean {
-    val osName = System.getProperty("os.name").toLowerCase(Locale.ROOT)
+    val osName = System.getProperty("os.name").lowercase(Locale.ROOT)
     return listOf("linux", "mac os", "macos").contains(osName)
 }

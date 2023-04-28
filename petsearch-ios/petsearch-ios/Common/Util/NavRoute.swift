@@ -49,7 +49,7 @@ extension NavRoute {
                         }
                         
                         navEventStream = Task {
-                            let eventStream = asyncStream(for: viewModel.navigationEventNative)
+                            let eventStream = asyncSequence(for: viewModel.navigationEvent)
                             for try await event in eventStream {
                                 onNavEvent(pilot: pilot, event: event)
                             }

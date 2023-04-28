@@ -11,7 +11,6 @@ import Shared
 import SDWebImageSwiftUI
 
 struct HomeScreen: View {
-    @Environment(\.colorScheme) var colorScheme
     
     @StateObject var viewModel = HomeViewModelDelegate()
     
@@ -32,7 +31,7 @@ struct HomeScreen: View {
         .navigationTitle("")
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.bottom)
-        .background(Color.surface(colorScheme).ignoresSafeArea())
+        .background(Color.surface.ignoresSafeArea())
         .onAppear { viewModel.onAppear() }
         .onDisappear { viewModel.onDisappear() }
     }
@@ -44,16 +43,21 @@ extension HomeScreen {
         Button(action: {}) {
             VStack(alignment: .leading, spacing: .zero) {
                 HStack(alignment: .center, spacing: .zero) {
-                    SharedSvgImage("near_me", renderingMode: .template)
+                    Image(uiImage: SharedR.images().near_me.toUIImage()!)
+                        .resizable()
+                        .renderingMode(.template)
                         .frame(width: 24, height: 24)
                     
                     Text("New York City")
                         .style(.titleMedium)
                         .padding(.init(top: .zero, leading: 6, bottom: .zero, trailing:.zero))
                     
-                    SharedSvgImage("arrow_drop_down", renderingMode: .template)
+                    Image(uiImage: SharedR.images().arrow_drop_down.toUIImage()!)
+                        .resizable()
+                        .renderingMode(.template)
                         .frame(width: 24, height: 24)
                 }
+                
                 Text("20 W 34th St., New York, United States")
                     .style(.bodySmall)
                     .padding(.init(top: 4, leading: 4, bottom: .zero, trailing: .zero))
@@ -114,7 +118,7 @@ extension HomeScreen {
                 .padding(.init(top: 32, leading: .zero, bottom: 64, trailing: .zero))
                 .opacity(viewModel.paginationState == .loading ? 1 : 0)
         }
-        .background(Color.background(colorScheme))
+        .background(Color.background)
     }
 }
 

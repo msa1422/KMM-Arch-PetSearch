@@ -6,7 +6,6 @@ import com.msa.petsearch.extensions.BuildTypeDebug
 import com.msa.petsearch.extensions.BuildTypeRelease
 import com.msa.petsearch.extensions.getKeystoreProperty
 import com.msa.petsearch.util.libs
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.application")
@@ -63,7 +62,10 @@ android {
         }
 
         val release by getting {
-            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
             enableUnitTestCoverage = BuildTypeRelease.enableUnitTestCoverage
@@ -93,8 +95,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
 
     sourceSets.all {
@@ -104,13 +106,6 @@ android {
 
 dependencies {
     debugImplementation(libs.squareup.leakcanary)
-}
-
-tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = libs.versions.java.get().toString()
-        languageVersion = libs.versions.kt.get().toString()
-    }
 }
 
 tasks.withType<Test>().configureEach {

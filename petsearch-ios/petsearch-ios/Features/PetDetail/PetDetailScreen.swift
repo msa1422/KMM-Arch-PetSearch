@@ -11,7 +11,6 @@ import Shared
 
 struct PetDetailScreen: View {
     
-    @Environment(\.colorScheme) var colorScheme
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @StateObject var viewModel = PetDetailViewModelDelegate()
@@ -27,8 +26,7 @@ struct PetDetailScreen: View {
         ScrollView(.vertical, showsIndicators: false) {
             ZStack(alignment: .topLeading) {
                 
-                Color.surface(colorScheme)
-                    .edgesIgnoringSafeArea(.all)
+                Color.surface.edgesIgnoringSafeArea(.all)
                 
                 LazyVStack(alignment: .leading, spacing: 0, pinnedViews: [.sectionHeaders]) {
                     
@@ -67,7 +65,7 @@ struct PetDetailScreen: View {
                         // Pet Description ..........................................................
                         Text(viewModel.petInfo?.description_ ?? "")
                             .style(.bodyMedium)
-                            .foregroundColor(Color.onSurface(colorScheme))
+                            .foregroundColor(.onSurface)
                             .lineSpacing(1.4)
                             .padding(.init(top: 20, leading: 24, bottom: .zero, trailing: 24))
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -84,7 +82,7 @@ struct PetDetailScreen: View {
                                 ForEach(petTags, id: \.self) { tag in
                                     Text("• \(tag)")
                                         .style(.bodyMedium)
-                                        .foregroundColor(Color.onSurface(colorScheme))
+                                        .foregroundColor(.onSurface)
                                         .padding(.init(top: 4, leading: 12, bottom: .zero, trailing: 12))
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }
@@ -126,11 +124,11 @@ struct PetDetailScreen: View {
                                         Text(attribute.0)
                                             .bold()
                                             .style(.labelSmall)
-                                            .foregroundColor(Color.onSurface(colorScheme).opacity(0.62))
+                                            .foregroundColor(.onSurface.opacity(0.62))
                                         
                                         Text(attribute.1)
                                             .style(.bodyMedium)
-                                            .foregroundColor(Color.onSurface(colorScheme))
+                                            .foregroundColor(.onSurface)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                     .padding(.init(top: 4, leading: 12, bottom: 8, trailing: 12))
@@ -155,7 +153,7 @@ struct PetDetailScreen: View {
                         .frame(width: 60, height: 60)
                         .background(
                             Rectangle()
-                                .foregroundColor(Color.surface(colorScheme).opacity(0.75))
+                                .foregroundColor(.surface.opacity(0.75))
                                 .cornerRadius(18, corners: [.topRight, .bottomRight])
                         )
                 }
@@ -165,14 +163,14 @@ struct PetDetailScreen: View {
             }
         }
         .overlay(
-            Color.surface(colorScheme)
+            Color.surface
                 .frame(height: safeAreaInsetTop)
                 .ignoresSafeArea(.all, edges: .top)
                 .opacity(scrollOffset > pagerHeight ? 1 : 0)
             ,
             alignment: .top
         )
-        .background(Color.surface(colorScheme).ignoresSafeArea(edges: .all))
+        .background(Color.surface.ignoresSafeArea(edges: .all))
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
         .onAppear { viewModel.onAppear() }
@@ -182,7 +180,6 @@ struct PetDetailScreen: View {
 
 struct PetDetailHeader: View {
     
-    @Environment(\.colorScheme) var colorScheme
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     private let petName: String
@@ -206,7 +203,7 @@ struct PetDetailHeader: View {
                 // Pet Name
                 Text(petName)
                     .style(.titleMedium)
-                    .foregroundColor(Color.onSurface(colorScheme))
+                    .foregroundColor(.onSurface)
                     .lineLimit(1)
                     .padding(.init(top: 16, leading: 24, bottom: .zero, trailing: 24))
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -215,7 +212,7 @@ struct PetDetailHeader: View {
                 // Pet Description
                 Text(shortDescription)
                     .style(.bodySmall)
-                    .foregroundColor(Color.onSurface(colorScheme))
+                    .foregroundColor(.onSurface)
                     .lineLimit(2)
                     .opacity(0.75)
                     .padding(.init(top: 4, leading: 24, bottom: 20, trailing: 24))
@@ -238,7 +235,7 @@ struct PetDetailHeader: View {
             .padding(.init(top: 0, leading: 0, bottom: 2, trailing: 0))
             .opacity(scrollOffset < pagerHeight ? 0 : 1)
         }
-        .background(Color.surface(colorScheme))
+        .background(Color.surface)
     }
     
     private func getScrollProgress() -> CGFloat {

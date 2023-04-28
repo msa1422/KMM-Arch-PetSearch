@@ -25,7 +25,6 @@ import coil.compose.rememberAsyncImagePainter
 import com.msa.petsearch.android.features.home.util.items
 import com.msa.petsearch.shared.core.entity.petinfo.PetInfo
 import com.msa.petsearch.shared.resources.SharedR
-import com.msa.petsearch.shared.resources.uri
 
 @Composable
 internal fun LazyPetGrid(
@@ -50,10 +49,10 @@ internal fun LazyPetGrid(
     val imageHeight = (LocalConfiguration.current.screenWidthDp / (ASPECT_RATIO * 2)).dp
 
     val placeholder = rememberAsyncImagePainter(
-        model = SharedR.assets.bg_paw_print_loading.uri
+        model = SharedR.images.bg_paw_print_loading.drawableResId
     )
     val error = rememberAsyncImagePainter(
-        model = SharedR.assets.bg_paw_print_loaded.uri
+        model = SharedR.images.bg_paw_print_loaded.drawableResId
     )
 
     LazyVerticalGrid(

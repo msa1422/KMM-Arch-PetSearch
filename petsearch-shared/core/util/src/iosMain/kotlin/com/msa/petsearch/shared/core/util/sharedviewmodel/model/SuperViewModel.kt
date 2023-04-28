@@ -10,7 +10,7 @@ import kotlin.native.internal.GC
 actual open class SuperViewModel actual constructor() {
 
     @NativeCoroutineScope
-    protected actual val viewModelScope: CoroutineScope = MainScope()
+    actual val viewModelScope: CoroutineScope = MainScope()
 
     protected actual open fun onCleared() {
     }

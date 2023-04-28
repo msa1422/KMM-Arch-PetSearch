@@ -15,6 +15,16 @@ android {
         projects.petsearchShared.data.infra,
         projects.petsearchShared.data.infra.cache
     )
+
+    // Realm Plugin wont compile with Java 18
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+kotlin {
+    jvmToolchain(8)
 }
 
 dependencies {

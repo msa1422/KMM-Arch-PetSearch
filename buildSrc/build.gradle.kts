@@ -1,7 +1,3 @@
-@file:Suppress("UnstableApiUsage")
-
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     `kotlin-dsl`
     `kotlin-dsl-precompiled-script-plugins`
@@ -25,11 +21,4 @@ dependencies {
     implementation(libs.gradle.plugin.kotlin)
     implementation(libs.gradle.plugin.ksp)
     implementation(libs.gradle.plugin.spotless)
-}
-
-tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = libs.versions.java.get().toString()
-        languageVersion = libs.versions.kt.get().toString()
-    }
 }

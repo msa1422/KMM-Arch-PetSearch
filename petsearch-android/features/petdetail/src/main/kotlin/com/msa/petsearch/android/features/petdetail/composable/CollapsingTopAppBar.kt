@@ -29,6 +29,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.Layout
@@ -46,7 +47,6 @@ import com.msa.petsearch.android.features.petdetail.composable.ChildrenId.TITLE_
 import com.msa.petsearch.android.features.petdetail.composable.ChildrenId.TITLE_ID
 import com.msa.petsearch.shared.core.entity.petinfo.PetPhoto
 import com.msa.petsearch.shared.resources.SharedR
-import com.msa.petsearch.shared.resources.uri
 import kotlin.math.roundToInt
 
 @Composable
@@ -98,7 +98,7 @@ internal fun CollapsingTopAppBar(
         modifier = modifier
             .height(
                 expandedHeight +
-                    scrollBehavior.state.heightOffset.div(LocalDensity.current.density).dp
+                        scrollBehavior.state.heightOffset.div(LocalDensity.current.density).dp
             )
             .then(appBarDragModifier)
     ) {
@@ -144,14 +144,14 @@ internal fun CollapsingTopAppBar(
 
                 layout(constraints.maxWidth, expandedHeightPx.roundToInt()) {
                     val titleWidthOffset = (
-                        buttonSizePx * scrollBehavior.state.collapsedFraction +
-                            (24.dp.roundToPx() * (1F - scrollBehavior.state.collapsedFraction))
-                        ).roundToInt()
+                            buttonSizePx * scrollBehavior.state.collapsedFraction +
+                                    (24.dp.roundToPx() * (1F - scrollBehavior.state.collapsedFraction))
+                            ).roundToInt()
 
                     val titleHeightOffset = (
-                        expandedHeightPx - pinnedHeightPx + statusBarPaddingPx +
-                            scrollBehavior.state.heightOffset / 2
-                        ).roundToInt()
+                            expandedHeightPx - pinnedHeightPx + statusBarPaddingPx +
+                                    scrollBehavior.state.heightOffset / 2
+                            ).roundToInt()
 
                     val backButtonHeightOffset =
                         statusBarPaddingPx - scrollBehavior.state.heightOffset / 2
@@ -195,7 +195,7 @@ private fun CollapsibleLayoutContent(
         content = {
             Icon(
                 painter = rememberAsyncImagePainter(
-                    model = SharedR.assets.arrow_back.uri
+                    model = SharedR.images.arrow_back.drawableResId
                 ),
                 contentDescription = "Back Button",
                 tint = MaterialTheme.colorScheme.onBackground,
@@ -203,15 +203,9 @@ private fun CollapsibleLayoutContent(
                     .layoutId(BACK_BUTTON_ID)
                     .size(ButtonSize)
                     .padding(top = 4.dp, end = 4.dp, bottom = 4.dp)
-                    .background(
-                        color = MaterialTheme.colorScheme.surface
-                            .copy(alpha = 0.62F),
-                        shape = RoundedCornerShape(
-                            topEnd = 24.dp,
-                            bottomEnd = 24.dp
-                        )
-                    )
-                    .clickable { onBackPressed.invoke() }
+                    .clip(shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp))
+                    .clickable(onClick = onBackPressed)
+                    .background(color = MaterialTheme.colorScheme.surface.copy(alpha = 0.62F))
                     .padding(all = 18.dp)
             )
         }

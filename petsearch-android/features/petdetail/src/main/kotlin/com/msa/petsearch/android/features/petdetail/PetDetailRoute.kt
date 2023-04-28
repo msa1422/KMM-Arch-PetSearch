@@ -1,5 +1,6 @@
 package com.msa.petsearch.android.features.petdetail
 
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
@@ -37,7 +38,7 @@ object PetDetailRoute : NavRoute<PetDetailViewModel> {
 
 private val PetDetailEnterTransition: AnimatedBackStack.() -> EnterTransition? = {
     slideIntoContainer(
-        towards = androidx.compose.animation.AnimatedContentScope.SlideDirection.Up,
+        towards = AnimatedContentTransitionScope.SlideDirection.Up,
         animationSpec = tween(
             durationMillis = 290,
             delayMillis = 10,
@@ -58,7 +59,7 @@ private val PetDetailEnterTransition: AnimatedBackStack.() -> EnterTransition? =
 
 private val PetDetailExitTransition: AnimatedBackStack.() -> ExitTransition? = {
     slideOutOfContainer(
-        towards = androidx.compose.animation.AnimatedContentScope.SlideDirection.Down,
+        towards = AnimatedContentTransitionScope.SlideDirection.Down,
         animationSpec = tween(
             durationMillis = 280,
             delayMillis = 20,

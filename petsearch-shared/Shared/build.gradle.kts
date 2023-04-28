@@ -12,11 +12,6 @@ plugins {
 
 android {
     namespace = SHARED_PACKAGE
-
-    sourceSets["main"].apply {
-        assets.srcDir(File(buildDir, "generated/moko/androidMain/assets"))
-        res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
-    }
 }
 
 kotlin {
@@ -75,4 +70,5 @@ multiplatformResources {
     multiplatformResourcesPackage = SHARED_PACKAGE
     multiplatformResourcesClassName = "MR"
     disableStaticFrameworkWarning = true
+    multiplatformResourcesVisibility = dev.icerock.gradle.MRVisibility.Internal
 }

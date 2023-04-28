@@ -36,7 +36,7 @@ class HomeViewModelDelegate : LifecycleAwareObservableObject {
     
     private func resumePagingDataStream() {
         pagingDataStream = Task {
-            for try await data in asyncStream(for: delegate.pagingDataNative) {
+            for try await data in asyncSequence(for: delegate.pagingData) {
                 paginationState = .idle
                 pagingData = data.uniqued()
             }
@@ -45,7 +45,7 @@ class HomeViewModelDelegate : LifecycleAwareObservableObject {
     
     private func resumePetTypeStream() {
         petTypeStream = Task {
-            for try await data in asyncStream(for: delegate.petTypesNative) {
+            for try await data in asyncSequence(for: delegate.petTypes) {
                 petTypes = data
             }
         }

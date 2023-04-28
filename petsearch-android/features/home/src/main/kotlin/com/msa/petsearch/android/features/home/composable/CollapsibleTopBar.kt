@@ -40,7 +40,6 @@ import com.msa.petsearch.android.features.home.composable.tabrow.HomeTabRow
 import com.msa.petsearch.android.features.home.composable.tabrow.rememberHomeTabRowState
 import com.msa.petsearch.shared.core.entity.PetType
 import com.msa.petsearch.shared.resources.SharedR
-import com.msa.petsearch.shared.resources.uri
 import kotlin.math.roundToInt
 
 @Suppress("unused")
@@ -166,7 +165,7 @@ private fun CollapsibleLayoutContent(
             ) {
                 Icon(
                     painter = rememberAsyncImagePainter(
-                        model = SharedR.assets.near_me.uri
+                        model = SharedR.images.near_me.drawableResId
                     ),
                     contentDescription = "Location icon",
                     tint = MaterialTheme.colorScheme.onBackground
@@ -183,7 +182,7 @@ private fun CollapsibleLayoutContent(
                 )
                 Icon(
                     painter = rememberAsyncImagePainter(
-                        model = SharedR.assets.arrow_drop_down.uri
+                        model = SharedR.images.arrow_drop_down.drawableResId
                     ),
                     contentDescription = "Location icon",
                     tint = MaterialTheme.colorScheme.onBackground
