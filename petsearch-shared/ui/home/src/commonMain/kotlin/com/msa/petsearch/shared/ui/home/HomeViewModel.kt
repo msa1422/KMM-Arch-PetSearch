@@ -72,7 +72,12 @@ internal constructor(private val useCases: HomeUseCaseWrapper) :
                     _currentPetType.update { firstType }
                     _petTypes.update { data?.types!! }
                 } else {
-                    emit(ResourceMessage(text = throwable?.message, messageType = SnackBar()))
+                    val message = ResourceMessage.Builder()
+                        .text(throwable?.message)
+                        .messageType(SnackBar.Builder().build())
+                        .build()
+
+                    emit(message)
                 }
             }
         }

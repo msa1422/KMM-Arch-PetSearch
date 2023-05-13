@@ -20,7 +20,7 @@ struct Snackbar: View {
     
     @State private var isActionTapped: Bool?
     private var isBeingDismissedByAction: Bool {
-        snackBar?.action != nil
+        snackBar?.actionLabel != nil
     }
     
     init<Presenting>(
@@ -49,7 +49,7 @@ struct Snackbar: View {
                             
                             Spacer()
                             
-                            if let action = self.snackBar?.action {
+                            if let action = self.snackBar?.actionLabel {
                                 Text(action)
                                     .style(.titleMedium)
                                     //.foregroundColor(self.colorScheme == .light ? .white : .black)

@@ -64,7 +64,7 @@ private suspend fun onMessageReceived(
             message.text?.let {
                 val result = snackbarHostState.showSnackbar(
                     message = it,
-                    actionLabel = component.action,
+                    actionLabel = component.actionLabel,
                     withDismissAction = true,
                     duration = SnackbarDuration.Short
                 )
