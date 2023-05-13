@@ -29,7 +29,7 @@ internal fun ImagePager(
     userScrollEnabled: Boolean,
     modifier: Modifier = Modifier
 ) {
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(pageCount = images::size)
     val errorImage = rememberAsyncImagePainter(
         model = SharedR.images.bg_paw_print_loaded.drawableResId
     )
@@ -41,7 +41,6 @@ internal fun ImagePager(
     }
 
     HorizontalPager(
-        pageCount = images.size,
         state = pagerState,
         userScrollEnabled = userScrollEnabled,
         modifier = modifier
