@@ -5,8 +5,6 @@ import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationE
 sealed interface UiContract {
     interface Action : UiContract
 
-    interface NavArgs: UiContract
-
     interface Event : UiContract {
         val id: String
     }

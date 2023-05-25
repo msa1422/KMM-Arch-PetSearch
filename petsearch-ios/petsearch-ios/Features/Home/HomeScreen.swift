@@ -9,6 +9,7 @@
 import SwiftUI
 import Shared
 import SDWebImageSwiftUI
+import KMMViewModelSwiftUI
 
 struct HomeScreen: View {
     
@@ -32,8 +33,8 @@ struct HomeScreen: View {
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.bottom)
         .background(Color.surface.ignoresSafeArea())
-        .onAppear { viewModel.onAppear() }
-        .onDisappear { viewModel.onDisappear() }
+        .onAppear(perform: viewModel.onAppear)
+        .onDisappear(perform: viewModel.onDisappear)
     }
 }
 

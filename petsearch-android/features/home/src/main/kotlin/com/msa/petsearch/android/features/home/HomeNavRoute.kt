@@ -20,8 +20,8 @@ object HomeNavRoute : NavRoute<HomeViewModel> {
     @Composable
     override fun Content(viewModel: HomeViewModel) = HomeScreen(viewModel)
 
-    @Composable
-    override fun viewModel(): HomeViewModel = koinViewModel()
+    override val viewModel: HomeViewModel
+        @Composable get() = koinViewModel()
 
     override fun getPopEnterTransition() = HomePopEnterTransition
 

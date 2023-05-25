@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SwiftUI
 import Shared
+import SwiftUI
 
 struct HomeRoute: NavRoute {
 

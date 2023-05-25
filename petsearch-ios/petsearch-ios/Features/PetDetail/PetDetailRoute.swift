@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SwiftUI
 import Shared
+import SwiftUI
 
 struct PetDetailRoute: NavRoute {
 
@@ -19,7 +19,7 @@ struct PetDetailRoute: NavRoute {
     }
     
     var content: some View {
-        return PetDetailScreen()
+        return PetDetailScreen(viewModel: viewModel)
     }
     
     var viewModel: PetDetailViewModel {

@@ -1,8 +1,8 @@
 //
-//  HomeViewModelObservable.swift
+//  HomeViewModel.swift
 //  petsearch-ios
 //
-//  Created by Mohammed Sané on 13/02/23.
+//  Created by Mohammed Sané on 25/05/23.
 //  Copyright © 2023 orgName. All rights reserved.
 //
 
@@ -10,9 +10,11 @@ import Foundation
 import KMPNativeCoroutinesAsync
 import Shared
 
-class HomeViewModelDelegate : LifecycleAwareObservableObject {
+@MainActor
+class HomeViewModelDelegate : ObservableObject {
     
-    @LazyKoin private var delegate: HomeViewModel
+    @LazyKoin private var delegate: Shared.HomeViewModel
+    
     @Published var petTypes = [PetType]()
     @Published var pagingData = [PetInfo]()
     @Published var paginationState = PaginationState.loading
@@ -28,12 +30,12 @@ class HomeViewModelDelegate : LifecycleAwareObservableObject {
         resumePetTypeStream()
         resumePagingDataStream()
     }
-    
+        
     func onDisappear() {
         petTypeStream?.cancel()
         pagingDataStream?.cancel()
     }
-    
+
     private func resumePagingDataStream() {
         pagingDataStream = Task {
             for try await data in asyncSequence(for: delegate.pagingData) {
