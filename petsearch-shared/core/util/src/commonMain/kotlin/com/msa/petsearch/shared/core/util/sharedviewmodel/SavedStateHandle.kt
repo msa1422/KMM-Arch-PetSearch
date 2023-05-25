@@ -1,9 +1,9 @@
-package com.msa.petsearch.shared.core.util.kmmviewmodel
+package com.msa.petsearch.shared.core.util.sharedviewmodel
 
 import kotlinx.coroutines.flow.StateFlow
 
 /**
- * @see
+ * [Source](https://github.com/hoc081098/kmp-viewmodel)
  *
  * A multiplatform alias for `androidx.lifecycle.SavedStateHandle`
  * from the `androidx.lifecycle:lifecycle-viewmodel-savedstate` library.

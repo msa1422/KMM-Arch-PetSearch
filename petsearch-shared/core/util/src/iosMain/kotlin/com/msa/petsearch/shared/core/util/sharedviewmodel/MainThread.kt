@@ -1,4 +1,4 @@
-package com.msa.petsearch.shared.core.util.kmmviewmodel
+package com.msa.petsearch.shared.core.util.sharedviewmodel
 
 @MustBeDocumented
 @Retention(AnnotationRetention.SOURCE)

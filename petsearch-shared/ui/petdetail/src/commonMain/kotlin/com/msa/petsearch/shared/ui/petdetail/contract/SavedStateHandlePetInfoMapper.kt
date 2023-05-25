@@ -2,7 +2,7 @@ package com.msa.petsearch.shared.ui.petdetail.contract
 
 import com.msa.petsearch.shared.core.entity.petinfo.PetInfo
 import com.msa.petsearch.shared.core.util.extension.decodeFromString
-import com.msa.petsearch.shared.core.util.kmmviewmodel.SavedStateHandle
+import com.msa.petsearch.shared.core.util.sharedviewmodel.SavedStateHandle
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.ARG_PET_INFO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

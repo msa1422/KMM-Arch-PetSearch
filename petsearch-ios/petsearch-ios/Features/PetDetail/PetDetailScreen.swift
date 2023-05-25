@@ -174,8 +174,6 @@ struct PetDetailScreen: View {
         .background(Color.surface.ignoresSafeArea(edges: .all))
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-        .onAppear { viewModel.onAppear() }
-        .onDisappear { viewModel.onDisappear() }
     }
 }
 
@@ -250,6 +248,8 @@ struct PetDetailHeader: View {
 
 struct PetDetailScreen_Previews: PreviewProvider {
     static var previews: some View {
-        PetDetailScreen()
+        @LazyKoin var viewModel: PetDetailViewModel
+        
+        PetDetailScreen(viewModel: viewModel)
     }
 }

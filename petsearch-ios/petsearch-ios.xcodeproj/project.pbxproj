@@ -35,7 +35,8 @@
 		5EC3B0D728CB82AE00A040F2 /* PetDetailRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0D628CB82AE00A040F2 /* PetDetailRoute.swift */; };
 		5EC3B0D928CB82D300A040F2 /* ImagePager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0D828CB82D300A040F2 /* ImagePager.swift */; };
 		5EC3B0DB28CB82E000A040F2 /* SectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0DA28CB82E000A040F2 /* SectionTitle.swift */; };
-		5ED782F02A1F4FCB00A7FC08 /* KMMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED782EF2A1F4FCB00A7FC08 /* KMMViewModel.swift */; };
+		5ED782F22A1F757E00A7FC08 /* BaseKmmViewModelExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED782F12A1F757E00A7FC08 /* BaseKmmViewModelExt.swift */; };
+		5ED782F42A1F7A9F00A7FC08 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED782F32A1F7A9F00A7FC08 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +70,8 @@
 		5EC3B0D828CB82D300A040F2 /* ImagePager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePager.swift; sourceTree = "<group>"; };
 		5EC3B0DA28CB82E000A040F2 /* SectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitle.swift; sourceTree = "<group>"; };
 		5EC3B0DC28CB853500A040F2 /* petsearch-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "petsearch-ios.entitlements"; sourceTree = "<group>"; };
-		5ED782EF2A1F4FCB00A7FC08 /* KMMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMViewModel.swift; sourceTree = "<group>"; };
+		5ED782F12A1F757E00A7FC08 /* BaseKmmViewModelExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseKmmViewModelExt.swift; sourceTree = "<group>"; };
+		5ED782F32A1F7A9F00A7FC08 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* petsearch-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "petsearch-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "/Volumes/WorkHD/MobileApplication/KMM/PetsApp-PetFinder/PetsApp/petsearch-ios/petsearch-ios/Info.plist"; sourceTree = "<absolute>"; };
 		A4FAAD9219C9D63C1F7CB3F9 /* Pods_petsearch_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_petsearch_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,7 +140,6 @@
 				5E54693A28E16D6D00ADBF23 /* Theme */,
 				5EC3B0B528CB801E00A040F2 /* Util */,
 				5EC3B09D28CB7FC600A040F2 /* Assets.xcassets */,
-				5ED782EF2A1F4FCB00A7FC08 /* KMMViewModel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -155,6 +156,7 @@
 				5EC3B0BE28CB815500A040F2 /* UINavigationControllerExt.swift */,
 				5E93005628E439610013F432 /* TextExt.swift */,
 				5E9E808F299B5DF50083E7E0 /* LifecycleAwareObservableObject.swift */,
+				5ED782F12A1F757E00A7FC08 /* BaseKmmViewModelExt.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -185,6 +187,7 @@
 				5E11056228D057E200B36633 /* state */,
 				5EC3B0CC28CB821900A040F2 /* HomeRoute.swift */,
 				5EC3B0C928CB820800A040F2 /* HomeScreen.swift */,
+				5ED782F32A1F7A9F00A7FC08 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -392,13 +395,13 @@
 				5EC3B0BF28CB815500A040F2 /* UINavigationControllerExt.swift in Sources */,
 				5EC3B0BD28CB813B00A040F2 /* NavRoute.swift in Sources */,
 				5E8A071428F7E3BB007EFA96 /* SharedSvgImage.swift in Sources */,
-				5ED782F02A1F4FCB00A7FC08 /* KMMViewModel.swift in Sources */,
 				5EC3B0D928CB82D300A040F2 /* ImagePager.swift in Sources */,
 				5EC3B09628CB7E4200A040F2 /* iOSApp.swift in Sources */,
 				5E52F99D299A003F0045498A /* Koin.swift in Sources */,
 				5E11056428D0581E00B36633 /* PaginationState.swift in Sources */,
 				5EC3B0DB28CB82E000A040F2 /* SectionTitle.swift in Sources */,
 				5EC3B0D528CB82A000A040F2 /* PetDetailScreen.swift in Sources */,
+				5ED782F42A1F7A9F00A7FC08 /* HomeViewModel.swift in Sources */,
 				5E93005728E439610013F432 /* TextExt.swift in Sources */,
 				5EC3B0D028CB824900A040F2 /* TabRow.swift in Sources */,
 				5E9D8B0228E3369500EFAC59 /* Snackbar.swift in Sources */,
@@ -414,6 +417,7 @@
 				5EC3B0C128CB817500A040F2 /* StringExt.swift in Sources */,
 				5EC3B0CD28CB821900A040F2 /* HomeRoute.swift in Sources */,
 				5EC3B0C328CB819500A040F2 /* BindingExt.swift in Sources */,
+				5ED782F22A1F757E00A7FC08 /* BaseKmmViewModelExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

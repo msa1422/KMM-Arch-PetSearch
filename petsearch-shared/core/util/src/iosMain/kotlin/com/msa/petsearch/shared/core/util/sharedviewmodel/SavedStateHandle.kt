@@ -1,4 +1,4 @@
-package com.msa.petsearch.shared.core.util.kmmviewmodel
+package com.msa.petsearch.shared.core.util.sharedviewmodel
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

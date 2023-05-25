@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SwiftUI
 import Shared
+import SwiftUI
 
 struct HomeRoute: NavRoute {
 
@@ -19,7 +19,7 @@ struct HomeRoute: NavRoute {
     }
     
     var content: some View {
-        return HomeScreen(viewModel)
+        return HomeScreen()
     }
     
     var viewModel: HomeViewModel {

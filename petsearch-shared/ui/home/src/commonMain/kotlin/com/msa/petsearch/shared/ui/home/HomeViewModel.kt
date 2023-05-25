@@ -6,7 +6,7 @@ import com.msa.petsearch.shared.core.entity.PetSearchParams
 import com.msa.petsearch.shared.core.entity.PetType
 import com.msa.petsearch.shared.core.entity.petinfo.PetInfo
 import com.msa.petsearch.shared.core.util.extension.loadNextPage
-import com.msa.petsearch.shared.core.util.kmmviewmodel.BaseKmmViewModel
+import com.msa.petsearch.shared.core.util.sharedviewmodel.BaseViewModel
 import com.msa.petsearch.shared.core.util.resource.MessageType.SnackBar
 import com.msa.petsearch.shared.core.util.resource.ResourceMessage
 import com.msa.petsearch.shared.core.util.resource.Status
@@ -17,8 +17,9 @@ import com.msa.petsearch.shared.ui.home.contract.LoadPetListNextPage
 import com.msa.petsearch.shared.ui.home.contract.NavigateToPetDetail
 import com.msa.petsearch.shared.ui.home.contract.OnPetTypeTabChanged
 import com.msa.petsearch.shared.ui.home.model.PagerConfig
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.rickclephas.kmm.viewmodel.MutableStateFlow
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNot
 import kotlinx.coroutines.flow.filterNotNull
@@ -29,21 +30,21 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel
 internal constructor(private val useCases: HomeUseCaseWrapper) :
-    BaseKmmViewModel<HomeAction, HomeNavigation, Nothing>() {
+    BaseViewModel<HomeAction, HomeNavigation, Nothing>() {
 
-    private val _petTypes = MutableStateFlow(emptyList<PetType>())
+    private val _petTypes = MutableStateFlow(viewModelScope, emptyList<PetType>())
 
-    private val _currentPetType = MutableStateFlow("")
+    private val _currentPetType = MutableStateFlow(viewModelScope, "")
 
     private val _pager = _currentPetType
         .filterNot(::isCurrentTypeBlank)
         .mapLatest(::createPager)
-        .stateInWhenSubscribed(initialValue = null)
+        .stateInWhileSubscribed(started = SharingStarted.Lazily, initialValue = null)
 
-    @NativeCoroutinesState
-    val petTypes = _petTypes.stateInWhenSubscribed(initialValue = emptyList())
+    @NativeCoroutines
+    val petTypes = _petTypes.stateInWhileSubscribed(initialValue = emptyList())
 
-    @NativeCoroutinesState
+    @NativeCoroutines
     val pagingData = _pager
         .filterNotNull()
         .flatMapLatest(Pager<Int, PetInfo>::pagingData::invoke)

@@ -45,7 +45,7 @@ extension NavRoute {
                                 }
                             }
                             
-                            
+                            viewModel.putArgs(map: argsMap)
                         }
                         
                         navEventStream = Task {
