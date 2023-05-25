@@ -27,25 +27,23 @@ protocol NavRoute {
 
 @MainActor
 extension NavRoute {
-    typealias BaseVm = BaseKmmViewModel<AnyObject, AnyObject, AnyObject>
-    
     func view(pilot: UIPilot<String>, route: String) -> some View {
         var navEventStream: Task<(), Error>? = nil
         
         return content
             .onAppear {
-                if let viewModel = self.viewModel as? BaseVm {
+                if let viewModel = self.viewModel as? BaseViewModel<AnyObject, AnyObject, AnyObject> {
                     if navEventStream == nil {
                         if !getArguments().isEmpty {
-                            let argsMap = KotlinMutableDictionary<NSString, NSString>()
-                            
+                            var args: [String: String] = [:]
+                                
                             getArguments().forEach { argName in
                                 if let arg = route.valueOf(param: argName) {
-                                    argsMap.setValue(arg, forKey: argName)
+                                    args[argName] = arg
                                 }
                             }
-                            
-                            viewModel.putArgs(map: argsMap)
+                                
+                            viewModel.put(args: args)
                         }
                         
                         navEventStream = Task {

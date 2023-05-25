@@ -9,4 +9,4 @@
 import KMMViewModelCore
 import Shared
 
-extension BaseKmmViewModel: KMMViewModelCore.KMMViewModel { }
+extension BaseViewModel: KMMViewModelCore.KMMViewModel { }
