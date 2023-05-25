@@ -25,6 +25,7 @@ dependencies {
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.kotlinx.serialization)
     commonMainImplementation(libs.kuuuurt.multiplatform.paging)
+    commonMainApi(libs.rickclephas.kmm.viewmodel)
 
     commonMainImplementation(libs.kermit.log)
     //commonMainImplementation(libs.kermit.crashlytics)

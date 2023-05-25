@@ -27,7 +27,7 @@ protocol NavRoute {
 
 @MainActor
 extension NavRoute {
-    typealias BaseVm = BaseViewModel<AnyObject, AnyObject, AnyObject, AnyObject>
+    typealias BaseVm = BaseKmmViewModel<AnyObject, AnyObject, AnyObject>
     
     func view(pilot: UIPilot<String>, route: String) -> some View {
         var navEventStream: Task<(), Error>? = nil
@@ -45,7 +45,7 @@ extension NavRoute {
                                 }
                             }
                             
-                            viewModel.updateArgs(map: argsMap)
+                            
                         }
                         
                         navEventStream = Task {

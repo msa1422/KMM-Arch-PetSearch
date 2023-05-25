@@ -19,7 +19,7 @@ struct HomeRoute: NavRoute {
     }
     
     var content: some View {
-        return HomeScreen()
+        return HomeScreen(viewModel)
     }
     
     var viewModel: HomeViewModel {

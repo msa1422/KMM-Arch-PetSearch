@@ -25,8 +25,8 @@ object PetDetailRoute : NavRoute<PetDetailViewModel> {
     @Composable
     override fun Content(viewModel: PetDetailViewModel) = PetDetailScreen(viewModel)
 
-    @Composable
-    override fun viewModel(): PetDetailViewModel = koinViewModel()
+    override val viewModel: PetDetailViewModel
+        @Composable get() = koinViewModel()
 
     override fun getArguments(): List<NamedNavArgument> =
         listOf(navArgument(ARG_PET_INFO) { type = NavType.StringType })

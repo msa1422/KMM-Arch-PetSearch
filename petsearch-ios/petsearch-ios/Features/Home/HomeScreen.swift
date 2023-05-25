@@ -9,10 +9,11 @@
 import SwiftUI
 import Shared
 import SDWebImageSwiftUI
+import KMMViewModelSwiftUI
 
 struct HomeScreen: View {
     
-    @StateObject var viewModel = HomeViewModelDelegate()
+    @StateViewModel var viewModel: HomeViewModel
     
     @State private var selectedTab: Int = 0
     

@@ -12,7 +12,6 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
-import com.msa.petsearch.shared.core.util.sharedviewmodel.BaseViewModel
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateAndPopUpToRoute
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateToRoute
@@ -33,8 +32,8 @@ interface NavRoute<T : RouteNavigator> {
     @Composable
     fun Content(viewModel: T)
 
-    @Composable
-    fun viewModel(): T
+    val viewModel: T
+        @Composable get
 
     fun getArguments(): List<NamedNavArgument> = emptyList()
 
@@ -57,30 +56,15 @@ interface NavRoute<T : RouteNavigator> {
             exitTransition = getExitTransition(),
             popEnterTransition = getPopEnterTransition(),
             popExitTransition = getPopExitTransition()
-        ) { backStackEntry ->
-            val viewModel = viewModel()
+        ) {
+            with(viewModel) {
+                Content(this)
 
-            (viewModel as? BaseViewModel<*, *, *, *>)?.let {
-                LaunchedEffect(it) {
-                    if (getArguments().isNotEmpty()) {
-                        // Update Args in ViewModel
-                        val argsMap = hashMapOf<String, String>().also { hashMap ->
-                            getArguments().forEach { namedArg ->
-                                backStackEntry.arguments?.getString(namedArg.name)?.let { arg ->
-                                    hashMap[namedArg.name] = arg
-                                }
-                            }
-                        }
-
-                        it.updateArgs(argsMap)
-                    }
-
-                    it.navigationEvent.collect { event ->
+                LaunchedEffect(Unit) {
+                    navigationEvent.collect { event ->
                         onNavEvent(navController, event)
                     }
                 }
-
-                Content(viewModel)
             }
         }
 

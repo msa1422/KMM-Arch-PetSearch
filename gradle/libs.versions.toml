@@ -29,7 +29,7 @@ androidx-navigation = "2.6.0-beta01"
 androidx-room = "2.5.0"
 chrisbanes-snapper = "0.3.0"
 coil = "2.3.0"
-coroutines = "1.7.1"
+coroutines = "1.6.4"
 desugar-jdk-libs = "2.0.3"
 gradle-plugin-android-build-tools = "8.0.1"
 gradle-plugin-buildkonfig = "0.7.0"
@@ -47,12 +47,13 @@ kotlin = "1.8.21"
 kotlinx-dateTime = "0.4.0"
 kotlinx-serialization = "1.5.1"
 ksp = "1.8.21-1.0.11"
-ktor = "2.3.0"
+ktor = "2.2.4"
 kuuuurt-multiplatform-paging = "0.6.2"
-moko-resources = "0.22.1"
+moko-resources = "0.22.3"
 multiplatformSettings = "1.0.0"
-nativecoroutines = "1.0.0-ALPHA-10"
 realm = "1.8.0"
+rickclephas-nativecoroutines = "1.0.0-ALPHA-8"
+rickclephas-kmm-viewmodel = "1.0.0-ALPHA-7"
 squareup-leakcanary = "2.9.1"
 squareup-okio = "3.2.0"
 testing-arch-core = "2.1.0"
@@ -70,7 +71,7 @@ kotest-multiplatform = { id = "io.kotest.multiplatform", version.ref = "testing-
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
-nativecoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "nativecoroutines" }
+nativecoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "rickclephas-nativecoroutines" }
 realm-kotlin = { id = "io.realm.kotlin", version.ref = "realm" }
 
 
@@ -118,7 +119,7 @@ gradle-plugin-kotlinSerialization = { module = "org.jetbrains.kotlin:kotlin-seri
 gradle-plugin-ksp = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 gradle-plugin-ktlint = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "gradle-plugin-ktlint" }
 gradle-plugin-mokoResources = { module = "dev.icerock.moko:resources-generator", version.ref = "moko-resources" }
-gradle-plugin-nativecoroutines = { module = "com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin", version.ref = "nativecoroutines" }
+gradle-plugin-nativecoroutines = { module = "com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin", version.ref = "rickclephas-nativecoroutines" }
 gradle-plugin-navigation-safeArgs = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "androidx-navigation" }
 gradle-plugin-realm = { module = "io.realm.kotlin:gradle-plugin", version.ref = "realm" }
 gradle-plugin-spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "gradle-plugin-spotless" }
@@ -156,6 +157,7 @@ multiplatformSettings-coroutines = { module = "com.russhwolf:multiplatform-setti
 multiplatformSettings-noArg = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatformSettings" }
 multiplatformSettings-test = { module = "com.russhwolf:multiplatform-settings-test", version.ref = "multiplatformSettings" }
 realm-kotlin = { module = "io.realm.kotlin:library-base", version.ref = "realm" }
+rickclephas-kmm-viewmodel = { module = "com.rickclephas.kmm:kmm-viewmodel-core", version.ref = "rickclephas-kmm-viewmodel" }
 squareup-leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "squareup-leakcanary" }
 squareup-okio = { module = "com.squareup.okio:okio", version.ref = "squareup-okio" }
 testing-androidx-core = { module = "androidx.arch.core:core-testing", version.ref = "testing-arch-core" }

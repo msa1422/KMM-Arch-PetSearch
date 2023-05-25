@@ -14,14 +14,14 @@ android {
 }
 
 dependencies {
-    implementation(libs.koin.core)
-    implementation(libs.koin.androidx.compose)
-    implementation(libs.androidx.compose.material)
     implementation(libs.accompanist.pager)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.core)
 
     implementation(projects.petsearchAndroid.common.compose)
     implementation(projects.petsearchAndroid.common.components)
-
+    implementation(projects.petsearchAndroid.common.compose)
     implementation(projects.petsearchShared.core.entity)
     implementation(projects.petsearchShared.core.util)
     implementation(projects.petsearchShared.resources)

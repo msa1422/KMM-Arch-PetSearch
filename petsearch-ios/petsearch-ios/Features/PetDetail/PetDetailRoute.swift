@@ -19,7 +19,7 @@ struct PetDetailRoute: NavRoute {
     }
     
     var content: some View {
-        return PetDetailScreen()
+        return PetDetailScreen(viewModel)
     }
     
     var viewModel: PetDetailViewModel {

@@ -8,12 +8,13 @@
 
 import SwiftUI
 import Shared
+import KMMViewModelSwiftUI
 
 struct PetDetailScreen: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @StateObject var viewModel = PetDetailViewModelDelegate()
+    @StateViewModel var viewModel: PetDetailViewModel
     
     private let safeAreaInsetTop = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
     private let pagerWidth = UIScreen.main.bounds.width
