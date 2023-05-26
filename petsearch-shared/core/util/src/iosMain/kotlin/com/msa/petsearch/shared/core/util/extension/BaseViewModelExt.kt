@@ -5,7 +5,8 @@ import com.msa.petsearch.shared.core.util.sharedviewmodel.contract.UiContract.Ac
 import com.msa.petsearch.shared.core.util.sharedviewmodel.contract.UiContract.Event
 import com.msa.petsearch.shared.core.util.sharedviewmodel.contract.UiContract.Navigation
 
-fun <A : Action, N : Navigation, E : Event> BaseViewModel<A, N, E>.put(args: Map<String, String>) =
+@Suppress("unused") // Used in iOS
+fun BaseViewModel<out Action, out Navigation, out Event>.put(args: Map<String, String>) =
     args.forEach { (key, value) ->
         savedStateHandle[key] = value
     }
