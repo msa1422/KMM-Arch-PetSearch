@@ -28,8 +28,7 @@ androidx-lifecycle = "2.6.1"
 androidx-navigation = "2.6.0-beta01"
 androidx-room = "2.5.0"
 chrisbanes-snapper = "0.3.0"
-coil = "2.3.0"
-coroutines = "1.6.4"
+coil = "2.4.0"
 desugar-jdk-libs = "2.0.3"
 gradle-plugin-android-build-tools = "8.0.1"
 gradle-plugin-buildkonfig = "0.7.0"
@@ -44,16 +43,17 @@ koin-core = "3.4.0"
 koin-test = "3.4.0"
 korlibs-klock = "2.2.0"
 kotlin = "1.8.21"
+kotlinx-coroutines = "1.7.1"
 kotlinx-dateTime = "0.4.0"
 kotlinx-serialization = "1.5.1"
 ksp = "1.8.21-1.0.11"
-ktor = "2.2.3"
+ktor = "2.3.1"
 kuuuurt-multiplatform-paging = "0.6.2"
-moko-resources = "0.22.3"
+moko-resources = "0.23.0"
 multiplatformSettings = "1.0.0"
 realm = "1.9.0"
-rickclephas-nativecoroutines = "1.0.0-ALPHA-8"
-rickclephas-kmm-viewmodel = "1.0.0-ALPHA-7"
+rickclephas-nativecoroutines = "1.0.0-ALPHA-10"
+rickclephas-kmm-viewmodel = "1.0.0-ALPHA-9"
 squareup-leakcanary = "2.9.1"
 squareup-okio = "3.2.0"
 testing-arch-core = "2.1.0"
@@ -134,9 +134,9 @@ koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin-test" }
 korlibs-klock = { module = "com.soywiz.korlibs.klock:klock", version.ref = "korlibs-klock" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-stdlib-jdk = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 kotlinx-dateTime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-dateTime" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
