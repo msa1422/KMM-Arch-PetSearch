@@ -25,7 +25,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -165,17 +164,13 @@ internal fun HomeScreen(
 
 @Composable
 private fun HomeScreenTopBar(scrollState: ScrollState, modifier: Modifier = Modifier) {
-    val collapsedFractionAlpha by remember(scrollState.value) {
-        derivedStateOf { 1f - scrollState.value / scrollState.maxValue.toFloat() }
-    }
-
     Box(
         modifier = modifier
             .background(color = MaterialTheme.colorScheme.surface)
             .windowInsetsPadding(TopAppBarDefaults.windowInsets)
             .fillMaxWidth()
             .defaultMinSize(minHeight = 64.dp)
-            .graphicsLayer { alpha = collapsedFractionAlpha }
+            .graphicsLayer { alpha = 1f - scrollState.value / scrollState.maxValue.toFloat() }
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
