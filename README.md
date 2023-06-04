@@ -27,7 +27,7 @@ PetSearch has blended the following coding practices and techniques to create a 
 - MVI (Redux inspired)
 - **SO**L**ID**
 - Feature-wise and Layer-wise Modularized code (Android and Shared)
-- Shared ViewModel
+- Shared ViewModel with SavedStateHandle (Android and iOS)
 - ViewModel Navigation with args (Android and iOS)
 
 <br>
@@ -94,6 +94,7 @@ Only way to run common tests is via Gradle command `./gradlew check`
 * [Ktor](https://ktor.io/)
 * [Realm-kotlin](https://github.com/realm/realm-kotlin)
 * [KMP-NativeCoroutines](https://github.com/rickclephas/KMP-NativeCoroutines)
+* [KMM-ViewModel](https://github.com/rickclephas/KMM-ViewModel)
 * [Multiplatform Settings](https://github.com/russhwolf/multiplatform-settings)
 * [Kotlinx Serialization](https://ktor.io/docs/kotlin-serialization.html)
 * [Coroutines](https://github.com/Kotlin/kotlinx.coroutines#multiplatform)
@@ -120,6 +121,7 @@ I am grateful to authors of projects below for sharing such highly valuable mate
 - [Food2Fork-KMM](https://github.com/mitchtabian/Food2Fork-KMM)
 - [tv-maniac](https://github.com/c0de-wizard/tv-maniac)
 - [kmm-demo by fededri](https://github.com/fededri/kmm-demo)
+- [kmp-viewmodel](https://github.com/hoc081098/kmp-viewmodel)
 - [ViewModelNavigationCompose](https://github.com/Frank1234/ViewModelNavigationCompose)
 - [MortyComposeKMM](https://github.com/joreilly/MortyComposeKMM)
 - [Code Snippets](https://github.com/android/compose-samples)
