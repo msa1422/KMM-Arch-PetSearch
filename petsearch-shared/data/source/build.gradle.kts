@@ -17,14 +17,14 @@ android {
 }
 
 dependencies {
-    commonMainImplementation(libs.kotlinx.coroutines.core)
-    commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.bundles.ktor.common)
-
+    commonMainImplementation(libs.koin.core)
+    commonMainImplementation(libs.koin.core.coroutines)
+    commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(projects.petsearchShared.core.entity)
     commonMainImplementation(projects.petsearchShared.core.util)
-    commonMainImplementation(projects.petsearchShared.data.repository)
     commonMainImplementation(projects.petsearchShared.data.infra.network)
+    commonMainImplementation(projects.petsearchShared.data.repository)
 
     commonTestImplementation(libs.ktor.client.mock)
 }

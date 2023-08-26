@@ -17,9 +17,9 @@ android {
 }
 
 dependencies {
+    commonMainImplementation(libs.koin.core)
+    commonMainImplementation(libs.kotlinx.serialization)
+
     commonMainImplementation(projects.petsearchShared.core.entity)
     commonMainImplementation(projects.petsearchShared.core.util)
-
-    commonMainImplementation(libs.kotlinx.serialization)
-    commonMainImplementation(libs.koin.core)
 }

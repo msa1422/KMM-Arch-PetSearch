@@ -19,16 +19,17 @@ android {
 }
 
 dependencies {
-    commonMainImplementation(libs.squareup.okio)
-    commonMainImplementation(libs.kotlinx.coroutines.core)
-    commonMainImplementation(libs.uuid.multiplatform)
-    commonMainImplementation(libs.koin.core)
-    commonMainImplementation(libs.kotlinx.serialization)
-    commonMainImplementation(libs.kuuuurt.multiplatform.paging)
+    androidMainImplementation(libs.androidx.lifecycle.viewmodel.compose)
+
     commonMainApi(libs.rickclephas.kmm.viewmodel)
 
     commonMainImplementation(libs.kermit.log)
     //commonMainImplementation(libs.kermit.crashlytics)
-
-    androidMainImplementation(libs.androidx.lifecycle.viewmodel.compose)
+    commonMainImplementation(libs.koin.core)
+    commonMainImplementation(libs.koin.core.coroutines)
+    commonMainImplementation(libs.kotlinx.coroutines.core)
+    commonMainImplementation(libs.kotlinx.serialization)
+    commonMainImplementation(libs.kuuuurt.multiplatform.paging)
+    commonMainImplementation(libs.squareup.okio)
+    commonMainImplementation(libs.uuid.multiplatform)
 }

@@ -11,8 +11,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.coil.compose)
+    implementation(libs.koin.core)
+    implementation(libs.koin.core.coroutines)
     implementation(projects.petsearchAndroid.activity)
     implementation(projects.petsearchShared.shared)
-    implementation(libs.koin.core)
-    implementation(libs.coil.compose)
 }

@@ -5,8 +5,10 @@ import com.msa.petsearch.shared.core.entity.PetSearchParams
 import com.msa.petsearch.shared.core.entity.petinfo.PetInfo
 import com.msa.petsearch.shared.data.repository.AnimalRepository
 
-class LoadPetsUseCase(private val repository: AnimalRepository) {
-
+class LoadPetsUseCase
+internal constructor(
+    private val repository: AnimalRepository
+) {
     data class Params(val type: String, val page: Int, val searchParams: PetSearchParams?)
 
     suspend operator fun invoke(arg: Params): PagingResult<Int, PetInfo> {

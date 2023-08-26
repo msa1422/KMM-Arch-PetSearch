@@ -1,9 +1,11 @@
 package com.msa.petsearch.shared.ui.home.di
 
-import org.koin.androidx.viewmodel.dsl.viewModelOf
 import com.msa.petsearch.shared.ui.home.HomeViewModel
-import org.koin.dsl.module
+import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.dsl.lazyModule
 
-internal actual val SharedUiHomePlatformModule = module {
+@OptIn(KoinExperimentalAPI::class)
+internal actual val SharedUiHomePlatformModule = lazyModule {
     viewModelOf(::HomeViewModel)
 }

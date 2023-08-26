@@ -21,14 +21,13 @@ dependencies {
     androidMainImplementation(libs.androidx.lifecycle.viewmodel.compose)
     androidMainImplementation(libs.koin.androidx.compose)
 
-    commonMainImplementation(libs.kotlinx.coroutines.core)
-    commonMainImplementation(libs.koin.core)
-    commonMainImplementation(libs.kuuuurt.multiplatform.paging)
     commonMainImplementation(libs.kermit.log)
-
+    commonMainImplementation(libs.koin.core)
+    commonMainImplementation(libs.koin.core.coroutines)
+    commonMainImplementation(libs.kotlinx.coroutines.core)
+    commonMainImplementation(libs.kuuuurt.multiplatform.paging)
     commonMainImplementation(projects.petsearchShared.core.entity)
     commonMainImplementation(projects.petsearchShared.core.util)
-
     commonMainImplementation(projects.petsearchShared.domain.home)
 
     // For injecting a FakeRepository into the use-cases

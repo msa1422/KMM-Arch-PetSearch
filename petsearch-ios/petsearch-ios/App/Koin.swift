@@ -11,7 +11,7 @@ import Shared
 
 
 extension KoinApplication {
-    static let shared = KoinKt.doInitKoin(modules: nil)
+    static let shared = KoinKt.doInitKoin(eagerModules: nil, lazyModules: nil)
     
     @discardableResult
     static func start() -> KoinApplication { shared }

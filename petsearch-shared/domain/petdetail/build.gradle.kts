@@ -14,12 +14,10 @@ android {
 }
 
 dependencies {
-    commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.koin.core)
-
+    commonMainImplementation(libs.koin.core.coroutines)
+    commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(projects.petsearchShared.core.entity)
     commonMainImplementation(projects.petsearchShared.core.util)
-
-    // Data dependency here for Dependency Inversion
     commonMainImplementation(projects.petsearchShared.data.repository)
 }

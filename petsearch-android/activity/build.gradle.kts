@@ -11,15 +11,13 @@ android {
 }
 
 dependencies {
-    implementation(libs.koin.core)
-    implementation(libs.koin.androidx.compose)
-
-    api(projects.petsearchAndroid.common.compose)
     api(projects.petsearchAndroid.common.components)
-
+    api(projects.petsearchAndroid.common.compose)
     api(projects.petsearchAndroid.features.home)
     api(projects.petsearchAndroid.features.petdetail)
 
-    implementation(projects.petsearchShared.resources)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.core)
     implementation(projects.petsearchShared.core.util)
+    implementation(projects.petsearchShared.resources)
 }

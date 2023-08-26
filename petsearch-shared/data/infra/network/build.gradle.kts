@@ -21,13 +21,15 @@ android {
 }
 
 dependencies {
-    commonMainImplementation(projects.petsearchShared.core.util)
-    commonMainImplementation(libs.kotlinx.coroutines.core)
-    commonMainImplementation(libs.koin.core)
-    commonMainImplementation(libs.kermit.log)
-    commonMainImplementation(libs.bundles.ktor.common)
-
     androidMainImplementation(libs.ktor.client.okHttp)
+
+    commonMainImplementation(libs.bundles.ktor.common)
+    commonMainImplementation(libs.kermit.log)
+    commonMainImplementation(libs.koin.core)
+    commonMainImplementation(libs.koin.core.coroutines)
+    commonMainImplementation(libs.kotlinx.coroutines.core)
+    commonMainImplementation(projects.petsearchShared.core.util)
+
     iosMainImplementation(libs.ktor.client.darwin)
 }
 

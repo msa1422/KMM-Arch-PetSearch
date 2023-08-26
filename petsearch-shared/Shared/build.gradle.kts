@@ -41,29 +41,23 @@ kotlin {
 }
 
 dependencies {
-    commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.koin.core)
+    commonMainImplementation(libs.koin.core.coroutines)
+    commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.moko.resources)
-
+    commonMainImplementation(projects.petsearchShared.core.util)
+    commonMainImplementation(projects.petsearchShared.data.source)
     commonMainImplementation(projects.petsearchShared.ui.home)
     commonMainImplementation(projects.petsearchShared.ui.petdetail)
 
-    commonMainImplementation(projects.petsearchShared.data.source)
-
-    commonMainImplementation(projects.petsearchShared.data.infra.network)
-    commonMainImplementation(projects.petsearchShared.data.infra.cache)
-    commonMainImplementation(projects.petsearchShared.data.infra.preferences)
-
-    commonMainImplementation(projects.petsearchShared.core.util)
-
+    iosMainApi(libs.kermit.log)
+    iosMainApi(libs.kuuuurt.multiplatform.paging)
+    iosMainApi(libs.moko.resources)
     iosMainApi(projects.petsearchShared.core.entity)
     iosMainApi(projects.petsearchShared.core.util)
     iosMainApi(projects.petsearchShared.resources)
     iosMainApi(projects.petsearchShared.ui.home)
     iosMainApi(projects.petsearchShared.ui.petdetail)
-    iosMainApi(libs.kermit.log)
-    iosMainApi(libs.moko.resources)
-    iosMainApi(libs.kuuuurt.multiplatform.paging)
 }
 
 multiplatformResources {

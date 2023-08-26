@@ -28,9 +28,10 @@ kotlin {
 }
 
 dependencies {
-    commonMainImplementation(projects.petsearchShared.core.util)
-
-    commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.koin.core)
+    commonMainImplementation(libs.koin.core.coroutines)
+    commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.realm.kotlin)
+
+    commonMainImplementation(projects.petsearchShared.core.util)
 }
