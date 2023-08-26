@@ -12,8 +12,8 @@ configure<DetektExtension> {
     buildUponDefaultConfig = true
     allRules = false
     autoCorrect = true
-    source = project.files(rootProject.projectDir)
-    config = files("${rootProject.projectDir}/config/detekt.yml")
+    source.setFrom(project.files(rootProject.projectDir))
+    config.setFrom(files("${rootProject.projectDir}/config/detekt.yml"))
 }
 
 tasks.withType<Detekt>().configureEach {

@@ -13,8 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import com.google.accompanist.navigation.animation.AnimatedNavHost
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.msa.petsearch.android.activity.composable.MainSnackbarHost
 import com.msa.petsearch.android.activity.composable.rememberSnackBarHostState
 import com.msa.petsearch.android.activity.di.AppScreens
@@ -31,7 +31,7 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 internal fun MainContent() {
     val context = LocalContext.current
-    val navController = rememberAnimatedNavController()
+    val navController = rememberNavController()
     val snackbarHostState = rememberSnackBarHostState()
 
     ApplicationTheme {
@@ -41,8 +41,8 @@ internal fun MainContent() {
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
         ) {
-            AnimatedNavHost(navController, NavigationScreen.HomeNavScreen.route) {
-                AppScreens.provide(this@AnimatedNavHost, navController)
+            NavHost(navController, NavigationScreen.HomeNavScreen.route) {
+                AppScreens.provide(this@NavHost, navController)
             }
         }
     }

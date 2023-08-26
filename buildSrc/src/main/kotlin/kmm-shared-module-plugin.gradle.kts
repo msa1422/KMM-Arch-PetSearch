@@ -18,7 +18,7 @@ repositories {
 }
 
 kotlin {
-    android()
+    androidTarget()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -81,6 +81,8 @@ kotlin {
             iosSimulatorArm64Test.dependsOn(this)
         }
     }
+
+    jvmToolchain(libs.versions.java.get().toInt())
 }
 
 android {
@@ -92,8 +94,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_18
-        targetCompatibility = JavaVersion.VERSION_18
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    // Walkaround for Moko-Resources issue: https://github.com/icerockdev/moko-resources/issues/510
+    sourceSets {
+        getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
     }
 }
 
