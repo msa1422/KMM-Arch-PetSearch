@@ -11,7 +11,6 @@ import Shared
 import KMMViewModelSwiftUI
 
 struct PetDetailScreen: View {
-    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @StateViewModel var viewModel: PetDetailViewModel

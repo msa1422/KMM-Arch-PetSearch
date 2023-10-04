@@ -13,24 +13,23 @@ import ToastSwiftUI
 import UIPilot
 
 struct ContentView: View {
+    @StateObject var pilot = UIPilot(initial: NavigationScreen.homenavscreen.route)
     
-    @StateObject var pilot = UIPilot(initial: NavigationScreenKt.HOME_DESTINATION)
-    
-    @State private var resourceMessageText: String?
+    @State private var message: String?
+    @State private var messageObserverTask: Task<(), Error>? = nil
     @State private var snackBar: MessageType.SnackBar?
     @State private var showSnackBar: Bool = false
     @State private var showToast: Bool = false
-    @State private var messageDequeObserver: Task<(), Error>? = nil
     
     var body: some View {
         // Main Navigation Controller host
         UIPilotHost(pilot) { route in
             switch route {
                 
-            case _ where route.starts(with: NavigationScreenKt.HOME_DESTINATION) :
+            case _ where route.starts(with: NavigationScreen.homenavscreen.route) :
                 HomeRoute().view(pilot: pilot, route: route)
                 
-            case _ where route.starts(with: NavigationScreenKt.PET_DETAIL_DESTINATION) :
+            case _ where route.starts(with: NavigationScreen.petdetailnavscreen.route):
                 PetDetailRoute().view(pilot: pilot, route: route)
                 
             // Workaround for default case, because Swift only truly verifies that a
@@ -41,31 +40,37 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.bottom)
         .toast(
             isPresenting: $showToast,
-            message: String(resourceMessageText?.prefix(120) ?? ""),
+            message: String(message?.prefix(120) ?? ""),
             icon: nil,
             backgroundColor: Color.onSurface.opacity(0.9),
             textColor: Color.blue,
             autoDismiss: .after(5),
-            onDisappear: { resourceMessageText = nil }
+            onDisappear: { message = nil }
         )
         .snackBar(
             isShowing: $showSnackBar,
-            text: resourceMessageText ?? "",
+            text: message ?? "",
             snackBar: snackBar
         )
-        .onAppear {
-            if messageDequeObserver == nil {
-                messageDequeObserver = Task {
-                    for try await message in asyncSequence(for: MessageDeque.shared.invoke()) {
-                        handle(resource: message)
-                    }
+        .onAppear(perform: startMessageObserver)
+        .onDisappear(perform: stopMessageObserver)
+    }
+}
+
+extension ContentView {
+    private func startMessageObserver() {
+        if messageObserverTask == nil {
+            messageObserverTask = Task {
+                for try await message in MessageDeque.shared.invoke() {
+                    handle(resource: message)
                 }
             }
         }
-        .onDisappear {
-            messageDequeObserver?.cancel()
-            messageDequeObserver = nil
-        }
+    }
+    
+    private func stopMessageObserver() {
+        messageObserverTask?.cancel()
+        messageObserverTask = nil
     }
     
     private func handle(resource message: ResourceMessage) {
@@ -73,7 +78,7 @@ struct ContentView: View {
             
         case let snackBar as MessageType.SnackBar : do {
             if showSnackBar == false {
-                resourceMessageText = message.text
+                self.message = message.text
                 self.snackBar = snackBar
                 withAnimation {
                     showSnackBar.toggle()
@@ -85,8 +90,8 @@ struct ContentView: View {
         }
             
         case _ as MessageType.Toast : do {
-            resourceMessageText = message.text
-            showToast = true
+            self.message = message.text
+            self.showToast = true
             DispatchQueue.main.asyncAfter(deadline: .now()) {
                 Task { try await MessageDeque.shared.dequeue() }
             }

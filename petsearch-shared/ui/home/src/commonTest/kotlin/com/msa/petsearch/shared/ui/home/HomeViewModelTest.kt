@@ -14,12 +14,15 @@ import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
 import kotlinx.coroutines.DelicateCoroutinesApi
+import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.core.awaitAllStartJobs
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
+import org.koin.core.lazyModules
 import org.koin.test.KoinTest
 import org.koin.test.inject
 
-@OptIn(DelicateCoroutinesApi::class)
+@OptIn(DelicateCoroutinesApi::class, KoinExperimentalAPI::class)
 @Suppress("UNUSED")
 internal class HomeViewModelTest : FunSpec(), KoinTest {
     init {
@@ -27,8 +30,9 @@ internal class HomeViewModelTest : FunSpec(), KoinTest {
 
         beforeTest {
             startKoin {
-                modules(SharedUiHomeTestModule)
+                lazyModules(SharedUiHomeTestModule)
             }
+            getKoin().awaitAllStartJobs()
         }
 
         afterTest {

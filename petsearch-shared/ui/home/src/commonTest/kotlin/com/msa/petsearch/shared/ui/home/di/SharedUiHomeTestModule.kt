@@ -6,11 +6,14 @@ import com.msa.petsearch.shared.domain.home.di.DomainHomeModule
 import com.msa.petsearch.shared.ui.home.HomeUseCaseWrapper
 import com.msa.petsearch.shared.ui.home.HomeViewModel
 import com.msa.petsearch.shared.ui.home.testdoubles.FakeAnimalRepository
+import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.includes
 import org.koin.dsl.bind
-import org.koin.dsl.module
+import org.koin.dsl.lazyModule
 
-internal val SharedUiHomeTestModule = module {
+@OptIn(KoinExperimentalAPI::class)
+internal val SharedUiHomeTestModule = lazyModule {
     includes(DomainHomeModule, CoreUtilModule)
     factoryOf(::FakeAnimalRepository) bind AnimalRepository::class
     factoryOf(::HomeUseCaseWrapper)

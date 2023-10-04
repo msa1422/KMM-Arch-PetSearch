@@ -7,20 +7,15 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
-import androidx.navigation.NamedNavArgument
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
 import com.msa.petsearch.android.common.compose.AnimatedBackStack
 import com.msa.petsearch.android.common.compose.NavRoute
-import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.ARG_PET_INFO
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationScreen
 import com.msa.petsearch.shared.ui.petdetail.PetDetailViewModel
 import org.koin.androidx.compose.koinViewModel
 
 object PetDetailRoute : NavRoute<PetDetailViewModel> {
-
-    override val route: String
-        get() = NavigationScreen.PetDetailNavScreen.route
+    override val route: NavigationScreen
+        get() = NavigationScreen.PetDetailNavScreen
 
     @Composable
     override fun Content(viewModel: PetDetailViewModel) = PetDetailScreen(viewModel)
@@ -28,15 +23,14 @@ object PetDetailRoute : NavRoute<PetDetailViewModel> {
     override val viewModel: PetDetailViewModel
         @Composable get() = koinViewModel()
 
-    override fun getArguments(): List<NamedNavArgument> =
-        listOf(navArgument(ARG_PET_INFO) { type = NavType.StringType })
+    override val enterTransition
+        get() = petDetailEnterTransition
 
-    override fun getEnterTransition() = PetDetailEnterTransition
-
-    override fun getExitTransition() = PetDetailExitTransition
+    override val exitTransition
+        get() = petDetailExitTransition
 }
 
-private val PetDetailEnterTransition: AnimatedBackStack.() -> EnterTransition? = {
+private val petDetailEnterTransition: AnimatedBackStack.() -> EnterTransition? = {
     slideIntoContainer(
         towards = AnimatedContentTransitionScope.SlideDirection.Up,
         animationSpec = tween(
@@ -57,7 +51,7 @@ private val PetDetailEnterTransition: AnimatedBackStack.() -> EnterTransition? =
         )
 }
 
-private val PetDetailExitTransition: AnimatedBackStack.() -> ExitTransition? = {
+private val petDetailExitTransition: AnimatedBackStack.() -> ExitTransition? = {
     slideOutOfContainer(
         towards = AnimatedContentTransitionScope.SlideDirection.Down,
         animationSpec = tween(

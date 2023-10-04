@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import KMPNativeCoroutinesAsync
 import Shared
 import SwiftUI
 import UIPilot
@@ -16,13 +15,11 @@ protocol NavRoute {
     associatedtype T : RouteNavigator
     associatedtype V : View
     
-    var route: String { get }
+    var destination: NavigationScreen { get }
     
     var content: V { get }
     
     var viewModel: T { get }
-    
-    func getArguments() -> Array<String>
 }
 
 @MainActor
@@ -34,21 +31,13 @@ extension NavRoute {
             .onAppear {
                 if let viewModel = self.viewModel as? BaseViewModel<AnyObject, AnyObject, AnyObject> {
                     if navEventStream == nil {
-                        if !getArguments().isEmpty {
-                            var args: [String: String] = [:]
-                                
-                            getArguments().forEach { argName in
-                                if let arg = route.valueOf(param: argName) {
-                                    args[argName] = arg
-                                }
-                            }
-                                
-                            viewModel.put(args: args)
+                        let arguments = extractArguments(from: route)
+                        if arguments != nil {
+                            viewModel.put(args: arguments!)
                         }
                         
                         navEventStream = Task {
-                            let eventStream = asyncSequence(for: viewModel.navigationEvent)
-                            for try await event in eventStream {
+                            for try await event in viewModel.navigationEvent {
                                 onNavEvent(pilot: pilot, event: event)
                             }
                         }
@@ -64,63 +53,30 @@ extension NavRoute {
     func onNavEvent(pilot: UIPilot<String>, event: NavigationEvent) {
         switch event {
         case let navEvent as NavigationEvent.NavigateToRoute : do {
-            if route == navEvent.route {
+            if destination.route == navEvent.route {
                 break
             }
             
-            var currentRoute: String = navEvent.route
-            
-            let args: KotlinMutableDictionary<NSString, NSString>? = navEvent.args
-            if args != nil {
-                args!.forEach { entry in
-                    let key: String = entry.key as? String ?? ""
-                    let value: String = entry.value as? String ?? ""
-                    
-                    currentRoute.replace("{\(key)}", with: value.isEmpty ? "null" : value)
-                }
-            }
-            
+            let currentRoute = appendArguments(to: navEvent.route, from: navEvent.args)
             pilot.push(currentRoute)
         }
             
         case let navEvent as NavigationEvent.NavigateAndPopUpToRoute : do {
-            if route == navEvent.route {
+            if destination.route == navEvent.route {
                 break
             }
             
-            var currentRoute: String = navEvent.route
-            
-            let args: KotlinMutableDictionary<NSString, NSString>? = navEvent.args
-            if args != nil {
-                args!.forEach { entry in
-                    let key: String = entry.key as? String ?? ""
-                    let value: String = entry.value as? String ?? ""
-                    
-                    currentRoute.replace("{\(key)}", with: value.isEmpty ? "null" : value)
-                }
-            }
-            
+            let currentRoute = appendArguments(to: navEvent.route, from: navEvent.args)
             pilot.popTo(navEvent.popUpTo, inclusive: true)
             pilot.push(currentRoute)
         }
             
         case let navEvent as NavigationEvent.PopToRoute : do {
-            if route == navEvent.staticRoute {
+            if destination.route == navEvent.staticRoute {
                 break
             }
             
-            var currentRoute: String = navEvent.staticRoute
-            
-            let args: KotlinMutableDictionary<NSString, NSString>? = navEvent.args
-            if args != nil {
-                args!.forEach { entry in
-                    let key: String = entry.key as? String ?? ""
-                    let value: String = entry.value as? String ?? ""
-                    
-                    currentRoute.replace("{\(key)}", with: value.isEmpty ? "null" : value)
-                }
-            }
-            
+            let currentRoute = appendArguments(to: navEvent.staticRoute, from: navEvent.args)
             pilot.popTo(currentRoute, inclusive: false)
         }
             
@@ -130,5 +86,31 @@ extension NavRoute {
             
         default : break
         }
+    }
+    
+    private func extractArguments(from route: String) -> [String: String]? {
+        if destination.args.size == 0 {
+            return nil
+        }
+        
+        var arguments: [String: String] = [:]
+        
+        for index in 0..<destination.args.size {
+            if let arg = destination.args.get(index: index) as? String {
+                arguments[arg] = route.valueOf(param: arg)
+            }
+        }
+        
+        return arguments
+    }
+    
+    private func appendArguments(
+        to route: String,
+        from arguments: KotlinMutableDictionary<NSString, NSString>?
+    ) -> String {
+        return arguments?.reduce(route) { result, arg in
+            let separator = result == route ? "/?" : ""
+            return "\(result)\(separator)\(arg.key)=\(arg.value)"
+        } ?? route
     }
 }

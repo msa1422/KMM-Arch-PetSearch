@@ -11,11 +11,10 @@ import Shared
 import SwiftUI
 
 struct PetDetailRoute: NavRoute {
-
     typealias T = PetDetailViewModel
     
-    var route: String {
-        return NavigationScreen.PetDetailNavScreen.shared.route
+    var destination: NavigationScreen {
+        return NavigationScreen.petdetailnavscreen
     }
     
     var content: some View {
@@ -25,9 +24,5 @@ struct PetDetailRoute: NavRoute {
     var viewModel: PetDetailViewModel {
         @LazyKoin var delegate: PetDetailViewModel
         return delegate
-    }
-    
-    func getArguments() -> Array<String> {
-        return [NavigationScreenKt.ARG_PET_INFO]
     }
 }

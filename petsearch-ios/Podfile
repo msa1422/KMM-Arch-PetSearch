@@ -6,6 +6,6 @@ target 'petsearch-ios' do
   pod 'SDWebImageSwiftUI'
   pod 'SDWebImageSVGCoder'
   pod 'ToastSwiftUI'
-  pod 'KMPNativeCoroutinesAsync', '1.0.0-ALPHA-8'
-  pod 'KMMViewModelSwiftUI', '1.0.0-ALPHA-7'
+  pod 'KMPNativeCoroutinesAsync', '1.0.0-ALPHA-18'
+  pod 'KMMViewModelSwiftUI', '1.0.0-ALPHA-14'
 end

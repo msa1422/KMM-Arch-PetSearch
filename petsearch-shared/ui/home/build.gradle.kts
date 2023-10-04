@@ -26,6 +26,7 @@ dependencies {
     commonMainImplementation(libs.koin.core.coroutines)
     commonMainImplementation(libs.kotlinx.coroutines.core)
     commonMainImplementation(libs.kuuuurt.multiplatform.paging)
+    commonMainImplementation(libs.touchlab.skie.annotations)
     commonMainImplementation(projects.petsearchShared.core.entity)
     commonMainImplementation(projects.petsearchShared.core.util)
     commonMainImplementation(projects.petsearchShared.domain.home)

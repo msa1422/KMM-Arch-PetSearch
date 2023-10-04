@@ -18,43 +18,43 @@ versionName = "0.1"
 accompanist = "0.32.0"
 android-material = "1.9.0"
 androidx-activity = "1.7.2"
-androidx-compose = "1.5.0"
-androidx-compose-compiler = "1.5.2"
-androidx-compose-material3 = "1.1.1"
-androidx-compose-paging = "3.2.0"
+androidx-compose = "1.5.2"
+androidx-compose-compiler = "1.5.3"
+androidx-compose-material3 = "1.1.2"
+androidx-compose-paging = "3.2.1"
 androidx-constraintlayout = "1.0.1"
-androidx-core-ktx = "1.10.1"
-androidx-lifecycle = "2.6.1"
-androidx-navigation = "2.7.0"
+androidx-core-ktx = "1.12.0"
+androidx-lifecycle = "2.6.2"
+androidx-navigation = "2.7.3"
 androidx-room = "2.5.2"
 chrisbanes-snapper = "0.3.0"
 coil = "2.4.0"
 desugar-jdk-libs = "2.0.3"
-gradle-plugin-android-build-tools = "8.1.1"
-gradle-plugin-buildkonfig = "0.13.3"
+gradle-plugin-android-build-tools = "8.1.2"
+gradle-plugin-buildkonfig = "0.14.0"
 gradle-plugin-dependency-check = "0.47.0"
 gradle-plugin-detekt = "1.23.0"
 gradle-plugin-ktlint = "11.0.0"
 gradle-plugin-spotless = "6.19.0"
 kermit = "1.2.2"
-koin-android = "3.4.3"
-koin-androidx-compose = "3.4.6"
-koin-core = "3.4.3"
-koin-core-coroutines = "3.4.3"
-koin-test = "3.4.3"
+koin-android = "3.5.0"
+koin-androidx-compose = "3.5.0"
+koin-core = "3.5.0"
+koin-core-coroutines = "3.5.0"
+koin-test = "3.5.0"
 korlibs-klock = "2.2.0"
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 kotlinx-coroutines = "1.7.3"
-kotlinx-dateTime = "0.4.0"
-kotlinx-serialization = "1.5.1"
-ksp = "1.9.0-1.0.12"
+kotlinx-dateTime = "0.4.1"
+kotlinx-serialization = "1.6.0"
+ksp = "1.9.10-1.0.13"
 ktor = "2.3.3"
 kuuuurt-multiplatform-paging = "0.6.2"
 moko-resources = "0.23.0"
 multiplatformSettings = "1.0.0"
-realm = "1.10.2"
-rickclephas-nativecoroutines = "1.0.0-ALPHA-10"
-rickclephas-kmm-viewmodel = "1.0.0-ALPHA-9"
+realm = "1.11.1"
+rickclephas-nativecoroutines = "1.0.0-ALPHA-18"
+rickclephas-kmm-viewmodel = "1.0.0-ALPHA-14"
 squareup-leakcanary = "2.12"
 squareup-okio = "3.4.0"
 testing-arch-core = "2.2.0"
@@ -63,6 +63,7 @@ testing-junit5 = "5.9.1"
 testing-junitext = "1.2.0-alpha01"
 testing-kotest = "5.6.2"
 testing-turbine = "1.0.0"
+touchlab-skie = "0.5.0"
 uuid-multiplatform = "0.8.0"
 
 
@@ -74,6 +75,7 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 nativecoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "rickclephas-nativecoroutines" }
 realm-kotlin = { id = "io.realm.kotlin", version.ref = "realm" }
+touchlab-skie = { id = "co.touchlab.skie", version.ref = "touchlab-skie" }
 
 
 [libraries]
@@ -177,6 +179,7 @@ testing-kotest-property = { module = "io.kotest:kotest-property", version.ref = 
 testing-kotest-property-jvm = { module = "io.kotest:kotest-property-jvm", version.ref = "testing-kotest" }
 testing-kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "testing-kotest" }
 testing-turbine = { module = "app.cash.turbine:turbine", version.ref = "testing-turbine" }
+touchlab-skie-annotations = { module = "co.touchlab.skie:configuration-annotations", version.ref = "touchlab-skie" }
 uuid-multiplatform = { module = "com.benasher44:uuid", version.ref = "uuid-multiplatform" }
 
 [bundles]

@@ -1,15 +1,23 @@
 package com.msa.petsearch.shared.core.util.sharedviewmodel.navigation
 
-sealed class NavigationScreen(val route: String) {
-    object SplashNavScreen : NavigationScreen(SPLASH_DESTINATION)
-    object HomeNavScreen : NavigationScreen(HOME_DESTINATION)
-    object PetDetailNavScreen : NavigationScreen("$PET_DETAIL_DESTINATION/?$ARG_PET_INFO={$ARG_PET_INFO}")
+enum class NavigationScreen(val route: String, vararg val args: String) {
+    SplashNavScreen(route = SPLASH_DESTINATION),
+    HomeNavScreen(route = HOME_DESTINATION),
+    PetDetailNavScreen(route = PET_DETAIL_DESTINATION, ARG_PET_INFO);
+
+    companion object {
+        val NavigationScreen.fullRoute: String
+            get() = args.foldIndexed(initial = route) { index, fullRoute, arg ->
+                val separator = if (index == 0) "/?" else ""
+                "$fullRoute$separator$arg={$arg}"
+            }
+    }
 }
 
-const val NAV_PREFIX: String = "com.msa.petsearch"
+private const val NAV_PREFIX: String = "com.msa.petsearch"
 
-const val SPLASH_DESTINATION: String = "$NAV_PREFIX.splash/SplashScreen"
-const val HOME_DESTINATION: String = "$NAV_PREFIX.home/HomeScreen"
-const val PET_DETAIL_DESTINATION: String = "$NAV_PREFIX.pet_detail/PetDetailScreen"
+private const val SPLASH_DESTINATION: String = "$NAV_PREFIX.splash/SplashScreen"
+private const val HOME_DESTINATION: String = "$NAV_PREFIX.home/HomeScreen"
+private const val PET_DETAIL_DESTINATION: String = "$NAV_PREFIX.pet_detail/PetDetailScreen"
 
 const val ARG_PET_INFO: String = "arg_pet_info"

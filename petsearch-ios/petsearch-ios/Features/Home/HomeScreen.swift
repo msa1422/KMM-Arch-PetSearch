@@ -12,10 +12,11 @@ import SDWebImageSwiftUI
 import KMMViewModelSwiftUI
 
 struct HomeScreen: View {
-    
-    @StateObject var viewModel = HomeViewModelDelegate()
+    @StateViewModel var viewModel: HomeViewModel
     
     @State private var selectedTab: Int = 0
+    @State var pagingData = [PetInfo]()
+    @State var paginationState = PaginationState.loading
     
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
@@ -33,13 +34,22 @@ struct HomeScreen: View {
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.bottom)
         .background(Color.surface.ignoresSafeArea())
-        .onAppear(perform: viewModel.onAppear)
-        .onDisappear(perform: viewModel.onDisappear)
+        .onAppear(perform: resumePagingDataStream)
+        .onDisappear(perform: pagingDataStream?.cancel)
+    }
+    
+    @State private var pagingDataStream: Task<(), Error>? = nil
+    private func resumePagingDataStream() {
+        pagingDataStream = Task {
+            for try await data in viewModel.pagingData {
+                paginationState = .idle
+                pagingData = data.uniqued()
+            }
+        }
     }
 }
 
 extension HomeScreen {
-    
     private var locationButton: some View {
         Button(action: {}) {
             VStack(alignment: .leading, spacing: .zero) {
@@ -72,14 +82,14 @@ extension HomeScreen {
             tabs: viewModel.petTypes.compactMap({ $0.name }),
             selectedTab: $selectedTab.onChange { index in
                 // First check if the index is same as already selectedTab or not
-                if viewModel.pagingData.first?.type == viewModel.petTypes[selectedTab].name {
+                if pagingData.first?.type == viewModel.petTypes[selectedTab].name {
                     return
                 }
                 
-                viewModel.paginationState = .loading
+                paginationState = .loading
                 
                 // remove all items from the LazyGrid
-                viewModel.pagingData.removeAll()
+                pagingData.removeAll()
                 
                 viewModel.dispatch(
                     action: OnPetTypeTabChanged(tabName: viewModel.petTypes[index].name)
@@ -94,7 +104,7 @@ extension HomeScreen {
                 columns: [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)],
                 spacing: 2
             ) {
-                ForEach(viewModel.pagingData, id: \.id) { petInfo in
+                ForEach(pagingData, id: \.id) { petInfo in
                     PetInfoView(petInfo: petInfo) {
                         viewModel.dispatch(action: NavigateToPetDetail(petInfo: petInfo))
                     }
@@ -102,13 +112,11 @@ extension HomeScreen {
                         // Very basic and definitely not production ready implementation of pagination
                         // Proper implementation and refinment is required.
                         // Will implement it soon as I keep learning SwiftUI
-                        let data = viewModel.pagingData
+                        let thresholdIndex = pagingData.index(pagingData.endIndex, offsetBy: -5)
                         
-                        let thresholdIndex = data.index(data.endIndex, offsetBy: -5)
-                        
-                        if data.firstIndex(where: { $0.id == petInfo.id }) == thresholdIndex &&
-                            viewModel.paginationState != .loading {
-                            viewModel.paginationState = .loading
+                        if pagingData.firstIndex(where: { $0.id == petInfo.id }) == thresholdIndex &&
+                            paginationState != .loading {
+                            paginationState = .loading
                             viewModel.dispatch(action: LoadPetListNextPage())
                         }
                     }
@@ -117,7 +125,7 @@ extension HomeScreen {
             
             ProgressView()
                 .padding(.init(top: 32, leading: .zero, bottom: 64, trailing: .zero))
-                .opacity(viewModel.paginationState == .loading ? 1 : 0)
+                .opacity(paginationState == .loading ? 1 : 0)
         }
         .background(Color.background)
     }
@@ -125,6 +133,7 @@ extension HomeScreen {
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreen()
+        @LazyKoin var viewModel: HomeViewModel
+        HomeScreen(viewModel: viewModel)
     }
 }

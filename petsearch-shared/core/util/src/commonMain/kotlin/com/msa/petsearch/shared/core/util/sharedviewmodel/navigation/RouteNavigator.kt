@@ -1,6 +1,5 @@
 package com.msa.petsearch.shared.core.util.sharedviewmodel.navigation
 
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import kotlinx.coroutines.flow.SharedFlow
 
 /**
@@ -10,6 +9,5 @@ import kotlinx.coroutines.flow.SharedFlow
  * Navigator to use when initiating navigation from a ViewModel.
  */
 interface RouteNavigator {
-    @NativeCoroutines
     val navigationEvent: SharedFlow<NavigationEvent>
 }

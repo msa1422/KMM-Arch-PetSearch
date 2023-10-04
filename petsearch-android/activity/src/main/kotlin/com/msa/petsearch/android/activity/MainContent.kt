@@ -26,10 +26,11 @@ import com.msa.petsearch.shared.core.util.resource.ResourceMessage
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationScreen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
+import org.koin.compose.KoinContext
 
 @Suppress("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-internal fun MainContent() {
+internal fun MainContent() = KoinContext {
     val context = LocalContext.current
     val navController = rememberNavController()
     val snackbarHostState = rememberSnackBarHostState()

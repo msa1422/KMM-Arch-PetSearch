@@ -11,12 +11,16 @@ import androidx.navigation.NavDeepLink
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateAndPopUpToRoute
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateToRoute
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.NavigateUp
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent.PopToRoute
+import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationScreen
+import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationScreen.Companion.fullRoute
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.RouteNavigator
 
 typealias AnimatedBackStack = AnimatedContentTransitionScope<NavBackStackEntry>
@@ -26,8 +30,7 @@ typealias AnimatedBackStack = AnimatedContentTransitionScope<NavBackStackEntry>
  * [Source](https://github.com/Frank1234/ViewModelNavigationCompose)
  */
 interface NavRoute<T : RouteNavigator> {
-
-    val route: String
+    val route: NavigationScreen
 
     @Composable
     fun Content(viewModel: T)
@@ -35,27 +38,30 @@ interface NavRoute<T : RouteNavigator> {
     val viewModel: T
         @Composable get
 
-    fun getArguments(): List<NamedNavArgument> = emptyList()
+    val deepLinks: List<NavDeepLink>
+        get() = emptyList()
 
-    fun getDeepLinks(): List<NavDeepLink> = emptyList()
+    val enterTransition: (AnimatedBackStack.() -> EnterTransition?)?
+        get() = null
 
-    fun getEnterTransition(): (AnimatedBackStack.() -> EnterTransition?)? = null
+    val exitTransition: (AnimatedBackStack.() -> ExitTransition?)?
+        get() = null
 
-    fun getExitTransition(): (AnimatedBackStack.() -> ExitTransition?)? = null
+    val popEnterTransition: (AnimatedBackStack.() -> EnterTransition?)?
+        get() = enterTransition
 
-    fun getPopEnterTransition(): (AnimatedBackStack.() -> EnterTransition?)? = getEnterTransition()
-
-    fun getPopExitTransition(): (AnimatedBackStack.() -> ExitTransition?)? = getExitTransition()
+    val popExitTransition: (AnimatedBackStack.() -> ExitTransition?)?
+        get() = exitTransition
 
     fun asComposable(builder: NavGraphBuilder, navController: NavHostController) =
         builder.composable(
-            route = route,
+            route = route.fullRoute,
             arguments = getArguments(),
-            deepLinks = getDeepLinks(),
-            enterTransition = getEnterTransition(),
-            exitTransition = getExitTransition(),
-            popEnterTransition = getPopEnterTransition(),
-            popExitTransition = getPopExitTransition()
+            deepLinks = deepLinks,
+            enterTransition = enterTransition,
+            exitTransition = exitTransition,
+            popEnterTransition = popEnterTransition,
+            popExitTransition = popExitTransition,
         ) {
             with(viewModel) {
                 Content(this)
@@ -67,6 +73,10 @@ interface NavRoute<T : RouteNavigator> {
                 }
             }
         }
+
+    private fun getArguments(): List<NamedNavArgument> = route.args.map {
+        navArgument(it) { type = NavType.StringType }
+    }
 
     private fun onNavEvent(controller: NavHostController, event: NavigationEvent) =
         when (event) {
@@ -132,7 +142,8 @@ private fun onNavigateUp(controller: NavHostController) {
 }
 
 private fun HashMap<String, String>?.joinArgs(route: String): String {
-    return this?.entries?.fold(route) { currentRoute, (key, value) ->
-        currentRoute.replace("{$key}", value.ifBlank { "null" })
+    return this?.entries?.foldIndexed(route) { index, currentRoute, (key, value) ->
+        val separator = if (index == 0) "/?" else ""
+        "$currentRoute$separator$key=${value.ifBlank { "null" }}"
     } ?: route
 }

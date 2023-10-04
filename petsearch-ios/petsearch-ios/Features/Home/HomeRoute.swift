@@ -11,23 +11,18 @@ import Shared
 import SwiftUI
 
 struct HomeRoute: NavRoute {
-
     typealias T = HomeViewModel
     
-    var route: String {
-        return NavigationScreen.HomeNavScreen.shared.route
+    var destination: NavigationScreen {
+        return NavigationScreen.homenavscreen
     }
     
     var content: some View {
-        return HomeScreen()
+        return HomeScreen(viewModel: viewModel)
     }
     
     var viewModel: HomeViewModel {
         @LazyKoin var delegate: HomeViewModel
         return delegate
-    }
-    
-    func getArguments() -> Array<String> {
-        return [String]()
     }
 }

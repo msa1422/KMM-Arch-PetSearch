@@ -1,5 +1,6 @@
 package com.msa.petsearch.shared.core.util.sharedviewmodel
 
+import co.touchlab.skie.configuration.annotations.FlowInterop
 import com.msa.petsearch.shared.core.util.resource.MessageDeque
 import com.msa.petsearch.shared.core.util.resource.ResourceMessage
 import com.msa.petsearch.shared.core.util.sharedviewmodel.contract.ActionDispatcher
@@ -11,8 +12,6 @@ import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.RouteNaviga
 import com.rickclephas.kmm.viewmodel.KMMViewModel
 import com.rickclephas.kmm.viewmodel.coroutineScope
 import com.rickclephas.kmm.viewmodel.stateIn
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesIgnore
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -27,14 +26,12 @@ constructor(val savedStateHandle: SavedStateHandle = SavedStateHandle()) :
     val vScope
         get() = viewModelScope.coroutineScope
 
-    @NativeCoroutinesIgnore
     private val _events by lazy { MutableSharedFlow<E>() }
-    @NativeCoroutines
+    @FlowInterop.Enabled
     val events by lazy { _events.asSharedFlow() }
 
-    @NativeCoroutinesIgnore
     private val _navigationEvent = MutableSharedFlow<NavigationEvent>()
-    @NativeCoroutines
+    @FlowInterop.Enabled
     override val navigationEvent: SharedFlow<NavigationEvent>
         get() = _navigationEvent.asSharedFlow()
 

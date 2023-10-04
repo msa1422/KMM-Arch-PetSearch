@@ -1,6 +1,6 @@
 package com.msa.petsearch.shared.core.util.resource
 
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
+import co.touchlab.skie.configuration.annotations.FlowInterop
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
@@ -8,7 +8,7 @@ object MessageDeque : Queue<ResourceMessage> {
     private val deque = ArrayDeque<ResourceMessage>()
     private val message = MutableSharedFlow<ResourceMessage>()
 
-    @NativeCoroutines
+    @FlowInterop.Enabled
     operator fun invoke() = message.asSharedFlow()
 
     override val count: Int

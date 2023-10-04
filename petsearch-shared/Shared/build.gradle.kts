@@ -1,5 +1,9 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
 
+import co.touchlab.skie.configuration.EnumInterop
+import co.touchlab.skie.configuration.FlowInterop
+import co.touchlab.skie.configuration.SealedInterop
+import co.touchlab.skie.configuration.SuspendInterop
 import com.msa.petsearch.SHARED_PACKAGE
 import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode
 import com.msa.petsearch.util.libs
@@ -8,6 +12,7 @@ plugins {
     `kmm-shared-module-plugin`
     kotlin("native.cocoapods")
     alias(libs.plugins.moko.resources)
+    alias(libs.plugins.touchlab.skie)
 }
 
 android {
@@ -65,4 +70,22 @@ multiplatformResources {
     multiplatformResourcesClassName = "MR"
     disableStaticFrameworkWarning = true
     multiplatformResourcesVisibility = dev.icerock.gradle.MRVisibility.Internal
+}
+
+skie {
+    features {
+        group {
+            FlowInterop.Enabled(false)
+            SuspendInterop.Enabled(false)
+        }
+        group("co.touchlab.skie.types") {
+            SealedInterop.Enabled(false)
+            EnumInterop.Enabled(false)
+        }
+    }
+
+    analytics {
+        enabled.set(false)
+        disableUpload.set(true)
+    }
 }

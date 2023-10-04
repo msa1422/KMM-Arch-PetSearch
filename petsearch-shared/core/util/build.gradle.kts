@@ -31,5 +31,6 @@ dependencies {
     commonMainImplementation(libs.kotlinx.serialization)
     commonMainImplementation(libs.kuuuurt.multiplatform.paging)
     commonMainImplementation(libs.squareup.okio)
+    commonMainImplementation(libs.touchlab.skie.annotations)
     commonMainImplementation(libs.uuid.multiplatform)
 }
