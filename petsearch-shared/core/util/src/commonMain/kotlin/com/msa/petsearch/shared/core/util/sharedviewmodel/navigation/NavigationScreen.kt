@@ -8,7 +8,7 @@ enum class NavigationScreen(val route: String, vararg val args: String) {
     companion object {
         val NavigationScreen.fullRoute: String
             get() = args.foldIndexed(initial = route) { index, fullRoute, arg ->
-                val separator = if (index == 0) "/?" else ""
+                val separator = if (index == 0) "/?" else "&"
                 "$fullRoute$separator$arg={$arg}"
             }
     }

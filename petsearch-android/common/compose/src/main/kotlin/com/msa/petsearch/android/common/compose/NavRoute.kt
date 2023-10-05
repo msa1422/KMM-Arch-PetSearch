@@ -143,7 +143,7 @@ private fun onNavigateUp(controller: NavHostController) {
 
 private fun HashMap<String, String>?.joinArgs(route: String): String {
     return this?.entries?.foldIndexed(route) { index, currentRoute, (key, value) ->
-        val separator = if (index == 0) "/?" else ""
+        val separator = if (index == 0) "/?" else "&"
         "$currentRoute$separator$key=${value.ifBlank { "null" }}"
     } ?: route
 }
