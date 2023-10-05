@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import KMMViewModelSwiftUI
 import Shared
 
 
@@ -38,6 +39,11 @@ extension KoinApplication {
 @propertyWrapper
 struct LazyKoin<T> {
     lazy var wrappedValue: T = { KoinApplication.shared.inject() } ()
-    
+    init() { }
+}
+
+@propertyWrapper
+struct KoinInject<T> {
+    var wrappedValue: T = KoinApplication.shared.inject()
     init() { }
 }

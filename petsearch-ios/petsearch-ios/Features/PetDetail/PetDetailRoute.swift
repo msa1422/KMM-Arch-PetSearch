@@ -21,8 +21,6 @@ struct PetDetailRoute: NavRoute {
         return PetDetailScreen(viewModel: viewModel)
     }
     
-    var viewModel: PetDetailViewModel {
-        @LazyKoin var delegate: PetDetailViewModel
-        return delegate
-    }
+    @KoinInject
+    var viewModel: PetDetailViewModel
 }

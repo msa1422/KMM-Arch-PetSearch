@@ -31,9 +31,8 @@ extension NavRoute {
             .onAppear {
                 if let viewModel = self.viewModel as? BaseViewModel<AnyObject, AnyObject, AnyObject> {
                     if navEventStream == nil {
-                        let arguments = extractArguments(from: route)
-                        if arguments != nil {
-                            viewModel.put(args: arguments!)
+                        if let arguments = extractArguments(from: route) {
+                            viewModel.put(args: arguments)
                         }
                         
                         navEventStream = Task {

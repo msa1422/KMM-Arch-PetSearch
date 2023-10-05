@@ -21,8 +21,6 @@ struct HomeRoute: NavRoute {
         return HomeScreen(viewModel: viewModel)
     }
     
-    var viewModel: HomeViewModel {
-        @LazyKoin var delegate: HomeViewModel
-        return delegate
-    }
+    @KoinInject
+    var viewModel: HomeViewModel
 }

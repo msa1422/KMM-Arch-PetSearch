@@ -15,6 +15,7 @@ struct HomeScreen: View {
     @StateViewModel var viewModel: HomeViewModel
     
     @State private var selectedTab: Int = 0
+    @State private var pagingDataTask: Task<(), Error>? = nil
     @State var pagingData = [PetInfo]()
     @State var paginationState = PaginationState.loading
     
@@ -35,17 +36,7 @@ struct HomeScreen: View {
         .edgesIgnoringSafeArea(.bottom)
         .background(Color.surface.ignoresSafeArea())
         .onAppear(perform: resumePagingDataStream)
-        .onDisappear(perform: pagingDataStream?.cancel)
-    }
-    
-    @State private var pagingDataStream: Task<(), Error>? = nil
-    private func resumePagingDataStream() {
-        pagingDataStream = Task {
-            for try await data in viewModel.pagingData {
-                paginationState = .idle
-                pagingData = data.uniqued()
-            }
-        }
+        .onDisappear(perform: pagingDataTask?.cancel)
     }
 }
 
@@ -128,6 +119,15 @@ extension HomeScreen {
                 .opacity(paginationState == .loading ? 1 : 0)
         }
         .background(Color.background)
+    }
+    
+    private func resumePagingDataStream() {
+        pagingDataTask = Task {
+            for try await data in viewModel.pagingData {
+                paginationState = .idle
+                pagingData = data.uniqued()
+            }
+        }
     }
 }
 
