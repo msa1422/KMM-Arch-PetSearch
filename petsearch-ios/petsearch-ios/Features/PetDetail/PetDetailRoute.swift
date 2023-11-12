@@ -11,8 +11,6 @@ import Shared
 import SwiftUI
 
 struct PetDetailRoute: NavRoute {
-    typealias T = PetDetailViewModel
-    
     var destination: NavigationScreen {
         return NavigationScreen.petdetailnavscreen
     }

@@ -108,7 +108,7 @@ extension NavRoute {
         from arguments: KotlinMutableDictionary<NSString, NSString>?
     ) -> String {
         return arguments?.reduce(route) { result, arg in
-            let separator = result == route ? "/?" : ""
+            let separator = result == route ? "/?" : "&"
             return "\(result)\(separator)\(arg.key)=\(arg.value)"
         } ?? route
     }

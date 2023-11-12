@@ -9,8 +9,7 @@
 import SwiftUI
 
 struct SectionTitle: View {
-    
-    let title: String
+    var title: String
     
     var body: some View {
         HStack(alignment: .center) {

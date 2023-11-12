@@ -17,7 +17,6 @@
 		5E8A071428F7E3BB007EFA96 /* SharedSvgImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A071328F7E3BB007EFA96 /* SharedSvgImage.swift */; };
 		5E93005728E439610013F432 /* TextExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E93005628E439610013F432 /* TextExt.swift */; };
 		5E9D8B0228E3369500EFAC59 /* Snackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D8B0128E3369500EFAC59 /* Snackbar.swift */; };
-		5E9E8090299B5DF50083E7E0 /* LifecycleAwareObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9E808F299B5DF50083E7E0 /* LifecycleAwareObservableObject.swift */; };
 		5EBEB68A28DE264400AA7C84 /* FontExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEB68928DE264400AA7C84 /* FontExt.swift */; };
 		5EC3B09628CB7E4200A040F2 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B09528CB7E4200A040F2 /* iOSApp.swift */; };
 		5EC3B09B28CB7EA700A040F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B09A28CB7EA700A040F2 /* ContentView.swift */; };
@@ -36,6 +35,8 @@
 		5EC3B0D928CB82D300A040F2 /* ImagePager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0D828CB82D300A040F2 /* ImagePager.swift */; };
 		5EC3B0DB28CB82E000A040F2 /* SectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3B0DA28CB82E000A040F2 /* SectionTitle.swift */; };
 		5ED782F22A1F757E00A7FC08 /* BaseViewModelExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED782F12A1F757E00A7FC08 /* BaseViewModelExt.swift */; };
+		5EDF4D3E2B008E9E00C594C5 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF4D3D2B008E9E00C594C5 /* TabItem.swift */; };
+		5EDF4D402B00948E00C594C5 /* PetDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF4D3F2B00948E00C594C5 /* PetDetailHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +51,6 @@
 		5E8A071328F7E3BB007EFA96 /* SharedSvgImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSvgImage.swift; sourceTree = "<group>"; };
 		5E93005628E439610013F432 /* TextExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExt.swift; sourceTree = "<group>"; };
 		5E9D8B0128E3369500EFAC59 /* Snackbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snackbar.swift; sourceTree = "<group>"; };
-		5E9E808F299B5DF50083E7E0 /* LifecycleAwareObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleAwareObservableObject.swift; sourceTree = "<group>"; };
 		5EBEB68928DE264400AA7C84 /* FontExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExt.swift; sourceTree = "<group>"; };
 		5EC3B09528CB7E4200A040F2 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		5EC3B09A28CB7EA700A040F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,6 +70,8 @@
 		5EC3B0DA28CB82E000A040F2 /* SectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitle.swift; sourceTree = "<group>"; };
 		5EC3B0DC28CB853500A040F2 /* petsearch-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "petsearch-ios.entitlements"; sourceTree = "<group>"; };
 		5ED782F12A1F757E00A7FC08 /* BaseViewModelExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelExt.swift; sourceTree = "<group>"; };
+		5EDF4D3D2B008E9E00C594C5 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		5EDF4D3F2B00948E00C594C5 /* PetDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailHeader.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* petsearch-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "petsearch-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "/Volumes/WorkHD/MobileApplication/KMM/PetsApp-PetFinder/PetsApp/petsearch-ios/petsearch-ios/Info.plist"; sourceTree = "<absolute>"; };
 		A4FAAD9219C9D63C1F7CB3F9 /* Pods_petsearch_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_petsearch_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,12 +97,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		5E11056228D057E200B36633 /* state */ = {
+		5E11056228D057E200B36633 /* State */ = {
 			isa = PBXGroup;
 			children = (
 				5E11056328D0581E00B36633 /* PaginationState.swift */,
 			);
-			path = state;
+			path = State;
 			sourceTree = "<group>";
 		};
 		5E54693A28E16D6D00ADBF23 /* Theme */ = {
@@ -112,13 +114,13 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
-		5E9D8B0028E3368400EFAC59 /* components */ = {
+		5E9D8B0028E3368400EFAC59 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				5E9D8B0128E3369500EFAC59 /* Snackbar.swift */,
 				5E8A071328F7E3BB007EFA96 /* SharedSvgImage.swift */,
 			);
-			path = components;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		5EC3B09428CB7D4E00A040F2 /* App */ = {
@@ -134,7 +136,7 @@
 		5EC3B09C28CB7F8C00A040F2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				5E9D8B0028E3368400EFAC59 /* components */,
+				5E9D8B0028E3368400EFAC59 /* Components */,
 				5E54693A28E16D6D00ADBF23 /* Theme */,
 				5EC3B0B528CB801E00A040F2 /* Util */,
 				5EC3B09D28CB7FC600A040F2 /* Assets.xcassets */,
@@ -153,7 +155,6 @@
 				5EC3B0C028CB817500A040F2 /* StringExt.swift */,
 				5EC3B0BE28CB815500A040F2 /* UINavigationControllerExt.swift */,
 				5E93005628E439610013F432 /* TextExt.swift */,
-				5E9E808F299B5DF50083E7E0 /* LifecycleAwareObservableObject.swift */,
 				5ED782F12A1F757E00A7FC08 /* BaseViewModelExt.swift */,
 			);
 			path = Util;
@@ -171,7 +172,7 @@
 		5EC3B0C728CB81F000A040F2 /* PetDetail */ = {
 			isa = PBXGroup;
 			children = (
-				5EC3B0D328CB828C00A040F2 /* components */,
+				5EC3B0D328CB828C00A040F2 /* Components */,
 				5EC3B0D628CB82AE00A040F2 /* PetDetailRoute.swift */,
 				5EC3B0D428CB82A000A040F2 /* PetDetailScreen.swift */,
 			);
@@ -181,30 +182,40 @@
 		5EC3B0C828CB81FC00A040F2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				5EC3B0CE28CB823900A040F2 /* components */,
-				5E11056228D057E200B36633 /* state */,
+				5EC3B0CE28CB823900A040F2 /* Components */,
+				5E11056228D057E200B36633 /* State */,
 				5EC3B0CC28CB821900A040F2 /* HomeRoute.swift */,
 				5EC3B0C928CB820800A040F2 /* HomeScreen.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
 		};
-		5EC3B0CE28CB823900A040F2 /* components */ = {
+		5EC3B0CE28CB823900A040F2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				5EC3B0CF28CB824900A040F2 /* TabRow.swift */,
+				5EDF4D3C2B008E7500C594C5 /* Tabs */,
 				5EC3B0D128CB825800A040F2 /* PetInfoView.swift */,
 			);
-			path = components;
+			path = Components;
 			sourceTree = "<group>";
 		};
-		5EC3B0D328CB828C00A040F2 /* components */ = {
+		5EC3B0D328CB828C00A040F2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				5EC3B0D828CB82D300A040F2 /* ImagePager.swift */,
 				5EC3B0DA28CB82E000A040F2 /* SectionTitle.swift */,
+				5EDF4D3F2B00948E00C594C5 /* PetDetailHeader.swift */,
 			);
-			path = components;
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5EDF4D3C2B008E7500C594C5 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				5EC3B0CF28CB824900A040F2 /* TabRow.swift */,
+				5EDF4D3D2B008E9E00C594C5 /* TabItem.swift */,
+			);
+			path = Tabs;
 			sourceTree = "<group>";
 		};
 		7555FF72242A565900829871 = {
@@ -403,10 +414,11 @@
 				5EC3B0D028CB824900A040F2 /* TabRow.swift in Sources */,
 				5E9D8B0228E3369500EFAC59 /* Snackbar.swift in Sources */,
 				5EC3B0D728CB82AE00A040F2 /* PetDetailRoute.swift in Sources */,
-				5E9E8090299B5DF50083E7E0 /* LifecycleAwareObservableObject.swift in Sources */,
 				5E1FDBFC28CFBD350034107D /* ArrayExt.swift in Sources */,
 				5EC3B0CA28CB820800A040F2 /* HomeScreen.swift in Sources */,
+				5EDF4D402B00948E00C594C5 /* PetDetailHeader.swift in Sources */,
 				5E54693C28E16DA000ADBF23 /* Type.swift in Sources */,
+				5EDF4D3E2B008E9E00C594C5 /* TabItem.swift in Sources */,
 				5E54693E28E16DDB00ADBF23 /* Color.swift in Sources */,
 				5EC3B0C528CB81A900A040F2 /* CornerRadiusStyle.swift in Sources */,
 				5EC3B0D228CB825800A040F2 /* PetInfoView.swift in Sources */,

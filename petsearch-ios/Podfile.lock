@@ -7,12 +7,12 @@ PODS:
   - KMPNativeCoroutinesAsync (1.0.0-ALPHA-18):
     - KMPNativeCoroutinesCore (= 1.0.0-ALPHA-18)
   - KMPNativeCoroutinesCore (1.0.0-ALPHA-18)
-  - SDWebImage (5.18.2):
-    - SDWebImage/Core (= 5.18.2)
-  - SDWebImage/Core (5.18.2)
+  - SDWebImage (5.18.3):
+    - SDWebImage/Core (= 5.18.3)
+  - SDWebImage/Core (5.18.3)
   - SDWebImageSVGCoder (1.7.0):
     - SDWebImage/Core (~> 5.6)
-  - SDWebImageSwiftUI (2.2.3):
+  - SDWebImageSwiftUI (2.2.4):
     - SDWebImage (~> 5.10)
   - Shared (1.0)
   - ToastSwiftUI (0.3.4)
@@ -50,13 +50,13 @@ SPEC CHECKSUMS:
   KMMViewModelSwiftUI: e2330e56d22a2cebae900d8e913a078b0407f16c
   KMPNativeCoroutinesAsync: 91d86216afbd78a569c2e6d01c1edf914d344812
   KMPNativeCoroutinesCore: fa73bbfb4f56ef9ff45666646374c43d717110f3
-  SDWebImage: c0de394d7cf7f9838aed1fd6bb6037654a4572e4
+  SDWebImage: 96e0c18ef14010b7485210e92fac888587ebb958
   SDWebImageSVGCoder: 15a300a97ec1c8ac958f009c02220ac0402e936c
-  SDWebImageSwiftUI: 17396b7889f9abc27231caaeb64c537564284aab
+  SDWebImageSwiftUI: a3ed505b65903252560fcf37ff493d9d97648ae5
   Shared: 68cccdc5b92427ba1f325420fb5834bc6fb9788e
   ToastSwiftUI: 3b9111e37719e4b1c4a4fdbc52a664ec8e676c0e
   UIPilot: f3aaea861e49c3e1b626c57b328a92c5107b2ca6
 
-PODFILE CHECKSUM: f37132a4a3537edfbcf62c6ccd7b9f62d8618472
+PODFILE CHECKSUM: 31e6cf8de19699dfd8628c1d4d684693b9efa0fe
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.14.2

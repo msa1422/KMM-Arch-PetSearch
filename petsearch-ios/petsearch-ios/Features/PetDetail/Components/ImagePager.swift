@@ -11,14 +11,8 @@ import Shared
 import SDWebImageSwiftUI
 
 struct ImagePager: View {
-    
-    private let photos: [PetPhoto]
-    private let onClick: (_ image: String) -> Void
-    
-    init(photos: [PetPhoto], onClick: @escaping (_: String) -> Void) {
-        self.photos = photos
-        self.onClick = onClick
-    }
+    var photos: [PetPhoto]
+    var onClick: (_ image: String) -> Void
     
     var body: some View {
         if !photos.isEmpty {
@@ -30,26 +24,26 @@ struct ImagePager: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle())
+        } else {
+            placeholder()
         }
     }
-    
-    func image(from photo: PetPhoto) -> some View {
+}
+
+private extension ImagePager {
+    private func image(from photo: PetPhoto) -> some View {
         WebImage(url: URL(string: photo.large))
             .resizable()
             .placeholder {
                 if photos.firstIndex(of: photo) == 0 {
                     WebImage(url: URL(string: photo.medium))
                         .resizable()
-                        .placeholder {
-                            placeholder
-                                .scaledToFill()
-                        }
+                        .placeholder(content: placeholder)
                         .cancelOnDisappear(true)
                         .indicator(.activity)
                         .scaledToFill()
                 } else {
-                    placeholder
-                        .scaledToFill()
+                    placeholder()
                 }
             }
             .cancelOnDisappear(true)
@@ -60,9 +54,10 @@ struct ImagePager: View {
             .onTapGesture { onClick(photo.large) }
     }
     
-    var placeholder: Image {
+    private func placeholder() -> some View {
         Image(uiImage: SharedR.images().bg_paw_print_loaded.toUIImage()!)
             .resizable()
-            .renderingMode(.template)
+            .renderingMode(.original)
+            .scaledToFill()
     }
 }

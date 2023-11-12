@@ -31,7 +31,6 @@ struct HomeScreen: View {
             
             Spacer()
         }
-        .navigationTitle("")
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.bottom)
         .background(Color.surface.ignoresSafeArea())
@@ -40,7 +39,7 @@ struct HomeScreen: View {
     }
 }
 
-extension HomeScreen {
+private extension HomeScreen {
     private var locationButton: some View {
         Button(action: {}) {
             VStack(alignment: .leading, spacing: .zero) {
@@ -131,9 +130,7 @@ extension HomeScreen {
     }
 }
 
-struct HomeScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        @LazyKoin var viewModel: HomeViewModel
-        HomeScreen(viewModel: viewModel)
-    }
+#Preview {
+    @KoinInject var viewModel: HomeViewModel
+    return HomeScreen(viewModel: viewModel)
 }

@@ -11,8 +11,6 @@ import Shared
 import SwiftUI
 
 struct HomeRoute: NavRoute {
-    typealias T = HomeViewModel
-    
     var destination: NavigationScreen {
         return NavigationScreen.homenavscreen
     }
