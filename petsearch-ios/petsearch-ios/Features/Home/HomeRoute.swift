@@ -12,7 +12,7 @@ import SwiftUI
 
 struct HomeRoute: NavRoute {
     var destination: NavigationScreen {
-        return NavigationScreen.homenavscreen
+        return NavigationScreen.homeNavScreen
     }
     
     var content: some View {

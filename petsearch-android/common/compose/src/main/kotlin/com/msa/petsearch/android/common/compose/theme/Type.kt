@@ -10,13 +10,13 @@ import androidx.compose.ui.text.font.FontWeight.Companion.SemiBold
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.sp
-import com.msa.petsearch.shared.resources.SharedR.fonts.Inter
+import com.msa.petsearch.shared.resources.SharedR
 
 private val InterFontFamily = FontFamily(
     listOf(
-        Font(resId = Inter.regular.fontResourceId, weight = Normal),
-        Font(resId = Inter.semiBold.fontResourceId, weight = SemiBold),
-        Font(resId = Inter.black.fontResourceId, weight = Black)
+        Font(resId = SharedR.fonts.inter_regular.fontResourceId, weight = Normal),
+        Font(resId = SharedR.fonts.inter_semibold.fontResourceId, weight = SemiBold),
+        Font(resId = SharedR.fonts.inter_black.fontResourceId, weight = Black)
     )
 )
 

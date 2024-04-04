@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = SHARED_PACKAGE.join(projects.petsearchShared.resources)
+    namespace = NAMESPACE
 }
 
 dependencies {
@@ -19,7 +19,10 @@ dependencies {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = SHARED_PACKAGE.join(projects.petsearchShared.resources)
-    multiplatformResourcesClassName = "SharedR"
-    disableStaticFrameworkWarning = true
+    resourcesPackage.set(NAMESPACE)
+    resourcesClassName.set("SharedR")
 }
+
+@Suppress("PrivatePropertyName")
+private val NAMESPACE: String
+    get() = SHARED_PACKAGE.join(projects.petsearchShared.resources)

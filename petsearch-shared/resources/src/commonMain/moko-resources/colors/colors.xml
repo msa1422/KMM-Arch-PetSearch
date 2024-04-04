@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- format: #RRGGBB[AA] or 0xRRGGBB[AA] or RRGGBB[AA] where [AA] - optional -->
+    <color name="background">
+        <light>#F2F7FF</light>
+        <dark>#0C1017</dark>
+    </color>
+
+    <color name="surface">
+        <light>#FFFFFF</light>
+        <dark>#1A1A1A</dark>
+    </color>
+
+    <color name="onSurface">
+        <light>#050505</light>
+        <dark>#FAFAFA</dark>
+    </color>
+</resources>

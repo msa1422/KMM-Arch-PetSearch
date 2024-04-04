@@ -1,6 +1,7 @@
-@file:Suppress("UnstableApiUsage", "UNUSED_VARIABLE", "DSL_SCOPE_VIOLATION")
+@file:Suppress("UnstableApiUsage", "DSL_SCOPE_VIOLATION")
 
 import com.msa.petsearch.util.libs
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
     kotlin("multiplatform")
@@ -18,6 +19,8 @@ repositories {
 }
 
 kotlin {
+    applyDefaultHierarchyTemplate()
+
     androidTarget()
     iosX64()
     iosArm64()
@@ -26,16 +29,16 @@ kotlin {
     sourceSets.all {
         languageSettings.apply {
             optIn("kotlin.RequiresOptIn")
-            optIn("kotlin.time.ExperimentalTime")
-            optIn("kotlinx.coroutines.FlowPreview")
-            optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
-            optIn("kotlinx.serialization.ExperimentalSerializationApi")
             optIn("kotlin.experimental.ExperimentalObjCName")
+            optIn("kotlin.time.ExperimentalTime")
+            optIn("kotlinx.cinterop.ExperimentalForeignApi")
+            optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+            optIn("kotlinx.coroutines.FlowPreview")
+            optIn("kotlinx.serialization.ExperimentalSerializationApi")
         }
     }
 
     sourceSets {
-        val commonMain by getting
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -48,37 +51,13 @@ kotlin {
                 implementation(libs.testing.kotest.assertions.core)
                 implementation(libs.testing.kotest.assertions.json)
                 implementation(libs.testing.kotest.property)
-
-                // Doesn't support kotlin native yet
-                // implementation(libs.testing.mockk.common)
             }
         }
-        val androidMain by getting
+
         val androidUnitTest by getting {
             dependencies {
                 implementation(libs.testing.kotest.runner.junit5)
-
-                // Doesn't support kotlin native yet
-                // implementation(libs.testing.mockk.core)
             }
-        }
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
-        }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by creating {
-            dependsOn(commonTest)
-            iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
-            iosSimulatorArm64Test.dependsOn(this)
         }
     }
 
@@ -99,9 +78,9 @@ android {
     }
 
     // Walkaround for Moko-Resources issue: https://github.com/icerockdev/moko-resources/issues/510
-    sourceSets {
-        getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
-    }
+    // sourceSets {
+    //     getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
+    // }
 }
 
 tasks.withType<Test>().configureEach {
@@ -120,4 +99,9 @@ tasks.withType<Test>().configureEach {
         )
         exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
     }
+}
+
+// Workaround for Moko-Resources bug where it is unable to find a task named 'testClasses'
+task("testClasses").doLast {
+    println("This is a dummy testClasses task")
 }

@@ -12,7 +12,7 @@ import SwiftUI
 
 struct PetDetailRoute: NavRoute {
     var destination: NavigationScreen {
-        return NavigationScreen.petdetailnavscreen
+        return NavigationScreen.petDetailNavScreen
     }
     
     var content: some View {

@@ -13,7 +13,7 @@ import ToastSwiftUI
 import UIPilot
 
 struct ContentView: View {
-    @StateObject var pilot = UIPilot(initial: NavigationScreen.homenavscreen.route)
+    @StateObject var pilot = UIPilot(initial: NavigationScreen.homeNavScreen.route)
     
     @State private var message: String?
     @State private var messageObserverTask: Task<(), Error>? = nil
@@ -26,10 +26,10 @@ struct ContentView: View {
         UIPilotHost(pilot) { route in
             switch route {
                 
-            case _ where route.starts(with: NavigationScreen.homenavscreen.route) :
+            case _ where route.starts(with: NavigationScreen.homeNavScreen.route) :
                 HomeRoute().view(pilot: pilot, route: route)
                 
-            case _ where route.starts(with: NavigationScreen.petdetailnavscreen.route):
+            case _ where route.starts(with: NavigationScreen.petDetailNavScreen.route):
                 PetDetailRoute().view(pilot: pilot, route: route)
                 
             // Workaround for default case, because Swift only truly verifies that a

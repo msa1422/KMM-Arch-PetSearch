@@ -51,27 +51,26 @@ public struct TextStyle {
 }
 
 public extension TextStyle {
+    static let displayLarge = TextStyle(SharedR.fonts().inter_regular, -2.5, 0, 57)
+    static let displayMedium = TextStyle(SharedR.fonts().inter_regular, -2, 0, 45)
+    static let displaySmall = TextStyle(SharedR.fonts().inter_regular, -1.5, 0, 36)
     
-    static let displayLarge = TextStyle(SharedR.fontsInter.shared.regular, -2.5, 0, 57)
-    static let displayMedium = TextStyle(SharedR.fontsInter.shared.regular, -2, 0, 45)
-    static let displaySmall = TextStyle(SharedR.fontsInter.shared.regular, -1.5, 0, 36)
+    static let headlineLarge = TextStyle(SharedR.fonts().inter_regular, -1, 0, 32)
+    static let headlineMedium = TextStyle(SharedR.fonts().inter_regular, -0.5, 0, 28)
+    static let headlineSmall = TextStyle(SharedR.fonts().inter_regular, -0.75, 0, 24)
     
-    static let headlineLarge = TextStyle(SharedR.fontsInter.shared.regular, -1, 0, 32)
-    static let headlineMedium = TextStyle(SharedR.fontsInter.shared.regular, -0.5, 0, 28)
-    static let headlineSmall = TextStyle(SharedR.fontsInter.shared.regular, -0.75, 0, 24)
+    static let titleLarge = TextStyle(SharedR.fonts().inter_black, -0.1, 0, 22)
+    static let titleMedium = TextStyle(SharedR.fonts().inter_semibold, 0, 0, 16)
+    static let titleSmall = TextStyle(SharedR.fonts().inter_black, 0.1, 0, 14)
     
-    static let titleLarge = TextStyle(SharedR.fontsInter.shared.black, -0.1, 0, 22)
-    static let titleMedium = TextStyle(SharedR.fontsInter.shared.semiBold, 0, 0, 16)
-    static let titleSmall = TextStyle(SharedR.fontsInter.shared.black, 0.1, 0, 14)
+    static let labelLarge = TextStyle(SharedR.fonts().inter_semibold, 0.1, 0, 16)
+    static let labelMedium = TextStyle(SharedR.fonts().inter_semibold, 0.5, 0, 14)
+    static let labelSmall = TextStyle(SharedR.fonts().inter_semibold, 0.5, 0, 11)
     
-    static let labelLarge = TextStyle(SharedR.fontsInter.shared.semiBold, 0.1, 0, 16)
-    static let labelMedium = TextStyle(SharedR.fontsInter.shared.semiBold, 0.5, 0, 14)
-    static let labelSmall = TextStyle(SharedR.fontsInter.shared.semiBold, 0.5, 0, 11)
+    static let bodyLarge = TextStyle(SharedR.fonts().inter_semibold, 0.5, 4, 16)
+    static let bodyMedium = TextStyle(SharedR.fonts().inter_regular, 0.25, 3, 14)
+    static let bodySmall = TextStyle(SharedR.fonts().inter_regular, 0.4, 2, 12)
     
-    static let bodyLarge = TextStyle(SharedR.fontsInter.shared.semiBold, 0.5, 4, 16)
-    static let bodyMedium = TextStyle(SharedR.fontsInter.shared.regular, 0.25, 3, 14)
-    static let bodySmall = TextStyle(SharedR.fontsInter.shared.regular, 0.4, 2, 12)
-    
-    static let tabSelected = TextStyle(SharedR.fontsInter.shared.black, 0, 0, 16)
-    static let tabUnselected = TextStyle(SharedR.fontsInter.shared.semiBold, 0.5, 0, 14)
+    static let tabSelected = TextStyle(SharedR.fonts().inter_black, 0, 0, 16)
+    static let tabUnselected = TextStyle(SharedR.fonts().inter_semibold, 0.5, 0, 14)
 }

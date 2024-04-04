@@ -5,8 +5,8 @@ import co.touchlab.skie.configuration.FlowInterop
 import co.touchlab.skie.configuration.SealedInterop
 import co.touchlab.skie.configuration.SuspendInterop
 import com.msa.petsearch.SHARED_PACKAGE
-import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode
 import com.msa.petsearch.util.libs
+import dev.icerock.gradle.MRVisibility
 
 plugins {
     `kmm-shared-module-plugin`
@@ -36,11 +36,8 @@ kotlin {
             export(projects.petsearchShared.ui.petdetail)
 
             export(libs.kermit.log)
+            export(libs.koin.core)
             export(libs.moko.resources)
-            export(libs.kuuuurt.multiplatform.paging)
-
-            transitiveExport = true
-            embedBitcode(BitcodeEmbeddingMode.BITCODE)
         }
     }
 }
@@ -56,6 +53,7 @@ dependencies {
     commonMainImplementation(projects.petsearchShared.ui.petdetail)
 
     iosMainApi(libs.kermit.log)
+    iosMainApi(libs.koin.core)
     iosMainApi(libs.kuuuurt.multiplatform.paging)
     iosMainApi(libs.moko.resources)
     iosMainApi(projects.petsearchShared.core.entity)
@@ -66,10 +64,9 @@ dependencies {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = SHARED_PACKAGE
-    multiplatformResourcesClassName = "MR"
-    disableStaticFrameworkWarning = true
-    multiplatformResourcesVisibility = dev.icerock.gradle.MRVisibility.Internal
+    resourcesPackage.set(SHARED_PACKAGE)
+    resourcesClassName.set("MR")
+    resourcesVisibility.set(MRVisibility.Internal)
 }
 
 skie {
