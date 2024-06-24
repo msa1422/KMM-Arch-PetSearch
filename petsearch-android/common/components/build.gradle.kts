@@ -1,5 +1,3 @@
-@file:Suppress("DSL_SCOPE_VIOLATION")
-
 import com.msa.petsearch.ANDROID_PACKAGE
 import com.msa.petsearch.join
 import com.msa.petsearch.util.libs
@@ -14,13 +12,6 @@ android {
         projects.petsearchAndroid.common,
         projects.petsearchAndroid.common.components
     )
-
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
-    }
 }
 
 dependencies {

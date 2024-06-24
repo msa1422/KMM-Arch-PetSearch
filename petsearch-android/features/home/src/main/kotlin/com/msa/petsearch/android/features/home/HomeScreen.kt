@@ -9,13 +9,12 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.rememberScrollState
@@ -35,9 +34,12 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -60,7 +62,11 @@ import kotlinx.coroutines.launch
 @Composable
 internal fun HomeScreen(
     viewModel: HomeViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    density: Density = LocalDensity.current,
+    topInsetHeight: Dp = with(density) {
+        WindowInsets.statusBars.getTop(density = this).toDp()
+    }
 ) {
     val coroutineScope = rememberCoroutineScope()
     val gridState = rememberLazyGridState()
@@ -69,10 +75,8 @@ internal fun HomeScreen(
     val petList = viewModel.pagingData.collectAsLazyPagingItems()
 
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
-        val systemBars = WindowInsets.systemBars.asPaddingValues()
-        val statusBarHeight = remember { systemBars.calculateTopPadding() }
-        val screenHeight = maxHeight - statusBarHeight
         val scrollState = rememberScrollState()
+        val screenHeight = maxHeight - topInsetHeight
 
         Column(
             modifier = Modifier

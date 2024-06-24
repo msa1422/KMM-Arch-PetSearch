@@ -11,6 +11,7 @@ android {
 }
 
 dependencies {
+    implementation(platform(libs.koin.bom))
     implementation(libs.coil.compose)
     implementation(libs.koin.core)
     implementation(libs.koin.core.coroutines)

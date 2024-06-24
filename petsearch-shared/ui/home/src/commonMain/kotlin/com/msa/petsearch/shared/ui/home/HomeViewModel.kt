@@ -17,8 +17,8 @@ import com.msa.petsearch.shared.ui.home.contract.HomeNavigation
 import com.msa.petsearch.shared.ui.home.contract.LoadPetListNextPage
 import com.msa.petsearch.shared.ui.home.contract.NavigateToPetDetail
 import com.msa.petsearch.shared.ui.home.contract.OnPetTypeTabChanged
-import com.msa.petsearch.shared.ui.home.model.PagerConfig
-import com.rickclephas.kmm.viewmodel.MutableStateFlow
+import com.msa.petsearch.shared.ui.home.util.PagerConfig
+import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.distinctUntilChanged

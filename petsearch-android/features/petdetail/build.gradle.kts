@@ -14,8 +14,11 @@ android {
 }
 
 dependencies {
+    implementation(platform(libs.koin.bom))
+
     implementation(libs.accompanist.pager)
     implementation(libs.androidx.compose.material)
+    implementation(libs.kmp.observableviewmodel)
     implementation(libs.koin.androidx.compose)
     implementation(libs.koin.core)
 

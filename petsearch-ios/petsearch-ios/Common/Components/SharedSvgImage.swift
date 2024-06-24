@@ -21,7 +21,7 @@ struct SharedSvgImage: View {
     }
     
     var body: WebImage {
-        WebImage(url: SharedR.images.shared.nsBundle
+        WebImage(url: SharedR.images.shared.__platformDetails.nsBundle
             .url(forResource: resource, withExtension: "svg")
         )
         .resizable()

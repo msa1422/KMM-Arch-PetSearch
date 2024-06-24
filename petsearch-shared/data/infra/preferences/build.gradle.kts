@@ -17,6 +17,7 @@ android {
 }
 
 dependencies {
+    commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.kermit.log)
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.koin.core.coroutines)

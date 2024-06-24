@@ -6,10 +6,10 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
-import SwiftUI
-import Shared
+import KMPObservableViewModelSwiftUI
 import SDWebImageSwiftUI
-import KMMViewModelSwiftUI
+import Shared
+import SwiftUI
 
 struct HomeScreen: View {
     @StateViewModel var viewModel: HomeViewModel

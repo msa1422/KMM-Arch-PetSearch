@@ -41,6 +41,8 @@ kotlin {
     sourceSets {
         val commonTest by getting {
             dependencies {
+                implementation(project.dependencies.platform(libs.koin.bom))
+
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
                 implementation(libs.kotlinx.coroutines.test)
@@ -70,17 +72,13 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
+        consumerProguardFiles("proguard-rules.pro")
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
-    // Walkaround for Moko-Resources issue: https://github.com/icerockdev/moko-resources/issues/510
-    // sourceSets {
-    //     getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
-    // }
 }
 
 tasks.withType<Test>().configureEach {

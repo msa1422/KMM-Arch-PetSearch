@@ -7,8 +7,11 @@
 //
 
 import Foundation
-import KMMViewModelSwiftUI
+import KMPObservableViewModelSwiftUI
 import Shared
+
+typealias KoinApplication = Koin_coreKoinApplication
+typealias Koin = Koin_coreKoin
 
 extension KoinApplication {
     static let shared = KoinKt.doInitKoin(eagerModules: nil, lazyModules: nil)

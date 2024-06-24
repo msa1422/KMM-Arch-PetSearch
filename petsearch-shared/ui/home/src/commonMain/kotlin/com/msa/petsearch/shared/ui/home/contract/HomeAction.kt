@@ -13,13 +13,13 @@ sealed interface HomeAction : UiContract.Action
 // ACTIONS WITH SIDE-EFFECT ________________________________________________________________________
 data class OnPetTypeTabChanged(val tabName: String) : HomeAction
 
-object LoadPetListNextPage : HomeAction
+data object LoadPetListNextPage : HomeAction
 
 // _________________________________________________________________________________________________
 // ACTIONS WITH NAVIGATION _________________________________________________________________________
 data class NavigateToPetDetail(val petInfo: PetInfo?) : HomeAction, HomeNavigation {
     override val event = NavigationEvent.NavigateToRoute(
         route = NavigationScreen.PetDetailNavScreen.route,
-        args = hashMapOf(Pair(ARG_PET_INFO, petInfo?.encodeToString() ?: ""))
+        args = hashMapOf(Pair(ARG_PET_INFO, petInfo?.encodeToString().orEmpty()))
     )
 }

@@ -14,6 +14,7 @@ plugins {
     id("com.msa.petsearch.checks.ktlint")
     id("com.msa.petsearch.checks.spotless")
     id("com.msa.petsearch.checks.dependency-updates")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 repositories {
@@ -21,7 +22,6 @@ repositories {
 }
 
 android {
-
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -90,8 +90,8 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
+    composeCompiler {
+        enableStrongSkippingMode = true
     }
 
     compileOptions {

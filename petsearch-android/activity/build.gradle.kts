@@ -16,6 +16,7 @@ dependencies {
     api(projects.petsearchAndroid.features.home)
     api(projects.petsearchAndroid.features.petdetail)
 
+    implementation(platform(libs.koin.bom))
     implementation(libs.koin.androidx.compose)
     implementation(libs.koin.core)
     implementation(projects.petsearchShared.core.util)

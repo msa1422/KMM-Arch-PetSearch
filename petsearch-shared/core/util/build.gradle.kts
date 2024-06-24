@@ -8,7 +8,7 @@ plugins {
     `kmm-shared-module-plugin`
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.nativecoroutines)
+    alias(libs.plugins.kmp.nativecoroutines)
 }
 
 android {
@@ -21,9 +21,10 @@ android {
 dependencies {
     androidMainImplementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    commonMainApi(libs.rickclephas.kmm.viewmodel)
 
+    commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.kermit.log)
+    commonMainImplementation(libs.kmp.observableviewmodel)
     //commonMainImplementation(libs.kermit.crashlytics)
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.koin.core.coroutines)

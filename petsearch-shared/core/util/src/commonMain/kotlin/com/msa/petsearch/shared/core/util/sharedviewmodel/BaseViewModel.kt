@@ -9,9 +9,9 @@ import com.msa.petsearch.shared.core.util.sharedviewmodel.contract.UiContract.Ev
 import com.msa.petsearch.shared.core.util.sharedviewmodel.contract.UiContract.Navigation
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.NavigationEvent
 import com.msa.petsearch.shared.core.util.sharedviewmodel.navigation.RouteNavigator
-import com.rickclephas.kmm.viewmodel.KMMViewModel
-import com.rickclephas.kmm.viewmodel.coroutineScope
-import com.rickclephas.kmm.viewmodel.stateIn
+import com.rickclephas.kmp.observableviewmodel.ViewModel
+import com.rickclephas.kmp.observableviewmodel.coroutineScope
+import com.rickclephas.kmp.observableviewmodel.stateIn
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -20,9 +20,9 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<A : Action, N : Navigation, E : Event>
-constructor(val savedStateHandle: SavedStateHandle = SavedStateHandle()) :
-    KMMViewModel(), ActionDispatcher<A>, RouteNavigator {
+abstract class BaseViewModel<A : Action, N : Navigation, E : Event>(
+    val savedStateHandle: SavedStateHandle = SavedStateHandle()
+) : ViewModel(), ActionDispatcher<A>, RouteNavigator {
     val vScope
         get() = viewModelScope.coroutineScope
 

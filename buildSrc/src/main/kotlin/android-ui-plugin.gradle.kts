@@ -8,6 +8,7 @@ plugins {
     id("com.msa.petsearch.checks.detekt")
     id("com.msa.petsearch.checks.ktlint")
     id("com.msa.petsearch.checks.spotless")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 repositories {
@@ -19,6 +20,7 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
+        consumerProguardFiles("proguard-rules.pro")
     }
 
     compileOptions {
@@ -30,8 +32,8 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
+    composeCompiler {
+        enableStrongSkippingMode = true
     }
 
     sourceSets.all {

@@ -17,6 +17,7 @@ android {
 }
 
 dependencies {
+    commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.kotlinx.serialization)
 

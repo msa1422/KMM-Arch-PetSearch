@@ -3,8 +3,8 @@ target 'petsearch-ios' do
   platform :ios, '14.0'
   pod 'Shared', :path => '../petsearch-shared/Shared'
   
-  pod 'KMMViewModelSwiftUI', '1.0.0-ALPHA-20'
-  pod 'KMPNativeCoroutinesAsync', '1.0.0-ALPHA-27'
+  pod 'KMPNativeCoroutinesAsync', '1.0.0-ALPHA-31'
+  pod 'KMPObservableViewModelSwiftUI', '1.0.0-BETA-3'
   pod 'SDWebImageSVGCoder'
   pod 'SDWebImageSwiftUI', '2.2.3'
   pod 'ToastSwiftUI'

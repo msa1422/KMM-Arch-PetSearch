@@ -6,7 +6,7 @@
 //  Copyright © 2023 orgName. All rights reserved.
 //
 
-import KMMViewModelCore
+import KMPObservableViewModelCore
 import Shared
 
-extension BaseViewModel: KMMViewModelCore.KMMViewModel { }
+extension BaseViewModel: KMPObservableViewModelCore.ViewModel { }

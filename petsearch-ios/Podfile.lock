@@ -1,15 +1,15 @@
 PODS:
-  - KMMViewModelCore (1.0.0-ALPHA-20):
-    - KMMViewModelCoreObjC (= 1.0.0-ALPHA-20)
-  - KMMViewModelCoreObjC (1.0.0-ALPHA-20)
-  - KMMViewModelSwiftUI (1.0.0-ALPHA-20):
-    - KMMViewModelCore (= 1.0.0-ALPHA-20)
-  - KMPNativeCoroutinesAsync (1.0.0-ALPHA-27):
-    - KMPNativeCoroutinesCore (= 1.0.0-ALPHA-27)
-  - KMPNativeCoroutinesCore (1.0.0-ALPHA-27)
-  - SDWebImage (5.19.1):
-    - SDWebImage/Core (= 5.19.1)
-  - SDWebImage/Core (5.19.1)
+  - KMPNativeCoroutinesAsync (1.0.0-ALPHA-31):
+    - KMPNativeCoroutinesCore (= 1.0.0-ALPHA-31)
+  - KMPNativeCoroutinesCore (1.0.0-ALPHA-31)
+  - KMPObservableViewModelCore (1.0.0-BETA-3):
+    - KMPObservableViewModelCoreObjC (= 1.0.0-BETA-3)
+  - KMPObservableViewModelCoreObjC (1.0.0-BETA-3)
+  - KMPObservableViewModelSwiftUI (1.0.0-BETA-3):
+    - KMPObservableViewModelCore (= 1.0.0-BETA-3)
+  - SDWebImage (5.19.2):
+    - SDWebImage/Core (= 5.19.2)
+  - SDWebImage/Core (5.19.2)
   - SDWebImageSVGCoder (1.7.0):
     - SDWebImage/Core (~> 5.6)
   - SDWebImageSwiftUI (2.2.3):
@@ -19,8 +19,8 @@ PODS:
   - UIPilot (1.3.1)
 
 DEPENDENCIES:
-  - KMMViewModelSwiftUI (= 1.0.0-ALPHA-20)
-  - KMPNativeCoroutinesAsync (= 1.0.0-ALPHA-27)
+  - KMPNativeCoroutinesAsync (= 1.0.0-ALPHA-31)
+  - KMPObservableViewModelSwiftUI (= 1.0.0-BETA-3)
   - SDWebImageSVGCoder
   - SDWebImageSwiftUI (= 2.2.3)
   - Shared (from `../petsearch-shared/Shared`)
@@ -29,11 +29,11 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - KMMViewModelCore
-    - KMMViewModelCoreObjC
-    - KMMViewModelSwiftUI
     - KMPNativeCoroutinesAsync
     - KMPNativeCoroutinesCore
+    - KMPObservableViewModelCore
+    - KMPObservableViewModelCoreObjC
+    - KMPObservableViewModelSwiftUI
     - SDWebImage
     - SDWebImageSVGCoder
     - SDWebImageSwiftUI
@@ -45,18 +45,18 @@ EXTERNAL SOURCES:
     :path: "../petsearch-shared/Shared"
 
 SPEC CHECKSUMS:
-  KMMViewModelCore: 999834e4f4b8d9ada108656f54cc961fbb62498b
-  KMMViewModelCoreObjC: 1cf316c148183034d6b7b87ebc08b9e676ea9d0f
-  KMMViewModelSwiftUI: 39ed56e9ad729664237c3a04d6ddff1d2f46d307
-  KMPNativeCoroutinesAsync: 7a2476324cf4842818ceda3801de543005babd12
-  KMPNativeCoroutinesCore: a02bb7ce001707820591837b6aa6900ff990c776
-  SDWebImage: 40b0b4053e36c660a764958bff99eed16610acbb
+  KMPNativeCoroutinesAsync: d32ec9bb9d3ce393f524e5e4afb1ce53b83dae6c
+  KMPNativeCoroutinesCore: 9dec13ac28fe0709fb8b473f314de1ec0d55720e
+  KMPObservableViewModelCore: 03ca22ae973a0cdfd9948876c716cd58ed3ca546
+  KMPObservableViewModelCoreObjC: 047a8024ee08631dbe89e4f5038de1e3094775f3
+  KMPObservableViewModelSwiftUI: 24d69864340bd6f45d4611f40944b281d6831458
+  SDWebImage: dfe95b2466a9823cf9f0c6d01217c06550d7b29a
   SDWebImageSVGCoder: 15a300a97ec1c8ac958f009c02220ac0402e936c
   SDWebImageSwiftUI: 17396b7889f9abc27231caaeb64c537564284aab
-  Shared: 68cccdc5b92427ba1f325420fb5834bc6fb9788e
+  Shared: 43f5c688d50e262ff81dc9a724435da83b1981d7
   ToastSwiftUI: 02d2547df70d2f12340b6a9bf85e670cab3bbf3b
   UIPilot: f3aaea861e49c3e1b626c57b328a92c5107b2ca6
 
-PODFILE CHECKSUM: f213c7600082c33560f9ceb0aab72e324481f0a7
+PODFILE CHECKSUM: d0dad7f81f21ba66bcded6cfc7460a99d5bf5d2a
 
 COCOAPODS: 1.14.2

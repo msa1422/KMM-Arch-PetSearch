@@ -43,6 +43,7 @@ kotlin {
 }
 
 dependencies {
+    commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.koin.core.coroutines)
     commonMainImplementation(libs.kotlinx.coroutines.core)
@@ -74,8 +75,6 @@ skie {
         group {
             FlowInterop.Enabled(false)
             SuspendInterop.Enabled(false)
-        }
-        group("co.touchlab.skie.types") {
             SealedInterop.Enabled(false)
             EnumInterop.Enabled(false)
         }

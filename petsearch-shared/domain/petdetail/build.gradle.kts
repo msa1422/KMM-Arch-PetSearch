@@ -14,6 +14,7 @@ android {
 }
 
 dependencies {
+    commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.koin.core.coroutines)
     commonMainImplementation(libs.kotlinx.coroutines.core)

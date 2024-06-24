@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -50,7 +50,7 @@ internal fun HomeTabRow(
         selectedTabIndex = state.selectedTabIndex,
         edgePadding = 8.dp,
         indicator = { tabPositions ->
-            TabRowDefaults.Indicator(
+            SecondaryIndicator(
                 modifier = Modifier.textWidthTabIndicatorOffset(
                     currentTabPosition = tabPositions[state.selectedTabIndex],
                     tabWidth = tabWidths[state.selectedTabIndex]

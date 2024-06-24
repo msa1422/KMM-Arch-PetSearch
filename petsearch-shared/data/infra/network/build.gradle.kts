@@ -23,6 +23,7 @@ android {
 dependencies {
     androidMainImplementation(libs.ktor.client.okHttp)
 
+    commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.bundles.ktor.common)
     commonMainImplementation(libs.kermit.log)
     commonMainImplementation(libs.koin.core)
