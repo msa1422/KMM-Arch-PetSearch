@@ -7,9 +7,9 @@ PODS:
   - KMPObservableViewModelCoreObjC (1.0.0-BETA-3)
   - KMPObservableViewModelSwiftUI (1.0.0-BETA-3):
     - KMPObservableViewModelCore (= 1.0.0-BETA-3)
-  - SDWebImage (5.19.2):
-    - SDWebImage/Core (= 5.19.2)
-  - SDWebImage/Core (5.19.2)
+  - SDWebImage (5.19.4):
+    - SDWebImage/Core (= 5.19.4)
+  - SDWebImage/Core (5.19.4)
   - SDWebImageSVGCoder (1.7.0):
     - SDWebImage/Core (~> 5.6)
   - SDWebImageSwiftUI (2.2.3):
@@ -50,7 +50,7 @@ SPEC CHECKSUMS:
   KMPObservableViewModelCore: 03ca22ae973a0cdfd9948876c716cd58ed3ca546
   KMPObservableViewModelCoreObjC: 047a8024ee08631dbe89e4f5038de1e3094775f3
   KMPObservableViewModelSwiftUI: 24d69864340bd6f45d4611f40944b281d6831458
-  SDWebImage: dfe95b2466a9823cf9f0c6d01217c06550d7b29a
+  SDWebImage: 066c47b573f408f18caa467d71deace7c0f8280d
   SDWebImageSVGCoder: 15a300a97ec1c8ac958f009c02220ac0402e936c
   SDWebImageSwiftUI: 17396b7889f9abc27231caaeb64c537564284aab
   Shared: 43f5c688d50e262ff81dc9a724435da83b1981d7
