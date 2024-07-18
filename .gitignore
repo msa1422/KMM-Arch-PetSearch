@@ -7,7 +7,7 @@
 /captures
 .externalNativeBuild
 .cxx
-.kotlin/
+.kotlin
 .kotlin/metadata/
 
 .settings
