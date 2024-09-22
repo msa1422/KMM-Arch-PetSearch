@@ -38,4 +38,11 @@ val AppColorScheme
         outline = colorResource(resource = SharedR.colors.onSurface),
         outlineVariant = colorResource(resource = SharedR.colors.onSurface),
         scrim = colorResource(resource = SharedR.colors.onSurface),
+        surfaceBright = colorResource(resource = SharedR.colors.surface),
+        surfaceDim = colorResource(resource = SharedR.colors.surface),
+        surfaceContainer = colorResource(resource = SharedR.colors.surface),
+        surfaceContainerHigh = colorResource(resource = SharedR.colors.surface),
+        surfaceContainerHighest = colorResource(resource = SharedR.colors.surface),
+        surfaceContainerLow = colorResource(resource = SharedR.colors.surface),
+        surfaceContainerLowest = colorResource(resource = SharedR.colors.surface)
     )

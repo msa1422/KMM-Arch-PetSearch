@@ -31,8 +31,8 @@ import kotlinx.coroutines.launch
 internal fun CustomScrollableTabRow(
     selectedTabIndex: Int,
     modifier: Modifier = Modifier,
-    containerColor: Color = TabRowDefaults.containerColor,
-    contentColor: Color = TabRowDefaults.contentColor,
+    containerColor: Color = TabRowDefaults.primaryContainerColor,
+    contentColor: Color = TabRowDefaults.primaryContentColor,
     edgePadding: Dp = 0.dp,
     indicator: @Composable (tabPositions: List<TabPosition>) -> Unit,
     divider: @Composable () -> Unit = @Composable {},

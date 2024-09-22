@@ -32,10 +32,6 @@ android {
         compose = true
     }
 
-    composeCompiler {
-        enableStrongSkippingMode = true
-    }
-
     sourceSets.all {
         java.srcDirs("src/$name/kotlin")
     }
